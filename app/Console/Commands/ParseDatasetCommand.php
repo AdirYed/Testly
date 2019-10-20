@@ -27,7 +27,11 @@ class ParseDatasetCommand extends Command
         Answer::truncate();
         Schema::enableForeignKeyConstraints();
 
-        $datasetSimpleXml = simplexml_load_file(storage_path('theory_test_dataset.xml'),'SimpleXMLElement', LIBXML_NOCDATA);
+        $datasetSimpleXml = simplexml_load_file(
+            config('theory_test.dataset.path'),
+            'SimpleXMLElement',
+            LIBXML_NOCDATA
+        );
         $datasetJson = json_encode((array) $datasetSimpleXml->channel);
         $dataset = collect(json_decode($datasetJson, true)['item'])->values();
 

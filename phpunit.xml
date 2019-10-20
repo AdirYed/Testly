@@ -31,5 +31,6 @@
         <server name="MAIL_DRIVER" value="array"/>
         <server name="QUEUE_CONNECTION" value="sync"/>
         <server name="SESSION_DRIVER" value="array"/>
+        <server name="DATASET_PATH" value="tests/Commands/theory_test_dataset_testing.xml"/>
     </php>
 </phpunit>
