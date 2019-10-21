@@ -59,7 +59,7 @@ class DatasetParseCommandTest extends TestCase
         $amount = 0;
 
         foreach (Question::get() as $question) {
-            if (! $question->image_url) {
+            if (!$question->image_url) {
                 $amount++;
             }
         }
