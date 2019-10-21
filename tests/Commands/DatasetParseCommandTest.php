@@ -37,6 +37,12 @@ class DatasetParseCommandTest extends TestCase
     }
 
     /** @test */
+    public function it_should_store_questions_with_images_in_a_local_folder()
+    {
+        $this->assertFileExists();
+    }
+
+    /** @test */
     public function every_question_must_have_an_answer()
     {
         $this->assertEquals($this->questionCount,  Question::whereHas('correctAnswer')->count());

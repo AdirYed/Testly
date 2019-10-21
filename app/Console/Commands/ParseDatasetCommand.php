@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use Storage;
 use App\Answer;
 use App\Category;
 use App\Question;
@@ -26,6 +27,10 @@ class ParseDatasetCommand extends Command
         Question::truncate();
         Answer::truncate();
         Schema::enableForeignKeyConstraints();
+
+        if(\File::exists(storage_path('images'))) {
+            \File::deleteDirectory(storage_path('images'));
+        }
 
         $datasetSimpleXml = simplexml_load_file(
             config('theory_test.dataset.path'),
@@ -53,16 +58,38 @@ class ParseDatasetCommand extends Command
             $dataset->map(static function ($item) use ($categories) {
                 preg_match('/(?<original_id>\d+)(\.)(?<title>.+)/', $item['title'], $matches);
 
-                $html = simplexml_load_string($item['description']);
-
                 $data = [
                     'title' => trim($matches['title']),
-                    'image_url' => $html->img['src'] ?? null,
+                    'image_url' => null,
                     'original_id' => (int) $matches['original_id'],
                     'category_id' => $categories->firstWhere('name', $item['category'])->id,
                     'created_at' => now(),
                     'updated_at' => now(),
                 ];
+
+                $html = simplexml_load_string($item['description']);
+
+                if(isset($html->img['src'])) {
+                    $url = (string) $html->img['src'];
+                    $name = substr($url, strrpos($url, '/') + 1);
+
+                    try {
+                        $start = curl_init();
+                        curl_setopt($start, CURLOPT_URL, $url);
+                        curl_setopt($start, CURLOPT_RETURNTRANSFER, 1);
+                        curl_setopt($start, CURLOPT_SSLVERSION, 3);
+
+                        $contents = curl_exec($start);
+                        curl_close($start);
+
+                        Storage::disk('images')->put($name, $contents);
+
+                        $data['image_url'] = 'app/' . $name;
+                        dump('an image was stored');
+                    } catch (\Exception $e) {
+                        dump('error');
+                    }
+                }
 
                 return $data;
             })->all()
