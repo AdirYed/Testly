@@ -53,20 +53,16 @@ class ParseDatasetCommand extends Command
             $dataset->map(static function ($item) use ($categories) {
                 preg_match('/(?<original_id>\d+)(\.)(?<title>.+)/', $item['title'], $matches);
 
+                $html = simplexml_load_string($item['description']);
+
                 $data = [
-                    'title' => $matches['title'],
-                    'image_url' => null,
+                    'title' => trim($matches['title']),
+                    'image_url' => $html->img['src'] ?? null,
                     'original_id' => (int) $matches['original_id'],
                     'category_id' => $categories->firstWhere('name', $item['category'])->id,
                     'created_at' => now(),
                     'updated_at' => now(),
                 ];
-
-                $html = simplexml_load_string($item['description']);
-
-                if (isset($html->img)) {
-                    $data['image_url'] = $html->img['src'];
-                }
 
                 return $data;
             })->all()

@@ -53,6 +53,11 @@ class Question extends Model
         return $this->hasMany(Answer::class);
     }
 
+    public function correctAnswer() : HasOne
+    {
+        return $this->hasOne(Answer::class)->where('is_correct', true);
+    }
+
     public function getCorrectAnswer(): Answer
     {
         if ($this->relationLoaded('answers')) {
