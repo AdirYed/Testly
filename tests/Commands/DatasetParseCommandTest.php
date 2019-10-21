@@ -5,7 +5,6 @@ namespace Tests\Commands;
 use App\Answer;
 use App\Category;
 use App\Question;
-use phpDocumentor\Reflection\Types\Parent_;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
