@@ -9,6 +9,7 @@ use App\Category;
 use App\Question;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Schema;
+use Str;
 
 class ParseDatasetCommand extends Command
 {
@@ -70,7 +71,7 @@ class ParseDatasetCommand extends Command
 
                 if(isset($html->img['src'])) {
                     $url = (string) $html->img['src'];
-                    $name = substr($url, strrpos($url, '/') + 1);
+                    $name = (string) Str::uuid() . \File::extension($url);
 
                     $urls[] = [
                         'name' => $name,
@@ -110,8 +111,8 @@ class ParseDatasetCommand extends Command
         $this->info('Dataset parsed and stored in the database successfully!');
         $this->info('Do not shut down the terminal yet, the images are getting stored right now.');
 
-        if(Storage::disk('storage')->exists('/images')) {
-            Storage::disk('storage')->deleteDirectory('images');
+        if(Storage::disk('local')->exists('/images')) {
+            Storage::disk('local')->deleteDirectory('images');
         }
 
         // Store images in a local directory
@@ -130,7 +131,7 @@ class ParseDatasetCommand extends Command
 
             $name = "images/{$name}";
 
-            Storage::disk('storage')->put($name, $contents);
+            Storage::disk('local')->put($name, $contents);
         }
         curl_close ($start);
 

@@ -5,8 +5,8 @@ namespace Tests\Commands;
 use App\Answer;
 use App\Category;
 use App\Question;
-use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
+use Str;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
@@ -20,7 +20,7 @@ class DatasetParseCommandTest extends TestCase
     {
         parent::setUp();
 
-        Storage::fake('storage');
+        Storage::fake('local');
 
         $this->artisan('dataset:parse')
             ->expectsOutput('All of the images were stored successfully!');
@@ -43,9 +43,9 @@ class DatasetParseCommandTest extends TestCase
     /** @test */
     public function it_should_store_images_in_a_local_storage()
     {
-        UploadedFile::fake()->image('31073.jpg');
+        $img = Question::whereNotNull('image_url')->first()->only('image_url');
 
-        Storage::disk('storage')->assertExists('images/31073.jpg');
+        Storage::disk('local')->assertExists($img);
     }
 
     /** @test */
