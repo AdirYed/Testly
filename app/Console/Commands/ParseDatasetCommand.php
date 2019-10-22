@@ -51,11 +51,13 @@ class ParseDatasetCommand extends Command
             })->all()
         );
 
+        $urls = [];
+
         $categories = Category::all();
 
         // Store questions
         Question::insert(
-            $dataset->map(static function ($item) use ($categories) {
+            $dataset->map(static function ($item) use ($categories, &$urls) {
                 preg_match('/(?<original_id>\d+)(\.)(?<title>.+)/', $item['title'], $matches);
 
                 $data = [
@@ -73,22 +75,12 @@ class ParseDatasetCommand extends Command
                     $url = (string) $html->img['src'];
                     $name = substr($url, strrpos($url, '/') + 1);
 
-                    try {
-                        $start = curl_init();
-                        curl_setopt($start, CURLOPT_URL, $url);
-                        curl_setopt($start, CURLOPT_RETURNTRANSFER, 1);
-                        curl_setopt($start, CURLOPT_SSLVERSION, 3);
+                    $urls[] = [
+                        'name' => $name,
+                        'url' => $url,
+                    ];
 
-                        $contents = curl_exec($start);
-                        curl_close($start);
-
-                        Storage::disk('images')->put($name, $contents);
-
-                        $data['image_url'] = 'app/' . $name;
-                        dump('an image was stored');
-                    } catch (\Exception $e) {
-                        dump('error');
-                    }
+                    $data['image_url'] = 'images/' . $name;
                 }
 
                 return $data;
@@ -119,5 +111,26 @@ class ParseDatasetCommand extends Command
         Answer::insert($answersData);
 
         $this->info('Dataset parsed and stored in the database successfully!');
+        $this->info('Do not shut down the terminal yet, the images are getting stored right now.');
+
+        $ch = curl_init ();
+        curl_setopt ( $ch, CURLOPT_ENCODING, '' );
+        foreach ( $urls as $url ) {
+            $name =  $url['name'];
+            $url = $url['url'];
+
+            curl_setopt_array($ch, [
+                CURLOPT_URL => $url,
+                CURLOPT_RETURNTRANSFER => 1,
+                CURLOPT_SSLVERSION => 3
+            ]);
+
+            $contents = curl_exec($ch);
+
+            Storage::disk('images')->put($name, $contents);
+        }
+        curl_close ( $ch );
+
+        $this->info('All of the images were stored successfully!');
     }
 }
