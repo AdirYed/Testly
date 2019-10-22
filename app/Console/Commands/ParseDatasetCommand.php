@@ -27,7 +27,11 @@ class ParseDatasetCommand extends Command
         Answer::truncate();
         Schema::enableForeignKeyConstraints();
 
-        $datasetSimpleXml = simplexml_load_file(storage_path('theory_test_dataset.xml'),'SimpleXMLElement', LIBXML_NOCDATA);
+        $datasetSimpleXml = simplexml_load_file(
+            config('theory_test.dataset.path'),
+            'SimpleXMLElement',
+            LIBXML_NOCDATA
+        );
         $datasetJson = json_encode((array) $datasetSimpleXml->channel);
         $dataset = collect(json_decode($datasetJson, true)['item'])->values();
 
@@ -49,20 +53,16 @@ class ParseDatasetCommand extends Command
             $dataset->map(static function ($item) use ($categories) {
                 preg_match('/(?<original_id>\d+)(\.)(?<title>.+)/', $item['title'], $matches);
 
+                $html = simplexml_load_string($item['description']);
+
                 $data = [
-                    'title' => $matches['title'],
-                    'image_url' => null,
+                    'title' => trim($matches['title']),
+                    'image_url' => $html->img['src'] ?? null,
                     'original_id' => (int) $matches['original_id'],
                     'category_id' => $categories->firstWhere('name', $item['category'])->id,
                     'created_at' => now(),
                     'updated_at' => now(),
                 ];
-
-                $html = simplexml_load_string($item['description']);
-
-                if (isset($html->img)) {
-                    $data['image_url'] = $html->img['src'];
-                }
 
                 return $data;
             })->all()
