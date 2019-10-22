@@ -6,7 +6,6 @@ use App\Answer;
 use App\Category;
 use App\Question;
 use Illuminate\Support\Facades\Storage;
-use Str;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
