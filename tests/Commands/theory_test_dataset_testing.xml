@@ -37,7 +37,7 @@
             <link></link>
             <guid></guid>
             <description>
-                <![CDATA[<div dir="rtl" style="text-align: right"><ul><li><span>תעצור תמיד במקום שבו שדה הראייה הוא הטוב ביותר.</span></li><li><span>אחרי קו העצירה, ובאין קו עצירה – עצור לפני קו הצומת.</span></li><li><span>אחרי מעבר החצייה, ובאין מעבר חצייה – במקום שבו שדה הראייה הטוב ביותר.</span></li><li><span id="correctAnswer0693">לפני קו העצירה, ובאין קו עצירה - עצור לפני מעבר החצייה.</span></li></ul><img src="http://tqpic.mot.gov.il/3190.jpg" style="width: 100%; padding: 0pt; border: 0pt none; outline: 0pt none;" alt="3190" title="3190" /><div style="padding-top: 4px;"><span><button type="button" onclick="var correctAnswer=document.getElementById('correctAnswer0693');correctAnswer.style.background='yellow'">הצג תשובה נכונה</button></span><br/><span style="float: left;">| «C1» | «C» | «D» | «A» | «1» | «В» | </span></div></div>]]></description>
+                <![CDATA[<div dir="rtl" style="text-align: right"><ul><li><span>תעצור תמיד במקום שבו שדה הראייה הוא הטוב ביותר.</span></li><li><span>אחרי קו העצירה, ובאין קו עצירה – עצור לפני קו הצומת.</span></li><li><span>אחרי מעבר החצייה, ובאין מעבר חצייה – במקום שבו שדה הראייה הטוב ביותר.</span></li><li><span id="correctAnswer0693">לפני קו העצירה, ובאין קו עצירה - עצור לפני מעבר החצייה.</span></li></ul><div style="padding-top: 4px;"><span><button type="button" onclick="var correctAnswer=document.getElementById('correctAnswer0693');correctAnswer.style.background='yellow'">הצג תשובה נכונה</button></span><br/><span style="float: left;">| «C1» | «C» | «D» | «A» | «1» | «В» | </span></div></div>]]></description>
             <author></author>
             <category>בטיחות</category>
             <pubDate>09-11-2011 10:44:18</pubDate>
@@ -47,7 +47,7 @@
             <link></link>
             <guid></guid>
             <description>
-                <![CDATA[<div dir="rtl" style="text-align: right"><ul><li><span id="correctAnswer0368">136</span></li><li><span>135</span></li><li><span>226</span></li><li><span>306</span></li></ul><img src="http://tqpic.mot.gov.il/3368.jpg" style="width: 100%; padding: 0pt; border: 0pt none; outline: 0pt none;" alt="3368" title="3368" /><div style="padding-top: 4px;"><span><button type="button" onclick="var correctAnswer=document.getElementById('correctAnswer0368');correctAnswer.style.background='yellow'">הצג תשובה נכונה</button></span><br/><span style="float: left;">| «C1» | «C» | «D» | «A» | «1» | «В» | </span></div></div>]]></description>
+                <![CDATA[<div dir="rtl" style="text-align: right"><ul><li><span id="correctAnswer0368">136</span></li><li><span>135</span></li><li><span>226</span></li><li><span>306</span></li></ul><div style="padding-top: 4px;"><span><button type="button" onclick="var correctAnswer=document.getElementById('correctAnswer0368');correctAnswer.style.background='yellow'">הצג תשובה נכונה</button></span><br/><span style="float: left;">| «C1» | «C» | «D» | «A» | «1» | «В» | </span></div></div>]]></description>
             <author></author>
             <category>חוקי התנועה</category>
             <pubDate>09-11-2011 10:44:18</pubDate>

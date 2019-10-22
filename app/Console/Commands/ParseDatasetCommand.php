@@ -2,11 +2,14 @@
 
 namespace App\Console\Commands;
 
+use App;
+use Storage;
 use App\Answer;
 use App\Category;
 use App\Question;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Schema;
+use Str;
 
 class ParseDatasetCommand extends Command
 {
@@ -46,23 +49,37 @@ class ParseDatasetCommand extends Command
             })->all()
         );
 
+        $urls = [];
+
         $categories = Category::all();
 
         // Store questions
         Question::insert(
-            $dataset->map(static function ($item) use ($categories) {
+            $dataset->map(static function ($item) use ($categories, &$urls) {
                 preg_match('/(?<original_id>\d+)(\.)(?<title>.+)/', $item['title'], $matches);
-
-                $html = simplexml_load_string($item['description']);
 
                 $data = [
                     'title' => trim($matches['title']),
-                    'image_url' => $html->img['src'] ?? null,
+                    'image_url' => null,
                     'original_id' => (int) $matches['original_id'],
                     'category_id' => $categories->firstWhere('name', $item['category'])->id,
                     'created_at' => now(),
                     'updated_at' => now(),
                 ];
+
+                $html = simplexml_load_string($item['description']);
+
+                if(isset($html->img['src'])) {
+                    $url = (string) $html->img['src'];
+                    $name = (string) Str::uuid() . \File::extension($url);
+
+                    $urls[] = [
+                        'name' => $name,
+                        'url' => $url,
+                    ];
+
+                    $data['image_url'] = 'images/' . $name;
+                }
 
                 return $data;
             })->all()
@@ -92,5 +109,32 @@ class ParseDatasetCommand extends Command
         Answer::insert($answersData);
 
         $this->info('Dataset parsed and stored in the database successfully!');
+        $this->info('Do not shut down the terminal yet, the images are getting stored right now.');
+
+        if(Storage::disk('local')->exists('/images')) {
+            Storage::disk('local')->deleteDirectory('images');
+        }
+
+        // Store images in a local directory
+        $start = curl_init ();
+        foreach ($urls as $url) {
+            $name =  $url['name'];
+            $url = $url['url'];
+
+            curl_setopt_array($start, [
+                CURLOPT_URL => $url,
+                CURLOPT_RETURNTRANSFER => 1,
+                CURLOPT_SSLVERSION => 3
+            ]);
+
+            $contents = curl_exec($start);
+
+            $name = "images/{$name}";
+
+            Storage::disk('local')->put($name, $contents);
+        }
+        curl_close ($start);
+
+        $this->info('All of the images were stored successfully!');
     }
 }
