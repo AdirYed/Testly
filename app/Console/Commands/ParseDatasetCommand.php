@@ -126,9 +126,9 @@ class ParseDatasetCommand extends Command
                 CURLOPT_SSLVERSION => 3
             ]);
 
-            $name = "images/{$name}";
-
             $contents = curl_exec($start);
+
+            $name = "images/{$name}";
 
             Storage::disk('storage')->put($name, $contents);
         }
