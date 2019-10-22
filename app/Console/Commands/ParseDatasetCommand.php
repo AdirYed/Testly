@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App;
 use Storage;
 use App\Answer;
 use App\Category;
@@ -27,10 +28,6 @@ class ParseDatasetCommand extends Command
         Question::truncate();
         Answer::truncate();
         Schema::enableForeignKeyConstraints();
-
-        if(\File::exists(storage_path('images'))) {
-            \File::deleteDirectory(storage_path('images'));
-        }
 
         $datasetSimpleXml = simplexml_load_file(
             config('theory_test.dataset.path'),
@@ -113,23 +110,29 @@ class ParseDatasetCommand extends Command
         $this->info('Dataset parsed and stored in the database successfully!');
         $this->info('Do not shut down the terminal yet, the images are getting stored right now.');
 
-        $ch = curl_init ();
-        curl_setopt ( $ch, CURLOPT_ENCODING, '' );
-        foreach ( $urls as $url ) {
+        if(Storage::disk('storage')->exists('/images')) {
+            Storage::disk('storage')->deleteDirectory('images');
+        }
+
+        // Store images in a local directory
+        $start = curl_init ();
+        foreach ($urls as $url) {
             $name =  $url['name'];
             $url = $url['url'];
 
-            curl_setopt_array($ch, [
+            curl_setopt_array($start, [
                 CURLOPT_URL => $url,
                 CURLOPT_RETURNTRANSFER => 1,
                 CURLOPT_SSLVERSION => 3
             ]);
 
-            $contents = curl_exec($ch);
+            $name = "images/{$name}";
 
-            Storage::disk('images')->put($name, $contents);
+            $contents = curl_exec($start);
+
+            Storage::disk('storage')->put($name, $contents);
         }
-        curl_close ( $ch );
+        curl_close ($start);
 
         $this->info('All of the images were stored successfully!');
     }
