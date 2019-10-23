@@ -115,6 +115,10 @@ class ParseDatasetCommand extends Command
             Storage::disk('local')->deleteDirectory('images');
         }
 
+        $bar = $this->output->createProgressBar(count($urls));
+
+        $bar->start();
+
         // Store images in a local directory
         $start = curl_init ();
         foreach ($urls as $url) {
@@ -132,9 +136,12 @@ class ParseDatasetCommand extends Command
             $name = "images/{$name}";
 
             Storage::disk('local')->put($name, $contents);
+
+            $bar->advance();
         }
+        $bar->finish();
         curl_close ($start);
 
-        $this->info('All of the images were stored successfully!');
+        $this->info("\n" . 'All of the images were stored successfully!');
     }
 }
