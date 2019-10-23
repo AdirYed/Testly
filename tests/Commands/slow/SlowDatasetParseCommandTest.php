@@ -11,8 +11,6 @@ class SlowDatasetParseCommandTest extends TestCase
 {
     use RefreshDatabase;
 
-    private $questionCount = 5;
-
     public function setUp() : void
     {
         parent::setUp();
