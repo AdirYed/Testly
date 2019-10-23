@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use App;
+use Artisan;
 use Storage;
 use App\Answer;
 use App\Category;
@@ -13,7 +14,7 @@ use Str;
 
 class ParseDatasetCommand extends Command
 {
-    protected $signature = 'dataset:parse';
+    protected $signature = 'dataset:parse {--without-store}';
 
     protected $description = 'Parse the dataset and store in the database';
 
@@ -35,7 +36,7 @@ class ParseDatasetCommand extends Command
             'SimpleXMLElement',
             LIBXML_NOCDATA
         );
-        $datasetJson = json_encode((array) $datasetSimpleXml->channel);
+        $datasetJson = json_encode((array)$datasetSimpleXml->channel);
         $dataset = collect(json_decode($datasetJson, true)['item'])->values();
 
         // Store categories
@@ -61,7 +62,7 @@ class ParseDatasetCommand extends Command
                 $data = [
                     'title' => trim($matches['title']),
                     'image_url' => null,
-                    'original_id' => (int) $matches['original_id'],
+                    'original_id' => (int)$matches['original_id'],
                     'category_id' => $categories->firstWhere('name', $item['category'])->id,
                     'created_at' => now(),
                     'updated_at' => now(),
@@ -69,9 +70,9 @@ class ParseDatasetCommand extends Command
 
                 $html = simplexml_load_string($item['description']);
 
-                if(isset($html->img['src'])) {
-                    $url = (string) $html->img['src'];
-                    $name = 'img_' . (string) Str::uuid() . \File::extension($url);
+                if (isset($html->img['src'])) {
+                    $url = (string)$html->img['src'];
+                    $name = 'img_' . (string)Str::uuid() . \File::extension($url);
 
                     $urls[] = [
                         'name' => $name,
@@ -109,39 +110,47 @@ class ParseDatasetCommand extends Command
         Answer::insert($answersData);
 
         $this->info('Dataset parsed and stored in the database successfully!');
-        $this->info('Do not shut down the terminal yet, the images are getting stored right now.');
 
-        if(Storage::disk('local')->exists('/images')) {
-            Storage::disk('local')->deleteDirectory('images');
+        if (!$this->without_store()) {
+            $this->info('Do not shut down the terminal yet, the images are getting stored right now.');
+
+            if (Storage::disk('local')->exists('/images')) {
+                Storage::disk('local')->deleteDirectory('images');
+            }
+
+            $bar = $this->output->createProgressBar(count($urls));
+
+            $bar->start();
+
+            // Store images in a local directory
+            $start = curl_init();
+            foreach ($urls as $url) {
+                $name = $url['name'];
+                $url = $url['url'];
+
+                curl_setopt_array($start, [
+                    CURLOPT_URL => $url,
+                    CURLOPT_RETURNTRANSFER => 1,
+                    CURLOPT_SSLVERSION => 3
+                ]);
+
+                $contents = curl_exec($start);
+
+                $name = "images/{$name}";
+
+                Storage::disk('local')->put($name, $contents);
+
+                $bar->advance();
+            }
+            $bar->finish();
+            curl_close($start);
+
+            $this->info("\n" . 'All of the images were stored successfully!');
         }
+    }
 
-        $bar = $this->output->createProgressBar(count($urls));
-
-        $bar->start();
-
-        // Store images in a local directory
-        $start = curl_init ();
-        foreach ($urls as $url) {
-            $name =  $url['name'];
-            $url = $url['url'];
-
-            curl_setopt_array($start, [
-                CURLOPT_URL => $url,
-                CURLOPT_RETURNTRANSFER => 1,
-                CURLOPT_SSLVERSION => 3
-            ]);
-
-            $contents = curl_exec($start);
-
-            $name = "images/{$name}";
-
-            Storage::disk('local')->put($name, $contents);
-
-            $bar->advance();
-        }
-        $bar->finish();
-        curl_close ($start);
-
-        $this->info("\n" . 'All of the images were stored successfully!');
+    protected function without_store()
+    {
+        return $this->input->hasOption('without-store') && $this->option('without-store');
     }
 }
