@@ -5,11 +5,10 @@ namespace Tests\Commands;
 use App\Answer;
 use App\Category;
 use App\Question;
-use Illuminate\Support\Facades\Storage;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class DatasetParseCommandTest extends TestCase
+class FastDatasetParseCommandTest extends TestCase
 {
     use RefreshDatabase;
 
@@ -19,10 +18,8 @@ class DatasetParseCommandTest extends TestCase
     {
         parent::setUp();
 
-        Storage::fake('local');
-
-        $this->artisan('dataset:parse')
-            ->expectsOutput('All of the images were stored successfully!');
+        $this->artisan('dataset:parse --without-store')
+            ->expectsOutput('Dataset parsed and stored in the database successfully!');
     }
 
     /** @test */
@@ -37,14 +34,6 @@ class DatasetParseCommandTest extends TestCase
     public function it_should_store_questions_with_images()
     {
         $this->assertEquals(1, Question::WhereNotNull('image_url')->count());
-    }
-
-    /** @test */
-    public function it_should_store_images_in_a_local_storage()
-    {
-        $img = Question::whereNotNull('image_url')->first()->only('image_url');
-
-        Storage::disk('local')->assertExists($img);
     }
 
     /** @test */
