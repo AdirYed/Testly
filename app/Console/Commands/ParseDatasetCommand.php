@@ -3,7 +3,6 @@
 namespace App\Console\Commands;
 
 use App;
-use Artisan;
 use Storage;
 use App\Answer;
 use App\Category;
@@ -111,42 +110,44 @@ class ParseDatasetCommand extends Command
 
         $this->info('Dataset parsed and stored in the database successfully!');
 
-        if (!$this->without_store()) {
-            $this->info('Do not shut down the terminal yet, the images are getting stored right now.');
-
-            if (Storage::disk('local')->exists('/images')) {
-                Storage::disk('local')->deleteDirectory('images');
-            }
-
-            $bar = $this->output->createProgressBar(count($urls));
-
-            $bar->start();
-
-            // Store images in a local directory
-            $start = curl_init();
-            foreach ($urls as $url) {
-                $name = $url['name'];
-                $url = $url['url'];
-
-                curl_setopt_array($start, [
-                    CURLOPT_URL => $url,
-                    CURLOPT_RETURNTRANSFER => 1,
-                    CURLOPT_SSLVERSION => 3
-                ]);
-
-                $contents = curl_exec($start);
-
-                $name = "images/{$name}";
-
-                Storage::disk('local')->put($name, $contents);
-
-                $bar->advance();
-            }
-            $bar->finish();
-            curl_close($start);
-
-            $this->info("\n" . 'All of the images were stored successfully!');
+        if ($this->without_store()) {
+            return;
         }
+
+        $this->info('Do not shut down the terminal yet, the images are getting stored right now.');
+
+        if (Storage::disk('local')->exists('/images')) {
+            Storage::disk('local')->deleteDirectory('images');
+        }
+
+        $bar = $this->output->createProgressBar(count($urls));
+
+        $bar->start();
+
+        // Store images in a local directory
+        $start = curl_init();
+        foreach ($urls as $url) {
+            $name = $url['name'];
+            $url = $url['url'];
+
+            curl_setopt_array($start, [
+                CURLOPT_URL => $url,
+                CURLOPT_RETURNTRANSFER => 1,
+                CURLOPT_SSLVERSION => 3
+            ]);
+
+            $contents = curl_exec($start);
+
+            $name = "images/{$name}";
+
+            Storage::disk('local')->put($name, $contents);
+
+            $bar->advance();
+        }
+        $bar->finish();
+        curl_close($start);
+
+        $this->info("\n" . 'All of the images were stored successfully!');
     }
 
     protected function without_store()
