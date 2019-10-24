@@ -9,10 +9,6 @@ use Storage;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-/**
- *  run "vendor\bin\paratest"
- */
-
 class DatasetParseCommandTest extends TestCase
 {
     use RefreshDatabase;
