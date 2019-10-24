@@ -5,7 +5,7 @@ namespace Tests\Commands;
 use App\Answer;
 use App\Category;
 use App\Question;
-use Storage;
+use Illuminate\Support\Facades\Storage;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 

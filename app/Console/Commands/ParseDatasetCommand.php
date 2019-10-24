@@ -110,16 +110,24 @@ class ParseDatasetCommand extends Command
 
         $this->info('Dataset parsed and stored in the database successfully!');
 
-        if ($this->without_store()) {
-            return;
+        if ($this->shouldStoreImages()) {
+            $this->info('Do not shut down the terminal yet, the images are getting stored right now.');
+
+            $this->deleteStorage();
+
+            $this->storeImages($urls);
+
+            $this->info("\n" . 'All of the images were stored successfully!');
         }
+    }
 
-        $this->info('Do not shut down the terminal yet, the images are getting stored right now.');
+    protected function shouldStoreImages() : bool
+    {
+        return $this->input->hasOption('without-store') && ! $this->option('without-store');
+    }
 
-        if (Storage::disk('local')->exists('/images')) {
-            Storage::disk('local')->deleteDirectory('images');
-        }
-
+    protected function storeImages(array $urls) : void
+    {
         $bar = $this->output->createProgressBar(count($urls));
 
         $bar->start();
@@ -146,12 +154,12 @@ class ParseDatasetCommand extends Command
         }
         $bar->finish();
         curl_close($start);
-
-        $this->info("\n" . 'All of the images were stored successfully!');
     }
 
-    protected function without_store()
+    protected function deleteStorage() : void
     {
-        return $this->input->hasOption('without-store') && $this->option('without-store');
+        if (Storage::disk('local')->exists('/images')) {
+            Storage::disk('local')->deleteDirectory('images');
+        }
     }
 }
