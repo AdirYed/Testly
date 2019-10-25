@@ -44,7 +44,7 @@ class DatasetParseCommandTest extends TestCase
         Storage::fake('local');
 
         $this->artisan('dataset:parse')
-            ->expectsOutput("\n" . 'All of the images were stored successfully!');
+            ->expectsOutput("\n" . 'All of the assets were stored successfully!');
 
         $img = Question::whereNotNull('image_url')->first()->only('image_url');
 

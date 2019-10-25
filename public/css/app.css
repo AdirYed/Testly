@@ -11361,6 +11361,33 @@ video {
   z-index: auto;
 }
 
+#nav-bar {
+  background: #bbb;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+#nav-bar section .flex {
+  }
+
+.container #homepage-img { /*url from a local asset doesn't work, need to fix this url.*/
+    background: url('https://images.pexels.com/photos/164634/pexels-photo-164634.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940') no-repeat center fixed;
+    min-width: 1024px;
+    top: 0;
+    left: 0;
+    text-align: center;
+  }
+
+@media screen and (max-width: 1024px) {
+
+.container #homepage-img {
+      left: 50%;
+
+      margin-left: -512px
+  }
+    }
+
 @media (min-width: 640px) {
   .sm\:sr-only {
     position: absolute;
