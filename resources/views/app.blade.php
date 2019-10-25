@@ -11,7 +11,7 @@
     <body>
 
     <header class="min-w-full lg:px-16 px-6 bg-white flex flex-wrap items-center lg:py-0 py-2 fixed top-0 left-0 z-10">
-        <div class="flex-1 flex justify-between items-center">
+        <div class="hidden flex-1 lg:flex justify-between items-center">
             <ul class="lg:flex items-center justify-between text-base text-gray-700 pt-4 lg:pt-0">
                 <li><a class="lg:p-4 py-3 px-0 block border-b-2 border-transparent hover:border-indigo-400" href="#">שפה</a></li>
             </ul>
@@ -33,26 +33,6 @@
 
         </div>
     </header>
-
-{{--        <nav id="nav-bar" class="fixed max-w-full min-w-full h-16">--}}
-{{--            <section class="flex max-w-6xl">--}}
-{{--                <ul class="flex flex-1">--}}
-{{--                    <li class="mr-6">--}}
-{{--                        <a class="text-blue-500 hover:text-blue-800" href="#">שנה שפה</a>--}}
-{{--                    </li>--}}
-{{--                </ul>--}}
-
-{{--                <ul class="flex">--}}
-{{--                    <li class="mr-6">--}}
-{{--                        <a class="text-blue-500 hover:text-blue-800" href="#">התחבר</a>--}}
-{{--                    </li>--}}
-{{--                    <li class="mr-6">--}}
-{{--                        <a class="text-blue-500 hover:text-blue-800" href="#">הירשם</a>--}}
-{{--                    </li>--}}
-{{--                </ul>--}}
-{{--            </section>--}}
-{{--        </nav>--}}
-
         <div id="app" class="container">
             <router-view></router-view>
         </div>
