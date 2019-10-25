@@ -78,7 +78,7 @@ class ParseDatasetCommand extends Command
                         'url' => $url,
                     ];
 
-                    $data['image_url'] = 'assets/' . $name;
+                    $data['image_url'] = 'images/' . $name;
                 }
 
                 return $data;
@@ -111,13 +111,13 @@ class ParseDatasetCommand extends Command
         $this->info('Dataset parsed and stored in the database successfully!');
 
         if ($this->shouldStoreImages()) {
-            $this->info('Do not shut down the terminal yet, the assets are getting stored right now.');
+            $this->info('Do not shut down the terminal yet, the images are getting stored right now.');
 
             $this->deleteStorage();
 
             $this->storeImages($urls);
 
-            $this->info("\n" . 'All of the assets were stored successfully!');
+            $this->info("\n" . 'All of the images were stored successfully!');
         }
     }
 
@@ -132,7 +132,7 @@ class ParseDatasetCommand extends Command
 
         $bar->start();
 
-        // Store assets in a local directory
+        // Store images in a local directory
         $start = curl_init();
         foreach ($urls as $url) {
             $name = $url['name'];
@@ -146,7 +146,7 @@ class ParseDatasetCommand extends Command
 
             $contents = curl_exec($start);
 
-            $name = "assets/{$name}";
+            $name = "images/{$name}";
 
             Storage::disk('local')->put($name, $contents);
 
@@ -158,8 +158,8 @@ class ParseDatasetCommand extends Command
 
     protected function deleteStorage() : void
     {
-        if (Storage::disk('local')->exists('/assets')) {
-            Storage::disk('local')->deleteDirectory('assets');
+        if (Storage::disk('local')->exists('/images')) {
+            Storage::disk('local')->deleteDirectory('images');
         }
     }
 }
