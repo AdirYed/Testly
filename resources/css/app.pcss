@@ -12,6 +12,11 @@
     transform: translate(-50%, -50%);
     top: 50%;
     left: 50%;
+
+    h1 {
+        font-size: 50px;
+    }
+
 }
 
 .btn-scroll-down {
@@ -22,7 +27,11 @@
 
 .container {
     #homepage-img { /*url from a local asset doesn't work, need to fix this url.*/
-        background: url('https://images.pexels.com/photos/164634/pexels-photo-164634.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940') no-repeat center center fixed;
+        background: linear-gradient(
+            to top,
+            rgba(241, 39, 17, 0.05),
+            rgba(245, 175, 25, 0.075)),
+            url('/storage/assets/asphalt.jpg') no-repeat center center fixed;
         min-width: 1024px;
         height: 100vh;
 

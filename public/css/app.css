@@ -1,9 +1,22 @@
+:root { /*https://uigradients.com/#Flare*/
+  --primary-color: #f5af19;
+  --secondary-color: #f12711;
+}
+
 .btn {
   font-weight: 700;
   padding-top: 0.75rem;
   padding-bottom: 0.75rem;
   padding-left: 1.25rem;
   padding-right: 1.25rem;
+}
+
+.bg-primary {
+  background-color: var(--primary-color);
+}
+
+.bg-secondary {
+  background-color: var(--secondary-color);
 }
 /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
 
@@ -11378,6 +11391,10 @@ video {
   left: 50%;
 }
 
+#products-wrapper h1 {
+    font-size: 50px;
+  }
+
 .btn-scroll-down {
   transform: translateX(-50%);
   bottom: 60px;
@@ -11385,7 +11402,11 @@ video {
 }
 
 .container #homepage-img { /*url from a local asset doesn't work, need to fix this url.*/
-    background: url('https://images.pexels.com/photos/164634/pexels-photo-164634.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940') no-repeat center center fixed;
+    background: linear-gradient(
+            to top,
+            rgba(241, 39, 17, 0.05),
+            rgba(245, 175, 25, 0.075)),
+            url('/storage/assets/asphalt.jpg') no-repeat center center fixed;
     min-width: 1024px;
     height: 100vh;
     z-index: -1;
