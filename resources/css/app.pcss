@@ -6,6 +6,8 @@
 
 #nav-bar {
     border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+
+    z-index: 1;
 }
 
 #products-wrapper {
@@ -26,12 +28,13 @@
 }
 
 .container {
-    #homepage-img { /*url from a local asset doesn't work, need to fix this url.*/
+    #homepage-img {
         background: linear-gradient(
             to top,
             rgba(241, 39, 17, 0.05),
             rgba(245, 175, 25, 0.075)),
-            url('/storage/assets/asphalt.jpg') no-repeat center center fixed;
+            url('/storage/assets/asphalt.jpg') no-repeat center fixed;
+        background-size: 100%;
         min-width: 1024px;
         height: 100vh;
 

@@ -11,12 +11,40 @@
   padding-right: 1.25rem;
 }
 
+/* Primary color classes */
+
 .bg-primary {
   background-color: var(--primary-color);
 }
 
+.hover\:bg-primary:hover{
+  background-color: var(--primary-color);
+}
+
+.border-primary {
+  border-color: var(--primary-color);
+}
+
+.text-primary {
+  color: var(--primary-color);
+}
+
+/* Secondary color classes */
+
 .bg-secondary {
   background-color: var(--secondary-color);
+}
+
+.hover\:bg-secondary:hover{
+  background-color: var(--secondary-color);
+}
+
+.border-secondary {
+  border-color: var(--secondary-color);
+}
+
+.text-secondary {
+  color: var(--secondary-color);
 }
 /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
 
@@ -11383,6 +11411,7 @@ video {
 
 #nav-bar {
   border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+  z-index: 1;
 }
 
 #products-wrapper {
@@ -11401,12 +11430,13 @@ video {
   left: 50%;
 }
 
-.container #homepage-img { /*url from a local asset doesn't work, need to fix this url.*/
+.container #homepage-img {
     background: linear-gradient(
             to top,
             rgba(241, 39, 17, 0.05),
             rgba(245, 175, 25, 0.075)),
-            url('/storage/assets/asphalt.jpg') no-repeat center center fixed;
+            url('/storage/assets/asphalt.jpg') no-repeat center fixed;
+    background-size: 100%;
     min-width: 1024px;
     height: 100vh;
     z-index: -1;

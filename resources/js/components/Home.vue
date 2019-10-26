@@ -11,8 +11,7 @@
             </div>
         </div>
 
-        // Color will be changed when we have 2 primary colors
-        <button class="btn-scroll-down absolute btn bg-red-500 hover:bg-red-700 text-white rounded">
+        <button class="btn-scroll-down absolute btn bg-transparent border-2 border-primary hover:bg-primary text-primary hover:text-white rounded">
             קרא/י עוד
         </button>
     </div>

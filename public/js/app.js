@@ -114,7 +114,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'home'
 });
@@ -626,14 +625,12 @@ var staticRenderFns = [
           _c("div", [_c("h1", [_vm._v("hi")])])
         ]
       ),
-      _vm._v(
-        "\n\n    // Color will be changed when we have 2 primary colors\n    "
-      ),
+      _vm._v(" "),
       _c(
         "button",
         {
           staticClass:
-            "btn-scroll-down absolute btn bg-red-500 hover:bg-red-700 text-white rounded"
+            "btn-scroll-down absolute btn bg-transparent border-2 border-primary hover:bg-primary text-primary hover:text-white rounded"
         },
         [_vm._v("\n        קרא/י עוד\n    ")]
       )
