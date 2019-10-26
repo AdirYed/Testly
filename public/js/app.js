@@ -101,6 +101,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'home'
 });
@@ -597,16 +606,29 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      { staticClass: "max-w-full max-h-screen", attrs: { id: "header" } },
-      [
-        _c("section", {
-          staticClass: "w-full h-full min-h-full absolute",
-          attrs: { id: "homepage-img" }
-        })
-      ]
-    )
+    return _c("div", { staticClass: "max-w-full max-h-screen" }, [
+      _c("section", {
+        staticClass: "w-full absolute top-0 left-0 block",
+        attrs: { id: "homepage-img" }
+      }),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "absolute flex", attrs: { id: "products-wrapper" } },
+        [_c("h1", { staticStyle: { "font-size": "50px" } }, [_vm._v("test")])]
+      ),
+      _vm._v(
+        "\n\n    // Color will be changed when we have 2 primary colors\n    "
+      ),
+      _c(
+        "button",
+        {
+          staticClass:
+            "btn-scroll-down absolute btn bg-red-500 hover:bg-blue-700 text-white rounded"
+        },
+        [_vm._v("\n        קרא/י עוד\n    ")]
+      )
+    ])
   }
 ]
 render._withStripped = true
