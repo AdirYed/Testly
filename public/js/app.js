@@ -241,6 +241,26 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'home'
 });
@@ -769,8 +789,7 @@ var render = function() {
     "div",
     {
       staticClass:
-        "tw-max-w-sm tw-rounded tw-overflow-hidden tw-shadow-lg tw-border",
-      staticStyle: { "border-color": "rgba(0, 0, 0, 0.25)" }
+        "home-body-child tw-max-w-sm tw-rounded tw-overflow-hidden tw-shadow-lg tw-border"
     },
     [
       _c("img", {
@@ -956,8 +975,60 @@ var render = function() {
     _vm._v(" "),
     _c(
       "div",
-      { staticClass: "tw-flex tw-flex-column", attrs: { id: "home-body" } },
+      { staticClass: "tw-container", attrs: { id: "home-body" } },
       [
+        _c(
+          "theory-card",
+          { attrs: { src: "/assets/action-asphalt.jpg" } },
+          [
+            _c("template", { slot: "title" }, [_vm._v("This is the title")]),
+            _vm._v(" "),
+            _c("template", { slot: "description" }, [
+              _vm._v("This is the description")
+            ])
+          ],
+          2
+        ),
+        _vm._v(" "),
+        _c(
+          "theory-card",
+          { attrs: { src: "/assets/action-asphalt.jpg" } },
+          [
+            _c("template", { slot: "title" }, [_vm._v("This is the title")]),
+            _vm._v(" "),
+            _c("template", { slot: "description" }, [
+              _vm._v("This is the description")
+            ])
+          ],
+          2
+        ),
+        _vm._v(" "),
+        _c(
+          "theory-card",
+          { attrs: { src: "/assets/action-asphalt.jpg" } },
+          [
+            _c("template", { slot: "title" }, [_vm._v("This is the title")]),
+            _vm._v(" "),
+            _c("template", { slot: "description" }, [
+              _vm._v("This is the description")
+            ])
+          ],
+          2
+        ),
+        _vm._v(" "),
+        _c(
+          "theory-card",
+          { attrs: { src: "/assets/action-asphalt.jpg" } },
+          [
+            _c("template", { slot: "title" }, [_vm._v("This is the title")]),
+            _vm._v(" "),
+            _c("template", { slot: "description" }, [
+              _vm._v("This is the description")
+            ])
+          ],
+          2
+        ),
+        _vm._v(" "),
         _c(
           "theory-card",
           { attrs: { src: "/assets/action-asphalt.jpg" } },
@@ -1009,12 +1080,12 @@ var staticRenderFns = [
     return _c(
       "div",
       {
-        staticClass: "tw-w-full tw-h-screen flex flex-column",
+        staticClass: "tw-container flex flex-column",
         attrs: { id: "home-img-section" }
       },
       [
         _c("section", {
-          staticClass: "tw-w-full tw-block",
+          staticClass: "tw-w-screen",
           attrs: { id: "homepage-img" }
         }),
         _vm._v(" "),
@@ -16070,23 +16141,24 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
-/* harmony import */ var _components_Card__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/Card */ "./resources/js/components/Card.vue");
-/* harmony import */ var _components_Nav__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/Nav */ "./resources/js/components/Nav.vue");
-/* harmony import */ var _components_Bar__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/Bar */ "./resources/js/components/Bar.vue");
-/* harmony import */ var _routes__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./routes */ "./resources/js/routes.js");
+/* harmony import */ var _routes__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./routes */ "./resources/js/routes.js");
+/* harmony import */ var _components_Card__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/Card */ "./resources/js/components/Card.vue");
+/* harmony import */ var _components_Nav__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/Nav */ "./resources/js/components/Nav.vue");
+/* harmony import */ var _components_Bar__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/Bar */ "./resources/js/components/Bar.vue");
+
+
+
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]); // Components
 
 
 
 
-
-
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]);
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('theory-card', _components_Card__WEBPACK_IMPORTED_MODULE_2__["default"]);
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('theory-nav-bar', _components_Nav__WEBPACK_IMPORTED_MODULE_3__["default"]);
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('theory-bar', _components_Bar__WEBPACK_IMPORTED_MODULE_4__["default"]);
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('theory-card', _components_Card__WEBPACK_IMPORTED_MODULE_3__["default"]);
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('theory-nav-bar', _components_Nav__WEBPACK_IMPORTED_MODULE_4__["default"]);
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('theory-bar', _components_Bar__WEBPACK_IMPORTED_MODULE_5__["default"]);
 var app = new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
   el: '#app',
-  router: new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"](_routes__WEBPACK_IMPORTED_MODULE_5__["routes"])
+  router: new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"](_routes__WEBPACK_IMPORTED_MODULE_2__["routes"])
 });
 
 /***/ }),

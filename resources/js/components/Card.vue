@@ -1,5 +1,5 @@
 <template>
-    <div class="tw-max-w-sm tw-rounded tw-overflow-hidden tw-shadow-lg tw-border" style="border-color: rgba(0, 0, 0, 0.25)">
+    <div class="home-body-child tw-max-w-sm tw-rounded tw-overflow-hidden tw-shadow-lg tw-border">
         <img class="tw-w-full" :src="src" alt="action-aspalt.jpg">
         <div class="tw-px-6 tw-py-4">
             <div class="tw-font-bold tw-text-xl tw-mb-2"><slot name="title"></slot></div>

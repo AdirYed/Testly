@@ -9,7 +9,7 @@
         <link rel="stylesheet" href="{{ mix('/css/app.css') }}">
     </head>
     <body>
-       <div id="app" class="tw-container">
+       <div id="app">
             <theory-nav-bar>
                 <template slot="left-bar">
                     <theory-bar href="#">שפה</theory-bar>

@@ -4,6 +4,10 @@
 @tailwind components;
 @tailwind utilities;
 
+button:focus {
+    outline: 0;
+}
+
 #nav-bar {
     height: var(--header-height);
     width: 100vw;
@@ -31,7 +35,6 @@
 
 #homepage-img {
     height: calc(100vh - var(--header-height));
-    width: 100vw;
     min-width: 1024px;
     background: linear-gradient(
         to top,
@@ -39,8 +42,6 @@
         rgba(245, 175, 25, 0.075)),
         url('/assets/asphalt.jpg') no-repeat center fixed;
     background-size: 100%;
-    display: flex;
-    align-items: center;
 
     z-index: -1;
 
@@ -51,12 +52,21 @@
 }
 
 #home-body {
-    margin: 0 auto;
-    flex-wrap: wrap;
-    justify-content: space-between;
+    margin: 50px auto;
+    display: grid;
+    grid-gap: 20px;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto;
+    justify-items: center;
 
     > div {
         box-sizing: border-box;
         margin-bottom: 10px;
     }
+
+    > .home-body-child {
+        flex: 0 0 33%;
+    }:hover {
+         border-color: var(--primary-color);
+     }
 }

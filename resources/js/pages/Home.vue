@@ -1,7 +1,7 @@
 <template>
     <div>
-        <div id="home-img-section" class="tw-w-full tw-h-screen flex flex-column">
-            <section id="homepage-img" class="tw-w-full tw-block"></section>
+        <div id="home-img-section" class="tw-container flex flex-column">
+            <section id="homepage-img" class="tw-w-screen"></section>
 
             <!-- TODO: wrap between the two divs and show 2 products we give in the site -->
             <div id="products-wrapper" class="tw-absolute tw-flex">
@@ -20,7 +20,27 @@
             </button>
         </div>
 
-        <div id="home-body" class="tw-flex tw-flex-column">
+        <div id="home-body" class="tw-container">
+            <theory-card src="/assets/action-asphalt.jpg">
+                <template slot="title">This is the title</template>
+
+                <template slot="description">This is the description</template>
+            </theory-card>
+            <theory-card src="/assets/action-asphalt.jpg">
+                <template slot="title">This is the title</template>
+
+                <template slot="description">This is the description</template>
+            </theory-card>
+            <theory-card src="/assets/action-asphalt.jpg">
+                <template slot="title">This is the title</template>
+
+                <template slot="description">This is the description</template>
+            </theory-card>
+            <theory-card src="/assets/action-asphalt.jpg">
+                <template slot="title">This is the title</template>
+
+                <template slot="description">This is the description</template>
+            </theory-card>
             <theory-card src="/assets/action-asphalt.jpg">
                 <template slot="title">This is the title</template>
 
