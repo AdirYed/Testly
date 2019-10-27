@@ -25,6 +25,16 @@
 
                 <template slot="description">This is the description</template>
             </theory-card>
+            <theory-card src="/storage/assets/action-asphalt.jpg">
+                <template slot="title">This is the title</template>
+
+                <template slot="description">This is the description</template>
+            </theory-card>
+            <theory-card src="/storage/assets/action-asphalt.jpg">
+                <template slot="title">This is the title</template>
+
+                <template slot="description">This is the description</template>
+            </theory-card>
         </div>
     </div>
 </template>

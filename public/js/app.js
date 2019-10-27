@@ -159,6 +159,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'home'
 });
@@ -704,6 +714,32 @@ var render = function() {
       "div",
       { staticClass: "flex text-center", attrs: { id: "home-body" } },
       [
+        _c(
+          "theory-card",
+          { attrs: { src: "/storage/assets/action-asphalt.jpg" } },
+          [
+            _c("template", { slot: "title" }, [_vm._v("This is the title")]),
+            _vm._v(" "),
+            _c("template", { slot: "description" }, [
+              _vm._v("This is the description")
+            ])
+          ],
+          2
+        ),
+        _vm._v(" "),
+        _c(
+          "theory-card",
+          { attrs: { src: "/storage/assets/action-asphalt.jpg" } },
+          [
+            _c("template", { slot: "title" }, [_vm._v("This is the title")]),
+            _vm._v(" "),
+            _c("template", { slot: "description" }, [
+              _vm._v("This is the description")
+            ])
+          ],
+          2
+        ),
+        _vm._v(" "),
         _c(
           "theory-card",
           { attrs: { src: "/storage/assets/action-asphalt.jpg" } },
