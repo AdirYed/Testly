@@ -2,16 +2,14 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import Card from './components/Card';
 import Nav from './components/Nav';
-import LeftBar from './components/LeftBar';
-import RightBar from './components/RightBar';
+import Bar from './components/Bar';
 import {routes} from './routes';
 
 Vue.use(VueRouter);
 
 Vue.component('theory-card', Card);
 Vue.component('theory-nav-bar', Nav);
-Vue.component('theory-left-bar', LeftBar);
-Vue.component('theory-right-bar', RightBar);
+Vue.component('theory-bar', Bar);
 
 const app = new Vue({
    el: '#app',

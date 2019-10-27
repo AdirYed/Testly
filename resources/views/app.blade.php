@@ -12,12 +12,12 @@
        <div id="app" class="tw-container">
             <theory-nav-bar>
                 <template slot="left-bar">
-                    <theory-left-bar href="#">שפה</theory-left-bar>
+                    <theory-bar href="#">שפה</theory-bar>
                 </template>
 
                 <template slot="right-bar">
-                    <theory-right-bar href="#">התחבר</theory-right-bar>
-                    <theory-right-bar href="#">הירשם</theory-right-bar>
+                    <theory-bar href="#">התחבר</theory-bar>
+                    <theory-bar href="#">הירשם</theory-bar>
                 </template>
             </theory-nav-bar>
 
