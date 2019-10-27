@@ -3,6 +3,10 @@
   --secondary-color: #f12711;
 }
 
+button:focus {
+  outline: red;
+}
+
 .btn {
   font-weight: 700;
   padding-top: 0.75rem;
@@ -11409,8 +11413,11 @@ video {
   z-index: auto;
 }
 
+#app {
+  margin: 0 auto;
+}
+
 #nav-bar {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.25);
   z-index: 1;
 }
 
@@ -11430,26 +11437,41 @@ video {
   left: 50%;
 }
 
-.container #homepage-img {
-    background: linear-gradient(
-            to top,
-            rgba(241, 39, 17, 0.05),
-            rgba(245, 175, 25, 0.075)),
-            url('/storage/assets/asphalt.jpg') no-repeat center fixed;
-    background-size: 100%;
-    min-width: 1024px;
-    height: 100vh;
-    z-index: -1;
-  }
+#home-img-section {
+  margin-bottom: 100vh;
+}
+
+#homepage-img {
+  background: linear-gradient(
+        to top,
+        rgba(241, 39, 17, 0.05),
+        rgba(245, 175, 25, 0.075)),
+        url('/storage/assets/asphalt.jpg') no-repeat center fixed;
+  background-size: 100%;
+  min-width: 1024px;
+  height: 100vh;
+  z-index: -1;
+}
 
 @media screen and (max-width: 1024px) {
 
-.container #homepage-img {
-      left: 50%;
+#homepage-img {
+    left: 50%;
 
-      margin-left: -512px
+    margin-left: -512px
+}
   }
-    }
+
+#home-body {
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+#home-body > div {
+    box-sizing: border-box;
+    margin-bottom: 10px;
+    width: calc(1/3*100% - (1 - 1/3)*10px);
+  }
 
 @media (min-width: 640px){
   .sm\:sr-only{
@@ -54394,3 +54416,4 @@ video {
     z-index: auto;
   }
 }
+
