@@ -1,12 +1,10 @@
 <template>
     <div>
-        <div id="home-img-section" class="max-w-full max-h-screen">
-            <section id="homepage-img" class="w-full absolute top-0 left-0 block"></section>
+        <div id="home-img-section" class="tw-max-w-full tw-max-h-screen">
+            <section id="homepage-img" class="tw-w-full tw-absolute tw-top-0 tw-left-0 tw-block"></section>
 
-            <!-- TODO: wrap between the two divs and show 2 products we give in the site
-                 TODO:
-             -->
-            <div id="products-wrapper" class="absolute flex">
+            <!-- TODO: wrap between the two divs and show 2 products we give in the site -->
+            <div id="products-wrapper" class="tw-absolute tw-flex">
                 <div>
                     <h1>test</h1>
                 </div>
@@ -17,12 +15,12 @@
             </div>
 
             <!-- TODO: scroll down in js -->
-            <button class="btn-scroll-down absolute btn bg-transparent border-2 border-primary hover:bg-primary text-primary hover:text-white rounded">
+            <button class="btn-scroll-down tw-absolute btn tw-bg-transparent tw-border-2 tw-border-primary hover:tw-bg-primary tw-text-primary hover:tw-text-white tw-rounded">
                 קרא/י עוד
             </button>
         </div>
 
-        <div id="home-body" class="flex text-center">
+        <div id="home-body" class="tw-flex tw-flex-column">
             <theory-card src="/assets/action-asphalt.jpg">
                 <template slot="title">This is the title</template>
 

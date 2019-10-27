@@ -1,46 +1,9 @@
 :root { /*https://uigradients.com/#Flare*/
+    --header-height: 40px;
     --primary-color: #f5af19;
     --secondary-color: #f12711;
 }
 
-button:focus {
-    outline: red;
-}
-
 .btn {
-    @apply font-bold py-3 px-5;
-}
-
-/* Primary color classes */
-.bg-primary {
-    background-color: var(--primary-color);
-}
-
-.hover\:bg-primary:hover{
-    background-color: var(--primary-color);
-}
-
-.border-primary {
-    border-color: var(--primary-color);
-}
-
-.text-primary {
-    color: var(--primary-color);
-}
-
-/* Secondary color classes */
-.bg-secondary {
-    background-color: var(--secondary-color);
-}
-
-.hover\:bg-secondary:hover{
-    background-color: var(--secondary-color);
-}
-
-.border-secondary {
-    border-color: var(--secondary-color);
-}
-
-.text-secondary {
-    color: var(--secondary-color);
+    @apply tw-font-bold tw-py-3 tw-px-5;
 }

@@ -11,7 +11,7 @@
     <body>
         @include('nav-bar')
 
-        <div id="app" class="container">
+        <div id="app" class="tw-container">
             <router-view></router-view>
         </div>
 

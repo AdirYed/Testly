@@ -170,8 +170,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'home'
 });
@@ -663,24 +661,28 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "max-w-sm rounded overflow-hidden shadow-lg border-2" },
+    {
+      staticClass:
+        "tw-max-w-sm tw-rounded tw-overflow-hidden tw-shadow-lg tw-border",
+      staticStyle: { "border-color": "rgba(0, 0, 0, 0.25)" }
+    },
     [
       _c("img", {
-        staticClass: "w-full",
+        staticClass: "tw-w-full",
         attrs: { src: _vm.src, alt: "action-aspalt.jpg" }
       }),
       _vm._v(" "),
-      _c("div", { staticClass: "px-6 py-4" }, [
+      _c("div", { staticClass: "tw-px-6 tw-py-4" }, [
         _c(
           "div",
-          { staticClass: "font-bold text-xl mb-2" },
+          { staticClass: "tw-font-bold tw-text-xl tw-mb-2" },
           [_vm._t("title")],
           2
         ),
         _vm._v(" "),
         _c(
           "p",
-          { staticClass: "text-gray-700 text-base" },
+          { staticClass: "tw-text-gray-700 tw-text-base" },
           [_vm._t("description")],
           2
         )
@@ -715,7 +717,7 @@ var render = function() {
     _vm._v(" "),
     _c(
       "div",
-      { staticClass: "flex text-center", attrs: { id: "home-body" } },
+      { staticClass: "tw-flex tw-flex-column", attrs: { id: "home-body" } },
       [
         _c(
           "theory-card",
@@ -768,18 +770,21 @@ var staticRenderFns = [
     return _c(
       "div",
       {
-        staticClass: "max-w-full max-h-screen",
+        staticClass: "tw-max-w-full tw-max-h-screen",
         attrs: { id: "home-img-section" }
       },
       [
         _c("section", {
-          staticClass: "w-full absolute top-0 left-0 block",
+          staticClass: "tw-w-full tw-absolute tw-top-0 tw-left-0 tw-block",
           attrs: { id: "homepage-img" }
         }),
         _vm._v(" "),
         _c(
           "div",
-          { staticClass: "absolute flex", attrs: { id: "products-wrapper" } },
+          {
+            staticClass: "tw-absolute tw-flex",
+            attrs: { id: "products-wrapper" }
+          },
           [
             _c("div", [_c("h1", [_vm._v("test")])]),
             _vm._v(" "),
@@ -791,7 +796,7 @@ var staticRenderFns = [
           "button",
           {
             staticClass:
-              "btn-scroll-down absolute btn bg-transparent border-2 border-primary hover:bg-primary text-primary hover:text-white rounded"
+              "btn-scroll-down tw-absolute btn tw-bg-transparent tw-border-2 tw-border-primary hover:tw-bg-primary tw-text-primary hover:tw-text-white tw-rounded"
           },
           [_vm._v("\n            קרא/י עוד\n        ")]
         )

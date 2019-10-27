@@ -1,9 +1,9 @@
 <template>
-    <div class="max-w-sm rounded overflow-hidden shadow-lg border-2">
-        <img class="w-full" :src="src" alt="action-aspalt.jpg">
-        <div class="px-6 py-4">
-            <div class="font-bold text-xl mb-2"><slot name="title"></slot></div>
-            <p class="text-gray-700 text-base">
+    <div class="tw-max-w-sm tw-rounded tw-overflow-hidden tw-shadow-lg tw-border" style="border-color: rgba(0, 0, 0, 0.25)">
+        <img class="tw-w-full" :src="src" alt="action-aspalt.jpg">
+        <div class="tw-px-6 tw-py-4">
+            <div class="tw-font-bold tw-text-xl tw-mb-2"><slot name="title"></slot></div>
+            <p class="tw-text-gray-700 tw-text-base">
                 <slot name="description"></slot>
             </p>
         </div>
