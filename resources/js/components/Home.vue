@@ -3,7 +3,10 @@
         <div id="home-img-section" class="max-w-full max-h-screen">
             <section id="homepage-img" class="w-full absolute top-0 left-0 block"></section>
 
-            <div id="products-wrapper" class="absolute flex"> <!-- TODO: wrap between the two divs and show 2 products we give in the site  -->
+            <!-- TODO: wrap between the two divs and show 2 products we give in the site
+                 TODO:
+             -->
+            <div id="products-wrapper" class="absolute flex">
                 <div>
                     <h1>test</h1>
                 </div>
@@ -20,17 +23,17 @@
         </div>
 
         <div id="home-body" class="flex text-center">
-            <theory-card src="/storage/assets/action-asphalt.jpg">
+            <theory-card src="/assets/action-asphalt.jpg">
                 <template slot="title">This is the title</template>
 
                 <template slot="description">This is the description</template>
             </theory-card>
-            <theory-card src="/storage/assets/action-asphalt.jpg">
+            <theory-card src="/assets/action-asphalt.jpg">
                 <template slot="title">This is the title</template>
 
                 <template slot="description">This is the description</template>
             </theory-card>
-            <theory-card src="/storage/assets/action-asphalt.jpg">
+            <theory-card src="/assets/action-asphalt.jpg">
                 <template slot="title">This is the title</template>
 
                 <template slot="description">This is the description</template>

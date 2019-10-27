@@ -11446,7 +11446,7 @@ video {
         to top,
         rgba(241, 39, 17, 0.05),
         rgba(245, 175, 25, 0.075)),
-        url('/storage/assets/asphalt.jpg') no-repeat center fixed;
+        url('/assets/asphalt.jpg') no-repeat center fixed;
   background-size: 100%;
   min-width: 1024px;
   height: 100vh;
