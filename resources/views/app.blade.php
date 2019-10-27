@@ -10,7 +10,16 @@
     </head>
     <body>
        <div id="app" class="tw-container">
-           @include('nav-bar')
+            <theory-nav-bar>
+                <template slot="left-bar">
+                    <theory-left-bar href="#">שפה</theory-left-bar>
+                </template>
+
+                <template slot="right-bar">
+                    <theory-right-bar href="#">התחבר</theory-right-bar>
+                    <theory-right-bar href="#">הירשם</theory-right-bar>
+                </template>
+            </theory-nav-bar>
 
            <router-view></router-view>
         </div>
