@@ -770,12 +770,12 @@ var staticRenderFns = [
     return _c(
       "div",
       {
-        staticClass: "tw-max-w-full tw-max-h-screen",
+        staticClass: "tw-w-full tw-h-screen flex flex-column",
         attrs: { id: "home-img-section" }
       },
       [
         _c("section", {
-          staticClass: "tw-w-full tw-absolute tw-top-0 tw-left-0 tw-block",
+          staticClass: "tw-w-full tw-block",
           attrs: { id: "homepage-img" }
         }),
         _vm._v(" "),

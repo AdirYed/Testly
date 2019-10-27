@@ -1,7 +1,7 @@
-<header id="nav-bar" class="tw-min-w-full tw-bg-white tw-flex tw-flex-wrap tw-items-center lg:tw-py-0 tw-py-2 lg:tw-px-16 tw-px-6 tw-fixed tw-top-0 tw-left-0">
+<header id="nav-bar" class="tw-min-w-full tw-bg-white tw-flex tw-flex-wrap tw-items-center lg:tw-py-0 tw-py-2 lg:tw-px-16 tw-px-6 tw-sticky tw-top-0 tw-left-0">
     <div class="tw-hidden tw-flex-1 lg:tw-flex tw-justify-between tw-items-center">
         <ul class="lg:tw-flex tw-items-center tw-justify-between tw-text-base tw-text-gray-700 tw-pt-4 lg:tw-pt-0">
-            <li><a class="lg:tw-p-4 tw-py-3 tw-px-0 tw-block tw-border-b-2 tw-border-transparent hover:tw-border-indigo-400" href="#">שפה</a></li>
+            <li><a class="lg:tw-p-4 tw-py-3 tw-px-0 tw-block tw-border-b-2 tw-border-transparent hover:tw-border-primary" href="#">שפה</a></li>
         </ul>
     </div>
 
@@ -11,8 +11,8 @@
     <div class="tw-hidden lg:tw-flex lg:tw-items-center lg:tw-w-auto tw-w-full" id="menu">
         <nav>
             <ul class="lg:tw-flex tw-items-center tw-justify-between tw-text-base tw-text-gray-700 tw-pt-4 lg:tw-pt-0">
-                <li><a class="lg:tw-p-4 tw-py-3 tw-px-0 tw-block tw-border-b-2 tw-border-transparent hover:tw-border-indigo-400" href="#">התחבר</a></li>
-                <li><a class="lg:tw-p-4 tw-py-3 tw-px-0 tw-block tw-border-b-2 tw-border-transparent hover:tw-border-indigo-400 lg:tw-mb-0 tw-mb-2" href="#">הירשם</a></li>
+                <li><a class="lg:tw-p-4 tw-py-3 tw-px-0 tw-block tw-border-b-2 tw-border-transparent hover:tw-border-primary" href="#">התחבר</a></li>
+                <li><a class="lg:tw-p-4 tw-py-3 tw-px-0 tw-block tw-border-b-2 tw-border-transparent hover:tw-border-primary lg:tw-mb-0 tw-mb-2" href="#">הירשם</a></li>
             </ul>
         </nav>
         <a href="#" class="lg:tw-ml-4 tw-flex tw-items-center tw-justify-start lg:tw-mb-0 tw-mb-4 tw-pointer-cursor">

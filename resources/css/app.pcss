@@ -4,13 +4,11 @@
 @tailwind components;
 @tailwind utilities;
 
-#app {
-    margin: 0 auto;
-}
-
 #nav-bar {
+    height: var(--header-height);
+    width: 100vw;
     background-color: white;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+    box-shadow: 0 -2px 0 rgba(0, 0, 0, 0.25) inset;
 
     z-index: 1;
 }
@@ -32,18 +30,22 @@
 }
 
 #home-img-section {
-    margin-bottom: 100vh;
+    /*margin-bottom: 100vh;*/
 }
 
 #homepage-img {
+    height: calc(100vh - var(--header-height));
+    width: 100vw;
+    min-width: 1024px;
     background: linear-gradient(
         to top,
         rgba(241, 39, 17, 0.05),
         rgba(245, 175, 25, 0.075)),
         url('/assets/asphalt.jpg') no-repeat center fixed;
     background-size: 100%;
-    min-width: 1024px;
-    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
     z-index: -1;
 
@@ -54,6 +56,7 @@
 }
 
 #home-body {
+    margin: 0 auto;
     flex-wrap: wrap;
     justify-content: space-between;
 

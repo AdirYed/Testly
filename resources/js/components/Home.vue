@@ -1,7 +1,7 @@
 <template>
     <div>
-        <div id="home-img-section" class="tw-max-w-full tw-max-h-screen">
-            <section id="homepage-img" class="tw-w-full tw-absolute tw-top-0 tw-left-0 tw-block"></section>
+        <div id="home-img-section" class="tw-w-full tw-h-screen flex flex-column">
+            <section id="homepage-img" class="tw-w-full tw-block"></section>
 
             <!-- TODO: wrap between the two divs and show 2 products we give in the site -->
             <div id="products-wrapper" class="tw-absolute tw-flex">

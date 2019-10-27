@@ -9,10 +9,10 @@
         <link rel="stylesheet" href="{{ mix('/css/app.css') }}">
     </head>
     <body>
-        @include('nav-bar')
+       <div id="app" class="tw-container">
+           @include('nav-bar')
 
-        <div id="app" class="tw-container">
-            <router-view></router-view>
+           <router-view></router-view>
         </div>
 
         <div style="margin-bottom: 3000px"></div>
