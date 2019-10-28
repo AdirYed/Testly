@@ -20,29 +20,44 @@
             </button>
         </div>
 
-        <div class="tw-px-2">
-            <div id="home-body" class="tw-container tw--mx-2 tw-flex tw-flex-wrap tw-flex-row">
-                <div class="tw-w-1/3 tw-px-2">
-                    <theory-card class="" src="/assets/action-asphalt.jpg" alt="asphalt.jpg">
-                        <template slot="title">This is the title</template>
+        <!-- TODO: read more gonna be here -->
 
-                        <template slot="description">This is the description</template>
-                    </theory-card>
-                </div>
-                <div class="tw-w-1/3 tw-px-2">
-                    <theory-card class="" src="/assets/action-asphalt.jpg" alt="asphalt.jpg">
-                        <template slot="title">This is the title</template>
+        <!-- TODO: responsive -->
+        <div id="home-body" class="tw-container tw-flex tw-flex-wrap tw--mx-2 tw-my-2 md:tw--mx-4 md:tw-my-4 lg:tw--mx-6 lg:tw-my-6">
+            <div class="tw-p-2 md:tw-p-4 lg:tw-p-6 md:tw-w-1/2 lg:tw-w-1/3">
+                <theory-card src="/assets/action-asphalt.jpg" alt="asphalt.jpg">
+                    <template slot="title">This is the title</template>
 
-                        <template slot="description">This is the description</template>
-                    </theory-card>
-                </div>
-                <div class="tw-w-1/3 tw-px-2">
-                    <theory-card class="" src="/assets/action-asphalt.jpg" alt="asphalt.jpg">
-                        <template slot="title">This is the title</template>
+                    <template slot="description">This is the description</template>
+                </theory-card>
+            </div>
+            <div class="tw-p-2 md:tw-p-4 lg:tw-p-6 md:tw-w-1/2 lg:tw-w-1/3">
+                <theory-card src="/assets/action-asphalt.jpg" alt="asphalt.jpg">
+                    <template slot="title">This is the title</template>
 
-                        <template slot="description">This is the description</template>
-                    </theory-card>
-                </div>
+                    <template slot="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium animi, minima natus nesciunt officiis recusandae rem repudiandae? Ab adipisci, aperiam aspernatur autem corporis libero nesciunt quas quo rem sapiente sint!</template>
+                </theory-card>
+            </div>
+            <div class="tw-p-2 md:tw-p-4 lg:tw-p-6 md:tw-w-1/2 lg:tw-w-1/3">
+                <theory-card src="/assets/asphalt.jpg" alt="asphalt.jpg">
+                    <template slot="title">This is the title</template>
+
+                    <template slot="description">This is the description</template>
+                </theory-card>
+            </div>
+            <div class="tw-p-2 md:tw-p-4 lg:tw-p-6 md:tw-w-1/2 lg:tw-w-1/3">
+                <theory-card src="/assets/action-asphalt.jpg" alt="asphalt.jpg">
+                    <template slot="title">This is the title</template>
+
+                    <template slot="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium animi, minima natus nesciunt officiis recusandae rem repudiandae? Ab adipisci, aperiam aspernatur autem corporis libero nesciunt quas quo rem sapiente sint!</template>
+                </theory-card>
+            </div>
+            <div class="tw-p-2 md:tw-p-4 lg:tw-p-6 md:tw-w-1/2 lg:tw-w-1/3">
+                <theory-card src="/assets/asphalt.jpg" alt="asphalt.jpg">
+                    <template slot="title">This is the title</template>
+
+                    <template slot="description">This is the description</template>
+                </theory-card>
             </div>
         </div>
     </div>

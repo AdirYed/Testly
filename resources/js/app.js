@@ -20,7 +20,6 @@ const app = new Vue({
 });
 
 // Use when you have a horizontal scroll
-/*
 var docWidth = document.documentElement.offsetWidth;
 
 [].forEach.call(
@@ -31,4 +30,3 @@ var docWidth = document.documentElement.offsetWidth;
         }
     }
 );
-*/

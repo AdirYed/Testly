@@ -1,5 +1,5 @@
 :root { /*https://uigradients.com/#Flare*/
-  --header-height: 60px;
+  --header-height: 3.75rem;
   --primary-color: #f5af19;
   --secondary-color: #f12711;
 }
@@ -11457,7 +11457,6 @@ button:focus {
 #nav-bar {
   height: var(--header-height);
   background-color: white;
-  box-shadow: 0 -2px 0 rgba(0, 0, 0, 0.25) inset;
   z-index: 1;
 }
 
@@ -11479,7 +11478,6 @@ button:focus {
 
 #homepage-img {
   height: calc(100vh - var(--header-height));
-  min-width: 1024px;
   background: linear-gradient(
         to top,
         rgba(241, 39, 17, 0.05),
@@ -11491,19 +11489,19 @@ button:focus {
 
 #home-body {
   margin: 2.5rem auto 0;
-  align-items: center;
   justify-content: center;
 }
 
-#home-body > .home-body-child {
+#home-body .home-body-child {
     border-color: rgba(0, 0, 0, 0.25);
-    flex: 0 0 33.33%;
-    /*        > #card-img {
-            background-size: 100%;
-            background-repeat: no-repeat;
-            height: 20vh;
-        }*/
+    word-wrap: break-word;
   }
+
+#home-body .home-body-child > #card-img {
+      background-size: 100%;
+      background-repeat: no-repeat;
+      height: 20vh;
+    }
 
 #home-body :hover {
     border-color: var(--primary-color) !important;

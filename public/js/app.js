@@ -143,6 +143,11 @@ __webpack_require__.r(__webpack_exports__);
       type: String,
       require: true
     }
+  },
+  data: function data() {
+    return {
+      url: 'background-image: url(' + this.src + ')'
+    };
   }
 });
 
@@ -203,6 +208,21 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -781,12 +801,13 @@ var render = function() {
     "div",
     {
       staticClass:
-        "home-body-child tw-max-w-sm tw-rounded tw-overflow-hidden tw-shadow-lg tw-border"
+        "home-body-child tw-max-w-sm tw-rounded tw-shadow-lg tw-border"
     },
     [
-      _c("img", {
+      _c("div", {
         staticClass: "tw-w-full",
-        attrs: { src: _vm.src, alt: _vm.alt }
+        style: _vm.url,
+        attrs: { id: "card-img" }
       }),
       _vm._v(" "),
       _c("div", { staticClass: "tw-px-6 tw-py-4" }, [
@@ -833,7 +854,7 @@ var render = function() {
     "header",
     {
       staticClass:
-        "tw-min-w-full tw-bg-white tw-flex tw-flex-wrap tw-items-center lg:tw-py-0 tw-py-2 lg:tw-px-16 tw-px-6 tw-sticky tw-top-0 tw-left-0",
+        "tw-min-w-full tw-bg-white tw-flex tw-flex-wrap tw-shadow-lg tw-items-center lg:tw-py-0 tw-py-2 lg:tw-px-16 tw-px-6 tw-sticky tw-top-0 tw-left-0",
       attrs: { id: "nav-bar" }
     },
     [
@@ -965,97 +986,135 @@ var render = function() {
   return _c("div", [
     _vm._m(0),
     _vm._v(" "),
-    _c("div", { staticClass: "tw-px-2" }, [
-      _c(
-        "div",
-        {
-          staticClass: "tw-container tw--mx-2 tw-flex tw-flex-wrap tw-flex-row",
-          attrs: { id: "home-body" }
-        },
-        [
-          _c(
-            "div",
-            { staticClass: "tw-w-1/3 tw-px-2" },
-            [
-              _c(
-                "theory-card",
-                {
-                  attrs: {
-                    src: "/assets/action-asphalt.jpg",
-                    alt: "asphalt.jpg"
-                  }
-                },
-                [
-                  _c("template", { slot: "title" }, [
-                    _vm._v("This is the title")
-                  ]),
-                  _vm._v(" "),
-                  _c("template", { slot: "description" }, [
-                    _vm._v("This is the description")
-                  ])
-                ],
-                2
-              )
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "tw-w-1/3 tw-px-2" },
-            [
-              _c(
-                "theory-card",
-                {
-                  attrs: {
-                    src: "/assets/action-asphalt.jpg",
-                    alt: "asphalt.jpg"
-                  }
-                },
-                [
-                  _c("template", { slot: "title" }, [
-                    _vm._v("This is the title")
-                  ]),
-                  _vm._v(" "),
-                  _c("template", { slot: "description" }, [
-                    _vm._v("This is the description")
-                  ])
-                ],
-                2
-              )
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "tw-w-1/3 tw-px-2" },
-            [
-              _c(
-                "theory-card",
-                {
-                  attrs: {
-                    src: "/assets/action-asphalt.jpg",
-                    alt: "asphalt.jpg"
-                  }
-                },
-                [
-                  _c("template", { slot: "title" }, [
-                    _vm._v("This is the title")
-                  ]),
-                  _vm._v(" "),
-                  _c("template", { slot: "description" }, [
-                    _vm._v("This is the description")
-                  ])
-                ],
-                2
-              )
-            ],
-            1
-          )
-        ]
-      )
-    ])
+    _c(
+      "div",
+      {
+        staticClass:
+          "tw-container tw-flex tw-flex-wrap tw--mx-2 tw-my-2 md:tw--mx-4 md:tw-my-4 lg:tw--mx-6 lg:tw-my-6",
+        attrs: { id: "home-body" }
+      },
+      [
+        _c(
+          "div",
+          { staticClass: "tw-p-2 md:tw-p-4 lg:tw-p-6 md:tw-w-1/2 lg:tw-w-1/3" },
+          [
+            _c(
+              "theory-card",
+              {
+                attrs: { src: "/assets/action-asphalt.jpg", alt: "asphalt.jpg" }
+              },
+              [
+                _c("template", { slot: "title" }, [
+                  _vm._v("This is the title")
+                ]),
+                _vm._v(" "),
+                _c("template", { slot: "description" }, [
+                  _vm._v("This is the description")
+                ])
+              ],
+              2
+            )
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "tw-p-2 md:tw-p-4 lg:tw-p-6 md:tw-w-1/2 lg:tw-w-1/3" },
+          [
+            _c(
+              "theory-card",
+              {
+                attrs: { src: "/assets/action-asphalt.jpg", alt: "asphalt.jpg" }
+              },
+              [
+                _c("template", { slot: "title" }, [
+                  _vm._v("This is the title")
+                ]),
+                _vm._v(" "),
+                _c("template", { slot: "description" }, [
+                  _vm._v(
+                    "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium animi, minima natus nesciunt officiis recusandae rem repudiandae? Ab adipisci, aperiam aspernatur autem corporis libero nesciunt quas quo rem sapiente sint!"
+                  )
+                ])
+              ],
+              2
+            )
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "tw-p-2 md:tw-p-4 lg:tw-p-6 md:tw-w-1/2 lg:tw-w-1/3" },
+          [
+            _c(
+              "theory-card",
+              { attrs: { src: "/assets/asphalt.jpg", alt: "asphalt.jpg" } },
+              [
+                _c("template", { slot: "title" }, [
+                  _vm._v("This is the title")
+                ]),
+                _vm._v(" "),
+                _c("template", { slot: "description" }, [
+                  _vm._v("This is the description")
+                ])
+              ],
+              2
+            )
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "tw-p-2 md:tw-p-4 lg:tw-p-6 md:tw-w-1/2 lg:tw-w-1/3" },
+          [
+            _c(
+              "theory-card",
+              {
+                attrs: { src: "/assets/action-asphalt.jpg", alt: "asphalt.jpg" }
+              },
+              [
+                _c("template", { slot: "title" }, [
+                  _vm._v("This is the title")
+                ]),
+                _vm._v(" "),
+                _c("template", { slot: "description" }, [
+                  _vm._v(
+                    "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium animi, minima natus nesciunt officiis recusandae rem repudiandae? Ab adipisci, aperiam aspernatur autem corporis libero nesciunt quas quo rem sapiente sint!"
+                  )
+                ])
+              ],
+              2
+            )
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "tw-p-2 md:tw-p-4 lg:tw-p-6 md:tw-w-1/2 lg:tw-w-1/3" },
+          [
+            _c(
+              "theory-card",
+              { attrs: { src: "/assets/asphalt.jpg", alt: "asphalt.jpg" } },
+              [
+                _c("template", { slot: "title" }, [
+                  _vm._v("This is the title")
+                ]),
+                _vm._v(" "),
+                _c("template", { slot: "description" }, [
+                  _vm._v("This is the description")
+                ])
+              ],
+              2
+            )
+          ],
+          1
+        )
+      ]
+    )
   ])
 }
 var staticRenderFns = [
@@ -16144,18 +16203,12 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
   router: new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"](_routes__WEBPACK_IMPORTED_MODULE_2__["routes"])
 }); // Use when you have a horizontal scroll
 
-/*
 var docWidth = document.documentElement.offsetWidth;
-
-[].forEach.call(
-    document.querySelectorAll('*'),
-    function(el) {
-        if (el.offsetWidth > docWidth) {
-            console.log(el);
-        }
-    }
-);
-*/
+[].forEach.call(document.querySelectorAll('*'), function (el) {
+  if (el.offsetWidth > docWidth) {
+    console.log(el);
+  }
+});
 
 /***/ }),
 
