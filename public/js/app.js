@@ -273,6 +273,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'home'
 });
@@ -799,10 +803,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    {
-      staticClass:
-        "home-body-child tw-max-w-sm tw-rounded tw-shadow-lg tw-border"
-    },
+    { staticClass: "home-body-child tw-max-w-sm tw-rounded tw-border" },
     [
       _c("div", {
         staticClass: "tw-w-full",
@@ -950,8 +951,7 @@ var staticRenderFns = [
       },
       [
         _c("img", {
-          staticClass:
-            "tw-rounded-full tw-w-10 tw-h-10 tw-border-2 tw-border-transparent",
+          staticClass: "tw-rounded-full tw-w-10 tw-h-10",
           attrs: {
             src:
               "https://pbs.twimg.com/profile_images/1128143121475342337/e8tkhRaz_normal.jpg",
@@ -1124,34 +1124,41 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c(
       "div",
-      { staticClass: "flex flex-column", attrs: { id: "home-img-section" } },
+      {
+        staticClass:
+          "tw-flex tw-flex-wrap tw-flex-col tw-items-center tw-justify-end",
+        attrs: { id: "home-img-section" }
+      },
       [
-        _c("section", {
-          staticClass: "tw-w-full",
-          attrs: { id: "homepage-img" }
-        }),
-        _vm._v(" "),
         _c(
           "div",
           {
-            staticClass: "tw-absolute tw-flex",
+            staticClass: "tw-flex tw-flex-wrap tw-flex-row",
             attrs: { id: "products-wrapper" }
           },
           [
-            _c("div", [_c("h1", [_vm._v("test")])]),
+            _c("div", { attrs: { id: "wrap-left" } }, [
+              _c("h1", [_vm._v("test")])
+            ]),
             _vm._v(" "),
-            _c("div", [_c("h1", [_vm._v("Second test")])])
+            _c("span", { staticClass: "tw-border-r-2" }),
+            _vm._v(" "),
+            _c("div", { attrs: { id: "wrap-right" } }, [
+              _c("h1", [_vm._v("Second test")])
+            ])
           ]
         ),
         _vm._v(" "),
-        _c(
-          "button",
-          {
-            staticClass:
-              "btn-scroll-down tw-absolute btn tw-bg-transparent tw-border-2 tw-border-primary hover:tw-bg-primary tw-text-primary hover:tw-text-white tw-rounded"
-          },
-          [_vm._v("\n            קרא/י עוד\n        ")]
-        )
+        _c("div", { staticClass: "tw-flex", attrs: { id: "home-btn" } }, [
+          _c(
+            "button",
+            {
+              staticClass:
+                "btn-scroll-down btn tw-bg-transparent tw-border-2 tw-border-primary hover:tw-bg-primary tw-text-primary hover:tw-text-white tw-rounded"
+            },
+            [_vm._v("\n                קרא/י עוד\n            ")]
+          )
+        ])
       ]
     )
   }
@@ -16203,12 +16210,18 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
   router: new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"](_routes__WEBPACK_IMPORTED_MODULE_2__["routes"])
 }); // Use when you have a horizontal scroll
 
+/*
 var docWidth = document.documentElement.offsetWidth;
-[].forEach.call(document.querySelectorAll('*'), function (el) {
-  if (el.offsetWidth > docWidth) {
-    console.log(el);
-  }
-});
+
+[].forEach.call(
+    document.querySelectorAll('*'),
+    function(el) {
+        if (el.offsetWidth > docWidth) {
+            console.log(el);
+        }
+    }
+);
+*/
 
 /***/ }),
 

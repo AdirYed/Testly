@@ -1,5 +1,5 @@
 <template>
-    <div class="home-body-child tw-max-w-sm tw-rounded tw-shadow-lg tw-border">
+    <div class="home-body-child tw-max-w-sm tw-rounded tw-border">
         <div id="card-img" class="tw-w-full" :style="url"></div>
         <div class="tw-px-6 tw-py-4">
             <div class="tw-font-bold tw-text-xl tw-mb-2"><slot name="title"></slot></div>

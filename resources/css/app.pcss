@@ -12,26 +12,32 @@ button:focus {
     height: var(--header-height);
     background-color: white;
 
-    z-index: 1;
+    z-index: 99;
 }
 
 #products-wrapper {
-    transform: translate(-50%, -50%);
-    top: 50%;
-    left: 50%;
+    //padding-top: calc(50vh - var(--header-height));
+    margin: auto;
 
     h1 {
         font-size: 50px;
     }
+
+    > #wrap-left {
+        padding: 70px 100px;
+    }
+
+    > #wrap-right {
+        padding: 70px 100px;
+    }
 }
 
-.btn-scroll-down {
-    transform: translateX(-50%);
-    bottom: 60px;
-    left: 50%;
+#home-btn {
+    //padding-top: calc(50vh - var(--header-height) - 100px); /* 50px from bottom*/
+    margin-bottom: 50px;
 }
 
-#homepage-img {
+#home-img-section {
     height: calc(100vh - var(--header-height));
     background: linear-gradient(
         to top,
