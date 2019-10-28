@@ -138,6 +138,10 @@ __webpack_require__.r(__webpack_exports__);
     src: {
       type: String,
       require: true
+    },
+    alt: {
+      type: String,
+      require: true
     }
   }
 });
@@ -199,18 +203,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -794,7 +786,7 @@ var render = function() {
     [
       _c("img", {
         staticClass: "tw-w-full",
-        attrs: { src: _vm.src, alt: "action-aspalt.jpg" }
+        attrs: { src: _vm.src, alt: _vm.alt }
       }),
       _vm._v(" "),
       _c("div", { staticClass: "tw-px-6 tw-py-4" }, [
@@ -973,103 +965,97 @@ var render = function() {
   return _c("div", [
     _vm._m(0),
     _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "tw-container", attrs: { id: "home-body" } },
-      [
-        _c(
-          "theory-card",
-          { attrs: { src: "/assets/action-asphalt.jpg" } },
-          [
-            _c("template", { slot: "title" }, [_vm._v("This is the title")]),
-            _vm._v(" "),
-            _c("template", { slot: "description" }, [
-              _vm._v("This is the description")
-            ])
-          ],
-          2
-        ),
-        _vm._v(" "),
-        _c(
-          "theory-card",
-          { attrs: { src: "/assets/action-asphalt.jpg" } },
-          [
-            _c("template", { slot: "title" }, [_vm._v("This is the title")]),
-            _vm._v(" "),
-            _c("template", { slot: "description" }, [
-              _vm._v("This is the description")
-            ])
-          ],
-          2
-        ),
-        _vm._v(" "),
-        _c(
-          "theory-card",
-          { attrs: { src: "/assets/action-asphalt.jpg" } },
-          [
-            _c("template", { slot: "title" }, [_vm._v("This is the title")]),
-            _vm._v(" "),
-            _c("template", { slot: "description" }, [
-              _vm._v("This is the description")
-            ])
-          ],
-          2
-        ),
-        _vm._v(" "),
-        _c(
-          "theory-card",
-          { attrs: { src: "/assets/action-asphalt.jpg" } },
-          [
-            _c("template", { slot: "title" }, [_vm._v("This is the title")]),
-            _vm._v(" "),
-            _c("template", { slot: "description" }, [
-              _vm._v("This is the description")
-            ])
-          ],
-          2
-        ),
-        _vm._v(" "),
-        _c(
-          "theory-card",
-          { attrs: { src: "/assets/action-asphalt.jpg" } },
-          [
-            _c("template", { slot: "title" }, [_vm._v("This is the title")]),
-            _vm._v(" "),
-            _c("template", { slot: "description" }, [
-              _vm._v("This is the description")
-            ])
-          ],
-          2
-        ),
-        _vm._v(" "),
-        _c(
-          "theory-card",
-          { attrs: { src: "/assets/action-asphalt.jpg" } },
-          [
-            _c("template", { slot: "title" }, [_vm._v("This is the title")]),
-            _vm._v(" "),
-            _c("template", { slot: "description" }, [
-              _vm._v("This is the description")
-            ])
-          ],
-          2
-        ),
-        _vm._v(" "),
-        _c(
-          "theory-card",
-          { attrs: { src: "/assets/action-asphalt.jpg" } },
-          [
-            _c("template", { slot: "title" }, [_vm._v("This is the title")]),
-            _vm._v(" "),
-            _c("template", { slot: "description" }, [
-              _vm._v("This is the description")
-            ])
-          ],
-          2
-        )
-      ],
-      1
-    )
+    _c("div", { staticClass: "tw-px-2" }, [
+      _c(
+        "div",
+        {
+          staticClass: "tw-container tw--mx-2 tw-flex tw-flex-wrap tw-flex-row",
+          attrs: { id: "home-body" }
+        },
+        [
+          _c(
+            "div",
+            { staticClass: "tw-w-1/3 tw-px-2" },
+            [
+              _c(
+                "theory-card",
+                {
+                  attrs: {
+                    src: "/assets/action-asphalt.jpg",
+                    alt: "asphalt.jpg"
+                  }
+                },
+                [
+                  _c("template", { slot: "title" }, [
+                    _vm._v("This is the title")
+                  ]),
+                  _vm._v(" "),
+                  _c("template", { slot: "description" }, [
+                    _vm._v("This is the description")
+                  ])
+                ],
+                2
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "tw-w-1/3 tw-px-2" },
+            [
+              _c(
+                "theory-card",
+                {
+                  attrs: {
+                    src: "/assets/action-asphalt.jpg",
+                    alt: "asphalt.jpg"
+                  }
+                },
+                [
+                  _c("template", { slot: "title" }, [
+                    _vm._v("This is the title")
+                  ]),
+                  _vm._v(" "),
+                  _c("template", { slot: "description" }, [
+                    _vm._v("This is the description")
+                  ])
+                ],
+                2
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "tw-w-1/3 tw-px-2" },
+            [
+              _c(
+                "theory-card",
+                {
+                  attrs: {
+                    src: "/assets/action-asphalt.jpg",
+                    alt: "asphalt.jpg"
+                  }
+                },
+                [
+                  _c("template", { slot: "title" }, [
+                    _vm._v("This is the title")
+                  ]),
+                  _vm._v(" "),
+                  _c("template", { slot: "description" }, [
+                    _vm._v("This is the description")
+                  ])
+                ],
+                2
+              )
+            ],
+            1
+          )
+        ]
+      )
+    ])
   ])
 }
 var staticRenderFns = [
@@ -1079,13 +1065,10 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c(
       "div",
-      {
-        staticClass: "tw-container flex flex-column",
-        attrs: { id: "home-img-section" }
-      },
+      { staticClass: "flex flex-column", attrs: { id: "home-img-section" } },
       [
         _c("section", {
-          staticClass: "tw-w-screen",
+          staticClass: "tw-w-full",
           attrs: { id: "homepage-img" }
         }),
         _vm._v(" "),
@@ -16159,7 +16142,20 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('theory-bar', _components_B
 var app = new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
   el: '#app',
   router: new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"](_routes__WEBPACK_IMPORTED_MODULE_2__["routes"])
-});
+}); // Use when you have a horizontal scroll
+
+/*
+var docWidth = document.documentElement.offsetWidth;
+
+[].forEach.call(
+    document.querySelectorAll('*'),
+    function(el) {
+        if (el.offsetWidth > docWidth) {
+            console.log(el);
+        }
+    }
+);
+*/
 
 /***/ }),
 

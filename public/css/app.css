@@ -11456,7 +11456,6 @@ button:focus {
 
 #nav-bar {
   height: var(--header-height);
-  width: 100vw;
   background-color: white;
   box-shadow: 0 -2px 0 rgba(0, 0, 0, 0.25) inset;
   z-index: 1;
@@ -11490,35 +11489,24 @@ button:focus {
   z-index: -1;
 }
 
-@media screen and (max-width: 1024px) {
-
-#homepage-img {
-    left: 50%;
-
-    margin-left: -512px
-}
-  }
-
 #home-body {
-  margin: 50px auto;
-  display: grid;
-  grid-gap: 20px;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: auto;
-  justify-items: center;
+  margin: 2.5rem auto 0;
+  align-items: center;
+  justify-content: center;
 }
-
-#home-body > div {
-    box-sizing: border-box;
-    margin-bottom: 10px;
-  }
 
 #home-body > .home-body-child {
-    flex: 0 0 33%;
+    border-color: rgba(0, 0, 0, 0.25);
+    flex: 0 0 33.33%;
+    /*        > #card-img {
+            background-size: 100%;
+            background-repeat: no-repeat;
+            height: 20vh;
+        }*/
   }
 
 #home-body :hover {
-    border-color: var(--primary-color);
+    border-color: var(--primary-color) !important;
   }
 
 @media (min-width: 640px){
