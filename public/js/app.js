@@ -1143,22 +1143,15 @@ var staticRenderFns = [
         attrs: { id: "home-img-section" }
       },
       [
-        _c(
-          "div",
-          {
-            staticClass: "tw-flex tw-flex-wrap tw-flex-row",
-            attrs: { id: "products-wrapper" }
-          },
-          [
-            _c("div", {}, [
-              _c("h1", { staticClass: "tw-text-center" }, [
-                _vm._v("מבחני תאוריה בחינם")
-              ])
+        _c("div", { attrs: { id: "products-wrapper" } }, [
+          _c("div", {}, [
+            _c("h1", { staticClass: "tw-text-center" }, [
+              _vm._v("מבחני תאוריה בחינם")
             ])
-          ]
-        ),
+          ])
+        ]),
         _vm._v(" "),
-        _c("div", { staticClass: "tw-flex", attrs: { id: "home-btn" } }, [
+        _c("div", { attrs: { id: "home-btn" } }, [
           _c(
             "button",
             {

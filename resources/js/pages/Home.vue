@@ -2,13 +2,13 @@
     <div>
         <div id="home-img-section" class="tw-flex tw-flex-wrap tw-flex-col tw-items-center tw-justify-end">
             <!-- TODO: needs some css changes -->
-            <div id="products-wrapper" class="tw-flex tw-flex-wrap tw-flex-row">
+            <div id="products-wrapper">
                 <div class="">
                     <h1 class="tw-text-center">מבחני תאוריה בחינם</h1>
                 </div>
             </div>
 
-            <div id="home-btn" class="tw-flex">
+            <div id="home-btn">
                 <button id="home-scroll-able" type="button" class="btn tw-border-2 tw-border-primary hover:tw-bg-primary tw-text-primary hover:tw-text-white tw-rounded">
                     קרא/י עוד
                 </button>
