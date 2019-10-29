@@ -144,10 +144,6 @@ __webpack_require__.r(__webpack_exports__);
     src: {
       type: String,
       require: true
-    },
-    alt: {
-      type: String,
-      require: true
     }
   },
   data: function data() {
@@ -214,22 +210,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -816,7 +796,9 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "home-body-child tw-w-80 tw-rounded tw-border" },
+    {
+      staticClass: "home-body-child tw-w-80 tw-rounded tw-border tw-word-wrap"
+    },
     [
       _c("div", {
         staticClass: "tw-w-full tw-rounded tw-rounded-b-none",
@@ -835,32 +817,26 @@ var render = function() {
         _c(
           "p",
           { staticClass: "tw-text-gray-700 tw-text-base" },
-          [_vm._t("description")],
+          [_vm._t("default")],
           2
         )
       ]),
       _vm._v(" "),
-      _vm._m(0)
+      _c("div", { staticClass: "tw-flex tw-justify-center tw-pb-4" }, [
+        _c(
+          "button",
+          {
+            staticClass:
+              "tw-font-bold tw-py-2 tw-px-3 tw-border-2 tw-border-primary hover:tw-bg-primary tw-text-primary hover:tw-text-white tw-rounded"
+          },
+          [_vm._t("button-desc")],
+          2
+        )
+      ])
     ]
   )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "tw-flex tw-justify-center tw-pb-4" }, [
-      _c(
-        "button",
-        {
-          staticClass:
-            "btn-scroll-down btn tw-bg-transparent tw-border-2 tw-border-primary hover:tw-bg-primary tw-text-primary hover:tw-text-white tw-rounded"
-        },
-        [_vm._v("\n            למבחן תאוריה\n        ")]
-      )
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -1020,206 +996,135 @@ var render = function() {
     _c(
       "div",
       {
-        staticClass:
-          "tw-container tw-flex tw-flex-wrap tw--mx-2 tw-my-2 md:tw--mx-4 md:tw-my-4 lg:tw--mx-6 lg:tw-my-6",
+        staticClass: "tw-container tw-flex tw-flex-wrap tw-flex-col",
         attrs: { id: "home-body" }
       },
       [
-        _c(
-          "div",
-          {
-            staticClass:
-              "tw-flex tw-justify-center tw-items-start tw-p-2 md:tw-p-4 lg:tw-p-6 tw-w-full md:tw-w-1/2 lg:tw-w-1/3"
-          },
-          [
-            _c(
-              "theory-card",
-              {
-                attrs: { src: "/assets/action-asphalt.jpg", alt: "asphalt.jpg" }
-              },
-              [
-                _c("template", { slot: "title" }, [
-                  _vm._v("This is the title")
-                ]),
-                _vm._v(" "),
-                _c("template", { slot: "description" }, [
-                  _vm._v("This is the description")
-                ])
-              ],
-              2
-            )
-          ],
-          1
-        ),
+        _vm._m(1),
         _vm._v(" "),
         _c(
-          "div",
+          "section",
           {
             staticClass:
-              "tw-flex tw-justify-center tw-items-start tw-p-2 md:tw-p-4 lg:tw-p-6 tw-w-full md:tw-w-1/2 lg:tw-w-1/3"
+              "tw-flex tw-flex-wrap tw-justify-center tw--mx-2 tw-my-2 md:tw--mx-4 md:tw-my-4 lg:tw--mx-6 lg:tw-my-6"
           },
           [
             _c(
-              "theory-card",
-              {
-                attrs: { src: "/assets/action-asphalt.jpg", alt: "asphalt.jpg" }
-              },
+              "div",
+              { staticClass: "tw-p-2" },
               [
-                _c("template", { slot: "title" }, [
-                  _vm._v("This is the title")
-                ]),
-                _vm._v(" "),
-                _c("template", { slot: "description" }, [
-                  _vm._v(
-                    "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium aliquam, amet assumenda cum dolorem esse ex ipsam mollitia nesciunt quae sed sunt voluptate! Consectetur ex necessitatibus obcaecati. Dolores, maxime ut?"
-                  )
-                ])
+                _c(
+                  "theory-card",
+                  {
+                    attrs: {
+                      src: "/assets/action-asphalt.jpg",
+                      alt: "asphalt.jpg"
+                    }
+                  },
+                  [
+                    _c("template", { slot: "title" }, [
+                      _vm._v("This is the title")
+                    ]),
+                    _vm._v(
+                      "\n                        This is the description.\n                    "
+                    ),
+                    _c("template", { slot: "button-desc" }, [
+                      _vm._v("למבחן תאוריה")
+                    ])
+                  ],
+                  2
+                )
               ],
-              2
-            )
-          ],
-          1
-        ),
-        _vm._v(" "),
-        _c(
-          "div",
-          {
-            staticClass:
-              "tw-flex tw-justify-center tw-items-start tw-p-2 md:tw-p-4 lg:tw-p-6 tw-w-full md:tw-w-1/2 lg:tw-w-1/3"
-          },
-          [
+              1
+            ),
+            _vm._v(" "),
             _c(
-              "theory-card",
-              {
-                attrs: { src: "/assets/action-asphalt.jpg", alt: "asphalt.jpg" }
-              },
+              "div",
+              { staticClass: "tw-p-2" },
               [
-                _c("template", { slot: "title" }, [
-                  _vm._v("This is the title")
-                ]),
-                _vm._v(" "),
-                _c("template", { slot: "description" }, [
-                  _vm._v("This is the description")
-                ])
+                _c(
+                  "theory-card",
+                  {
+                    attrs: {
+                      src: "/assets/action-asphalt.jpg",
+                      alt: "asphalt.jpg"
+                    }
+                  },
+                  [
+                    _c("template", { slot: "title" }, [
+                      _vm._v("This is the title")
+                    ]),
+                    _vm._v(
+                      "\n                        This is the description.\n                    "
+                    ),
+                    _c("template", { slot: "button-desc" }, [
+                      _vm._v("למבחן תאוריה")
+                    ])
+                  ],
+                  2
+                )
               ],
-              2
-            )
-          ],
-          1
-        ),
-        _vm._v(" "),
-        _c(
-          "div",
-          {
-            staticClass:
-              "tw-flex tw-justify-center tw-items-start tw-p-2 md:tw-p-4 lg:tw-p-6 tw-w-full md:tw-w-1/2 lg:tw-w-1/3"
-          },
-          [
+              1
+            ),
+            _vm._v(" "),
             _c(
-              "theory-card",
-              {
-                attrs: { src: "/assets/action-asphalt.jpg", alt: "asphalt.jpg" }
-              },
+              "div",
+              { staticClass: "tw-p-2" },
               [
-                _c("template", { slot: "title" }, [
-                  _vm._v("This is the title")
-                ]),
-                _vm._v(" "),
-                _c("template", { slot: "description" }, [
-                  _vm._v(
-                    "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium aliquam, amet assumenda cum dolorem esse ex ipsam mollitia nesciunt quae sed sunt voluptate! Consectetur ex necessitatibus obcaecati. Dolores, maxime ut?"
-                  )
-                ])
+                _c(
+                  "theory-card",
+                  {
+                    attrs: {
+                      src: "/assets/action-asphalt.jpg",
+                      alt: "asphalt.jpg"
+                    }
+                  },
+                  [
+                    _c("template", { slot: "title" }, [
+                      _vm._v("This is the title")
+                    ]),
+                    _vm._v(
+                      "\n                        This is the description.\n                    "
+                    ),
+                    _c("template", { slot: "button-desc" }, [
+                      _vm._v("למבחן תאוריה")
+                    ])
+                  ],
+                  2
+                )
               ],
-              2
-            )
-          ],
-          1
-        ),
-        _vm._v(" "),
-        _c(
-          "div",
-          {
-            staticClass:
-              "tw-flex tw-justify-center tw-items-start tw-p-2 md:tw-p-4 lg:tw-p-6 tw-w-full md:tw-w-1/2 lg:tw-w-1/3"
-          },
-          [
+              1
+            ),
+            _vm._v(" "),
             _c(
-              "theory-card",
-              {
-                attrs: { src: "/assets/action-asphalt.jpg", alt: "asphalt.jpg" }
-              },
+              "div",
+              { staticClass: "tw-p-2" },
               [
-                _c("template", { slot: "title" }, [
-                  _vm._v("This is the title")
-                ]),
-                _vm._v(" "),
-                _c("template", { slot: "description" }, [
-                  _vm._v("This is the description")
-                ])
+                _c(
+                  "theory-card",
+                  {
+                    attrs: {
+                      src: "/assets/action-asphalt.jpg",
+                      alt: "asphalt.jpg"
+                    }
+                  },
+                  [
+                    _c("template", { slot: "title" }, [
+                      _vm._v("This is the title")
+                    ]),
+                    _vm._v(
+                      "\n                        This is the description.\n                    "
+                    ),
+                    _c("template", { slot: "button-desc" }, [
+                      _vm._v("למבחן תאוריה")
+                    ])
+                  ],
+                  2
+                )
               ],
-              2
+              1
             )
-          ],
-          1
-        ),
-        _vm._v(" "),
-        _c(
-          "div",
-          {
-            staticClass:
-              "tw-flex tw-justify-center tw-items-start tw-p-2 md:tw-p-4 lg:tw-p-6 tw-w-full md:tw-w-1/2 lg:tw-w-1/3"
-          },
-          [
-            _c(
-              "theory-card",
-              {
-                attrs: { src: "/assets/action-asphalt.jpg", alt: "asphalt.jpg" }
-              },
-              [
-                _c("template", { slot: "title" }, [
-                  _vm._v("This is the title")
-                ]),
-                _vm._v(" "),
-                _c("template", { slot: "description" }, [
-                  _vm._v(
-                    "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium aliquam, amet assumenda cum dolorem esse ex ipsam mollitia nesciunt quae sed sunt voluptate! Consectetur ex necessitatibus obcaecati. Dolores, maxime ut?"
-                  )
-                ])
-              ],
-              2
-            )
-          ],
-          1
-        ),
-        _vm._v(" "),
-        _c(
-          "div",
-          {
-            staticClass:
-              "tw-flex tw-justify-center tw-items-start tw-p-2 md:tw-p-4 lg:tw-p-6 tw-w-full md:tw-w-1/2 lg:tw-w-1/3"
-          },
-          [
-            _c(
-              "theory-card",
-              {
-                attrs: { src: "/assets/action-asphalt.jpg", alt: "asphalt.jpg" }
-              },
-              [
-                _c("template", { slot: "title" }, [
-                  _vm._v("This is the title")
-                ]),
-                _vm._v(" "),
-                _c("template", { slot: "description" }, [
-                  _vm._v(
-                    "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium aliquam, amet assumenda cum dolorem esse ex ipsam mollitia nesciunt quae sed sunt voluptate! Consectetur ex necessitatibus obcaecati. Dolores, maxime ut?"
-                  )
-                ])
-              ],
-              2
-            )
-          ],
-          1
+          ]
         )
       ]
     )
@@ -1245,8 +1150,10 @@ var staticRenderFns = [
             attrs: { id: "products-wrapper" }
           },
           [
-            _c("div", { attrs: { id: "wrap-left" } }, [
-              _c("h1", [_vm._v("test")])
+            _c("div", {}, [
+              _c("h1", { staticClass: "tw-text-center" }, [
+                _vm._v("מבחני תאוריה בחינם")
+              ])
             ])
           ]
         ),
@@ -1256,13 +1163,24 @@ var staticRenderFns = [
             "button",
             {
               staticClass:
-                "btn-scroll-down btn tw-bg-transparent tw-border-2 tw-border-primary hover:tw-bg-primary tw-text-primary hover:tw-text-white tw-rounded"
+                "btn tw-border-2 tw-border-primary hover:tw-bg-primary tw-text-primary hover:tw-text-white tw-rounded",
+              attrs: { id: "home-scroll-able", type: "button" }
             },
             [_vm._v("\n                קרא/י עוד\n            ")]
           )
         ])
       ]
     )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticStyle: { direction: "rtl" } }, [
+      _c("h1", { staticClass: "tw-text-3xl" }, [
+        _vm._v("\n                טקסט מימין לשמאל\n            ")
+      ])
+    ])
   }
 ]
 render._withStripped = true
@@ -16324,6 +16242,37 @@ var docWidth = document.documentElement.offsetWidth;
     }
 );
 */
+
+function smoothScroll(target, duration) {
+  var scrollTo = document.querySelector(target);
+  var targetPosition = scrollTo.getBoundingClientRect().top - 59; // minus the nav which is 60px and also his box-shadow which is 1px, 60-1=59
+
+  var startPosition = window.pageYOffset;
+  var startTime = null;
+
+  function animation(currentTime) {
+    if (startTime === null) startTime = currentTime;
+    var timeElapsed = currentTime - startTime;
+    var run = ease(timeElapsed, startPosition, targetPosition, duration);
+    window.scrollTo(0, run);
+    if (timeElapsed < duration) requestAnimationFrame(animation);
+  }
+
+  function ease(t, b, c, d) {
+    t /= d / 2;
+    if (t < 1) return c / 2 * t * t + b;
+    t--;
+    return -c / 2 * (t * (t - 2) - 1) + b;
+  }
+
+  ;
+  requestAnimationFrame(animation);
+}
+
+var btnScrollAble = document.getElementById('home-scroll-able');
+btnScrollAble.addEventListener('click', function () {
+  smoothScroll('#home-body', 500);
+});
 
 /***/ }),
 

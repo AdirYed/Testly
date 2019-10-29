@@ -32,3 +32,33 @@ var docWidth = document.documentElement.offsetWidth;
     }
 );
 */
+
+function smoothScroll(target, duration) {
+    const scrollTo = document.querySelector(target);
+    const targetPosition = scrollTo.getBoundingClientRect().top - 59; // minus the nav which is 60px and also his box-shadow which is 1px, 60-1=59
+    const startPosition = window.pageYOffset;
+    let startTime = null;
+
+    function animation(currentTime) {
+        if (startTime === null) startTime = currentTime;
+        const timeElapsed = currentTime - startTime;
+        const run = ease(timeElapsed, startPosition, targetPosition, duration);
+        window.scrollTo(0, run);
+        if (timeElapsed < duration) requestAnimationFrame(animation);
+    }
+
+    function ease(t, b, c, d) {
+        t /= d/2;
+        if (t < 1) return c/2*t*t + b;
+        t--;
+        return -c/2 * (t*(t-2) - 1) + b;
+    };
+
+    requestAnimationFrame(animation);
+}
+
+const btnScrollAble = document.getElementById('home-scroll-able');
+
+btnScrollAble.addEventListener('click', function() {
+    smoothScroll('#home-body', 500);
+});
