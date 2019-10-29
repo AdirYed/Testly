@@ -270,6 +270,28 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'home'
 });
@@ -1004,11 +1026,95 @@ var render = function() {
         _vm._v(" "),
         _c(
           "section",
-          {
-            staticClass:
-              "tw-flex tw-flex-wrap tw-justify-center tw--mx-2 tw-my-2 md:tw--mx-4 md:tw-my-4 lg:tw--mx-6 lg:tw-my-6"
-          },
+          { staticClass: "tw-flex tw-flex-wrap tw-justify-center" },
           [
+            _c(
+              "div",
+              { staticClass: "tw-p-2" },
+              [
+                _c(
+                  "theory-card",
+                  {
+                    attrs: {
+                      src: "/assets/action-asphalt.jpg",
+                      alt: "asphalt.jpg"
+                    }
+                  },
+                  [
+                    _c("template", { slot: "title" }, [
+                      _vm._v("This is the title")
+                    ]),
+                    _vm._v(
+                      "\n                        This is the description.\n                    "
+                    ),
+                    _c("template", { slot: "button-desc" }, [
+                      _vm._v("למבחן תאוריה")
+                    ])
+                  ],
+                  2
+                )
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "tw-p-2" },
+              [
+                _c(
+                  "theory-card",
+                  {
+                    attrs: {
+                      src: "/assets/action-asphalt.jpg",
+                      alt: "asphalt.jpg"
+                    }
+                  },
+                  [
+                    _c("template", { slot: "title" }, [
+                      _vm._v("This is the title")
+                    ]),
+                    _vm._v(
+                      "\n                        This is the description.\n                    "
+                    ),
+                    _c("template", { slot: "button-desc" }, [
+                      _vm._v("למבחן תאוריה")
+                    ])
+                  ],
+                  2
+                )
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "tw-p-2" },
+              [
+                _c(
+                  "theory-card",
+                  {
+                    attrs: {
+                      src: "/assets/action-asphalt.jpg",
+                      alt: "asphalt.jpg"
+                    }
+                  },
+                  [
+                    _c("template", { slot: "title" }, [
+                      _vm._v("This is the title")
+                    ]),
+                    _vm._v(
+                      "\n                        This is the description.\n                    "
+                    ),
+                    _c("template", { slot: "button-desc" }, [
+                      _vm._v("למבחן תאוריה")
+                    ])
+                  ],
+                  2
+                )
+              ],
+              1
+            ),
+            _vm._v(" "),
             _c(
               "div",
               { staticClass: "tw-p-2" },
@@ -1157,7 +1263,7 @@ var staticRenderFns = [
             {
               staticClass:
                 "btn tw-border-2 tw-border-primary hover:tw-bg-primary tw-text-primary hover:tw-text-white tw-rounded",
-              attrs: { id: "home-scroll-able", type: "button" }
+              attrs: { id: "home-scroll-able" }
             },
             [_vm._v("\n                קרא/י עוד\n            ")]
           )

@@ -9,12 +9,13 @@
             </div>
 
             <div id="home-btn">
-                <button id="home-scroll-able" type="button" class="btn tw-border-2 tw-border-primary hover:tw-bg-primary tw-text-primary hover:tw-text-white tw-rounded">
+                <button id="home-scroll-able" class="btn tw-border-2 tw-border-primary hover:tw-bg-primary tw-text-primary hover:tw-text-white tw-rounded">
                     קרא/י עוד
                 </button>
             </div>
         </div>
 
+        <!-- TODO: need to style it -->
         <div id="home-body" class="tw-container tw-flex tw-flex-wrap tw-flex-col">
             <!-- TODO: responsive -->
             <!-- TODO: read more gonna be here -->
@@ -24,7 +25,28 @@
                 </h1>
             </div>
 
-            <section class="tw-flex tw-flex-wrap tw-justify-center tw--mx-2 tw-my-2 md:tw--mx-4 md:tw-my-4 lg:tw--mx-6 lg:tw-my-6">
+            <section class="tw-flex tw-flex-wrap tw-justify-center">
+                <div class="tw-p-2">
+                    <theory-card src="/assets/action-asphalt.jpg" alt="asphalt.jpg">
+                        <template slot="title">This is the title</template>
+                            This is the description.
+                        <template slot="button-desc">למבחן תאוריה</template>
+                    </theory-card>
+                </div>
+                <div class="tw-p-2">
+                    <theory-card src="/assets/action-asphalt.jpg" alt="asphalt.jpg">
+                        <template slot="title">This is the title</template>
+                            This is the description.
+                        <template slot="button-desc">למבחן תאוריה</template>
+                    </theory-card>
+                </div>
+                <div class="tw-p-2">
+                    <theory-card src="/assets/action-asphalt.jpg" alt="asphalt.jpg">
+                        <template slot="title">This is the title</template>
+                            This is the description.
+                        <template slot="button-desc">למבחן תאוריה</template>
+                    </theory-card>
+                </div>
                 <div class="tw-p-2">
                     <theory-card src="/assets/action-asphalt.jpg" alt="asphalt.jpg">
                         <template slot="title">This is the title</template>
