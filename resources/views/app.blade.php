@@ -13,11 +13,12 @@
             <theory-nav-bar>
                 <template slot="left-bar">
                     <theory-bar href="#">שפה</theory-bar>
+                    <theory-bar href="#">הירשם / התחבר</theory-bar>
                 </template>
 
                 <template slot="right-bar">
-                    <theory-bar href="#">התחבר</theory-bar>
-                    <theory-bar href="#">הירשם</theory-bar>
+                    <theory-bar href="#">מבחנים</theory-bar>
+                    <theory-bar href="#">עמוד הבית</theory-bar>
                 </template>
             </theory-nav-bar>
 
