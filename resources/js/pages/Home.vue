@@ -17,58 +17,58 @@
 
         <!-- TODO: need to style it -->
         <div id="home-body" class="tw-container tw-flex tw-flex-wrap tw-flex-col">
-            <!-- TODO: responsive -->
-            <!-- TODO: read more gonna be here -->
-            <div style="direction: rtl">
+            <div class="tw-p-4 tw-pt-10" style="direction: rtl">
                 <h1 class="tw-text-3xl">
-                    טקסט מימין לשמאל
+                    הנכם מוזמנים
+                    <a class="tw-text-primary tw-border-b tw-border-transparent hover:tw-border-primary" href="#">להירשם</a>
+                    לאתר כדי לשמור את נתונכם.
                 </h1>
             </div>
 
-            <section class="tw-flex tw-flex-wrap tw-justify-center">
-                <div class="tw-p-2">
+            <section class="tw-flex tw-flex-wrap tw-justify-center tw-pt-10">
+                <div class="tw-p-4">
                     <theory-card src="/assets/action-asphalt.jpg" alt="asphalt.jpg">
                         <template slot="title">This is the title</template>
                             This is the description.
                         <template slot="button-desc">למבחן תאוריה</template>
                     </theory-card>
                 </div>
-                <div class="tw-p-2">
+                <div class="tw-p-4">
                     <theory-card src="/assets/action-asphalt.jpg" alt="asphalt.jpg">
                         <template slot="title">This is the title</template>
                             This is the description.
                         <template slot="button-desc">למבחן תאוריה</template>
                     </theory-card>
                 </div>
-                <div class="tw-p-2">
+                <div class="tw-p-4">
                     <theory-card src="/assets/action-asphalt.jpg" alt="asphalt.jpg">
                         <template slot="title">This is the title</template>
                             This is the description.
                         <template slot="button-desc">למבחן תאוריה</template>
                     </theory-card>
                 </div>
-                <div class="tw-p-2">
+                <div class="tw-p-4">
                     <theory-card src="/assets/action-asphalt.jpg" alt="asphalt.jpg">
                         <template slot="title">This is the title</template>
                             This is the description.
                         <template slot="button-desc">למבחן תאוריה</template>
                     </theory-card>
                 </div>
-                <div class="tw-p-2">
+                <div class="tw-p-4">
                     <theory-card src="/assets/action-asphalt.jpg" alt="asphalt.jpg">
                         <template slot="title">This is the title</template>
                             This is the description.
                         <template slot="button-desc">למבחן תאוריה</template>
                     </theory-card>
                 </div>
-                <div class="tw-p-2">
+                <div class="tw-p-4">
                     <theory-card src="/assets/action-asphalt.jpg" alt="asphalt.jpg">
                         <template slot="title">This is the title</template>
                             This is the description.
                         <template slot="button-desc">למבחן תאוריה</template>
                     </theory-card>
                 </div>
-                <div class="tw-p-2">
+                <div class="tw-p-4">
                     <theory-card src="/assets/action-asphalt.jpg" alt="asphalt.jpg">
                         <template slot="title">This is the title</template>
                             This is the description.

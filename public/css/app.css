@@ -11656,7 +11656,7 @@ button:focus {
         to top,
         rgba(241, 39, 17, 0.05),
         rgba(245, 175, 25, 0.075)),
-        url('/assets/asphalt.jpg') no-repeat center fixed;
+        url('/assets/asphalt.jpg') no-repeat center;
   background-size: cover;
   z-index: -1;
 }

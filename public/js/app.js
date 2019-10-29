@@ -1026,11 +1026,11 @@ var render = function() {
         _vm._v(" "),
         _c(
           "section",
-          { staticClass: "tw-flex tw-flex-wrap tw-justify-center" },
+          { staticClass: "tw-flex tw-flex-wrap tw-justify-center tw-pt-10" },
           [
             _c(
               "div",
-              { staticClass: "tw-p-2" },
+              { staticClass: "tw-p-4" },
               [
                 _c(
                   "theory-card",
@@ -1059,7 +1059,7 @@ var render = function() {
             _vm._v(" "),
             _c(
               "div",
-              { staticClass: "tw-p-2" },
+              { staticClass: "tw-p-4" },
               [
                 _c(
                   "theory-card",
@@ -1088,7 +1088,7 @@ var render = function() {
             _vm._v(" "),
             _c(
               "div",
-              { staticClass: "tw-p-2" },
+              { staticClass: "tw-p-4" },
               [
                 _c(
                   "theory-card",
@@ -1117,7 +1117,7 @@ var render = function() {
             _vm._v(" "),
             _c(
               "div",
-              { staticClass: "tw-p-2" },
+              { staticClass: "tw-p-4" },
               [
                 _c(
                   "theory-card",
@@ -1146,7 +1146,7 @@ var render = function() {
             _vm._v(" "),
             _c(
               "div",
-              { staticClass: "tw-p-2" },
+              { staticClass: "tw-p-4" },
               [
                 _c(
                   "theory-card",
@@ -1175,7 +1175,7 @@ var render = function() {
             _vm._v(" "),
             _c(
               "div",
-              { staticClass: "tw-p-2" },
+              { staticClass: "tw-p-4" },
               [
                 _c(
                   "theory-card",
@@ -1204,7 +1204,7 @@ var render = function() {
             _vm._v(" "),
             _c(
               "div",
-              { staticClass: "tw-p-2" },
+              { staticClass: "tw-p-4" },
               [
                 _c(
                   "theory-card",
@@ -1275,11 +1275,25 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticStyle: { direction: "rtl" } }, [
-      _c("h1", { staticClass: "tw-text-3xl" }, [
-        _vm._v("\n                טקסט מימין לשמאל\n            ")
-      ])
-    ])
+    return _c(
+      "div",
+      { staticClass: "tw-p-4 tw-pt-10", staticStyle: { direction: "rtl" } },
+      [
+        _c("h1", { staticClass: "tw-text-3xl" }, [
+          _vm._v("\n                הנכם מוזמנים\n                "),
+          _c(
+            "a",
+            {
+              staticClass:
+                "tw-text-primary tw-border-b tw-border-transparent hover:tw-border-primary",
+              attrs: { href: "#" }
+            },
+            [_vm._v("להירשם")]
+          ),
+          _vm._v("\n                לאתר כדי לשמור את נתונכם.\n            ")
+        ])
+      ]
+    )
   }
 ]
 render._withStripped = true
