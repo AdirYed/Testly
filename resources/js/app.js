@@ -35,7 +35,7 @@ var docWidth = document.documentElement.offsetWidth;
 
 function smoothScroll(target, duration) {
     const scrollTo = document.querySelector(target);
-    const targetPosition = scrollTo.getBoundingClientRect().top - 59; // minus the nav which is 60px and also his box-shadow which is 1px, 60-1=59
+    const targetPosition = scrollTo.getBoundingClientRect().top - 58; // minus the nav which is 60px and also his box-shadow which is 1px, 60-1-1=59, another -1 to be 100% sure.
     const startPosition = window.pageYOffset;
     let startTime = null;
 
