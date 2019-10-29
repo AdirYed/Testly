@@ -24,8 +24,6 @@
            <router-view></router-view>
         </div>
 
-        <div style="margin-bottom: 3000px"></div>
-
         <script src="{{ mix('js/app.js') }}"></script>
     </body>
 </html>

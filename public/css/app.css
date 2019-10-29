@@ -712,8 +712,16 @@ video {
   background-color: var(--secondary-color);
 }
 
+.tw-bg-transparent{
+  background-color: transparent;
+}
+
+.tw-bg-black{
+  background-color: #000;
+}
+
 .tw-bg-white{
-  background-color: white;
+  background-color: #fff;
 }
 
 .tw-bg-gray-100{
@@ -1076,10 +1084,6 @@ video {
   background-color: #702459;
 }
 
-.tw-bg-transparent{
-  background-color: transparent;
-}
-
 .hover\:tw-bg-primary:hover{
   background-color: var(--primary-color);
 }
@@ -1088,8 +1092,16 @@ video {
   background-color: var(--secondary-color);
 }
 
+.hover\:tw-bg-transparent:hover{
+  background-color: transparent;
+}
+
+.hover\:tw-bg-black:hover{
+  background-color: #000;
+}
+
 .hover\:tw-bg-white:hover{
-  background-color: white;
+  background-color: #fff;
 }
 
 .hover\:tw-bg-gray-100:hover{
@@ -1452,10 +1464,6 @@ video {
   background-color: #702459;
 }
 
-.hover\:tw-bg-transparent:hover{
-  background-color: transparent;
-}
-
 .focus\:tw-bg-primary:focus{
   background-color: var(--primary-color);
 }
@@ -1464,8 +1472,16 @@ video {
   background-color: var(--secondary-color);
 }
 
+.focus\:tw-bg-transparent:focus{
+  background-color: transparent;
+}
+
+.focus\:tw-bg-black:focus{
+  background-color: #000;
+}
+
 .focus\:tw-bg-white:focus{
-  background-color: white;
+  background-color: #fff;
 }
 
 .focus\:tw-bg-gray-100:focus{
@@ -1828,10 +1844,6 @@ video {
   background-color: #702459;
 }
 
-.focus\:tw-bg-transparent:focus{
-  background-color: transparent;
-}
-
 .tw-bg-bottom{
   background-position: bottom;
 }
@@ -1920,8 +1932,16 @@ video {
   border-color: var(--secondary-color);
 }
 
+.tw-border-transparent{
+  border-color: transparent;
+}
+
+.tw-border-black{
+  border-color: #000;
+}
+
 .tw-border-white{
-  border-color: white;
+  border-color: #fff;
 }
 
 .tw-border-gray-100{
@@ -2284,10 +2304,6 @@ video {
   border-color: #702459;
 }
 
-.tw-border-transparent{
-  border-color: transparent;
-}
-
 .hover\:tw-border-primary:hover{
   border-color: var(--primary-color);
 }
@@ -2296,8 +2312,16 @@ video {
   border-color: var(--secondary-color);
 }
 
+.hover\:tw-border-transparent:hover{
+  border-color: transparent;
+}
+
+.hover\:tw-border-black:hover{
+  border-color: #000;
+}
+
 .hover\:tw-border-white:hover{
-  border-color: white;
+  border-color: #fff;
 }
 
 .hover\:tw-border-gray-100:hover{
@@ -2660,10 +2684,6 @@ video {
   border-color: #702459;
 }
 
-.hover\:tw-border-transparent:hover{
-  border-color: transparent;
-}
-
 .focus\:tw-border-primary:focus{
   border-color: var(--primary-color);
 }
@@ -2672,8 +2692,16 @@ video {
   border-color: var(--secondary-color);
 }
 
+.focus\:tw-border-transparent:focus{
+  border-color: transparent;
+}
+
+.focus\:tw-border-black:focus{
+  border-color: #000;
+}
+
 .focus\:tw-border-white:focus{
-  border-color: white;
+  border-color: #fff;
 }
 
 .focus\:tw-border-gray-100:focus{
@@ -3034,10 +3062,6 @@ video {
 
 .focus\:tw-border-pink-900:focus{
   border-color: #702459;
-}
-
-.focus\:tw-border-transparent:focus{
-  border-color: transparent;
 }
 
 .tw-rounded-none{
@@ -3834,6 +3858,10 @@ video {
   height: 16rem;
 }
 
+.tw-h-80{
+  height: 20rem;
+}
+
 .tw-h-auto{
   height: auto;
 }
@@ -3966,6 +3994,10 @@ video {
   margin: 16rem;
 }
 
+.tw-m-80{
+  margin: 20rem;
+}
+
 .tw-m-auto{
   margin: auto;
 }
@@ -4040,6 +4072,10 @@ video {
 
 .tw--m-64{
   margin: -16rem;
+}
+
+.tw--m-80{
+  margin: -20rem;
 }
 
 .tw--m-px{
@@ -4224,6 +4260,16 @@ video {
 .tw-mx-64{
   margin-left: 16rem;
   margin-right: 16rem;
+}
+
+.tw-my-80{
+  margin-top: 20rem;
+  margin-bottom: 20rem;
+}
+
+.tw-mx-80{
+  margin-left: 20rem;
+  margin-right: 20rem;
 }
 
 .tw-my-auto{
@@ -4414,6 +4460,16 @@ video {
 .tw--mx-64{
   margin-left: -16rem;
   margin-right: -16rem;
+}
+
+.tw--my-80{
+  margin-top: -20rem;
+  margin-bottom: -20rem;
+}
+
+.tw--mx-80{
+  margin-left: -20rem;
+  margin-right: -20rem;
 }
 
 .tw--my-px{
@@ -4712,6 +4768,22 @@ video {
 
 .tw-ml-64{
   margin-left: 16rem;
+}
+
+.tw-mt-80{
+  margin-top: 20rem;
+}
+
+.tw-mr-80{
+  margin-right: 20rem;
+}
+
+.tw-mb-80{
+  margin-bottom: 20rem;
+}
+
+.tw-ml-80{
+  margin-left: 20rem;
 }
 
 .tw-mt-auto{
@@ -5016,6 +5088,22 @@ video {
 
 .tw--ml-64{
   margin-left: -16rem;
+}
+
+.tw--mt-80{
+  margin-top: -20rem;
+}
+
+.tw--mr-80{
+  margin-right: -20rem;
+}
+
+.tw--mb-80{
+  margin-bottom: -20rem;
+}
+
+.tw--ml-80{
+  margin-left: -20rem;
 }
 
 .tw--mt-px{
@@ -5372,6 +5460,10 @@ video {
   padding: 16rem;
 }
 
+.tw-p-80{
+  padding: 20rem;
+}
+
 .tw-p-px{
   padding: 1px;
 }
@@ -5554,6 +5646,16 @@ video {
 .tw-px-64{
   padding-left: 16rem;
   padding-right: 16rem;
+}
+
+.tw-py-80{
+  padding-top: 20rem;
+  padding-bottom: 20rem;
+}
+
+.tw-px-80{
+  padding-left: 20rem;
+  padding-right: 20rem;
 }
 
 .tw-py-px{
@@ -5854,6 +5956,22 @@ video {
   padding-left: 16rem;
 }
 
+.tw-pt-80{
+  padding-top: 20rem;
+}
+
+.tw-pr-80{
+  padding-right: 20rem;
+}
+
+.tw-pb-80{
+  padding-bottom: 20rem;
+}
+
+.tw-pl-80{
+  padding-left: 20rem;
+}
+
 .tw-pt-px{
   padding-top: 1px;
 }
@@ -5910,24 +6028,64 @@ video {
   color: var(--secondary-color);
 }
 
+.tw-placeholder-transparent::-webkit-input-placeholder{
+  color: transparent;
+}
+
+.tw-placeholder-transparent::-moz-placeholder{
+  color: transparent;
+}
+
+.tw-placeholder-transparent:-ms-input-placeholder{
+  color: transparent;
+}
+
+.tw-placeholder-transparent::-ms-input-placeholder{
+  color: transparent;
+}
+
+.tw-placeholder-transparent::placeholder{
+  color: transparent;
+}
+
+.tw-placeholder-black::-webkit-input-placeholder{
+  color: #000;
+}
+
+.tw-placeholder-black::-moz-placeholder{
+  color: #000;
+}
+
+.tw-placeholder-black:-ms-input-placeholder{
+  color: #000;
+}
+
+.tw-placeholder-black::-ms-input-placeholder{
+  color: #000;
+}
+
+.tw-placeholder-black::placeholder{
+  color: #000;
+}
+
 .tw-placeholder-white::-webkit-input-placeholder{
-  color: white;
+  color: #fff;
 }
 
 .tw-placeholder-white::-moz-placeholder{
-  color: white;
+  color: #fff;
 }
 
 .tw-placeholder-white:-ms-input-placeholder{
-  color: white;
+  color: #fff;
 }
 
 .tw-placeholder-white::-ms-input-placeholder{
-  color: white;
+  color: #fff;
 }
 
 .tw-placeholder-white::placeholder{
-  color: white;
+  color: #fff;
 }
 
 .tw-placeholder-gray-100::-webkit-input-placeholder{
@@ -7730,26 +7888,6 @@ video {
   color: #702459;
 }
 
-.tw-placeholder-transparent::-webkit-input-placeholder{
-  color: transparent;
-}
-
-.tw-placeholder-transparent::-moz-placeholder{
-  color: transparent;
-}
-
-.tw-placeholder-transparent:-ms-input-placeholder{
-  color: transparent;
-}
-
-.tw-placeholder-transparent::-ms-input-placeholder{
-  color: transparent;
-}
-
-.tw-placeholder-transparent::placeholder{
-  color: transparent;
-}
-
 .focus\:tw-placeholder-primary:focus::-webkit-input-placeholder{
   color: var(--primary-color);
 }
@@ -7790,24 +7928,64 @@ video {
   color: var(--secondary-color);
 }
 
+.focus\:tw-placeholder-transparent:focus::-webkit-input-placeholder{
+  color: transparent;
+}
+
+.focus\:tw-placeholder-transparent:focus::-moz-placeholder{
+  color: transparent;
+}
+
+.focus\:tw-placeholder-transparent:focus:-ms-input-placeholder{
+  color: transparent;
+}
+
+.focus\:tw-placeholder-transparent:focus::-ms-input-placeholder{
+  color: transparent;
+}
+
+.focus\:tw-placeholder-transparent:focus::placeholder{
+  color: transparent;
+}
+
+.focus\:tw-placeholder-black:focus::-webkit-input-placeholder{
+  color: #000;
+}
+
+.focus\:tw-placeholder-black:focus::-moz-placeholder{
+  color: #000;
+}
+
+.focus\:tw-placeholder-black:focus:-ms-input-placeholder{
+  color: #000;
+}
+
+.focus\:tw-placeholder-black:focus::-ms-input-placeholder{
+  color: #000;
+}
+
+.focus\:tw-placeholder-black:focus::placeholder{
+  color: #000;
+}
+
 .focus\:tw-placeholder-white:focus::-webkit-input-placeholder{
-  color: white;
+  color: #fff;
 }
 
 .focus\:tw-placeholder-white:focus::-moz-placeholder{
-  color: white;
+  color: #fff;
 }
 
 .focus\:tw-placeholder-white:focus:-ms-input-placeholder{
-  color: white;
+  color: #fff;
 }
 
 .focus\:tw-placeholder-white:focus::-ms-input-placeholder{
-  color: white;
+  color: #fff;
 }
 
 .focus\:tw-placeholder-white:focus::placeholder{
-  color: white;
+  color: #fff;
 }
 
 .focus\:tw-placeholder-gray-100:focus::-webkit-input-placeholder{
@@ -9610,26 +9788,6 @@ video {
   color: #702459;
 }
 
-.focus\:tw-placeholder-transparent:focus::-webkit-input-placeholder{
-  color: transparent;
-}
-
-.focus\:tw-placeholder-transparent:focus::-moz-placeholder{
-  color: transparent;
-}
-
-.focus\:tw-placeholder-transparent:focus:-ms-input-placeholder{
-  color: transparent;
-}
-
-.focus\:tw-placeholder-transparent:focus::-ms-input-placeholder{
-  color: transparent;
-}
-
-.focus\:tw-placeholder-transparent:focus::placeholder{
-  color: transparent;
-}
-
 .tw-pointer-events-none{
   pointer-events: none;
 }
@@ -9877,8 +10035,16 @@ video {
   color: var(--secondary-color);
 }
 
+.tw-text-transparent{
+  color: transparent;
+}
+
+.tw-text-black{
+  color: #000;
+}
+
 .tw-text-white{
-  color: white;
+  color: #fff;
 }
 
 .tw-text-gray-100{
@@ -10241,10 +10407,6 @@ video {
   color: #702459;
 }
 
-.tw-text-transparent{
-  color: transparent;
-}
-
 .hover\:tw-text-primary:hover{
   color: var(--primary-color);
 }
@@ -10253,8 +10415,16 @@ video {
   color: var(--secondary-color);
 }
 
+.hover\:tw-text-transparent:hover{
+  color: transparent;
+}
+
+.hover\:tw-text-black:hover{
+  color: #000;
+}
+
 .hover\:tw-text-white:hover{
-  color: white;
+  color: #fff;
 }
 
 .hover\:tw-text-gray-100:hover{
@@ -10617,10 +10787,6 @@ video {
   color: #702459;
 }
 
-.hover\:tw-text-transparent:hover{
-  color: transparent;
-}
-
 .focus\:tw-text-primary:focus{
   color: var(--primary-color);
 }
@@ -10629,8 +10795,16 @@ video {
   color: var(--secondary-color);
 }
 
+.focus\:tw-text-transparent:focus{
+  color: transparent;
+}
+
+.focus\:tw-text-black:focus{
+  color: #000;
+}
+
 .focus\:tw-text-white:focus{
-  color: white;
+  color: #fff;
 }
 
 .focus\:tw-text-gray-100:focus{
@@ -10993,10 +11167,6 @@ video {
   color: #702459;
 }
 
-.focus\:tw-text-transparent:focus{
-  color: transparent;
-}
-
 .tw-text-xs{
   font-size: 0.75rem;
 }
@@ -11302,6 +11472,10 @@ video {
   width: 16rem;
 }
 
+.tw-w-80{
+  width: 20rem;
+}
+
 .tw-w-auto{
   width: auto;
 }
@@ -11489,7 +11663,7 @@ button:focus {
         rgba(241, 39, 17, 0.05),
         rgba(245, 175, 25, 0.075)),
         url('/assets/asphalt.jpg') no-repeat center fixed;
-  background-size: 100%;
+  background-size: cover;
   z-index: -1;
 }
 
@@ -11586,8 +11760,16 @@ button:focus {
     background-color: var(--secondary-color);
   }
 
+  .sm\:tw-bg-transparent{
+    background-color: transparent;
+  }
+
+  .sm\:tw-bg-black{
+    background-color: #000;
+  }
+
   .sm\:tw-bg-white{
-    background-color: white;
+    background-color: #fff;
   }
 
   .sm\:tw-bg-gray-100{
@@ -11950,10 +12132,6 @@ button:focus {
     background-color: #702459;
   }
 
-  .sm\:tw-bg-transparent{
-    background-color: transparent;
-  }
-
   .sm\:hover\:tw-bg-primary:hover{
     background-color: var(--primary-color);
   }
@@ -11962,8 +12140,16 @@ button:focus {
     background-color: var(--secondary-color);
   }
 
+  .sm\:hover\:tw-bg-transparent:hover{
+    background-color: transparent;
+  }
+
+  .sm\:hover\:tw-bg-black:hover{
+    background-color: #000;
+  }
+
   .sm\:hover\:tw-bg-white:hover{
-    background-color: white;
+    background-color: #fff;
   }
 
   .sm\:hover\:tw-bg-gray-100:hover{
@@ -12326,10 +12512,6 @@ button:focus {
     background-color: #702459;
   }
 
-  .sm\:hover\:tw-bg-transparent:hover{
-    background-color: transparent;
-  }
-
   .sm\:focus\:tw-bg-primary:focus{
     background-color: var(--primary-color);
   }
@@ -12338,8 +12520,16 @@ button:focus {
     background-color: var(--secondary-color);
   }
 
+  .sm\:focus\:tw-bg-transparent:focus{
+    background-color: transparent;
+  }
+
+  .sm\:focus\:tw-bg-black:focus{
+    background-color: #000;
+  }
+
   .sm\:focus\:tw-bg-white:focus{
-    background-color: white;
+    background-color: #fff;
   }
 
   .sm\:focus\:tw-bg-gray-100:focus{
@@ -12702,10 +12892,6 @@ button:focus {
     background-color: #702459;
   }
 
-  .sm\:focus\:tw-bg-transparent:focus{
-    background-color: transparent;
-  }
-
   .sm\:tw-bg-bottom{
     background-position: bottom;
   }
@@ -12794,8 +12980,16 @@ button:focus {
     border-color: var(--secondary-color);
   }
 
+  .sm\:tw-border-transparent{
+    border-color: transparent;
+  }
+
+  .sm\:tw-border-black{
+    border-color: #000;
+  }
+
   .sm\:tw-border-white{
-    border-color: white;
+    border-color: #fff;
   }
 
   .sm\:tw-border-gray-100{
@@ -13158,10 +13352,6 @@ button:focus {
     border-color: #702459;
   }
 
-  .sm\:tw-border-transparent{
-    border-color: transparent;
-  }
-
   .sm\:hover\:tw-border-primary:hover{
     border-color: var(--primary-color);
   }
@@ -13170,8 +13360,16 @@ button:focus {
     border-color: var(--secondary-color);
   }
 
+  .sm\:hover\:tw-border-transparent:hover{
+    border-color: transparent;
+  }
+
+  .sm\:hover\:tw-border-black:hover{
+    border-color: #000;
+  }
+
   .sm\:hover\:tw-border-white:hover{
-    border-color: white;
+    border-color: #fff;
   }
 
   .sm\:hover\:tw-border-gray-100:hover{
@@ -13534,10 +13732,6 @@ button:focus {
     border-color: #702459;
   }
 
-  .sm\:hover\:tw-border-transparent:hover{
-    border-color: transparent;
-  }
-
   .sm\:focus\:tw-border-primary:focus{
     border-color: var(--primary-color);
   }
@@ -13546,8 +13740,16 @@ button:focus {
     border-color: var(--secondary-color);
   }
 
+  .sm\:focus\:tw-border-transparent:focus{
+    border-color: transparent;
+  }
+
+  .sm\:focus\:tw-border-black:focus{
+    border-color: #000;
+  }
+
   .sm\:focus\:tw-border-white:focus{
-    border-color: white;
+    border-color: #fff;
   }
 
   .sm\:focus\:tw-border-gray-100:focus{
@@ -13908,10 +14110,6 @@ button:focus {
 
   .sm\:focus\:tw-border-pink-900:focus{
     border-color: #702459;
-  }
-
-  .sm\:focus\:tw-border-transparent:focus{
-    border-color: transparent;
   }
 
   .sm\:tw-rounded-none{
@@ -14708,6 +14906,10 @@ button:focus {
     height: 16rem;
   }
 
+  .sm\:tw-h-80{
+    height: 20rem;
+  }
+
   .sm\:tw-h-auto{
     height: auto;
   }
@@ -14840,6 +15042,10 @@ button:focus {
     margin: 16rem;
   }
 
+  .sm\:tw-m-80{
+    margin: 20rem;
+  }
+
   .sm\:tw-m-auto{
     margin: auto;
   }
@@ -14914,6 +15120,10 @@ button:focus {
 
   .sm\:tw--m-64{
     margin: -16rem;
+  }
+
+  .sm\:tw--m-80{
+    margin: -20rem;
   }
 
   .sm\:tw--m-px{
@@ -15098,6 +15308,16 @@ button:focus {
   .sm\:tw-mx-64{
     margin-left: 16rem;
     margin-right: 16rem;
+  }
+
+  .sm\:tw-my-80{
+    margin-top: 20rem;
+    margin-bottom: 20rem;
+  }
+
+  .sm\:tw-mx-80{
+    margin-left: 20rem;
+    margin-right: 20rem;
   }
 
   .sm\:tw-my-auto{
@@ -15288,6 +15508,16 @@ button:focus {
   .sm\:tw--mx-64{
     margin-left: -16rem;
     margin-right: -16rem;
+  }
+
+  .sm\:tw--my-80{
+    margin-top: -20rem;
+    margin-bottom: -20rem;
+  }
+
+  .sm\:tw--mx-80{
+    margin-left: -20rem;
+    margin-right: -20rem;
   }
 
   .sm\:tw--my-px{
@@ -15586,6 +15816,22 @@ button:focus {
 
   .sm\:tw-ml-64{
     margin-left: 16rem;
+  }
+
+  .sm\:tw-mt-80{
+    margin-top: 20rem;
+  }
+
+  .sm\:tw-mr-80{
+    margin-right: 20rem;
+  }
+
+  .sm\:tw-mb-80{
+    margin-bottom: 20rem;
+  }
+
+  .sm\:tw-ml-80{
+    margin-left: 20rem;
   }
 
   .sm\:tw-mt-auto{
@@ -15890,6 +16136,22 @@ button:focus {
 
   .sm\:tw--ml-64{
     margin-left: -16rem;
+  }
+
+  .sm\:tw--mt-80{
+    margin-top: -20rem;
+  }
+
+  .sm\:tw--mr-80{
+    margin-right: -20rem;
+  }
+
+  .sm\:tw--mb-80{
+    margin-bottom: -20rem;
+  }
+
+  .sm\:tw--ml-80{
+    margin-left: -20rem;
   }
 
   .sm\:tw--mt-px{
@@ -16246,6 +16508,10 @@ button:focus {
     padding: 16rem;
   }
 
+  .sm\:tw-p-80{
+    padding: 20rem;
+  }
+
   .sm\:tw-p-px{
     padding: 1px;
   }
@@ -16428,6 +16694,16 @@ button:focus {
   .sm\:tw-px-64{
     padding-left: 16rem;
     padding-right: 16rem;
+  }
+
+  .sm\:tw-py-80{
+    padding-top: 20rem;
+    padding-bottom: 20rem;
+  }
+
+  .sm\:tw-px-80{
+    padding-left: 20rem;
+    padding-right: 20rem;
   }
 
   .sm\:tw-py-px{
@@ -16728,6 +17004,22 @@ button:focus {
     padding-left: 16rem;
   }
 
+  .sm\:tw-pt-80{
+    padding-top: 20rem;
+  }
+
+  .sm\:tw-pr-80{
+    padding-right: 20rem;
+  }
+
+  .sm\:tw-pb-80{
+    padding-bottom: 20rem;
+  }
+
+  .sm\:tw-pl-80{
+    padding-left: 20rem;
+  }
+
   .sm\:tw-pt-px{
     padding-top: 1px;
   }
@@ -16784,24 +17076,64 @@ button:focus {
     color: var(--secondary-color);
   }
 
+  .sm\:tw-placeholder-transparent::-webkit-input-placeholder{
+    color: transparent;
+  }
+
+  .sm\:tw-placeholder-transparent::-moz-placeholder{
+    color: transparent;
+  }
+
+  .sm\:tw-placeholder-transparent:-ms-input-placeholder{
+    color: transparent;
+  }
+
+  .sm\:tw-placeholder-transparent::-ms-input-placeholder{
+    color: transparent;
+  }
+
+  .sm\:tw-placeholder-transparent::placeholder{
+    color: transparent;
+  }
+
+  .sm\:tw-placeholder-black::-webkit-input-placeholder{
+    color: #000;
+  }
+
+  .sm\:tw-placeholder-black::-moz-placeholder{
+    color: #000;
+  }
+
+  .sm\:tw-placeholder-black:-ms-input-placeholder{
+    color: #000;
+  }
+
+  .sm\:tw-placeholder-black::-ms-input-placeholder{
+    color: #000;
+  }
+
+  .sm\:tw-placeholder-black::placeholder{
+    color: #000;
+  }
+
   .sm\:tw-placeholder-white::-webkit-input-placeholder{
-    color: white;
+    color: #fff;
   }
 
   .sm\:tw-placeholder-white::-moz-placeholder{
-    color: white;
+    color: #fff;
   }
 
   .sm\:tw-placeholder-white:-ms-input-placeholder{
-    color: white;
+    color: #fff;
   }
 
   .sm\:tw-placeholder-white::-ms-input-placeholder{
-    color: white;
+    color: #fff;
   }
 
   .sm\:tw-placeholder-white::placeholder{
-    color: white;
+    color: #fff;
   }
 
   .sm\:tw-placeholder-gray-100::-webkit-input-placeholder{
@@ -18604,26 +18936,6 @@ button:focus {
     color: #702459;
   }
 
-  .sm\:tw-placeholder-transparent::-webkit-input-placeholder{
-    color: transparent;
-  }
-
-  .sm\:tw-placeholder-transparent::-moz-placeholder{
-    color: transparent;
-  }
-
-  .sm\:tw-placeholder-transparent:-ms-input-placeholder{
-    color: transparent;
-  }
-
-  .sm\:tw-placeholder-transparent::-ms-input-placeholder{
-    color: transparent;
-  }
-
-  .sm\:tw-placeholder-transparent::placeholder{
-    color: transparent;
-  }
-
   .sm\:focus\:tw-placeholder-primary:focus::-webkit-input-placeholder{
     color: var(--primary-color);
   }
@@ -18664,24 +18976,64 @@ button:focus {
     color: var(--secondary-color);
   }
 
+  .sm\:focus\:tw-placeholder-transparent:focus::-webkit-input-placeholder{
+    color: transparent;
+  }
+
+  .sm\:focus\:tw-placeholder-transparent:focus::-moz-placeholder{
+    color: transparent;
+  }
+
+  .sm\:focus\:tw-placeholder-transparent:focus:-ms-input-placeholder{
+    color: transparent;
+  }
+
+  .sm\:focus\:tw-placeholder-transparent:focus::-ms-input-placeholder{
+    color: transparent;
+  }
+
+  .sm\:focus\:tw-placeholder-transparent:focus::placeholder{
+    color: transparent;
+  }
+
+  .sm\:focus\:tw-placeholder-black:focus::-webkit-input-placeholder{
+    color: #000;
+  }
+
+  .sm\:focus\:tw-placeholder-black:focus::-moz-placeholder{
+    color: #000;
+  }
+
+  .sm\:focus\:tw-placeholder-black:focus:-ms-input-placeholder{
+    color: #000;
+  }
+
+  .sm\:focus\:tw-placeholder-black:focus::-ms-input-placeholder{
+    color: #000;
+  }
+
+  .sm\:focus\:tw-placeholder-black:focus::placeholder{
+    color: #000;
+  }
+
   .sm\:focus\:tw-placeholder-white:focus::-webkit-input-placeholder{
-    color: white;
+    color: #fff;
   }
 
   .sm\:focus\:tw-placeholder-white:focus::-moz-placeholder{
-    color: white;
+    color: #fff;
   }
 
   .sm\:focus\:tw-placeholder-white:focus:-ms-input-placeholder{
-    color: white;
+    color: #fff;
   }
 
   .sm\:focus\:tw-placeholder-white:focus::-ms-input-placeholder{
-    color: white;
+    color: #fff;
   }
 
   .sm\:focus\:tw-placeholder-white:focus::placeholder{
-    color: white;
+    color: #fff;
   }
 
   .sm\:focus\:tw-placeholder-gray-100:focus::-webkit-input-placeholder{
@@ -20484,26 +20836,6 @@ button:focus {
     color: #702459;
   }
 
-  .sm\:focus\:tw-placeholder-transparent:focus::-webkit-input-placeholder{
-    color: transparent;
-  }
-
-  .sm\:focus\:tw-placeholder-transparent:focus::-moz-placeholder{
-    color: transparent;
-  }
-
-  .sm\:focus\:tw-placeholder-transparent:focus:-ms-input-placeholder{
-    color: transparent;
-  }
-
-  .sm\:focus\:tw-placeholder-transparent:focus::-ms-input-placeholder{
-    color: transparent;
-  }
-
-  .sm\:focus\:tw-placeholder-transparent:focus::placeholder{
-    color: transparent;
-  }
-
   .sm\:tw-pointer-events-none{
     pointer-events: none;
   }
@@ -20751,8 +21083,16 @@ button:focus {
     color: var(--secondary-color);
   }
 
+  .sm\:tw-text-transparent{
+    color: transparent;
+  }
+
+  .sm\:tw-text-black{
+    color: #000;
+  }
+
   .sm\:tw-text-white{
-    color: white;
+    color: #fff;
   }
 
   .sm\:tw-text-gray-100{
@@ -21115,10 +21455,6 @@ button:focus {
     color: #702459;
   }
 
-  .sm\:tw-text-transparent{
-    color: transparent;
-  }
-
   .sm\:hover\:tw-text-primary:hover{
     color: var(--primary-color);
   }
@@ -21127,8 +21463,16 @@ button:focus {
     color: var(--secondary-color);
   }
 
+  .sm\:hover\:tw-text-transparent:hover{
+    color: transparent;
+  }
+
+  .sm\:hover\:tw-text-black:hover{
+    color: #000;
+  }
+
   .sm\:hover\:tw-text-white:hover{
-    color: white;
+    color: #fff;
   }
 
   .sm\:hover\:tw-text-gray-100:hover{
@@ -21491,10 +21835,6 @@ button:focus {
     color: #702459;
   }
 
-  .sm\:hover\:tw-text-transparent:hover{
-    color: transparent;
-  }
-
   .sm\:focus\:tw-text-primary:focus{
     color: var(--primary-color);
   }
@@ -21503,8 +21843,16 @@ button:focus {
     color: var(--secondary-color);
   }
 
+  .sm\:focus\:tw-text-transparent:focus{
+    color: transparent;
+  }
+
+  .sm\:focus\:tw-text-black:focus{
+    color: #000;
+  }
+
   .sm\:focus\:tw-text-white:focus{
-    color: white;
+    color: #fff;
   }
 
   .sm\:focus\:tw-text-gray-100:focus{
@@ -21867,10 +22215,6 @@ button:focus {
     color: #702459;
   }
 
-  .sm\:focus\:tw-text-transparent:focus{
-    color: transparent;
-  }
-
   .sm\:tw-text-xs{
     font-size: 0.75rem;
   }
@@ -22176,6 +22520,10 @@ button:focus {
     width: 16rem;
   }
 
+  .sm\:tw-w-80{
+    width: 20rem;
+  }
+
   .sm\:tw-w-auto{
     width: auto;
   }
@@ -22398,8 +22746,16 @@ button:focus {
     background-color: var(--secondary-color);
   }
 
+  .md\:tw-bg-transparent{
+    background-color: transparent;
+  }
+
+  .md\:tw-bg-black{
+    background-color: #000;
+  }
+
   .md\:tw-bg-white{
-    background-color: white;
+    background-color: #fff;
   }
 
   .md\:tw-bg-gray-100{
@@ -22762,10 +23118,6 @@ button:focus {
     background-color: #702459;
   }
 
-  .md\:tw-bg-transparent{
-    background-color: transparent;
-  }
-
   .md\:hover\:tw-bg-primary:hover{
     background-color: var(--primary-color);
   }
@@ -22774,8 +23126,16 @@ button:focus {
     background-color: var(--secondary-color);
   }
 
+  .md\:hover\:tw-bg-transparent:hover{
+    background-color: transparent;
+  }
+
+  .md\:hover\:tw-bg-black:hover{
+    background-color: #000;
+  }
+
   .md\:hover\:tw-bg-white:hover{
-    background-color: white;
+    background-color: #fff;
   }
 
   .md\:hover\:tw-bg-gray-100:hover{
@@ -23138,10 +23498,6 @@ button:focus {
     background-color: #702459;
   }
 
-  .md\:hover\:tw-bg-transparent:hover{
-    background-color: transparent;
-  }
-
   .md\:focus\:tw-bg-primary:focus{
     background-color: var(--primary-color);
   }
@@ -23150,8 +23506,16 @@ button:focus {
     background-color: var(--secondary-color);
   }
 
+  .md\:focus\:tw-bg-transparent:focus{
+    background-color: transparent;
+  }
+
+  .md\:focus\:tw-bg-black:focus{
+    background-color: #000;
+  }
+
   .md\:focus\:tw-bg-white:focus{
-    background-color: white;
+    background-color: #fff;
   }
 
   .md\:focus\:tw-bg-gray-100:focus{
@@ -23514,10 +23878,6 @@ button:focus {
     background-color: #702459;
   }
 
-  .md\:focus\:tw-bg-transparent:focus{
-    background-color: transparent;
-  }
-
   .md\:tw-bg-bottom{
     background-position: bottom;
   }
@@ -23606,8 +23966,16 @@ button:focus {
     border-color: var(--secondary-color);
   }
 
+  .md\:tw-border-transparent{
+    border-color: transparent;
+  }
+
+  .md\:tw-border-black{
+    border-color: #000;
+  }
+
   .md\:tw-border-white{
-    border-color: white;
+    border-color: #fff;
   }
 
   .md\:tw-border-gray-100{
@@ -23970,10 +24338,6 @@ button:focus {
     border-color: #702459;
   }
 
-  .md\:tw-border-transparent{
-    border-color: transparent;
-  }
-
   .md\:hover\:tw-border-primary:hover{
     border-color: var(--primary-color);
   }
@@ -23982,8 +24346,16 @@ button:focus {
     border-color: var(--secondary-color);
   }
 
+  .md\:hover\:tw-border-transparent:hover{
+    border-color: transparent;
+  }
+
+  .md\:hover\:tw-border-black:hover{
+    border-color: #000;
+  }
+
   .md\:hover\:tw-border-white:hover{
-    border-color: white;
+    border-color: #fff;
   }
 
   .md\:hover\:tw-border-gray-100:hover{
@@ -24346,10 +24718,6 @@ button:focus {
     border-color: #702459;
   }
 
-  .md\:hover\:tw-border-transparent:hover{
-    border-color: transparent;
-  }
-
   .md\:focus\:tw-border-primary:focus{
     border-color: var(--primary-color);
   }
@@ -24358,8 +24726,16 @@ button:focus {
     border-color: var(--secondary-color);
   }
 
+  .md\:focus\:tw-border-transparent:focus{
+    border-color: transparent;
+  }
+
+  .md\:focus\:tw-border-black:focus{
+    border-color: #000;
+  }
+
   .md\:focus\:tw-border-white:focus{
-    border-color: white;
+    border-color: #fff;
   }
 
   .md\:focus\:tw-border-gray-100:focus{
@@ -24720,10 +25096,6 @@ button:focus {
 
   .md\:focus\:tw-border-pink-900:focus{
     border-color: #702459;
-  }
-
-  .md\:focus\:tw-border-transparent:focus{
-    border-color: transparent;
   }
 
   .md\:tw-rounded-none{
@@ -25520,6 +25892,10 @@ button:focus {
     height: 16rem;
   }
 
+  .md\:tw-h-80{
+    height: 20rem;
+  }
+
   .md\:tw-h-auto{
     height: auto;
   }
@@ -25652,6 +26028,10 @@ button:focus {
     margin: 16rem;
   }
 
+  .md\:tw-m-80{
+    margin: 20rem;
+  }
+
   .md\:tw-m-auto{
     margin: auto;
   }
@@ -25726,6 +26106,10 @@ button:focus {
 
   .md\:tw--m-64{
     margin: -16rem;
+  }
+
+  .md\:tw--m-80{
+    margin: -20rem;
   }
 
   .md\:tw--m-px{
@@ -25910,6 +26294,16 @@ button:focus {
   .md\:tw-mx-64{
     margin-left: 16rem;
     margin-right: 16rem;
+  }
+
+  .md\:tw-my-80{
+    margin-top: 20rem;
+    margin-bottom: 20rem;
+  }
+
+  .md\:tw-mx-80{
+    margin-left: 20rem;
+    margin-right: 20rem;
   }
 
   .md\:tw-my-auto{
@@ -26100,6 +26494,16 @@ button:focus {
   .md\:tw--mx-64{
     margin-left: -16rem;
     margin-right: -16rem;
+  }
+
+  .md\:tw--my-80{
+    margin-top: -20rem;
+    margin-bottom: -20rem;
+  }
+
+  .md\:tw--mx-80{
+    margin-left: -20rem;
+    margin-right: -20rem;
   }
 
   .md\:tw--my-px{
@@ -26398,6 +26802,22 @@ button:focus {
 
   .md\:tw-ml-64{
     margin-left: 16rem;
+  }
+
+  .md\:tw-mt-80{
+    margin-top: 20rem;
+  }
+
+  .md\:tw-mr-80{
+    margin-right: 20rem;
+  }
+
+  .md\:tw-mb-80{
+    margin-bottom: 20rem;
+  }
+
+  .md\:tw-ml-80{
+    margin-left: 20rem;
   }
 
   .md\:tw-mt-auto{
@@ -26702,6 +27122,22 @@ button:focus {
 
   .md\:tw--ml-64{
     margin-left: -16rem;
+  }
+
+  .md\:tw--mt-80{
+    margin-top: -20rem;
+  }
+
+  .md\:tw--mr-80{
+    margin-right: -20rem;
+  }
+
+  .md\:tw--mb-80{
+    margin-bottom: -20rem;
+  }
+
+  .md\:tw--ml-80{
+    margin-left: -20rem;
   }
 
   .md\:tw--mt-px{
@@ -27058,6 +27494,10 @@ button:focus {
     padding: 16rem;
   }
 
+  .md\:tw-p-80{
+    padding: 20rem;
+  }
+
   .md\:tw-p-px{
     padding: 1px;
   }
@@ -27240,6 +27680,16 @@ button:focus {
   .md\:tw-px-64{
     padding-left: 16rem;
     padding-right: 16rem;
+  }
+
+  .md\:tw-py-80{
+    padding-top: 20rem;
+    padding-bottom: 20rem;
+  }
+
+  .md\:tw-px-80{
+    padding-left: 20rem;
+    padding-right: 20rem;
   }
 
   .md\:tw-py-px{
@@ -27540,6 +27990,22 @@ button:focus {
     padding-left: 16rem;
   }
 
+  .md\:tw-pt-80{
+    padding-top: 20rem;
+  }
+
+  .md\:tw-pr-80{
+    padding-right: 20rem;
+  }
+
+  .md\:tw-pb-80{
+    padding-bottom: 20rem;
+  }
+
+  .md\:tw-pl-80{
+    padding-left: 20rem;
+  }
+
   .md\:tw-pt-px{
     padding-top: 1px;
   }
@@ -27596,24 +28062,64 @@ button:focus {
     color: var(--secondary-color);
   }
 
+  .md\:tw-placeholder-transparent::-webkit-input-placeholder{
+    color: transparent;
+  }
+
+  .md\:tw-placeholder-transparent::-moz-placeholder{
+    color: transparent;
+  }
+
+  .md\:tw-placeholder-transparent:-ms-input-placeholder{
+    color: transparent;
+  }
+
+  .md\:tw-placeholder-transparent::-ms-input-placeholder{
+    color: transparent;
+  }
+
+  .md\:tw-placeholder-transparent::placeholder{
+    color: transparent;
+  }
+
+  .md\:tw-placeholder-black::-webkit-input-placeholder{
+    color: #000;
+  }
+
+  .md\:tw-placeholder-black::-moz-placeholder{
+    color: #000;
+  }
+
+  .md\:tw-placeholder-black:-ms-input-placeholder{
+    color: #000;
+  }
+
+  .md\:tw-placeholder-black::-ms-input-placeholder{
+    color: #000;
+  }
+
+  .md\:tw-placeholder-black::placeholder{
+    color: #000;
+  }
+
   .md\:tw-placeholder-white::-webkit-input-placeholder{
-    color: white;
+    color: #fff;
   }
 
   .md\:tw-placeholder-white::-moz-placeholder{
-    color: white;
+    color: #fff;
   }
 
   .md\:tw-placeholder-white:-ms-input-placeholder{
-    color: white;
+    color: #fff;
   }
 
   .md\:tw-placeholder-white::-ms-input-placeholder{
-    color: white;
+    color: #fff;
   }
 
   .md\:tw-placeholder-white::placeholder{
-    color: white;
+    color: #fff;
   }
 
   .md\:tw-placeholder-gray-100::-webkit-input-placeholder{
@@ -29416,26 +29922,6 @@ button:focus {
     color: #702459;
   }
 
-  .md\:tw-placeholder-transparent::-webkit-input-placeholder{
-    color: transparent;
-  }
-
-  .md\:tw-placeholder-transparent::-moz-placeholder{
-    color: transparent;
-  }
-
-  .md\:tw-placeholder-transparent:-ms-input-placeholder{
-    color: transparent;
-  }
-
-  .md\:tw-placeholder-transparent::-ms-input-placeholder{
-    color: transparent;
-  }
-
-  .md\:tw-placeholder-transparent::placeholder{
-    color: transparent;
-  }
-
   .md\:focus\:tw-placeholder-primary:focus::-webkit-input-placeholder{
     color: var(--primary-color);
   }
@@ -29476,24 +29962,64 @@ button:focus {
     color: var(--secondary-color);
   }
 
+  .md\:focus\:tw-placeholder-transparent:focus::-webkit-input-placeholder{
+    color: transparent;
+  }
+
+  .md\:focus\:tw-placeholder-transparent:focus::-moz-placeholder{
+    color: transparent;
+  }
+
+  .md\:focus\:tw-placeholder-transparent:focus:-ms-input-placeholder{
+    color: transparent;
+  }
+
+  .md\:focus\:tw-placeholder-transparent:focus::-ms-input-placeholder{
+    color: transparent;
+  }
+
+  .md\:focus\:tw-placeholder-transparent:focus::placeholder{
+    color: transparent;
+  }
+
+  .md\:focus\:tw-placeholder-black:focus::-webkit-input-placeholder{
+    color: #000;
+  }
+
+  .md\:focus\:tw-placeholder-black:focus::-moz-placeholder{
+    color: #000;
+  }
+
+  .md\:focus\:tw-placeholder-black:focus:-ms-input-placeholder{
+    color: #000;
+  }
+
+  .md\:focus\:tw-placeholder-black:focus::-ms-input-placeholder{
+    color: #000;
+  }
+
+  .md\:focus\:tw-placeholder-black:focus::placeholder{
+    color: #000;
+  }
+
   .md\:focus\:tw-placeholder-white:focus::-webkit-input-placeholder{
-    color: white;
+    color: #fff;
   }
 
   .md\:focus\:tw-placeholder-white:focus::-moz-placeholder{
-    color: white;
+    color: #fff;
   }
 
   .md\:focus\:tw-placeholder-white:focus:-ms-input-placeholder{
-    color: white;
+    color: #fff;
   }
 
   .md\:focus\:tw-placeholder-white:focus::-ms-input-placeholder{
-    color: white;
+    color: #fff;
   }
 
   .md\:focus\:tw-placeholder-white:focus::placeholder{
-    color: white;
+    color: #fff;
   }
 
   .md\:focus\:tw-placeholder-gray-100:focus::-webkit-input-placeholder{
@@ -31296,26 +31822,6 @@ button:focus {
     color: #702459;
   }
 
-  .md\:focus\:tw-placeholder-transparent:focus::-webkit-input-placeholder{
-    color: transparent;
-  }
-
-  .md\:focus\:tw-placeholder-transparent:focus::-moz-placeholder{
-    color: transparent;
-  }
-
-  .md\:focus\:tw-placeholder-transparent:focus:-ms-input-placeholder{
-    color: transparent;
-  }
-
-  .md\:focus\:tw-placeholder-transparent:focus::-ms-input-placeholder{
-    color: transparent;
-  }
-
-  .md\:focus\:tw-placeholder-transparent:focus::placeholder{
-    color: transparent;
-  }
-
   .md\:tw-pointer-events-none{
     pointer-events: none;
   }
@@ -31563,8 +32069,16 @@ button:focus {
     color: var(--secondary-color);
   }
 
+  .md\:tw-text-transparent{
+    color: transparent;
+  }
+
+  .md\:tw-text-black{
+    color: #000;
+  }
+
   .md\:tw-text-white{
-    color: white;
+    color: #fff;
   }
 
   .md\:tw-text-gray-100{
@@ -31927,10 +32441,6 @@ button:focus {
     color: #702459;
   }
 
-  .md\:tw-text-transparent{
-    color: transparent;
-  }
-
   .md\:hover\:tw-text-primary:hover{
     color: var(--primary-color);
   }
@@ -31939,8 +32449,16 @@ button:focus {
     color: var(--secondary-color);
   }
 
+  .md\:hover\:tw-text-transparent:hover{
+    color: transparent;
+  }
+
+  .md\:hover\:tw-text-black:hover{
+    color: #000;
+  }
+
   .md\:hover\:tw-text-white:hover{
-    color: white;
+    color: #fff;
   }
 
   .md\:hover\:tw-text-gray-100:hover{
@@ -32303,10 +32821,6 @@ button:focus {
     color: #702459;
   }
 
-  .md\:hover\:tw-text-transparent:hover{
-    color: transparent;
-  }
-
   .md\:focus\:tw-text-primary:focus{
     color: var(--primary-color);
   }
@@ -32315,8 +32829,16 @@ button:focus {
     color: var(--secondary-color);
   }
 
+  .md\:focus\:tw-text-transparent:focus{
+    color: transparent;
+  }
+
+  .md\:focus\:tw-text-black:focus{
+    color: #000;
+  }
+
   .md\:focus\:tw-text-white:focus{
-    color: white;
+    color: #fff;
   }
 
   .md\:focus\:tw-text-gray-100:focus{
@@ -32679,10 +33201,6 @@ button:focus {
     color: #702459;
   }
 
-  .md\:focus\:tw-text-transparent:focus{
-    color: transparent;
-  }
-
   .md\:tw-text-xs{
     font-size: 0.75rem;
   }
@@ -32988,6 +33506,10 @@ button:focus {
     width: 16rem;
   }
 
+  .md\:tw-w-80{
+    width: 20rem;
+  }
+
   .md\:tw-w-auto{
     width: auto;
   }
@@ -33210,8 +33732,16 @@ button:focus {
     background-color: var(--secondary-color);
   }
 
+  .lg\:tw-bg-transparent{
+    background-color: transparent;
+  }
+
+  .lg\:tw-bg-black{
+    background-color: #000;
+  }
+
   .lg\:tw-bg-white{
-    background-color: white;
+    background-color: #fff;
   }
 
   .lg\:tw-bg-gray-100{
@@ -33574,10 +34104,6 @@ button:focus {
     background-color: #702459;
   }
 
-  .lg\:tw-bg-transparent{
-    background-color: transparent;
-  }
-
   .lg\:hover\:tw-bg-primary:hover{
     background-color: var(--primary-color);
   }
@@ -33586,8 +34112,16 @@ button:focus {
     background-color: var(--secondary-color);
   }
 
+  .lg\:hover\:tw-bg-transparent:hover{
+    background-color: transparent;
+  }
+
+  .lg\:hover\:tw-bg-black:hover{
+    background-color: #000;
+  }
+
   .lg\:hover\:tw-bg-white:hover{
-    background-color: white;
+    background-color: #fff;
   }
 
   .lg\:hover\:tw-bg-gray-100:hover{
@@ -33950,10 +34484,6 @@ button:focus {
     background-color: #702459;
   }
 
-  .lg\:hover\:tw-bg-transparent:hover{
-    background-color: transparent;
-  }
-
   .lg\:focus\:tw-bg-primary:focus{
     background-color: var(--primary-color);
   }
@@ -33962,8 +34492,16 @@ button:focus {
     background-color: var(--secondary-color);
   }
 
+  .lg\:focus\:tw-bg-transparent:focus{
+    background-color: transparent;
+  }
+
+  .lg\:focus\:tw-bg-black:focus{
+    background-color: #000;
+  }
+
   .lg\:focus\:tw-bg-white:focus{
-    background-color: white;
+    background-color: #fff;
   }
 
   .lg\:focus\:tw-bg-gray-100:focus{
@@ -34326,10 +34864,6 @@ button:focus {
     background-color: #702459;
   }
 
-  .lg\:focus\:tw-bg-transparent:focus{
-    background-color: transparent;
-  }
-
   .lg\:tw-bg-bottom{
     background-position: bottom;
   }
@@ -34418,8 +34952,16 @@ button:focus {
     border-color: var(--secondary-color);
   }
 
+  .lg\:tw-border-transparent{
+    border-color: transparent;
+  }
+
+  .lg\:tw-border-black{
+    border-color: #000;
+  }
+
   .lg\:tw-border-white{
-    border-color: white;
+    border-color: #fff;
   }
 
   .lg\:tw-border-gray-100{
@@ -34782,10 +35324,6 @@ button:focus {
     border-color: #702459;
   }
 
-  .lg\:tw-border-transparent{
-    border-color: transparent;
-  }
-
   .lg\:hover\:tw-border-primary:hover{
     border-color: var(--primary-color);
   }
@@ -34794,8 +35332,16 @@ button:focus {
     border-color: var(--secondary-color);
   }
 
+  .lg\:hover\:tw-border-transparent:hover{
+    border-color: transparent;
+  }
+
+  .lg\:hover\:tw-border-black:hover{
+    border-color: #000;
+  }
+
   .lg\:hover\:tw-border-white:hover{
-    border-color: white;
+    border-color: #fff;
   }
 
   .lg\:hover\:tw-border-gray-100:hover{
@@ -35158,10 +35704,6 @@ button:focus {
     border-color: #702459;
   }
 
-  .lg\:hover\:tw-border-transparent:hover{
-    border-color: transparent;
-  }
-
   .lg\:focus\:tw-border-primary:focus{
     border-color: var(--primary-color);
   }
@@ -35170,8 +35712,16 @@ button:focus {
     border-color: var(--secondary-color);
   }
 
+  .lg\:focus\:tw-border-transparent:focus{
+    border-color: transparent;
+  }
+
+  .lg\:focus\:tw-border-black:focus{
+    border-color: #000;
+  }
+
   .lg\:focus\:tw-border-white:focus{
-    border-color: white;
+    border-color: #fff;
   }
 
   .lg\:focus\:tw-border-gray-100:focus{
@@ -35532,10 +36082,6 @@ button:focus {
 
   .lg\:focus\:tw-border-pink-900:focus{
     border-color: #702459;
-  }
-
-  .lg\:focus\:tw-border-transparent:focus{
-    border-color: transparent;
   }
 
   .lg\:tw-rounded-none{
@@ -36332,6 +36878,10 @@ button:focus {
     height: 16rem;
   }
 
+  .lg\:tw-h-80{
+    height: 20rem;
+  }
+
   .lg\:tw-h-auto{
     height: auto;
   }
@@ -36464,6 +37014,10 @@ button:focus {
     margin: 16rem;
   }
 
+  .lg\:tw-m-80{
+    margin: 20rem;
+  }
+
   .lg\:tw-m-auto{
     margin: auto;
   }
@@ -36538,6 +37092,10 @@ button:focus {
 
   .lg\:tw--m-64{
     margin: -16rem;
+  }
+
+  .lg\:tw--m-80{
+    margin: -20rem;
   }
 
   .lg\:tw--m-px{
@@ -36722,6 +37280,16 @@ button:focus {
   .lg\:tw-mx-64{
     margin-left: 16rem;
     margin-right: 16rem;
+  }
+
+  .lg\:tw-my-80{
+    margin-top: 20rem;
+    margin-bottom: 20rem;
+  }
+
+  .lg\:tw-mx-80{
+    margin-left: 20rem;
+    margin-right: 20rem;
   }
 
   .lg\:tw-my-auto{
@@ -36912,6 +37480,16 @@ button:focus {
   .lg\:tw--mx-64{
     margin-left: -16rem;
     margin-right: -16rem;
+  }
+
+  .lg\:tw--my-80{
+    margin-top: -20rem;
+    margin-bottom: -20rem;
+  }
+
+  .lg\:tw--mx-80{
+    margin-left: -20rem;
+    margin-right: -20rem;
   }
 
   .lg\:tw--my-px{
@@ -37210,6 +37788,22 @@ button:focus {
 
   .lg\:tw-ml-64{
     margin-left: 16rem;
+  }
+
+  .lg\:tw-mt-80{
+    margin-top: 20rem;
+  }
+
+  .lg\:tw-mr-80{
+    margin-right: 20rem;
+  }
+
+  .lg\:tw-mb-80{
+    margin-bottom: 20rem;
+  }
+
+  .lg\:tw-ml-80{
+    margin-left: 20rem;
   }
 
   .lg\:tw-mt-auto{
@@ -37514,6 +38108,22 @@ button:focus {
 
   .lg\:tw--ml-64{
     margin-left: -16rem;
+  }
+
+  .lg\:tw--mt-80{
+    margin-top: -20rem;
+  }
+
+  .lg\:tw--mr-80{
+    margin-right: -20rem;
+  }
+
+  .lg\:tw--mb-80{
+    margin-bottom: -20rem;
+  }
+
+  .lg\:tw--ml-80{
+    margin-left: -20rem;
   }
 
   .lg\:tw--mt-px{
@@ -37870,6 +38480,10 @@ button:focus {
     padding: 16rem;
   }
 
+  .lg\:tw-p-80{
+    padding: 20rem;
+  }
+
   .lg\:tw-p-px{
     padding: 1px;
   }
@@ -38052,6 +38666,16 @@ button:focus {
   .lg\:tw-px-64{
     padding-left: 16rem;
     padding-right: 16rem;
+  }
+
+  .lg\:tw-py-80{
+    padding-top: 20rem;
+    padding-bottom: 20rem;
+  }
+
+  .lg\:tw-px-80{
+    padding-left: 20rem;
+    padding-right: 20rem;
   }
 
   .lg\:tw-py-px{
@@ -38352,6 +38976,22 @@ button:focus {
     padding-left: 16rem;
   }
 
+  .lg\:tw-pt-80{
+    padding-top: 20rem;
+  }
+
+  .lg\:tw-pr-80{
+    padding-right: 20rem;
+  }
+
+  .lg\:tw-pb-80{
+    padding-bottom: 20rem;
+  }
+
+  .lg\:tw-pl-80{
+    padding-left: 20rem;
+  }
+
   .lg\:tw-pt-px{
     padding-top: 1px;
   }
@@ -38408,24 +39048,64 @@ button:focus {
     color: var(--secondary-color);
   }
 
+  .lg\:tw-placeholder-transparent::-webkit-input-placeholder{
+    color: transparent;
+  }
+
+  .lg\:tw-placeholder-transparent::-moz-placeholder{
+    color: transparent;
+  }
+
+  .lg\:tw-placeholder-transparent:-ms-input-placeholder{
+    color: transparent;
+  }
+
+  .lg\:tw-placeholder-transparent::-ms-input-placeholder{
+    color: transparent;
+  }
+
+  .lg\:tw-placeholder-transparent::placeholder{
+    color: transparent;
+  }
+
+  .lg\:tw-placeholder-black::-webkit-input-placeholder{
+    color: #000;
+  }
+
+  .lg\:tw-placeholder-black::-moz-placeholder{
+    color: #000;
+  }
+
+  .lg\:tw-placeholder-black:-ms-input-placeholder{
+    color: #000;
+  }
+
+  .lg\:tw-placeholder-black::-ms-input-placeholder{
+    color: #000;
+  }
+
+  .lg\:tw-placeholder-black::placeholder{
+    color: #000;
+  }
+
   .lg\:tw-placeholder-white::-webkit-input-placeholder{
-    color: white;
+    color: #fff;
   }
 
   .lg\:tw-placeholder-white::-moz-placeholder{
-    color: white;
+    color: #fff;
   }
 
   .lg\:tw-placeholder-white:-ms-input-placeholder{
-    color: white;
+    color: #fff;
   }
 
   .lg\:tw-placeholder-white::-ms-input-placeholder{
-    color: white;
+    color: #fff;
   }
 
   .lg\:tw-placeholder-white::placeholder{
-    color: white;
+    color: #fff;
   }
 
   .lg\:tw-placeholder-gray-100::-webkit-input-placeholder{
@@ -40228,26 +40908,6 @@ button:focus {
     color: #702459;
   }
 
-  .lg\:tw-placeholder-transparent::-webkit-input-placeholder{
-    color: transparent;
-  }
-
-  .lg\:tw-placeholder-transparent::-moz-placeholder{
-    color: transparent;
-  }
-
-  .lg\:tw-placeholder-transparent:-ms-input-placeholder{
-    color: transparent;
-  }
-
-  .lg\:tw-placeholder-transparent::-ms-input-placeholder{
-    color: transparent;
-  }
-
-  .lg\:tw-placeholder-transparent::placeholder{
-    color: transparent;
-  }
-
   .lg\:focus\:tw-placeholder-primary:focus::-webkit-input-placeholder{
     color: var(--primary-color);
   }
@@ -40288,24 +40948,64 @@ button:focus {
     color: var(--secondary-color);
   }
 
+  .lg\:focus\:tw-placeholder-transparent:focus::-webkit-input-placeholder{
+    color: transparent;
+  }
+
+  .lg\:focus\:tw-placeholder-transparent:focus::-moz-placeholder{
+    color: transparent;
+  }
+
+  .lg\:focus\:tw-placeholder-transparent:focus:-ms-input-placeholder{
+    color: transparent;
+  }
+
+  .lg\:focus\:tw-placeholder-transparent:focus::-ms-input-placeholder{
+    color: transparent;
+  }
+
+  .lg\:focus\:tw-placeholder-transparent:focus::placeholder{
+    color: transparent;
+  }
+
+  .lg\:focus\:tw-placeholder-black:focus::-webkit-input-placeholder{
+    color: #000;
+  }
+
+  .lg\:focus\:tw-placeholder-black:focus::-moz-placeholder{
+    color: #000;
+  }
+
+  .lg\:focus\:tw-placeholder-black:focus:-ms-input-placeholder{
+    color: #000;
+  }
+
+  .lg\:focus\:tw-placeholder-black:focus::-ms-input-placeholder{
+    color: #000;
+  }
+
+  .lg\:focus\:tw-placeholder-black:focus::placeholder{
+    color: #000;
+  }
+
   .lg\:focus\:tw-placeholder-white:focus::-webkit-input-placeholder{
-    color: white;
+    color: #fff;
   }
 
   .lg\:focus\:tw-placeholder-white:focus::-moz-placeholder{
-    color: white;
+    color: #fff;
   }
 
   .lg\:focus\:tw-placeholder-white:focus:-ms-input-placeholder{
-    color: white;
+    color: #fff;
   }
 
   .lg\:focus\:tw-placeholder-white:focus::-ms-input-placeholder{
-    color: white;
+    color: #fff;
   }
 
   .lg\:focus\:tw-placeholder-white:focus::placeholder{
-    color: white;
+    color: #fff;
   }
 
   .lg\:focus\:tw-placeholder-gray-100:focus::-webkit-input-placeholder{
@@ -42108,26 +42808,6 @@ button:focus {
     color: #702459;
   }
 
-  .lg\:focus\:tw-placeholder-transparent:focus::-webkit-input-placeholder{
-    color: transparent;
-  }
-
-  .lg\:focus\:tw-placeholder-transparent:focus::-moz-placeholder{
-    color: transparent;
-  }
-
-  .lg\:focus\:tw-placeholder-transparent:focus:-ms-input-placeholder{
-    color: transparent;
-  }
-
-  .lg\:focus\:tw-placeholder-transparent:focus::-ms-input-placeholder{
-    color: transparent;
-  }
-
-  .lg\:focus\:tw-placeholder-transparent:focus::placeholder{
-    color: transparent;
-  }
-
   .lg\:tw-pointer-events-none{
     pointer-events: none;
   }
@@ -42375,8 +43055,16 @@ button:focus {
     color: var(--secondary-color);
   }
 
+  .lg\:tw-text-transparent{
+    color: transparent;
+  }
+
+  .lg\:tw-text-black{
+    color: #000;
+  }
+
   .lg\:tw-text-white{
-    color: white;
+    color: #fff;
   }
 
   .lg\:tw-text-gray-100{
@@ -42739,10 +43427,6 @@ button:focus {
     color: #702459;
   }
 
-  .lg\:tw-text-transparent{
-    color: transparent;
-  }
-
   .lg\:hover\:tw-text-primary:hover{
     color: var(--primary-color);
   }
@@ -42751,8 +43435,16 @@ button:focus {
     color: var(--secondary-color);
   }
 
+  .lg\:hover\:tw-text-transparent:hover{
+    color: transparent;
+  }
+
+  .lg\:hover\:tw-text-black:hover{
+    color: #000;
+  }
+
   .lg\:hover\:tw-text-white:hover{
-    color: white;
+    color: #fff;
   }
 
   .lg\:hover\:tw-text-gray-100:hover{
@@ -43115,10 +43807,6 @@ button:focus {
     color: #702459;
   }
 
-  .lg\:hover\:tw-text-transparent:hover{
-    color: transparent;
-  }
-
   .lg\:focus\:tw-text-primary:focus{
     color: var(--primary-color);
   }
@@ -43127,8 +43815,16 @@ button:focus {
     color: var(--secondary-color);
   }
 
+  .lg\:focus\:tw-text-transparent:focus{
+    color: transparent;
+  }
+
+  .lg\:focus\:tw-text-black:focus{
+    color: #000;
+  }
+
   .lg\:focus\:tw-text-white:focus{
-    color: white;
+    color: #fff;
   }
 
   .lg\:focus\:tw-text-gray-100:focus{
@@ -43491,10 +44187,6 @@ button:focus {
     color: #702459;
   }
 
-  .lg\:focus\:tw-text-transparent:focus{
-    color: transparent;
-  }
-
   .lg\:tw-text-xs{
     font-size: 0.75rem;
   }
@@ -43800,6 +44492,10 @@ button:focus {
     width: 16rem;
   }
 
+  .lg\:tw-w-80{
+    width: 20rem;
+  }
+
   .lg\:tw-w-auto{
     width: auto;
   }
@@ -44022,8 +44718,16 @@ button:focus {
     background-color: var(--secondary-color);
   }
 
+  .xl\:tw-bg-transparent{
+    background-color: transparent;
+  }
+
+  .xl\:tw-bg-black{
+    background-color: #000;
+  }
+
   .xl\:tw-bg-white{
-    background-color: white;
+    background-color: #fff;
   }
 
   .xl\:tw-bg-gray-100{
@@ -44386,10 +45090,6 @@ button:focus {
     background-color: #702459;
   }
 
-  .xl\:tw-bg-transparent{
-    background-color: transparent;
-  }
-
   .xl\:hover\:tw-bg-primary:hover{
     background-color: var(--primary-color);
   }
@@ -44398,8 +45098,16 @@ button:focus {
     background-color: var(--secondary-color);
   }
 
+  .xl\:hover\:tw-bg-transparent:hover{
+    background-color: transparent;
+  }
+
+  .xl\:hover\:tw-bg-black:hover{
+    background-color: #000;
+  }
+
   .xl\:hover\:tw-bg-white:hover{
-    background-color: white;
+    background-color: #fff;
   }
 
   .xl\:hover\:tw-bg-gray-100:hover{
@@ -44762,10 +45470,6 @@ button:focus {
     background-color: #702459;
   }
 
-  .xl\:hover\:tw-bg-transparent:hover{
-    background-color: transparent;
-  }
-
   .xl\:focus\:tw-bg-primary:focus{
     background-color: var(--primary-color);
   }
@@ -44774,8 +45478,16 @@ button:focus {
     background-color: var(--secondary-color);
   }
 
+  .xl\:focus\:tw-bg-transparent:focus{
+    background-color: transparent;
+  }
+
+  .xl\:focus\:tw-bg-black:focus{
+    background-color: #000;
+  }
+
   .xl\:focus\:tw-bg-white:focus{
-    background-color: white;
+    background-color: #fff;
   }
 
   .xl\:focus\:tw-bg-gray-100:focus{
@@ -45138,10 +45850,6 @@ button:focus {
     background-color: #702459;
   }
 
-  .xl\:focus\:tw-bg-transparent:focus{
-    background-color: transparent;
-  }
-
   .xl\:tw-bg-bottom{
     background-position: bottom;
   }
@@ -45230,8 +45938,16 @@ button:focus {
     border-color: var(--secondary-color);
   }
 
+  .xl\:tw-border-transparent{
+    border-color: transparent;
+  }
+
+  .xl\:tw-border-black{
+    border-color: #000;
+  }
+
   .xl\:tw-border-white{
-    border-color: white;
+    border-color: #fff;
   }
 
   .xl\:tw-border-gray-100{
@@ -45594,10 +46310,6 @@ button:focus {
     border-color: #702459;
   }
 
-  .xl\:tw-border-transparent{
-    border-color: transparent;
-  }
-
   .xl\:hover\:tw-border-primary:hover{
     border-color: var(--primary-color);
   }
@@ -45606,8 +46318,16 @@ button:focus {
     border-color: var(--secondary-color);
   }
 
+  .xl\:hover\:tw-border-transparent:hover{
+    border-color: transparent;
+  }
+
+  .xl\:hover\:tw-border-black:hover{
+    border-color: #000;
+  }
+
   .xl\:hover\:tw-border-white:hover{
-    border-color: white;
+    border-color: #fff;
   }
 
   .xl\:hover\:tw-border-gray-100:hover{
@@ -45970,10 +46690,6 @@ button:focus {
     border-color: #702459;
   }
 
-  .xl\:hover\:tw-border-transparent:hover{
-    border-color: transparent;
-  }
-
   .xl\:focus\:tw-border-primary:focus{
     border-color: var(--primary-color);
   }
@@ -45982,8 +46698,16 @@ button:focus {
     border-color: var(--secondary-color);
   }
 
+  .xl\:focus\:tw-border-transparent:focus{
+    border-color: transparent;
+  }
+
+  .xl\:focus\:tw-border-black:focus{
+    border-color: #000;
+  }
+
   .xl\:focus\:tw-border-white:focus{
-    border-color: white;
+    border-color: #fff;
   }
 
   .xl\:focus\:tw-border-gray-100:focus{
@@ -46344,10 +47068,6 @@ button:focus {
 
   .xl\:focus\:tw-border-pink-900:focus{
     border-color: #702459;
-  }
-
-  .xl\:focus\:tw-border-transparent:focus{
-    border-color: transparent;
   }
 
   .xl\:tw-rounded-none{
@@ -47144,6 +47864,10 @@ button:focus {
     height: 16rem;
   }
 
+  .xl\:tw-h-80{
+    height: 20rem;
+  }
+
   .xl\:tw-h-auto{
     height: auto;
   }
@@ -47276,6 +48000,10 @@ button:focus {
     margin: 16rem;
   }
 
+  .xl\:tw-m-80{
+    margin: 20rem;
+  }
+
   .xl\:tw-m-auto{
     margin: auto;
   }
@@ -47350,6 +48078,10 @@ button:focus {
 
   .xl\:tw--m-64{
     margin: -16rem;
+  }
+
+  .xl\:tw--m-80{
+    margin: -20rem;
   }
 
   .xl\:tw--m-px{
@@ -47534,6 +48266,16 @@ button:focus {
   .xl\:tw-mx-64{
     margin-left: 16rem;
     margin-right: 16rem;
+  }
+
+  .xl\:tw-my-80{
+    margin-top: 20rem;
+    margin-bottom: 20rem;
+  }
+
+  .xl\:tw-mx-80{
+    margin-left: 20rem;
+    margin-right: 20rem;
   }
 
   .xl\:tw-my-auto{
@@ -47724,6 +48466,16 @@ button:focus {
   .xl\:tw--mx-64{
     margin-left: -16rem;
     margin-right: -16rem;
+  }
+
+  .xl\:tw--my-80{
+    margin-top: -20rem;
+    margin-bottom: -20rem;
+  }
+
+  .xl\:tw--mx-80{
+    margin-left: -20rem;
+    margin-right: -20rem;
   }
 
   .xl\:tw--my-px{
@@ -48022,6 +48774,22 @@ button:focus {
 
   .xl\:tw-ml-64{
     margin-left: 16rem;
+  }
+
+  .xl\:tw-mt-80{
+    margin-top: 20rem;
+  }
+
+  .xl\:tw-mr-80{
+    margin-right: 20rem;
+  }
+
+  .xl\:tw-mb-80{
+    margin-bottom: 20rem;
+  }
+
+  .xl\:tw-ml-80{
+    margin-left: 20rem;
   }
 
   .xl\:tw-mt-auto{
@@ -48326,6 +49094,22 @@ button:focus {
 
   .xl\:tw--ml-64{
     margin-left: -16rem;
+  }
+
+  .xl\:tw--mt-80{
+    margin-top: -20rem;
+  }
+
+  .xl\:tw--mr-80{
+    margin-right: -20rem;
+  }
+
+  .xl\:tw--mb-80{
+    margin-bottom: -20rem;
+  }
+
+  .xl\:tw--ml-80{
+    margin-left: -20rem;
   }
 
   .xl\:tw--mt-px{
@@ -48682,6 +49466,10 @@ button:focus {
     padding: 16rem;
   }
 
+  .xl\:tw-p-80{
+    padding: 20rem;
+  }
+
   .xl\:tw-p-px{
     padding: 1px;
   }
@@ -48864,6 +49652,16 @@ button:focus {
   .xl\:tw-px-64{
     padding-left: 16rem;
     padding-right: 16rem;
+  }
+
+  .xl\:tw-py-80{
+    padding-top: 20rem;
+    padding-bottom: 20rem;
+  }
+
+  .xl\:tw-px-80{
+    padding-left: 20rem;
+    padding-right: 20rem;
   }
 
   .xl\:tw-py-px{
@@ -49164,6 +49962,22 @@ button:focus {
     padding-left: 16rem;
   }
 
+  .xl\:tw-pt-80{
+    padding-top: 20rem;
+  }
+
+  .xl\:tw-pr-80{
+    padding-right: 20rem;
+  }
+
+  .xl\:tw-pb-80{
+    padding-bottom: 20rem;
+  }
+
+  .xl\:tw-pl-80{
+    padding-left: 20rem;
+  }
+
   .xl\:tw-pt-px{
     padding-top: 1px;
   }
@@ -49220,24 +50034,64 @@ button:focus {
     color: var(--secondary-color);
   }
 
+  .xl\:tw-placeholder-transparent::-webkit-input-placeholder{
+    color: transparent;
+  }
+
+  .xl\:tw-placeholder-transparent::-moz-placeholder{
+    color: transparent;
+  }
+
+  .xl\:tw-placeholder-transparent:-ms-input-placeholder{
+    color: transparent;
+  }
+
+  .xl\:tw-placeholder-transparent::-ms-input-placeholder{
+    color: transparent;
+  }
+
+  .xl\:tw-placeholder-transparent::placeholder{
+    color: transparent;
+  }
+
+  .xl\:tw-placeholder-black::-webkit-input-placeholder{
+    color: #000;
+  }
+
+  .xl\:tw-placeholder-black::-moz-placeholder{
+    color: #000;
+  }
+
+  .xl\:tw-placeholder-black:-ms-input-placeholder{
+    color: #000;
+  }
+
+  .xl\:tw-placeholder-black::-ms-input-placeholder{
+    color: #000;
+  }
+
+  .xl\:tw-placeholder-black::placeholder{
+    color: #000;
+  }
+
   .xl\:tw-placeholder-white::-webkit-input-placeholder{
-    color: white;
+    color: #fff;
   }
 
   .xl\:tw-placeholder-white::-moz-placeholder{
-    color: white;
+    color: #fff;
   }
 
   .xl\:tw-placeholder-white:-ms-input-placeholder{
-    color: white;
+    color: #fff;
   }
 
   .xl\:tw-placeholder-white::-ms-input-placeholder{
-    color: white;
+    color: #fff;
   }
 
   .xl\:tw-placeholder-white::placeholder{
-    color: white;
+    color: #fff;
   }
 
   .xl\:tw-placeholder-gray-100::-webkit-input-placeholder{
@@ -51040,26 +51894,6 @@ button:focus {
     color: #702459;
   }
 
-  .xl\:tw-placeholder-transparent::-webkit-input-placeholder{
-    color: transparent;
-  }
-
-  .xl\:tw-placeholder-transparent::-moz-placeholder{
-    color: transparent;
-  }
-
-  .xl\:tw-placeholder-transparent:-ms-input-placeholder{
-    color: transparent;
-  }
-
-  .xl\:tw-placeholder-transparent::-ms-input-placeholder{
-    color: transparent;
-  }
-
-  .xl\:tw-placeholder-transparent::placeholder{
-    color: transparent;
-  }
-
   .xl\:focus\:tw-placeholder-primary:focus::-webkit-input-placeholder{
     color: var(--primary-color);
   }
@@ -51100,24 +51934,64 @@ button:focus {
     color: var(--secondary-color);
   }
 
+  .xl\:focus\:tw-placeholder-transparent:focus::-webkit-input-placeholder{
+    color: transparent;
+  }
+
+  .xl\:focus\:tw-placeholder-transparent:focus::-moz-placeholder{
+    color: transparent;
+  }
+
+  .xl\:focus\:tw-placeholder-transparent:focus:-ms-input-placeholder{
+    color: transparent;
+  }
+
+  .xl\:focus\:tw-placeholder-transparent:focus::-ms-input-placeholder{
+    color: transparent;
+  }
+
+  .xl\:focus\:tw-placeholder-transparent:focus::placeholder{
+    color: transparent;
+  }
+
+  .xl\:focus\:tw-placeholder-black:focus::-webkit-input-placeholder{
+    color: #000;
+  }
+
+  .xl\:focus\:tw-placeholder-black:focus::-moz-placeholder{
+    color: #000;
+  }
+
+  .xl\:focus\:tw-placeholder-black:focus:-ms-input-placeholder{
+    color: #000;
+  }
+
+  .xl\:focus\:tw-placeholder-black:focus::-ms-input-placeholder{
+    color: #000;
+  }
+
+  .xl\:focus\:tw-placeholder-black:focus::placeholder{
+    color: #000;
+  }
+
   .xl\:focus\:tw-placeholder-white:focus::-webkit-input-placeholder{
-    color: white;
+    color: #fff;
   }
 
   .xl\:focus\:tw-placeholder-white:focus::-moz-placeholder{
-    color: white;
+    color: #fff;
   }
 
   .xl\:focus\:tw-placeholder-white:focus:-ms-input-placeholder{
-    color: white;
+    color: #fff;
   }
 
   .xl\:focus\:tw-placeholder-white:focus::-ms-input-placeholder{
-    color: white;
+    color: #fff;
   }
 
   .xl\:focus\:tw-placeholder-white:focus::placeholder{
-    color: white;
+    color: #fff;
   }
 
   .xl\:focus\:tw-placeholder-gray-100:focus::-webkit-input-placeholder{
@@ -52920,26 +53794,6 @@ button:focus {
     color: #702459;
   }
 
-  .xl\:focus\:tw-placeholder-transparent:focus::-webkit-input-placeholder{
-    color: transparent;
-  }
-
-  .xl\:focus\:tw-placeholder-transparent:focus::-moz-placeholder{
-    color: transparent;
-  }
-
-  .xl\:focus\:tw-placeholder-transparent:focus:-ms-input-placeholder{
-    color: transparent;
-  }
-
-  .xl\:focus\:tw-placeholder-transparent:focus::-ms-input-placeholder{
-    color: transparent;
-  }
-
-  .xl\:focus\:tw-placeholder-transparent:focus::placeholder{
-    color: transparent;
-  }
-
   .xl\:tw-pointer-events-none{
     pointer-events: none;
   }
@@ -53187,8 +54041,16 @@ button:focus {
     color: var(--secondary-color);
   }
 
+  .xl\:tw-text-transparent{
+    color: transparent;
+  }
+
+  .xl\:tw-text-black{
+    color: #000;
+  }
+
   .xl\:tw-text-white{
-    color: white;
+    color: #fff;
   }
 
   .xl\:tw-text-gray-100{
@@ -53551,10 +54413,6 @@ button:focus {
     color: #702459;
   }
 
-  .xl\:tw-text-transparent{
-    color: transparent;
-  }
-
   .xl\:hover\:tw-text-primary:hover{
     color: var(--primary-color);
   }
@@ -53563,8 +54421,16 @@ button:focus {
     color: var(--secondary-color);
   }
 
+  .xl\:hover\:tw-text-transparent:hover{
+    color: transparent;
+  }
+
+  .xl\:hover\:tw-text-black:hover{
+    color: #000;
+  }
+
   .xl\:hover\:tw-text-white:hover{
-    color: white;
+    color: #fff;
   }
 
   .xl\:hover\:tw-text-gray-100:hover{
@@ -53927,10 +54793,6 @@ button:focus {
     color: #702459;
   }
 
-  .xl\:hover\:tw-text-transparent:hover{
-    color: transparent;
-  }
-
   .xl\:focus\:tw-text-primary:focus{
     color: var(--primary-color);
   }
@@ -53939,8 +54801,16 @@ button:focus {
     color: var(--secondary-color);
   }
 
+  .xl\:focus\:tw-text-transparent:focus{
+    color: transparent;
+  }
+
+  .xl\:focus\:tw-text-black:focus{
+    color: #000;
+  }
+
   .xl\:focus\:tw-text-white:focus{
-    color: white;
+    color: #fff;
   }
 
   .xl\:focus\:tw-text-gray-100:focus{
@@ -54303,10 +55173,6 @@ button:focus {
     color: #702459;
   }
 
-  .xl\:focus\:tw-text-transparent:focus{
-    color: transparent;
-  }
-
   .xl\:tw-text-xs{
     font-size: 0.75rem;
   }
@@ -54610,6 +55476,10 @@ button:focus {
 
   .xl\:tw-w-64{
     width: 16rem;
+  }
+
+  .xl\:tw-w-80{
+    width: 20rem;
   }
 
   .xl\:tw-w-auto{

@@ -2,16 +2,9 @@
     <div>
         <!-- TODO: make it responsive -->
         <div id="home-img-section" class="tw-flex tw-flex-wrap tw-flex-col tw-items-center tw-justify-end">
-                <!-- TODO: wrap between the two divs and show 2 products we give in the site -->
                 <div id="products-wrapper" class="tw-flex tw-flex-wrap tw-flex-row">
                     <div id="wrap-left" class="">
                         <h1>test</h1>
-                    </div>
-
-                    <span class="tw-border-r-2"></span>
-
-                    <div id="wrap-right">
-                        <h1>Second test</h1>
                     </div>
                 </div>
 
@@ -26,41 +19,55 @@
         <!-- TODO: make it responsive -->
         <!-- TODO: read more gonna be here -->
 
-        <!-- TODO: make it responsive -->
+        <!-- responsive V -->
         <div id="home-body" class="tw-container tw-flex tw-flex-wrap tw--mx-2 tw-my-2 md:tw--mx-4 md:tw-my-4 lg:tw--mx-6 lg:tw-my-6">
-            <div class="tw-p-2 md:tw-p-4 lg:tw-p-6 md:tw-w-1/2 lg:tw-w-1/3">
+            <div class="tw-flex tw-justify-center tw-items-start tw-p-2 md:tw-p-4 lg:tw-p-6 tw-w-full md:tw-w-1/2 lg:tw-w-1/3">
                 <theory-card src="/assets/action-asphalt.jpg" alt="asphalt.jpg">
                     <template slot="title">This is the title</template>
 
                     <template slot="description">This is the description</template>
                 </theory-card>
             </div>
-            <div class="tw-p-2 md:tw-p-4 lg:tw-p-6 md:tw-w-1/2 lg:tw-w-1/3">
+            <div class="tw-flex tw-justify-center tw-items-start tw-p-2 md:tw-p-4 lg:tw-p-6 tw-w-full md:tw-w-1/2 lg:tw-w-1/3">
                 <theory-card src="/assets/action-asphalt.jpg" alt="asphalt.jpg">
                     <template slot="title">This is the title</template>
 
-                    <template slot="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium animi, minima natus nesciunt officiis recusandae rem repudiandae? Ab adipisci, aperiam aspernatur autem corporis libero nesciunt quas quo rem sapiente sint!</template>
+                    <template slot="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium aliquam, amet assumenda cum dolorem esse ex ipsam mollitia nesciunt quae sed sunt voluptate! Consectetur ex necessitatibus obcaecati. Dolores, maxime ut?</template>
                 </theory-card>
             </div>
-            <div class="tw-p-2 md:tw-p-4 lg:tw-p-6 md:tw-w-1/2 lg:tw-w-1/3">
-                <theory-card src="/assets/asphalt.jpg" alt="asphalt.jpg">
+            <div class="tw-flex tw-justify-center tw-items-start tw-p-2 md:tw-p-4 lg:tw-p-6 tw-w-full md:tw-w-1/2 lg:tw-w-1/3">
+                <theory-card src="/assets/action-asphalt.jpg" alt="asphalt.jpg">
                     <template slot="title">This is the title</template>
 
                     <template slot="description">This is the description</template>
                 </theory-card>
             </div>
-            <div class="tw-p-2 md:tw-p-4 lg:tw-p-6 md:tw-w-1/2 lg:tw-w-1/3">
+            <div class="tw-flex tw-justify-center tw-items-start tw-p-2 md:tw-p-4 lg:tw-p-6 tw-w-full md:tw-w-1/2 lg:tw-w-1/3">
                 <theory-card src="/assets/action-asphalt.jpg" alt="asphalt.jpg">
                     <template slot="title">This is the title</template>
 
-                    <template slot="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium animi, minima natus nesciunt officiis recusandae rem repudiandae? Ab adipisci, aperiam aspernatur autem corporis libero nesciunt quas quo rem sapiente sint!</template>
+                    <template slot="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium aliquam, amet assumenda cum dolorem esse ex ipsam mollitia nesciunt quae sed sunt voluptate! Consectetur ex necessitatibus obcaecati. Dolores, maxime ut?</template>
                 </theory-card>
             </div>
-            <div class="tw-p-2 md:tw-p-4 lg:tw-p-6 md:tw-w-1/2 lg:tw-w-1/3">
-                <theory-card src="/assets/asphalt.jpg" alt="asphalt.jpg">
+            <div class="tw-flex tw-justify-center tw-items-start tw-p-2 md:tw-p-4 lg:tw-p-6 tw-w-full md:tw-w-1/2 lg:tw-w-1/3">
+                <theory-card src="/assets/action-asphalt.jpg" alt="asphalt.jpg">
                     <template slot="title">This is the title</template>
 
                     <template slot="description">This is the description</template>
+                </theory-card>
+            </div>
+            <div class="tw-flex tw-justify-center tw-items-start tw-p-2 md:tw-p-4 lg:tw-p-6 tw-w-full md:tw-w-1/2 lg:tw-w-1/3">
+                <theory-card src="/assets/action-asphalt.jpg" alt="asphalt.jpg">
+                    <template slot="title">This is the title</template>
+
+                    <template slot="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium aliquam, amet assumenda cum dolorem esse ex ipsam mollitia nesciunt quae sed sunt voluptate! Consectetur ex necessitatibus obcaecati. Dolores, maxime ut?</template>
+                </theory-card>
+            </div>
+            <div class="tw-flex tw-justify-center tw-items-start tw-p-2 md:tw-p-4 lg:tw-p-6 tw-w-full md:tw-w-1/2 lg:tw-w-1/3">
+                <theory-card src="/assets/action-asphalt.jpg" alt="asphalt.jpg">
+                    <template slot="title">This is the title</template>
+
+                    <template slot="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium aliquam, amet assumenda cum dolorem esse ex ipsam mollitia nesciunt quae sed sunt voluptate! Consectetur ex necessitatibus obcaecati. Dolores, maxime ut?</template>
                 </theory-card>
             </div>
         </div>
