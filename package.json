@@ -12,11 +12,17 @@
         "precommit": "lint-staged"
     },
     "lint-staged": {
-        "*.js": [
+        "*.{js, vue}": [
             "./node_modules/.bin/prettier --write",
-            "git add ."
+            "git add"
         ],
-        "*.php": []
+        "*.php": [
+            "php ./vendor/bin/php-cs-fixer fix --config .php_cs",
+            "git add"
+        ],
+        "*.pcss": [
+
+        ]
     },
     "devDependencies": {
         "autoprefixer": "^9.6.5",
