@@ -1,20 +1,20 @@
-import Vue from 'vue';
-import VueRouter from 'vue-router';
-import { routes } from './routes';
+import Vue from "vue";
+import VueRouter from "vue-router";
+import { routes } from "./routes";
 
 Vue.use(VueRouter);
 
 // Components
-import Card from './components/Card';
-import Nav from './components/Nav';
-import Bar from './components/Bar';
+import Card from "./components/Card";
+import Nav from "./components/Nav";
+import Bar from "./components/Bar";
 
-Vue.component('theory-card', Card);
-Vue.component('theory-nav-bar', Nav);
-Vue.component('theory-bar', Bar);
+Vue.component("theory-card", Card);
+Vue.component("theory-nav-bar", Nav);
+Vue.component("theory-bar", Bar);
 
 const app = new Vue({
-    el: '#app',
+    el: "#app",
 
     router: new VueRouter(routes)
 });
@@ -57,8 +57,8 @@ function smoothScroll(target, duration) {
     requestAnimationFrame(animation);
 }
 
-const btnScrollAble = document.getElementById('home-scroll-able');
+const btnScrollAble = document.getElementById("home-scroll-able");
 
-btnScrollAble.addEventListener('click', function() {
-    smoothScroll('#home-body', 500);
+btnScrollAble.addEventListener("click", function() {
+    smoothScroll("#home-body", 500);
 });

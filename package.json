@@ -8,11 +8,12 @@
         "hot": "cross-env NODE_ENV=development node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
         "prod": "npm run production",
         "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+        "pretty": "prettier --write \"./resources/**/*.js\"",
         "precommit": "lint-staged"
     },
     "lint-staged": {
         "*.js": [
-            "./node_modules/.bin/prettier --single-quote --write",
+            "./node_modules/.bin/prettier --write",
             "git add ."
         ],
         "*.php": []
