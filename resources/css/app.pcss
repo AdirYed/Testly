@@ -1,18 +1,57 @@
+@import "helpers.pcss";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-.container {
-    #homepage-img { /*url from a local asset doesn't work, need to fix this url.*/
-        background: url('https://images.pexels.com/photos/164634/pexels-photo-164634.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940') no-repeat center fixed;
-        min-width: 1024px;
-        top: 0;
-        left: 0;
-        text-align: center;
+button:focus {
+    outline: 0;
+}
 
-        @media screen and (max-width: 1024px) {
-            left: 50%;
-            margin-left: -512px;
-        }
+#nav-bar {
+    height: var(--header-height);
+    background-color: white;
+
+    z-index: 99;
+}
+
+#products-wrapper {
+    margin: auto;
+
+    h1 {
+        font-size: 50px;
     }
+}
+
+#home-btn {
+    margin-bottom: 3.75rem;
+}
+
+#home-img-section {
+    height: calc(100vh - var(--header-height));
+    background: linear-gradient(
+        to top,
+        rgba(241, 39, 17, 0.05),
+        rgba(245, 175, 25, 0.075)),
+        url('/assets/asphalt.jpg') no-repeat center;
+    background-size: cover;
+
+    z-index: -1;
+}
+
+#home-body {
+    margin: 0 auto;
+    justify-content: center;
+
+    .home-body-child {
+        border-color: rgba(0, 0, 0, 0.25);
+
+        > #card-img {
+            background-size: 100%;
+            background-repeat: no-repeat;
+            height: 20vh;
+        }
+    }:hover {
+         border-color: var(--primary-color) !important;
+     }
 }
