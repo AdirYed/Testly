@@ -15,15 +15,14 @@
             "./node_modules/.bin/prettier --single-quote --write",
             "git add ."
         ],
-        "*.php": [
-
-        ]
+        "*.php": []
     },
     "devDependencies": {
         "autoprefixer": "^9.6.5",
         "browser-sync": "^2.26.7",
         "browser-sync-webpack-plugin": "^2.0.1",
         "cross-env": "^5.1",
+        "husky": "^3.0.9",
         "laravel-mix": "^4.0.7",
         "laravel-mix-purgecss": "^4.2.0",
         "lint-staged": "^10.0.0-1",
