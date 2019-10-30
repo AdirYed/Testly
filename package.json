@@ -7,16 +7,32 @@
         "watch-poll": "npm run watch -- --watch-poll",
         "hot": "cross-env NODE_ENV=development node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
         "prod": "npm run production",
-        "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
+        "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+        "pretty": "prettier --write \"./resources/**/*.js\"",
+        "precommit": "lint-staged"
+    },
+    "lint-staged": {
+        "*.{js, vue}": [
+            "./node_modules/.bin/prettier --write",
+            "git add"
+        ],
+        "*.php": [
+            "php-cs-fixer fix",
+            "git add"
+        ],
+        "*.pcss": [],
     },
     "devDependencies": {
         "autoprefixer": "^9.6.5",
         "browser-sync": "^2.26.7",
         "browser-sync-webpack-plugin": "^2.0.1",
         "cross-env": "^5.1",
+        "husky": "^3.0.9",
         "laravel-mix": "^4.0.7",
         "laravel-mix-purgecss": "^4.2.0",
+        "lint-staged": "^10.0.0-1",
         "postcss-nested": "^4.1.2",
+        "prettier": "1.18.2",
         "resolve-url-loader": "^2.3.1",
         "sass": "^1.15.2",
         "sass-loader": "^7.1.0",

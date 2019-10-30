@@ -1,22 +1,22 @@
-import Vue from 'vue';
-import VueRouter from 'vue-router';
-import {routes} from './routes';
+import Vue from "vue";
+import VueRouter from "vue-router";
+import { routes } from "./routes";
 
 Vue.use(VueRouter);
 
 // Components
-import Card from './components/Card';
-import Nav from './components/Nav';
-import Bar from './components/Bar';
+import Card from "./components/Card";
+import Nav from "./components/Nav";
+import Bar from "./components/Bar";
 
-Vue.component('theory-card', Card);
-Vue.component('theory-nav-bar', Nav);
-Vue.component('theory-bar', Bar);
+Vue.component("theory-card", Card);
+Vue.component("theory-nav-bar", Nav);
+Vue.component("theory-bar", Bar);
 
 const app = new Vue({
-   el: '#app',
+    el: "#app",
 
-    router: new VueRouter(routes),
+    router: new VueRouter(routes)
 });
 
 // Use when you have a horizontal scroll
@@ -48,17 +48,17 @@ function smoothScroll(target, duration) {
     }
 
     function ease(t, b, c, d) {
-        t /= d/2;
-        if (t < 1) return c/2*t*t + b;
+        t /= d / 2;
+        if (t < 1) return (c / 2) * t * t + b;
         t--;
-        return -c/2 * (t*(t-2) - 1) + b;
-    };
+        return (-c / 2) * (t * (t - 2) - 1) + b;
+    }
 
     requestAnimationFrame(animation);
 }
 
-const btnScrollAble = document.getElementById('home-scroll-able');
+const btnScrollAble = document.getElementById("home-scroll-able");
 
-btnScrollAble.addEventListener('click', function() {
-    smoothScroll('#home-body', 500);
+btnScrollAble.addEventListener("click", function() {
+    smoothScroll("#home-body", 500);
 });

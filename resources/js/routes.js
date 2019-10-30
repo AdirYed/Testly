@@ -1,12 +1,12 @@
-import Home from './pages/Home';
+import Home from "./pages/Home";
 
 export const routes = {
-    mode: 'history',
+    mode: "history",
 
     routes: [
         {
-            path: '/',
-            component: Home,
+            path: "/",
+            component: Home
         }
-    ],
+    ]
 };
