@@ -20,9 +20,7 @@
             "php-cs-fixer fix",
             "git add"
         ],
-        "*.pcss": [
-
-        ]
+        "*.pcss": [],
     },
     "devDependencies": {
         "autoprefixer": "^9.6.5",
