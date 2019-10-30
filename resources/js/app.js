@@ -2,21 +2,23 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import {routes} from './routes';
 
-Vue.use(VueRouter);
-
-// vue fontAwesome
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { faUserSecret } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-
-library.add(faUserSecret);
-
-Vue.component('font-awesome-icon', FontAwesomeIcon);
-
 // Components
 import Card from './components/Card';
 import Nav from './components/Nav';
 import Bar from './components/Bar';
+
+// vue fontAwesome
+// import { library } from '@fortawesome/fontawesome-svg-core';
+// import { faUserSecret } from '@fortawesome/free-solid-svg-icons';
+// import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+//
+// Vue.component('font-awesome-icon', FontAwesomeIcon);
+
+Vue.use(VueRouter);
+
+library.add(faUserSecret);
+
+
 
 Vue.component('theory-card', Card);
 Vue.component('theory-nav-bar', Nav);
