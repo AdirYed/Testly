@@ -2,25 +2,34 @@
 
 namespace Tests\Commands;
 
+use App\Category;
 use App\Question;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class GenerateRandomQuestionsTest extends TestCase
 {
-    use RefreshDatabase;
+    use DatabaseMigrations;
 
     public function setUp() : void
     {
-        $this->artisan('dataset:parse --without-store')
-            ->expectsOutput('Dataset parsed and stored in the database successfully!');
+        parent::setUp();
+
+        factory(Category::class, 4)->create();
+        factory(Question::class, 60)->state('with_answers')->create();
     }
 
     /** @test */
     public function every_test_should_have_thirty_questions()
     {
-        $questions = Question::get();
+        $questionAmount = Question::select(['id'])->limit(30)->get()->count();
 
-        dd($questions);
+        $this->assertEquals(30, $questionAmount);
+    }
+
+    public function it_should_give_random_questions()
+    {
+        $questions = Question::select(['id'])->limit(30)->inRandomOrder()->get();
+
     }
 }
