@@ -117,7 +117,7 @@ class ParseDatasetCommand extends Command
 
             $this->storeImages($urls);
 
-            $this->info("\n".'All of the images were stored successfully!') ;
+            $this->info("\n" . 'All of the images were stored successfully!');
         }
     }
 
