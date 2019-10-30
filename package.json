@@ -16,6 +16,10 @@
             "./node_modules/.bin/prettier --write",
             "git add"
         ],
+        "*.php": [
+            "vendor/bin/php-cs-fixer fix",
+            "git add"
+        ],
         "*.pcss": [
 
         ]
