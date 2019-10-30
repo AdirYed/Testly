@@ -13,7 +13,7 @@
         "ext-json": "^1.7",
         "ext-libxml": "^7.3",
         "fideloper/proxy": "^4.0",
-        "laravel/framework": "^6.2",
+        "laravel/framework": "^6.4.1",
         "laravel/tinker": "^1.0",
         "ext-curl": "*"
     },
