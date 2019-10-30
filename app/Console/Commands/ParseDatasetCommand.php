@@ -71,14 +71,14 @@ class ParseDatasetCommand extends Command
 
                 if (isset($html->img['src'])) {
                     $url = (string) $html->img['src'];
-                    $name = 'img_'.(string) Str::uuid().\File::extension($url);
+                    $name = 'img_' . (string) Str::uuid() . \File::extension($url);
 
                     $urls[] = [
                         'name' => $name,
                         'url' => $url,
                     ];
 
-                    $data['image_url'] = 'images/'.$name;
+                    $data['image_url'] = 'images/' . $name;
                 }
 
                 return $data;
@@ -98,7 +98,7 @@ class ParseDatasetCommand extends Command
             foreach ($html->ul->li as $answer) {
                 $answersData[] = [
                     'content' => $answer->span,
-                    'is_correct' => $answer->span['id'] == 'correctAnswer'.$matches['original_id'],
+                    'is_correct' => $answer->span['id'] == 'correctAnswer' . $matches['original_id'],
                     'question_id' => $question->id,
                     'created_at' => now(),
                     'updated_at' => now(),
@@ -117,13 +117,13 @@ class ParseDatasetCommand extends Command
 
             $this->storeImages($urls);
 
-            $this->info("\n".'All of the images were stored successfully!');
+            $this->info("\n" . 'All of the images were stored successfully!');
         }
     }
 
     protected function shouldStoreImages(): bool
     {
-        return $this->input->hasOption('without-store') && !$this->option('without-store');
+        return $this->input->hasOption('without-store') && ! $this->option('without-store');
     }
 
     protected function storeImages(array $urls): void
