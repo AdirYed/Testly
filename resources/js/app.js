@@ -4,6 +4,15 @@ import {routes} from './routes';
 
 Vue.use(VueRouter);
 
+// vue fontAwesome
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faUserSecret } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+
+library.add(faUserSecret);
+
+Vue.component('font-awesome-icon', FontAwesomeIcon);
+
 // Components
 import Card from './components/Card';
 import Nav from './components/Nav';
