@@ -15,8 +15,9 @@
         "ext-libxml": "^7.3",
         "fideloper/proxy": "^4.0",
         "friendsofphp/php-cs-fixer": "^2.15",
-        "laravel/framework": "^6.2",
-        "laravel/tinker": "^1.0"
+        "laravel/framework": "^6.4.1",
+        "laravel/tinker": "^1.0",
+        "ext-curl": "*"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^2.6",
