@@ -13,7 +13,7 @@
     },
     "lint-staged": {
         "*.{js, vue}": [
-            "./node_modules/.bin/prettier --write",
+            "./node_modules/.bin/prettier --write --single-quote",
             "git add"
         ],
         "*.php": [

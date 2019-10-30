@@ -7,7 +7,8 @@ $finder = PhpCsFixer\Finder::create()
 
 return PhpCsFixer\Config::create()
     ->setRules([
-        '@Symfony' => true,
+        '@PSR2' => true,
         'full_opening_tag' => false,
+        'single_quote' => true,
     ])
     ->setFinder($finder);
