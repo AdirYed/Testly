@@ -8,13 +8,14 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 /**
  * App\Answer.
  *
- * @property int $id
- * @property string $content
- * @property bool $is_correct
- * @property int $question_id
+ * @property int                             $id
+ * @property string                          $content
+ * @property bool                            $is_correct
+ * @property int                             $question_id
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \App\Question $question
+ * @property \App\Question                   $question
+ *
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Answer newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Answer newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Answer query()

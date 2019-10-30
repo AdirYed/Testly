@@ -3,14 +3,14 @@
         <div id="home-img-section" class="tw-flex tw-flex-wrap tw-flex-col tw-items-center tw-justify-end">
             <!-- TODO: needs some css changes -->
             <div id="products-wrapper">
-                                <div class="">
-                                    <h1 class="tw-text-center">מבחני תאוריה בחינם</h1>
-                                </div>
-                            </div>
+                    <div class="">
+                        <h1 class="tw-text-center">מבחני תאוריה בחינם</h1>
+                    </div>
+                </div>
 
-                            <div id="home-btn">
-                                <button id="home-scroll-able" class="btn tw-border-2 tw-border-primary hover:tw-bg-primary tw-text-primary hover:tw-text-white tw-rounded">
-                                    קרא/י עוד
+                <div id="home-btn">
+                    <button id="home-scroll-able" class="btn tw-border-2 tw-border-primary hover:tw-bg-primary tw-text-primary hover:tw-text-white tw-rounded">
+                        קרא/י עוד
                 </button>
             </div>
         </div>
