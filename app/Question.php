@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -65,5 +66,10 @@ class Question extends Model
         }
 
         return $this->answers()->where('is_correct', true)->first();
+    }
+
+    public static function randomQuestionWithAnswers() : Collection
+    {
+        return Question::select(['id', 'title', 'image_url'])->with('answers:id,question_id,content')->limit(30)->inRandomOrder()->get();
     }
 }

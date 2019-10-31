@@ -3,6 +3,7 @@
 namespace Tests\Commands;
 
 use App\Category;
+use App\Http\Controllers\TestController;
 use App\Question;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
@@ -22,14 +23,19 @@ class GenerateRandomQuestionsTest extends TestCase
     /** @test */
     public function every_test_should_have_thirty_questions()
     {
-        $questionAmount = Question::select(['id'])->limit(30)->get()->count();
+        $url = action([TestController::class, 'generate']);
 
-        $this->assertEquals(30, $questionAmount);
+        $this->json('get', $url)
+            ->assertJsonCount(30);
     }
 
-    public function it_should_give_random_questions()
+    /** @test */
+    public function it_should_return_questions_with_answers()
     {
-        $questions = Question::select(['id'])->limit(30)->inRandomOrder()->get();
+        $url = action([TestController::class, 'generate']);
 
+        $response = $this->json('get', $url);
+
+        $response->assertJsonStructure([['id', 'title', 'answers' => ['*' => ['id', 'content']]]]);
     }
 }
