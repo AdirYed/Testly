@@ -1,6 +1,6 @@
 <template>
     <div class="home-body-child tw-w-80 tw-rounded tw-border tw-word-wrap">
-        <div id="card-img" class="tw-w-full tw-rounded tw-rounded-b-none" :style="url"></div>
+        <div class="card-img tw-w-full tw-rounded tw-rounded-b-none" :style="url"></div>
         <div class="tw-px-6 tw-py-4">
             <div class="tw-font-bold tw-text-xl tw-mb-2"><slot name="title"></slot></div>
             <p class="tw-text-gray-700 tw-text-base">

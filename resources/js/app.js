@@ -8,10 +8,12 @@ Vue.use(VueRouter);
 import Card from './components/Card';
 import Nav from './components/Nav';
 import Bar from './components/Bar';
+import Header from './components/Header';
 
 Vue.component('theory-card', Card);
 Vue.component('theory-nav-bar', Nav);
 Vue.component('theory-bar', Bar);
+Vue.component('theory-header', Header);
 
 const app = new Vue({
    el: '#app',
@@ -32,33 +34,3 @@ var docWidth = document.documentElement.offsetWidth;
     }
 );
 */
-
-function smoothScroll(target, duration) {
-    const scrollTo = document.querySelector(target);
-    const targetPosition = scrollTo.getBoundingClientRect().top - 58; // minus the nav which is 60px and also his box-shadow which is 1px, 60-1-1=59, another -1 to be 100% sure.
-    const startPosition = window.pageYOffset;
-    let startTime = null;
-
-    function animation(currentTime) {
-        if (startTime === null) startTime = currentTime;
-        const timeElapsed = currentTime - startTime;
-        const run = ease(timeElapsed, startPosition, targetPosition, duration);
-        window.scrollTo(0, run);
-        if (timeElapsed < duration) requestAnimationFrame(animation);
-    }
-
-    function ease(t, b, c, d) {
-        t /= d/2;
-        if (t < 1) return c/2*t*t + b;
-        t--;
-        return -c/2 * (t*(t-2) - 1) + b;
-    };
-
-    requestAnimationFrame(animation);
-}
-
-const btnScrollAble = document.getElementById('home-scroll-able');
-
-btnScrollAble.addEventListener('click', function() {
-    smoothScroll('#home-body', 500);
-});
