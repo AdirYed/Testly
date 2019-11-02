@@ -3,13 +3,13 @@
 namespace App\Console\Commands;
 
 use App;
+use Str;
 use Storage;
 use App\Answer;
 use App\Category;
 use App\Question;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Schema;
-use Str;
 
 class ParseDatasetCommand extends Command
 {
@@ -35,7 +35,7 @@ class ParseDatasetCommand extends Command
             'SimpleXMLElement',
             LIBXML_NOCDATA
         );
-        $datasetJson = json_encode((array)$datasetSimpleXml->channel);
+        $datasetJson = json_encode((array) $datasetSimpleXml->channel);
         $dataset = collect(json_decode($datasetJson, true)['item'])->values();
 
         // Store categories
@@ -61,7 +61,7 @@ class ParseDatasetCommand extends Command
                 $data = [
                     'title' => trim($matches['title']),
                     'image_url' => null,
-                    'original_id' => (int)$matches['original_id'],
+                    'original_id' => (int) $matches['original_id'],
                     'category_id' => $categories->firstWhere('name', $item['category'])->id,
                     'created_at' => now(),
                     'updated_at' => now(),
@@ -70,8 +70,8 @@ class ParseDatasetCommand extends Command
                 $html = simplexml_load_string($item['description']);
 
                 if (isset($html->img['src'])) {
-                    $url = (string)$html->img['src'];
-                    $name = 'img_' . (string)Str::uuid() . \File::extension($url);
+                    $url = (string) $html->img['src'];
+                    $name = 'img_' . (string) Str::uuid() . \File::extension($url);
 
                     $urls[] = [
                         'name' => $name,
@@ -121,12 +121,12 @@ class ParseDatasetCommand extends Command
         }
     }
 
-    protected function shouldStoreImages() : bool
+    protected function shouldStoreImages(): bool
     {
         return $this->input->hasOption('without-store') && ! $this->option('without-store');
     }
 
-    protected function storeImages(array $urls) : void
+    protected function storeImages(array $urls): void
     {
         $bar = $this->output->createProgressBar(count($urls));
 
@@ -141,7 +141,7 @@ class ParseDatasetCommand extends Command
             curl_setopt_array($start, [
                 CURLOPT_URL => $url,
                 CURLOPT_RETURNTRANSFER => 1,
-                CURLOPT_SSLVERSION => 3
+                CURLOPT_SSLVERSION => 3,
             ]);
 
             $contents = curl_exec($start);
@@ -156,7 +156,7 @@ class ParseDatasetCommand extends Command
         curl_close($start);
     }
 
-    protected function deleteStorage() : void
+    protected function deleteStorage(): void
     {
         if (Storage::disk('local')->exists('/images')) {
             Storage::disk('local')->deleteDirectory('images');

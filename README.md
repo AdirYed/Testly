@@ -16,7 +16,3 @@ php artisan migrate
 ```bash
 php artisan dataset:parse
 ```
-5) Build a storage link
-```bash
-php artisan storage:link
-```

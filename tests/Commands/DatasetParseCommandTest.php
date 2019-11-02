@@ -5,8 +5,8 @@ namespace Tests\Commands;
 use App\Answer;
 use App\Category;
 use App\Question;
-use Illuminate\Support\Facades\Storage;
 use Tests\TestCase;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class DatasetParseCommandTest extends TestCase
@@ -38,6 +38,7 @@ class DatasetParseCommandTest extends TestCase
     /**
      * @group slow
      */
+
     /** @test */
     public function it_should_store_images_in_a_local_storage()
     {
@@ -57,7 +58,7 @@ class DatasetParseCommandTest extends TestCase
         $this->artisan('dataset:parse --without-store')
             ->expectsOutput('Dataset parsed and stored in the database successfully!');
 
-        $this->assertEquals($this->questionCount,  Question::whereHas('correctAnswer')->count());
+        $this->assertEquals($this->questionCount, Question::whereHas('correctAnswer')->count());
     }
 
     /** @test */
@@ -66,6 +67,6 @@ class DatasetParseCommandTest extends TestCase
         $this->artisan('dataset:parse --without-store')
             ->expectsOutput('Dataset parsed and stored in the database successfully!');
 
-        $this->assertEquals($this->questionCount,  Answer::where('is_correct', true)->count());
+        $this->assertEquals($this->questionCount, Answer::where('is_correct', true)->count());
     }
 }

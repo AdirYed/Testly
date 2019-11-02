@@ -5,11 +5,11 @@ mix.js('resources/js/app.js', 'public/js')
     .postCss('resources/css/app.pcss', 'public/css', [
         require('tailwindcss'),
         require('postcss-nested'),
-        require('autoprefixer'),
+        require('autoprefixer')
     ])
     .purgeCss()
     .browserSync({
         proxy: 'localhost:8000',
-        notify: false,
+        notify: false
     })
     .disableNotifications();
