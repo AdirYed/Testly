@@ -9,8 +9,8 @@
             </div>
 
             <div id="home-btn">
-                <button id="home-scroll-able" class="btn tw-border-2 tw-border-primary hover:tw-bg-primary tw-text-primary hover:tw-text-white tw-rounded" @click="readMore()">
-                    קרא/י עוד
+                <button id="home-scroll-able" class="btn tw-py-2 tw-px-8 tw-border-2 tw-border-primary hover:tw-bg-primary tw-text-primary hover:tw-text-white tw-rounded" @click="readMore()">
+                    <fa-icon icon="angle-double-down" style="font-size: 30px" />
                 </button>
             </div>
         </div>

@@ -9,7 +9,7 @@
         </div>
 
         <div class="tw-flex tw-justify-center tw-pb-4">
-            <button class="tw-font-bold tw-py-2 tw-px-3 tw-border-2 tw-border-primary hover:tw-bg-primary tw-text-primary hover:tw-text-white tw-rounded">
+            <button class="btn tw-py-2 tw-px-3 tw-border-2 tw-border-primary hover:tw-bg-primary tw-text-primary hover:tw-text-white tw-rounded">
                 <slot name="button-desc"></slot>
             </button>
         </div>
