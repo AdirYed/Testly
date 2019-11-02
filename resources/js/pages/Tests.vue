@@ -8,7 +8,9 @@
         <aside class="" style="direction: ltr">
             <section class="tw-flex tw-flex-wrap tw-justify-start tw-border tw-py-3 tw-rounded" style="width: 200px; direction: rtl;">
                 <div v-for="i in 30" class="tw-my-3 tw-w-1/3 tw-text-center">
+                    <div class="tw-border tw-border-primary tw-w-8/12 tw-mx-auto">
                         {{ i }}
+                    </div>
                 </div>
             </section>
         </aside>

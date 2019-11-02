@@ -12,30 +12,30 @@ class GenerateRandomQuestionsTest extends TestCase
 {
     use DatabaseMigrations;
 
+    private $response;
+
     public function setUp() : void
     {
         parent::setUp();
 
         factory(Category::class, 4)->create();
         factory(Question::class, 60)->state('with_answers')->create();
+
+        $url = action([TestController::class, 'generate']);
+
+        $this->response = $this->json('get', $url);
     }
 
     /** @test */
     public function every_test_should_have_thirty_questions()
     {
-        $url = action([TestController::class, 'generate']);
-
-        $this->json('get', $url)
-            ->assertJsonCount(30);
+        $this->response->assertJsonCount(30);
     }
 
     /** @test */
     public function it_should_return_questions_with_answers()
     {
-        $url = action([TestController::class, 'generate']);
-
-        $response = $this->json('get', $url);
-
-        $response->assertJsonStructure([['id', 'title', 'answers' => ['*' => ['id', 'content']]]]);
+        $this->response->assertJsonStructure([['id', 'title','image_url', 'answers' => ['*' => ['id', 'content']]]]);
+        $this->response->assertJsonMissing([['original_id', 'created_at', 'updated_at']]);
     }
 }
