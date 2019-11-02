@@ -2,13 +2,16 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import {routes} from './routes';
 
-Vue.use(VueRouter);
-
 // Components
 import Card from './components/Card';
 import Nav from './components/Nav';
 import Bar from './components/Bar';
 import Header from './components/Header';
+
+// Font Awesome
+
+
+Vue.use(VueRouter);
 
 Vue.component('theory-card', Card);
 Vue.component('theory-nav-bar', Nav);
