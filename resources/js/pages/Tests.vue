@@ -69,7 +69,7 @@
 
         data() {
             return {
-                quiz: fetch('/questions/random')
+                quiz: fetch('/api/questions/random')
                     .then(response => response.json())
                     .then(data => {
                         this.quiz = data;
