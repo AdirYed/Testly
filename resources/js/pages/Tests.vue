@@ -1,13 +1,13 @@
 <template>
     <!--submit button will have a computed gradient-->
-    <div class="tw-container tw-mx-auto tw-pt-10">
+    <div class="tw-container tw-mx-auto tw-pt-10 tw-px-10">
         <h1 class="tw-text-3xl tw-text-center">
             מבחן תאוריה - רכב פרטי (B)
         </h1>
 
-        <div class="tw-flex tw-flex-wrap tw-flex-row tw-justify-between tw-pt-5">
+        <div v-if="question" class="tw-flex tw-flex-wrap tw-flex-row tw-justify-between tw-pt-5">
             <div class="tw-flex tw-flex-wrap tw-flex-col tw-justify-between tw-pl-16" style="width: calc(100% - 300px)">
-                <div v-if="questions">
+                <div>
                     <div class="tw-text-2xl">
                         <span class="tw-text-3xl">{{ currQuestion }}.</span>
                         {{ title }}
@@ -16,16 +16,15 @@
                     <ul>
                         <!-- TODO: need to style it -->
                         <li v-for="(response, index) in answers">
-                            <input type="radio" :name="'q_' + originalId" :id="'q_' + currQuestion + '_a_' + ++index" :key="'q_' + currQuestion + '_a_' + index" :value="index" v-model="questions['chosen_answer_id']">
+                            <input type="radio" :name="'q_' + originalId" :id="'q_' + currQuestion + '_a_' + ++index" :key="'q_' + currQuestion + '_a_' + index" :value="index" v-model="question['chosen_answer_id']">
 
                             <label :for="'q_' + currQuestion + '_a_' + index">
                                 {{ response['content'] }}
                             </label>
                         </li>
                     </ul>
-
-                    <div v-if="img">
-                        <img :src="'/storage/' + img" :alt="img">
+                    <div v-if="img" class="">
+                        <img class="tw-mx-auto tw-mt-10" :src="'/storage/' + img" :alt="img">
                     </div>
                 </div>
 
@@ -51,9 +50,11 @@
 
             <aside style="direction: ltr">
                 <!-- TODO: need to style it -->
+                <!-- TODO: do inner border instead outside, try to style it better -->
+
                 <section class="tw-flex tw-flex-wrap tw-justify-start tw-border tw-py-3 tw-rounded" style="width: 300px; direction: rtl; border-color: rgba(0, 0, 0, 0.25);">
                     <div v-for="(i, n) in 30" class="tw-py-1 tw-w-1/3 tw-text-center">
-                        <button class="tw-p-2" @click="currentQuestion(n)">
+                        <button class="tw-p-2 tw-border tw-border-transparent tw-rounded" @click="currentQuestion(n)" :class="{'tw-font-bold tw-border-primary tw-text-primary' : i === currQuestion, 'tw-border-primary tw-bg-primary tw-line-through tw-text-white' : i !== currQuestion && quiz[n]['chosen_answer_id'] !== null}">
                             שאלה {{ i }}
                         </button>
                     </div>
@@ -116,24 +117,24 @@
                 return this.questionIndex + 1;
             },
 
-            questions() {
+            question() {
                 return this.quiz[this.questionIndex];
             },
 
             title() {
-                return this.questions['title'];
+                return this.question['title'];
             },
 
             answers() {
-                return this.questions['answers'];
+                return this.question['answers'];
             },
 
             img() {
-                return this.questions['image_url'];
+                return this.question['image_url'];
             },
 
             originalId() {
-                return this.questions['original_id'];
+                return this.question['original_id'];
             },
         }
     };
