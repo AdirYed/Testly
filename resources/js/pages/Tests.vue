@@ -12,13 +12,13 @@
                         {{quiz[questionIndex]['chosen_answer_id']}}
                         <div class="tw-text-2xl">
                             <span class="tw-text-3xl">{{ currQuestion }}.</span>
-                            <span>{{ title }}</span>
+                            {{ title }}
                         </div>
 
                         <ul>
                             <!-- TODO: need to style it -->
                             <li v-for="(response, index) in answers">
-                                <input type="radio" :name="'q_' + originalId" :id="'q_' + currQuestion + '_a_' + ++index" :value="index" v-model="quiz[questionIndex]['chosen_answer_id']">
+                                <input type="radio" :name="'q_' + originalId" :id="'q_' + currQuestion + '_a_' + ++index" :key="'q_' + currQuestion + '_a_' + index" :value="index" v-model="quiz[questionIndex]['chosen_answer_id']">
 
                                 <label :for="'q_' + currQuestion + '_a_' + index">
                                     {{ response['content'] }}
@@ -74,7 +74,7 @@
                         .then(response => response.json())
                         .then(data => {
                             data.forEach(function (currQuestion) {
-                                currQuestion['chosen_answer_id'] = null;
+                                currQuestion['chosen_answer_id'] = 2;
                             });
 
                             this.quiz = data;
