@@ -15,11 +15,11 @@ $factory->define(Question::class, function (Faker $faker) {
         'category_id' => $faker->numberBetween(1, 4),
     ];
 })->afterCreatingState(Question::class, 'with_answers', function (Question $question, $faker) {
-        factory(Answer::class, 3)->create([
+    factory(Answer::class, 3)->create([
             'question_id' => $question->id,
         ]);
 
-        factory(Answer::class, 1)->create([
+    factory(Answer::class, 1)->create([
             'is_correct' => 1,
             'question_id' => $question->id,
         ]);
