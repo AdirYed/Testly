@@ -8,7 +8,7 @@ use App\Question;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
 
-class GenerateRandomQuestionsTest extends TestCase
+class RandomQuestionsTest extends TestCase
 {
     use DatabaseMigrations;
 
@@ -21,7 +21,7 @@ class GenerateRandomQuestionsTest extends TestCase
         factory(Category::class, 4)->create();
         factory(Question::class, 60)->state('with_answers')->create();
 
-        $url = action([TestController::class, 'generate']);
+        $url = action([TestController::class, 'random']);
 
         $this->response = $this->json('get', $url);
     }
@@ -35,7 +35,6 @@ class GenerateRandomQuestionsTest extends TestCase
     /** @test */
     public function it_should_return_questions_with_answers()
     {
-        $this->response->assertJsonStructure([['id', 'title','image_url', 'answers' => ['*' => ['id', 'content']]]]);
-        $this->response->assertJsonMissing([['original_id', 'created_at', 'updated_at']]);
+        $this->response->assertJsonStructure([['id', 'title', 'image_url', 'answers' => ['*' => ['id', 'question_id', 'content', 'is_correct']]]]);
     }
 }

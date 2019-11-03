@@ -7,10 +7,8 @@ use Illuminate\Http\Request;
 
 class TestController extends Controller
 {
-    public function generate()
+    public function random()
     {
-        $questions = Question::randomQuestionWithAnswers();
-
-        return $questions;
+        return Question::randomQuestionWithAnswers();
     }
 }

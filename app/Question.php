@@ -73,6 +73,6 @@ class Question extends Model
 
     public static function randomQuestionWithAnswers() : Collection
     {
-        return Question::select(['id', 'title', 'image_url'])->with('answers:id,question_id,content')->limit(30)->inRandomOrder()->get();
+        return Question::select(['id', 'title', 'image_url'])->with('answers:id,question_id,content,is_correct')->limit(30)->inRandomOrder()->get();
     }
 }

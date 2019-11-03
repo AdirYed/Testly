@@ -7,33 +7,33 @@ export const routes = {
 
     routes: [
         {
-            path: '*',
-            component: NotFound,
-            name: 'notFound',
-        },
-
-        {
             path: '/',
             component: Home,
-            name: 'home',
+            name: 'home'
         },
 
         {
             path: '/#',
             component: Home,
-            name: '#',
+            name: '#'
         },
 
         {
             path: '/##',
             component: Home,
-            name: '##',
+            name: '##'
         },
 
         {
             path: '/test',
             component: Test,
-            name: 'tests',
+            name: 'tests'
+        },
+
+        {
+            path: '*',
+            component: NotFound,
+            name: 'notFound'
         }
-    ],
+    ]
 };

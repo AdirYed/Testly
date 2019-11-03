@@ -1,4 +1,6 @@
 <?php
 
-Route::get('/{any}', 'SpaController@index')
+use App\Http\Controllers\SpaController;
+
+Route::get('/{any?}', [SpaController::class , 'index'])
     ->where('any', '.*');

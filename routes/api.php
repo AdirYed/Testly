@@ -7,4 +7,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/tests/generate', [TestController::class, 'generate']);
+Route::get('/questions/random', [TestController::class, 'random']);

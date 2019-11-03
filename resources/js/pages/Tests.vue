@@ -1,11 +1,11 @@
 <template>
     <!--submit button will have a computed gradient-->
-    <div id="tests-container" class="tw-container tw-mx-auto tw-pt-10">
+    <div class="tw-container tw-mx-auto tw-pt-10">
         <h1 class="tw-text-3xl tw-text-center">
             מבחן תאוריה - רכב פרטי (B)
         </h1>
 
-        <div id="theory-quiz" class="tw-flex tw-flex-wrap tw-flex-row tw-justify-between tw-pt-5">
+        <div class="tw-flex tw-flex-wrap tw-flex-row tw-justify-between tw-pt-5">
             <div class="tw-flex tw-flex-wrap tw-flex-col tw-justify-between tw-px-16" style="width: calc(100% - 300px)">
                 <div>
                     <div>
@@ -109,7 +109,7 @@
 
         computed: {
             currQuestion() {
-                return this.questionIndex + 1
+                return this.questionIndex + 1;
             },
         }
     };
