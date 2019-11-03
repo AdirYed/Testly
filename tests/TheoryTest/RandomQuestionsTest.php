@@ -35,6 +35,7 @@ class RandomQuestionsTest extends TestCase
     /** @test */
     public function it_should_return_questions_with_answers()
     {
-        $this->response->assertJsonStructure([['id', 'title', 'image_url', 'answers' => ['*' => ['id', 'question_id', 'content', 'is_correct']]]]);
+        $this->response->assertJsonStructure([
+            ['id', 'title', 'image_url', 'original_id', 'answers' => ['*' => ['id', 'question_id', 'content', 'is_correct']]]]);
     }
 }

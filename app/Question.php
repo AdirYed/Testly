@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
@@ -73,6 +74,10 @@ class Question extends Model
 
     public static function randomQuestionWithAnswers() : Collection
     {
-        return Question::select(['id', 'title', 'image_url'])->with('answers:id,question_id,content,is_correct')->limit(30)->inRandomOrder()->get();
+        return Question::select(['id', 'title', 'image_url', 'original_id'])
+            ->with(['answers' => function(Builder $queryBuilder) {
+            $queryBuilder->select(['id', 'question_id', 'content', 'is_correct'])->inRandomOrder();
+        }])
+            ->limit(30)->inRandomOrder()->get();
     }
 }

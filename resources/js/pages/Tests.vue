@@ -11,16 +11,16 @@
                     <div>
                         <div class="tw-text-2xl">
                             <span class="tw-text-3xl">{{ currQuestion }}.</span>
-                            {{ quiz.questions[questionIndex].text }}
+                            {{ quiz[questionIndex].title }}
                         </div>
 
                         <ul>
                             <!-- TODO: need to style it -->
-                            <li v-for="(response, n) in quiz.questions[questionIndex].responses">
-                                <input type="radio" :name="'q_' + currQuestion" :value="n" :id="'q_' + currQuestion + '_a_' + n" v-model="userResponses[currQuestion]">
+                            <li v-for="(response, n) in quiz[questionIndex].answers">
+                                <input type="radio" :name="'q_' + quiz[questionIndex].original_id" :id="'q_' + currQuestion + '_a_' + ++n" :value="n" v-model="userResponses[currQuestion]">
 
                                 <label :for="'q_' + currQuestion + '_a_' + n">
-                                    {{ response.text }}
+                                    {{ response.content }}
                                 </label>
                             </li>
                         </ul>
@@ -69,7 +69,11 @@
 
         data() {
             return {
-                quiz: quiz,
+                quiz: fetch('http://localhost:3000/api/questions/random')
+                    .then(response => response.json())
+                    .then(data => {
+                        this.quiz = data;
+                    }),
 
                 questionIndex: 0,
 
@@ -104,7 +108,7 @@
 
             higherThanThirty() {
                 return this.questionIndex >= 29;
-            }
+            },
         },
 
         computed: {
@@ -114,7 +118,13 @@
         }
     };
 
-    const quiz = {
+    fetch('http://localhost:3000/api/questions/random')
+        .then(response => response.json())
+        .then(data => {
+
+        });
+
+    let quiz = {
         questions: [
             {
                 text: "What is the full form of HTTP?",
