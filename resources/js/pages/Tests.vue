@@ -6,24 +6,26 @@
         </h1>
 
         <div class="tw-flex tw-flex-wrap tw-flex-row tw-justify-between tw-pt-5">
-            <div class="tw-flex tw-flex-wrap tw-flex-col tw-justify-between tw-px-16" style="width: calc(100% - 300px)">
-                <div>
-                    <div v-if="questions">
-                        <div class="tw-text-2xl">
-                            <span class="tw-text-3xl">{{ currQuestion }}.</span>
-                            {{ title }}
-                        </div>
+            <div class="tw-flex tw-flex-wrap tw-flex-col tw-justify-between tw-pl-16" style="width: calc(100% - 300px)">
+                <div v-if="questions">
+                    <div class="tw-text-2xl">
+                        <span class="tw-text-3xl">{{ currQuestion }}.</span>
+                        {{ title }}
+                    </div>
 
-                        <ul>
-                            <!-- TODO: need to style it -->
-                            <li v-for="(response, index) in answers">
-                                <input type="radio" :name="'q_' + originalId" :id="'q_' + currQuestion + '_a_' + ++index" :key="'q_' + currQuestion + '_a_' + index" :value="index" v-model="questions['chosen_answer_id']">
+                    <ul>
+                        <!-- TODO: need to style it -->
+                        <li v-for="(response, index) in answers">
+                            <input type="radio" :name="'q_' + originalId" :id="'q_' + currQuestion + '_a_' + ++index" :key="'q_' + currQuestion + '_a_' + index" :value="index" v-model="questions['chosen_answer_id']">
 
-                                <label :for="'q_' + currQuestion + '_a_' + index">
-                                    {{ response['content'] }}
-                                </label>
-                            </li>
-                        </ul>
+                            <label :for="'q_' + currQuestion + '_a_' + index">
+                                {{ response['content'] }}
+                            </label>
+                        </li>
+                    </ul>
+
+                    <div v-if="img">
+                        <img :src="'/storage/' + img" :alt="img">
                     </div>
                 </div>
 
@@ -124,6 +126,10 @@
 
             answers() {
                 return this.questions['answers'];
+            },
+
+            img() {
+                return this.questions['image_url'];
             },
 
             originalId() {

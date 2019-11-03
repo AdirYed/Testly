@@ -71,7 +71,7 @@ class ParseDatasetCommand extends Command
 
                 if (isset($html->img['src'])) {
                     $url = (string) $html->img['src'];
-                    $name = 'img_' . (string) Str::uuid() . \File::extension($url);
+                    $name = 'img_' . (string) Str::uuid() . '.' . \File::extension($url);
 
                     $urls[] = [
                         'name' => $name,
