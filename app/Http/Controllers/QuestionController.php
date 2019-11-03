@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Question;
 use Illuminate\Http\Request;
 
-class TestController extends Controller
+class QuestionController extends Controller
 {
     public function random()
     {

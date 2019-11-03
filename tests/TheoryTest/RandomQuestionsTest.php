@@ -3,7 +3,7 @@
 namespace Tests\Commands;
 
 use App\Category;
-use App\Http\Controllers\TestController;
+use App\Http\Controllers\QuestionController;
 use App\Question;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
@@ -21,7 +21,7 @@ class RandomQuestionsTest extends TestCase
         factory(Category::class, 4)->create();
         factory(Question::class, 60)->state('with_answers')->create();
 
-        $url = action([TestController::class, 'random']);
+        $url = action([QuestionController::class, 'random']);
 
         $this->response = $this->json('get', $url);
     }
