@@ -8,19 +8,20 @@
         <div class="tw-flex tw-flex-wrap tw-flex-row tw-justify-between tw-pt-5">
             <div class="tw-flex tw-flex-wrap tw-flex-col tw-justify-between tw-px-16" style="width: calc(100% - 300px)">
                 <div>
-                    <div>
+                    <div v-if="questions">
+                        {{quiz[questionIndex]['chosen_answer_id']}}
                         <div class="tw-text-2xl">
                             <span class="tw-text-3xl">{{ currQuestion }}.</span>
-                            {{ quiz[questionIndex].title }}
+                            <span>{{ title }}</span>
                         </div>
 
                         <ul>
                             <!-- TODO: need to style it -->
-                            <li v-for="(response, n) in quiz[questionIndex].answers">
-                                <input type="radio" :name="'q_' + quiz[questionIndex].original_id" :id="'q_' + currQuestion + '_a_' + ++n" :value="n" v-model="userResponses[currQuestion]">
+                            <li v-for="(response, index) in answers">
+                                <input type="radio" :name="'q_' + originalId" :id="'q_' + currQuestion + '_a_' + ++index" :value="index" v-model="quiz[questionIndex]['chosen_answer_id']">
 
-                                <label :for="'q_' + currQuestion + '_a_' + n">
-                                    {{ response.content }}
+                                <label :for="'q_' + currQuestion + '_a_' + index">
+                                    {{ response['content'] }}
                                 </label>
                             </li>
                         </ul>
@@ -70,14 +71,16 @@
         data() {
             return {
                 quiz: fetch('/api/questions/random')
-                    .then(response => response.json())
-                    .then(data => {
-                        this.quiz = data;
-                    }),
+                        .then(response => response.json())
+                        .then(data => {
+                            data.forEach(function (currQuestion) {
+                                currQuestion['chosen_answer_id'] = null;
+                            });
+
+                            this.quiz = data;
+                        }),
 
                 questionIndex: 0,
-
-                userResponses: Array(quiz.length).fill(false),
             }
         },
 
@@ -98,10 +101,6 @@
                 }
             },
 
-            score() {
-                return this.userResponses.filter(function(val) { return val }).length;
-            },
-
             lowerThanZero() {
                 return this.questionIndex <= 0;
             },
@@ -114,6 +113,22 @@
         computed: {
             currQuestion() {
                 return this.questionIndex + 1;
+            },
+
+            questions() {
+                return this.quiz[this.questionIndex];
+            },
+
+            title() {
+                return this.questions['title'];
+            },
+
+            answers() {
+                return this.questions['answers'];
+            },
+
+            originalId() {
+                return this.questions['original_id'];
             },
         }
     };
