@@ -69,7 +69,7 @@
 
         data() {
             return {
-                quiz: fetch('http://localhost:3000/api/questions/random')
+                quiz: fetch('/questions/random')
                     .then(response => response.json())
                     .then(data => {
                         this.quiz = data;
@@ -77,7 +77,7 @@
 
                 questionIndex: 0,
 
-                userResponses: Array(this.quiz.length).fill(false),
+                userResponses: Array(quiz.length).fill(false),
             }
         },
 
@@ -117,4 +117,6 @@
             },
         }
     };
+
+    let quiz = {};
 </script>
