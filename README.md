@@ -18,5 +18,5 @@ php artisan dataset:parse
 ```
 4) Run route link
 ```bash
-php artisan route:link
+php artisan storage:link
 ```
