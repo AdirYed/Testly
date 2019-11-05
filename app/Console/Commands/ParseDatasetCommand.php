@@ -148,7 +148,7 @@ class ParseDatasetCommand extends Command
 
             $name = "images/{$name}";
 
-            Storage::disk('local')->put($name, $contents);
+            Storage::disk('local')->put("public/$name", $contents);
 
             $bar->advance();
         }
@@ -158,8 +158,8 @@ class ParseDatasetCommand extends Command
 
     protected function deleteStorage(): void
     {
-        if (Storage::disk('local')->exists('/images')) {
-            Storage::disk('local')->deleteDirectory('images');
+        if (Storage::disk('local')->exists('/public/images')) {
+            Storage::disk('local')->deleteDirectory('public/images');
         }
     }
 }

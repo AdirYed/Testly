@@ -16,8 +16,8 @@
                     <ul class="tw-flex tw-flex-wrap tw-flex-col tw--my-1 tw-mt-1">
                         <li class="tw-w-full tw-py-1" v-for="(response, index) in answers">
                             <label class="tw-inline-block tw-p-2 tw-border tw-border-transparent tw-rounded tw-cursor-pointer tw-w-full"
-                                   :class="{ 'hover:tw-border-primary hover:tw-text-primary' : question['chosen_answer_id'] !== ++index,
-                                    'tw-bg-primary' : question['chosen_answer_id'] === index }" :for="'q_' + currQuestion + '_a_' + index">
+                                :class="{ 'hover:tw-border-primary hover:tw-text-primary' : question['chosen_answer_id'] !== ++index,
+                                'tw-bg-primary' : question['chosen_answer_id'] === index }" :for="'q_' + currQuestion + '_a_' + index">
                                 <input class="tw-opacity-0 tw-h-0 tw-w-0" type="radio" :name="'q_' + originalId" :id="'q_' + currQuestion + '_a_' + index" :key="'q_' + currQuestion + '_a_' + index" :value="index" v-model="question['chosen_answer_id']" @change="next()">
 
                                 {{ response['content'] }}
