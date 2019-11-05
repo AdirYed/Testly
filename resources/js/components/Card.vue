@@ -1,6 +1,6 @@
 <template>
-    <div class="home-body-child tw-w-80 tw-border tw-rounded tw-word-wrap">
-        <div class="card-img tw-w-full tw-rounded tw-rounded-b-none" :style="url"></div>
+    <div class="home-body-child tw-w-80 tw-border tw-rounded tw-break-words">
+        <div class="card-img tw-w-full tw-rounded tw-rounded-b-none" :style="{ 'background-image': 'url(' + src + ')' }"></div>
         <div class="tw-px-6 tw-py-4">
             <div class="tw-font-bold tw-text-xl tw-mb-2"><slot name="title"></slot></div>
             <p class="tw-text-gray-700 tw-text-base">
@@ -25,12 +25,6 @@
                 type: String,
                 require: true,
             },
-        },
-
-        data() {
-            return {
-                url: 'background-image: url(' + this.src + ')',
-            };
         },
     };
 </script>

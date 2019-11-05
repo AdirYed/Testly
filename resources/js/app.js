@@ -9,25 +9,10 @@ import Bar from './components/Bar';
 import Header from './components/Header';
 
 // Font Awesome
-import { library } from '@fortawesome/fontawesome-svg-core';
+import './font-awesome';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
-import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
-import { faHome } from '@fortawesome/free-solid-svg-icons';
-import { faNewspaper } from '@fortawesome/free-solid-svg-icons';
-import { faSignInAlt } from '@fortawesome/free-solid-svg-icons';
-import { faGlobe } from '@fortawesome/free-solid-svg-icons';
-import { faAngleDoubleDown } from '@fortawesome/free-solid-svg-icons';
 
 Vue.component('fa-icon', FontAwesomeIcon);
-
-library.add(faChevronRight);
-library.add(faChevronLeft);
-library.add(faHome);
-library.add(faNewspaper);
-library.add(faSignInAlt);
-library.add(faGlobe);
-library.add(faAngleDoubleDown);
 
 Vue.component('theory-card', Card);
 Vue.component('theory-nav-bar', Nav);
