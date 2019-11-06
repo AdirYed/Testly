@@ -73,7 +73,7 @@ class Question extends Model
 
     public static function randomQuestionWithAnswers() : Collection
     {
-        return Question::select(['id', 'title', 'image_url', 'original_id'])
+        return Question::select(['id', 'title', 'image_url'])
             ->with(['answers' => function (HasMany $queryBuilder) {
                 $queryBuilder->select(['id', 'question_id', 'content', 'is_correct'])
                     ->inRandomOrder();

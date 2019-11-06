@@ -10,7 +10,7 @@
     </head>
     <body>
        <div id="app">
-           <theory-header></theory-header>
+           <theory-nav-header></theory-nav-header>
 
            <router-view></router-view>
         </div>

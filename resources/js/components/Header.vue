@@ -26,6 +26,6 @@
 
 <script>
     export default {
-        name: 'full-nav',
+        name: 'nav-header',
     }
 </script>

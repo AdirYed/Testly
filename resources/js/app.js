@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import { routes } from './routes';
+import VueCountdown from '@chenfengyuan/vue-countdown';
 
 // Components
 import Card from './components/Card';
@@ -14,10 +15,12 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
 Vue.component('fa-icon', FontAwesomeIcon);
 
-Vue.component('theory-card', Card);
-Vue.component('theory-nav-bar', Nav);
-Vue.component('theory-bar', Bar);
-Vue.component('theory-header', Header);
+Vue.component('theory-' + Card.name, Card);
+Vue.component('theory-' + Nav.name, Nav);
+Vue.component('theory-' + Bar.name, Bar);
+Vue.component('theory-' + Header.name, Header);
+
+Vue.component('theory-' + VueCountdown.name, VueCountdown);
 
 // routes
 Vue.use(VueRouter);
