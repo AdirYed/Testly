@@ -48,7 +48,7 @@
                     <div class="tw-flex tw-flex-wrap tw-flex-col">
                         <div class="tw-mx-auto tw-mb-2 tw-max-w-24 tw-text-center">
                             <div class="tw-border-2 tw-border-primary tw-rounded tw-py-3 tw-px-4 tw-text-xl" v-if="counting">
-                                <theory-countdown :time="time" @end="score">
+                                <theory-countdown :time="time" @progress="handleCountdownProgress" @end="score">
                                     <template slot-scope="props">{{ props.minutes }}:{{ props.seconds }}</template>
                                 </theory-countdown>
                             </div>
@@ -86,6 +86,8 @@
                             <button class="tw-w-1/12 tw-bg-primary tw-rounded tw-text-white tw-border tw-border-primary" @click="next()" :disabled="higherThanThirty()" :class="{'btn-disabled' : higherThanThirty()}">
                                 <fa-icon icon="chevron-left" size="2x" />
                             </button>
+
+                            <div class="tw-h-1 tw-bg-red-500" style="transition: .2s ease-in-out" :style="progressBarStyle"></div>
                         </div>
                     </div>
                 </div>
@@ -146,6 +148,9 @@
 
                 counting: true,
                 time: 40 * 60 * 1000,
+                progressBarStyle: {
+                    width: '100%',
+                },
             }
         },
 
@@ -174,6 +179,8 @@
                 this.rightAnswersAmount = this.rightAnswers();
 
                 this.counting = false;
+
+                this.handleCountdownProgress({totalMilliseconds: 0});
             },
 
             currentQuestion(index) {
@@ -218,6 +225,12 @@
                 }
 
                 return rightAnswers;
+            },
+
+            handleCountdownProgress(data) {
+                this.progressBarStyle = {
+                    width: (data.totalMilliseconds / this.time) * 100 + '%',
+                };
             }
         },
 
