@@ -1,5 +1,6 @@
 <?php
 
-Route::get('/', function () {
-    return view('app');
-});
+use App\Http\Controllers\SpaController;
+
+Route::get('/{any?}', [SpaController::class , 'index'])
+    ->where('any', '.*');

@@ -40,13 +40,10 @@ button:focus {
 }
 
 #home-body {
-    margin: 0 auto;
-    justify-content: center;
-
     .home-body-child {
         border-color: rgba(0, 0, 0, 0.25);
 
-        > #card-img {
+        > .card-img {
             background-size: 100%;
             background-repeat: no-repeat;
             background-position: center;
@@ -57,4 +54,17 @@ button:focus {
     }:hover {
          border-color: var(--primary-color) !important;
      }
+}
+
+/** TODO: style it better */
+.btn-disabled {
+    cursor: not-allowed;
+    color: black;
+}
+
+.questioning-img {
+    width: 50%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
 }

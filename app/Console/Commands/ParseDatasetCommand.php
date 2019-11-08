@@ -71,7 +71,7 @@ class ParseDatasetCommand extends Command
 
                 if (isset($html->img['src'])) {
                     $url = (string) $html->img['src'];
-                    $name = 'img_' . (string) Str::uuid() . \File::extension($url);
+                    $name = 'img_' . (string) Str::uuid() . '.' . \File::extension($url);
 
                     $urls[] = [
                         'name' => $name,
@@ -148,7 +148,7 @@ class ParseDatasetCommand extends Command
 
             $name = "images/{$name}";
 
-            Storage::disk('local')->put($name, $contents);
+            Storage::disk('local')->put("public/$name", $contents);
 
             $bar->advance();
         }
@@ -158,8 +158,8 @@ class ParseDatasetCommand extends Command
 
     protected function deleteStorage(): void
     {
-        if (Storage::disk('local')->exists('/images')) {
-            Storage::disk('local')->deleteDirectory('images');
+        if (Storage::disk('local')->exists('/public/images')) {
+            Storage::disk('local')->deleteDirectory('public/images');
         }
     }
 }

@@ -38,7 +38,6 @@ class DatasetParseCommandTest extends TestCase
     /**
      * @group slow
      */
-
     /** @test */
     public function it_should_store_images_in_a_local_storage()
     {
@@ -49,7 +48,7 @@ class DatasetParseCommandTest extends TestCase
 
         $img = Question::whereNotNull('image_url')->first()->only('image_url');
 
-        Storage::disk('local')->assertExists($img);
+        Storage::disk('local')->assertExists('public/' . $img['image_url']);
     }
 
     /** @test */

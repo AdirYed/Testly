@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" dir="{{ config('app.direction') }}">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -10,17 +10,7 @@
     </head>
     <body>
        <div id="app">
-            <theory-nav-bar>
-                <template slot="left-bar">
-                    <theory-bar href="#">שפה</theory-bar>
-                    <theory-bar href="#">הירשם / התחבר</theory-bar>
-                </template>
-
-                <template slot="right-bar">
-                    <theory-bar href="#">מבחנים</theory-bar>
-                    <theory-bar href="#">עמוד הבית</theory-bar>
-                </template>
-            </theory-nav-bar>
+           <theory-nav-header></theory-nav-header>
 
            <router-view></router-view>
         </div>
