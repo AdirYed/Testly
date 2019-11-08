@@ -2,14 +2,13 @@
 
 namespace App\Console\Commands;
 
-use App;
-use Str;
-use Storage;
 use App\Answer;
 use App\Category;
 use App\Question;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Schema;
+use Storage;
+use Str;
 
 class ParseDatasetCommand extends Command
 {

@@ -12,7 +12,6 @@
     },
     "lint-staged": {
         "*.php": [
-            "php ./vendor/bin/php-cs-fixer fix --allow-risky=yes",
             "git add"
         ],
         "*.pcss": [],

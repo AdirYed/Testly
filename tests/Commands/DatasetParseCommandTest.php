@@ -5,9 +5,9 @@ namespace Tests\Commands;
 use App\Answer;
 use App\Category;
 use App\Question;
-use Tests\TestCase;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Storage;
+use Tests\TestCase;
 
 class DatasetParseCommandTest extends TestCase
 {
