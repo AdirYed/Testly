@@ -5,13 +5,13 @@ namespace Tests\Commands;
 use App\Answer;
 use App\Category;
 use App\Question;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Tests\TestCase;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class DatasetParseCommandTest extends TestCase
 {
-    use RefreshDatabase;
+    use DatabaseTransactions;
 
     private $questionCount = 5;
 

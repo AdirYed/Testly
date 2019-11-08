@@ -5,12 +5,12 @@ namespace Tests\Commands;
 use App\Category;
 use App\Http\Controllers\QuestionController;
 use App\Question;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Tests\TestCase;
 
 class RandomQuestionsTest extends TestCase
 {
-    use DatabaseMigrations;
+    use DatabaseTransactions;
 
     private $response;
 
