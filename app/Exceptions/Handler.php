@@ -45,6 +45,13 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+        if (in_array('api', $request->route()->middleware())) {
+            $request->headers->add([
+                'Accept' => 'application/json',
+                'Content-Type' => 'application/json',
+            ]);
+        }
+
         return parent::render($request, $exception);
     }
 }

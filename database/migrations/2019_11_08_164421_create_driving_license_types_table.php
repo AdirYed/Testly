@@ -15,8 +15,8 @@ class CreateDrivingLicenseTypesTable extends Migration
     {
         Schema::create('driving_license_types', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('code', 5);
-            $table->string('name', 30);
+            $table->string('code', 5)->unique();
+            $table->string('name', 30)->unique();
             $table->timestamps();
         });
     }

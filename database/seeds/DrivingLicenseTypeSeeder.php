@@ -40,7 +40,7 @@ class DrivingLicenseTypeSeeder extends Seeder
 
         $now = now();
 
-        foreach ($drivingLicenseTypes as $drivingLicenseType) {
+        foreach ($drivingLicenseTypes as &$drivingLicenseType) {
             $drivingLicenseType += [
                 'created_at' => $now,
                 'updated_at' => $now,

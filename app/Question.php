@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\Facades\Storage;
 
 /**
  * App\Question
@@ -67,6 +68,17 @@ class Question extends Model
         return $this->answers()->where('is_correct', true)->first();
     }
 
+    public function getFormattedImageUrlAttribute(): ?string
+    {
+        if ($this->image_url === null) {
+            return null;
+        }
+        if (Storage::exists("storage/{$this->image_url}")) {
+            return Storage::url("storage/{$this->image_url}");
+        }
+        return $this->image_url;
+    }
+
     public static function randomQuestionWithAnswers() : Collection
     {
         return Question::select(['id', 'title', 'image_url'])
@@ -74,6 +86,9 @@ class Question extends Model
                 $queryBuilder->select(['id', 'question_id', 'content', 'is_correct'])
                     ->inRandomOrder();
             }])
-            ->limit(30)->inRandomOrder()->get();
+            ->limit(30)
+            ->inRandomOrder()
+            ->get()
+            ->append('formatted_image_url');
     }
 }

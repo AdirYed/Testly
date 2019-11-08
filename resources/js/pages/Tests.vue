@@ -40,7 +40,7 @@
                     </ul>
 
                     <div v-if="img" class="tw-my-2">
-                        <div class="questioning-img tw-mx-auto tw-h-48 tw-my-3" :style="{ 'background-image': 'url(/storage/' + img + ')' }"></div>
+                        <div class="questioning-img tw-mx-auto tw-h-48 tw-my-3" :style="{ 'background-image': 'url(' + img + ')' }"></div>
                     </div>
                 </div>
 
@@ -252,7 +252,7 @@
             },
 
             img() {
-                return this.question['image_url'];
+                return this.question['formatted_image_url'];
             },
 
             questionId() {
