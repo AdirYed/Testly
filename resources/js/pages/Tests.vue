@@ -2,8 +2,11 @@
     <!--submit button will have a computed gradient-->
     <div class="tw-container tw-mx-auto tw-pt-10 tw-px-10">
         <h1 class="tw-flex tw-flex-wrap tw-justify-between tw-text-center tw-items-center">
-            <div class="tw-w-10/12 tw-text-3xl">
-                מבחן תאוריה - רכב פרטי (B)
+            <div class="tw-w-10/12 tw-text-3xl" v-if="drivingLicenseType">
+                מבחן תאוריה
+                -
+                {{ drivingLicenseType.name}}
+                ({{ drivingLicenseType.code}})
             </div>
 
             <div class="tw-w-2/12">
@@ -123,25 +126,28 @@
 
         data() {
             return {
-                quiz: fetch('/api/driving-license-types/a3/questions/random')
+                quiz: fetch(`/api/driving-license-types/${this.$route.params.drivingLicenseType}/questions/random`)
                     .then(response => response.json())
                     .then(data => {
-                        data.forEach(function (currQuestion) {
+                        data.questions.forEach(function (currQuestion) {
                             currQuestion['chosen_answer_id'] = null;
                         });
 
-                        this.quiz = data;
+                        this.quiz = data.questions;
+                        this.drivingLicenseType = data.driving_license_type;
                     }),
 
-                backupQuiz: fetch('/api/driving-license-types/a3/questions/random')
+                backupQuiz: fetch(`/api/driving-license-types/${this.$route.params.drivingLicenseType}/questions/random`)
                     .then(response => response.json())
                     .then(data => {
-                        data.forEach(function (currQuestion) {
+                        data.questions.forEach(function (currQuestion) {
                             currQuestion['chosen_answer_id'] = null;
                         });
 
-                        this.backupQuiz = data;
+                        this.backupQuiz = data.questions;
                     }),
+
+                drivingLicenseType: null,
 
                 questionIndex: 0,
                 rightAnswersAmount: null,

@@ -1,5 +1,5 @@
 import Home from './pages/Home';
-import Test from './pages/Tests';
+import Tests from './pages/Tests';
 import NotFound from './pages/NotFound';
 
 export const routes = {
@@ -25,8 +25,8 @@ export const routes = {
         },
 
         {
-            path: '/test',
-            component: Test,
+            path: '/test/:drivingLicenseType',
+            component: Tests,
             name: 'tests'
         },
 

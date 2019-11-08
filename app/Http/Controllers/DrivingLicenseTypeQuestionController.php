@@ -8,9 +8,12 @@ class DrivingLicenseTypeQuestionController extends Controller
 {
     public function random(DrivingLicenseType $drivingLicenseType)
     {
-        return $drivingLicenseType->questions()
-            ->random()
-            ->get()
-            ->append('formatted_image_url');
+        return [
+            'driving_license_type' => $drivingLicenseType,
+            'questions' => $drivingLicenseType->questions()
+                ->random()
+                ->get()
+                ->append('formatted_image_url'),
+        ];
     }
 }

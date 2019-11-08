@@ -5,7 +5,7 @@
                 <fa-icon icon="home" />
                 עמוד הבית
             </theory-bar>
-            <theory-bar to="tests">
+            <theory-bar to="tests" :toParams="{ drivingLicenseType: 'a3' }">
                 <fa-icon icon="newspaper" />
                 מבחנים
             </theory-bar>
