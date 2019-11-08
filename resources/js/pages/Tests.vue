@@ -24,7 +24,7 @@
                     <ul class="tw-flex tw-flex-wrap tw-flex-col tw--my-1 tw-mt-1">
                         <li class="tw-w-full tw-py-1" v-for="(response, index) in answers">
                             <label class="tw-block tw-p-2 tw-border tw-border-transparent tw-rounded tw-cursor-pointer tw-w-full"
-                                :class="{
+                                   :class="{
                                 'hover:tw-border-primary hover:tw-text-primary' : question['chosen_answer_id'] !== ++index && counting,
                                 'tw-bg-primary' : question['chosen_answer_id'] === index,
                                 // score
@@ -48,7 +48,7 @@
                     <div class="tw-flex tw-flex-wrap tw-flex-col">
                         <div class="tw-mx-auto tw-mb-2 tw-max-w-24 tw-text-center">
                             <div class="tw-border-2 tw-border-primary tw-rounded tw-py-3 tw-px-4 tw-text-xl" v-if="counting">
-                                <theory-countdown :time="time" @progress="handleCountdownProgress" @end="score" ref="countdown">
+                                <theory-countdown :time="time" @end="score" ref="countdown">
                                     <template slot-scope="props">{{ props.minutes }}:{{ props.seconds }}</template>
                                 </theory-countdown>
                             </div>
@@ -72,22 +72,20 @@
                             </div>
                         </div>
 
-                        <div class="tw-flex tw-flex-wrap tw-justify-between tw-h-12">
-                            <div class="tw-w-2/12 md:tw-w-1/12 lg:tw-w-1/12 tw-rounded tw-border tw-border-primary tw-cursor-pointer tw-flex" @click="prev()" :disabled="lowerThanZero()" :class="{'btn-disabled' : lowerThanZero()}">
-                                <fa-icon class="tw-h-full tw-z-10" style="margin-right: calc(50% - 10px)" icon="chevron-right" size="2x" />
-                                <div class="tw-bg-primary" style="transition: .2s ease-in-out; margin-right: calc(-50% + -10px);" :style="rightProgressBarStyle"></div>
+                        <div class="tw-flex tw-flex-wrap tw-justify-between">
+                            <button class="tw-w-1/12 tw-bg-primary tw-rounded tw-text-white tw-border tw-border-primary" @click="prev()" :disabled="lowerThanZero()" :class="{'btn-disabled' : lowerThanZero()}">
+                                <fa-icon icon="chevron-right" size="2x" />
+                            </button>
+
+                            <div class="tw-w-10/12 tw-px-2">
+                                <button class="btn tw-w-full tw-bg-primary tw-rounded tw-text-white tw-border tw-border-primary" @click="score">
+                                    סיים מבחן
+                                </button>
                             </div>
 
-                            <div class="tw-w-7/12 md:tw-w-4/5 lg:tw-w-4/5 tw-font-bold tw-rounded tw-border tw-border-primary tw-cursor-pointer tw-flex tw-items-center" @click="score">
-                                <div class="tw-z-10" style="margin-right: calc(50% - 36.89px)">סיים מבחן</div>
-
-                                <div class="tw-bg-primary tw-h-full" style="transition: .2s ease-in-out; margin-right: calc(-50% + -36.89px);" :style="middleProgressBarStyle"></div>
-                            </div>
-
-                            <div class="tw-w-2/12 md:tw-w-1/12 lg:tw-w-1/12 tw-rounded tw-border tw-border-primary tw-cursor-pointer tw-flex" @click="next()" :disabled="higherThanThirty()" :class="{'btn-disabled' : higherThanThirty()}">
-                                <fa-icon class="tw-h-full tw-z-10" style="margin-right: calc(50% - 10px)" icon="chevron-left" size="2x" />
-                                <div class="tw-bg-primary" style="transition: .2s ease-in-out; margin-right: calc(-50% + -10px);" :style="leftProgressBarStyle"></div>
-                            </div>
+                            <button class="tw-w-1/12 tw-bg-primary tw-rounded tw-text-white tw-border tw-border-primary" @click="next()" :disabled="higherThanThirty()" :class="{'btn-disabled' : higherThanThirty()}">
+                                <fa-icon icon="chevron-left" size="2x" />
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -120,7 +118,6 @@
 <script>
     export default {
         name: 'tests',
-
         data() {
             return {
                 quiz: fetch('/api/questions/random')
@@ -129,50 +126,29 @@
                         data.forEach(function (currQuestion) {
                             currQuestion['chosen_answer_id'] = null;
                         });
-
                         this.quiz = data;
                     }),
-
                 backupQuiz: fetch('/api/questions/random')
                     .then(response => response.json())
                     .then(data => {
                         data.forEach(function (currQuestion) {
                             currQuestion['chosen_answer_id'] = null;
                         });
-
                         this.backupQuiz = data;
                     }),
-
                 questionIndex: 0,
                 rightAnswersAmount: null,
-
                 counting: true,
-
                 time: 40 * 60 * 1000,
-                progressBarStyle: {
-                    left: 100,
-                    middle: 100,
-                    right: 100,
-                },
             }
         },
-
         methods: {
             restart() {
                 this.quiz = this.backupQuiz;
-
                 this.questionIndex = 0;
                 this.rightAnswersAmount = null;
-
                 this.counting = true;
-
                 this.$refs.countdown.totalMilliseconds =  this.time;
-
-                this.progressBarStyle = {
-                    left: 100,
-                    middle: 100,
-                    right: 100,
-                };
 
                 this.backupQuiz = fetch('/api/questions/random')
                     .then(response => response.json())
@@ -180,44 +156,33 @@
                         data.forEach(function (currQuestion) {
                             currQuestion['chosen_answer_id'] = null;
                         });
-
                         this.backupQuiz = data;
                     });
             },
-
             score() {
                 this.questionIndex = 0;
                 this.rightAnswersAmount = this.rightAnswers();
-
                 this.counting = false;
-
-                this.handleCountdownProgress({ totalMilliseconds: 0 });
             },
-
             currentQuestion(index) {
                 this.questionIndex = index;
             },
-
             next() {
                 if (this.questionIndex < 29 && this.questionIndex >= 0) {
                     this.questionIndex++;
                 }
             },
-
             prev() {
                 if (this.questionIndex <= 29 && this.questionIndex > 0) {
                     this.questionIndex--;
                 }
             },
-
             lowerThanZero() {
                 return this.questionIndex <= 0;
             },
-
             higherThanThirty() {
                 return this.questionIndex >= 29;
             },
-
             rightAnswer(question) {
                 for (let i = 0; i < 4; i++) {
                     if (this.quiz[question]['answers'][i]['is_correct']) {
@@ -225,75 +190,34 @@
                     }
                 }
             },
-
             rightAnswers() {
                 let rightAnswers = 0;
-
                 for (let i = 0; i < 30; i++) {
                     if (this.quiz[i]['chosen_answer_id'] !== null && this.rightAnswer(i) === this.quiz[i]['chosen_answer_id']) {
                         rightAnswers++;
                     }
                 }
-
                 return rightAnswers;
             },
-
-            handleCountdownProgress(data) {
-                if (data.totalMilliseconds >= (this.time - 5 * 60 * 1000)) {
-                    this.progressBarStyle.left = (data.totalMilliseconds - (this.time - 5 * 60 * 1000)) / (5 * 60 * 10);
-                    this.progressBarStyle.middle = 100;
-                    this.progressBarStyle.right = 100;
-                }
-
-                if (data.totalMilliseconds < (this.time - 5 * 60 * 1000) && data.totalMilliseconds >= (this.time - 35 * 60 * 1000)) {
-                    this.progressBarStyle.left = 0;
-                    this.progressBarStyle.middle = (data.totalMilliseconds - (this.time - 35 * 60 * 1000)) / (30 * 60 * 10);
-                    this.progressBarStyle.right = 100;
-                }
-
-                if (data.totalMilliseconds < (this.time - 35 * 60 * 1000)) {
-                    this.progressBarStyle.left = 0;
-                    this.progressBarStyle.middle = 0;
-                    this.progressBarStyle.right = (data.totalMilliseconds) / (5 * 60 * 10);
-                }
-            },
         },
-
         computed: {
             currQuestion() {
                 return this.questionIndex + 1;
             },
-
             question() {
                 return this.quiz[this.questionIndex];
             },
-
             title() {
                 return this.question['title'];
             },
-
             answers() {
                 return this.question['answers'];
             },
-
             img() {
                 return this.question['image_url'];
             },
-
             questionId() {
                 return this.question['id'];
-            },
-
-            leftProgressBarStyle() {
-                return 'width: ' + this.progressBarStyle.left + '%';
-            },
-
-            middleProgressBarStyle() {
-                return 'width: ' + this.progressBarStyle.middle + '%';
-            },
-
-            rightProgressBarStyle() {
-                return 'width: ' + this.progressBarStyle.right + '%';
             },
         }
     };
