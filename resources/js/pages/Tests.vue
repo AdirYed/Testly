@@ -78,11 +78,11 @@
                                 <div class="tw-bg-primary" style="transition: .2s ease-in-out; margin-right: calc(-50% + -10px);" :style="rightProgressBarStyle"></div>
                             </div>
 
-                                <div class="tw-w-7/12 md:tw-w-4/5 lg:tw-w-4/5 tw-font-bold tw-rounded tw-border tw-border-primary tw-cursor-pointer tw-flex tw-items-center" @click="score">
-                                    <div class="tw-z-10" style="margin-right: calc(50% - 36.89px)">סיים מבחן</div>
+                            <div class="tw-w-7/12 md:tw-w-4/5 lg:tw-w-4/5 tw-font-bold tw-rounded tw-border tw-border-primary tw-cursor-pointer tw-flex tw-items-center" @click="score">
+                                <div class="tw-z-10" style="margin-right: calc(50% - 36.89px)">סיים מבחן</div>
 
-                                    <div class="tw-bg-primary tw-h-full" style="transition: .2s ease-in-out; margin-right: calc(-50% + -36.89px);" :style="middleProgressBarStyle"></div>
-                                </div>
+                                <div class="tw-bg-primary tw-h-full" style="transition: .2s ease-in-out; margin-right: calc(-50% + -36.89px);" :style="middleProgressBarStyle"></div>
+                            </div>
 
                             <div class="tw-w-2/12 md:tw-w-1/12 lg:tw-w-1/12 tw-rounded tw-border tw-border-primary tw-cursor-pointer tw-flex" @click="next()" :disabled="higherThanThirty()" :class="{'btn-disabled' : higherThanThirty()}">
                                 <fa-icon class="tw-h-full tw-z-10" style="margin-right: calc(50% - 10px)" icon="chevron-left" size="2x" />
