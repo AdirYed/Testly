@@ -1,11 +1,10 @@
 <?php
 
-use App\Http\Controllers\QuestionController;
-use Illuminate\Http\Request;
+use App\Http\Controllers\DrivingLicenseTypeQuestionController;
 use Illuminate\Support\Facades\Route;
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+Route::group(['prefix' => 'driving-license-types'], static function () {
+    Route::group(['prefix' => '{driving_license_type}'], static function () {
+        Route::get('questions/random', [DrivingLicenseTypeQuestionController::class, 'random']);
+    });
 });
-
-Route::get('/questions/random', [QuestionController::class, 'random']);

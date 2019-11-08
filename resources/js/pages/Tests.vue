@@ -123,7 +123,7 @@
 
         data() {
             return {
-                quiz: fetch('/api/questions/random')
+                quiz: fetch('/api/driving-license-types/a3/questions/random')
                     .then(response => response.json())
                     .then(data => {
                         data.forEach(function (currQuestion) {
@@ -133,7 +133,7 @@
                         this.quiz = data;
                     }),
 
-                backupQuiz: fetch('/api/questions/random')
+                backupQuiz: fetch('/api/driving-license-types/a3/questions/random')
                     .then(response => response.json())
                     .then(data => {
                         data.forEach(function (currQuestion) {

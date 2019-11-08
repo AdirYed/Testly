@@ -2,8 +2,10 @@
 
 namespace App;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -23,9 +25,13 @@ use Illuminate\Support\Facades\Storage;
  * @property-read int|null $answers_count
  * @property-read \App\Category $category
  * @property-read \App\Answer $correctAnswer
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\DrivingLicenseType[] $drivingLicenseTypes
+ * @property-read int|null $driving_license_types_count
+ * @property-read mixed $formatted_image_url
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Question newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Question newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Question query()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Question random()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Question whereCategoryId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Question whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Question whereId($value)
@@ -59,6 +65,11 @@ class Question extends Model
         return $this->hasOne(Answer::class)->where('is_correct', true);
     }
 
+    public function drivingLicenseTypes(): BelongsToMany
+    {
+        return $this->belongsToMany(DrivingLicenseType::class);
+    }
+
     public function getCorrectAnswer(): Answer
     {
         if ($this->relationLoaded('answers')) {
@@ -79,16 +90,15 @@ class Question extends Model
         return $this->image_url;
     }
 
-    public static function randomQuestionWithAnswers() : Collection
+    public function scopeRandom(Builder $query): void
     {
-        return Question::select(['id', 'title', 'image_url'])
-            ->with(['answers' => function (HasMany $queryBuilder) {
-                $queryBuilder->select(['id', 'question_id', 'content', 'is_correct'])
-                    ->inRandomOrder();
-            }])
+        $query->select(['id', 'title', 'image_url'])
+            ->with([
+                'answers' => static function (HasMany $answersQuery) {
+                    $answersQuery->select(['id', 'question_id', 'content', 'is_correct'])->inRandomOrder();
+                }
+            ])
             ->limit(30)
-            ->inRandomOrder()
-            ->get()
-            ->append('formatted_image_url');
+            ->inRandomOrder();
     }
 }
