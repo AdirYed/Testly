@@ -14,7 +14,7 @@
         </h1>
 
         <div v-if="question" class="tw-flex tw-flex-wrap tw-flex-row tw-justify-between tw-pt-5 tw-break-words">
-            <div class="tw-flex tw-flex-wrap tw-flex-col tw-justify-between tw-pl-16 tw-w-10/12">
+            <div class="tw-flex tw-flex-wrap tw-flex-col tw-justify-between lg:tw-pl-16 tw-w-full lg:tw-w-10/12">
                 <div>
                     <div class="tw-text-2xl">
                         <span class="tw-text-3xl">{{ currQuestion }}.</span>
@@ -40,7 +40,7 @@
                     </ul>
 
                     <div v-if="img" class="tw-my-2">
-                        <div class="questioning-img tw-mx-auto tw-h-48 tw-my-3" :style="{ 'background-image': 'url(/storage/' + img + ')' }"></div>
+                        <div class="questioning-img tw-mx-auto tw-h-64 tw-my-3" :style="{ 'background-image': 'url(/storage/' + img + ')' }"></div>
                     </div>
                 </div>
 
@@ -48,12 +48,12 @@
                     <div class="tw-flex tw-flex-wrap tw-flex-col">
                         <div class="tw-mx-auto tw-mb-2 tw-max-w-24 tw-text-center">
                             <div class="tw-border-2 tw-border-primary tw-rounded tw-py-3 tw-px-4 tw-text-xl" v-if="counting">
-                                <theory-countdown :time="time" @progress="handleCountdownProgress" @end="score">
+                                <theory-countdown :time="time" @progress="handleCountdownProgress" @end="score" ref="countdown">
                                     <template slot-scope="props">{{ props.minutes }}:{{ props.seconds }}</template>
                                 </theory-countdown>
                             </div>
 
-                            <div v-if="!counting" class="tw-text-xl">
+                            <div class="tw-text-xl" v-else>
                                 <div class="tw-border tw-border-transparent tw-p-4 tw-rounded" :class="{ 'tw-border-green-700' : rightAnswersAmount >= 28, 'tw-border-red-500' : rightAnswersAmount < 28 }">
                                     <div>
                                         <template v-if="rightAnswersAmount >= 28">
@@ -72,22 +72,22 @@
                             </div>
                         </div>
 
-                        <div class="tw-flex tw-flex-wrap tw-justify-between">
-                            <button class="tw-w-1/12 tw-bg-primary tw-rounded tw-text-white tw-border tw-border-primary" @click="prev()" :disabled="lowerThanZero()" :class="{'btn-disabled' : lowerThanZero()}">
-                                <fa-icon icon="chevron-right" size="2x" />
-                            </button>
-
-                            <div class="tw-w-10/12 tw-px-2">
-                                <button class="btn tw-w-full tw-bg-primary tw-rounded tw-text-white tw-border tw-border-primary" @click="score">
-                                    סיים מבחן
-                                </button>
+                        <div class="tw-flex tw-flex-wrap tw-justify-between tw-h-12">
+                            <div class="tw-w-2/12 md:tw-w-1/12 lg:tw-w-1/12 tw-rounded tw-border tw-border-primary tw-cursor-pointer tw-flex" @click="prev()" :disabled="lowerThanZero()" :class="{'btn-disabled' : lowerThanZero()}">
+                                <fa-icon class="tw-h-full tw-z-10" style="margin-right: calc(50% - 10px)" icon="chevron-right" size="2x" />
+                                <div class="tw-bg-primary" style="transition: .2s ease-in-out; margin-right: calc(-50% + -10px);" :style="rightProgressBarStyle"></div>
                             </div>
 
-                            <button class="tw-w-1/12 tw-bg-primary tw-rounded tw-text-white tw-border tw-border-primary" @click="next()" :disabled="higherThanThirty()" :class="{'btn-disabled' : higherThanThirty()}">
-                                <fa-icon icon="chevron-left" size="2x" />
-                            </button>
+                                <div class="tw-w-7/12 md:tw-w-4/5 lg:tw-w-4/5 tw-font-bold tw-rounded tw-border tw-border-primary tw-cursor-pointer tw-flex tw-items-center" @click="score">
+                                    <div class="tw-z-10" style="margin-right: calc(50% - 36.89px)">סיים מבחן</div>
 
-                            <div class="tw-h-1 tw-bg-red-500" style="transition: .2s ease-in-out" :style="progressBarStyle"></div>
+                                    <div class="tw-bg-primary tw-h-full" style="transition: .2s ease-in-out; margin-right: calc(-50% + -36.89px);" :style="middleProgressBarStyle"></div>
+                                </div>
+
+                            <div class="tw-w-2/12 md:tw-w-1/12 lg:tw-w-1/12 tw-rounded tw-border tw-border-primary tw-cursor-pointer tw-flex" @click="next()" :disabled="higherThanThirty()" :class="{'btn-disabled' : higherThanThirty()}">
+                                <fa-icon class="tw-h-full tw-z-10" style="margin-right: calc(50% - 10px)" icon="chevron-left" size="2x" />
+                                <div class="tw-bg-primary" style="transition: .2s ease-in-out; margin-right: calc(-50% + -10px);" :style="leftProgressBarStyle"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -147,9 +147,12 @@
                 rightAnswersAmount: null,
 
                 counting: true,
+
                 time: 40 * 60 * 1000,
                 progressBarStyle: {
-                    width: '100%',
+                    left: 100,
+                    middle: 100,
+                    right: 100,
                 },
             }
         },
@@ -162,6 +165,14 @@
                 this.rightAnswersAmount = null;
 
                 this.counting = true;
+
+                this.$refs.countdown.totalMilliseconds =  this.time;
+
+                this.progressBarStyle = {
+                    left: 100,
+                    middle: 100,
+                    right: 100,
+                };
 
                 this.backupQuiz = fetch('/api/questions/random')
                     .then(response => response.json())
@@ -180,7 +191,7 @@
 
                 this.counting = false;
 
-                this.handleCountdownProgress({totalMilliseconds: 0});
+                this.handleCountdownProgress({ totalMilliseconds: 0 });
             },
 
             currentQuestion(index) {
@@ -228,10 +239,24 @@
             },
 
             handleCountdownProgress(data) {
-                this.progressBarStyle = {
-                    width: (data.totalMilliseconds / this.time) * 100 + '%',
-                };
-            }
+                if (data.totalMilliseconds >= (this.time - 5 * 60 * 1000)) {
+                    this.progressBarStyle.left = (data.totalMilliseconds - (this.time - 5 * 60 * 1000)) / (5 * 60 * 10);
+                    this.progressBarStyle.middle = 100;
+                    this.progressBarStyle.right = 100;
+                }
+
+                if (data.totalMilliseconds < (this.time - 5 * 60 * 1000) && data.totalMilliseconds >= (this.time - 35 * 60 * 1000)) {
+                    this.progressBarStyle.left = 0;
+                    this.progressBarStyle.middle = (data.totalMilliseconds - (this.time - 35 * 60 * 1000)) / (30 * 60 * 10);
+                    this.progressBarStyle.right = 100;
+                }
+
+                if (data.totalMilliseconds < (this.time - 35 * 60 * 1000)) {
+                    this.progressBarStyle.left = 0;
+                    this.progressBarStyle.middle = 0;
+                    this.progressBarStyle.right = (data.totalMilliseconds) / (5 * 60 * 10);
+                }
+            },
         },
 
         computed: {
@@ -257,6 +282,18 @@
 
             questionId() {
                 return this.question['id'];
+            },
+
+            leftProgressBarStyle() {
+                return 'width: ' + this.progressBarStyle.left + '%';
+            },
+
+            middleProgressBarStyle() {
+                return 'width: ' + this.progressBarStyle.middle + '%';
+            },
+
+            rightProgressBarStyle() {
+                return 'width: ' + this.progressBarStyle.right + '%';
             },
         }
     };
