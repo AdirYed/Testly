@@ -64,7 +64,8 @@ class ParseDatasetCommand extends Command
             $this->deleteStorage();
             $this->storeImages();
 
-            $this->info("\n" . 'All of the images were stored successfully!');
+            $this->info(PHP_EOL);
+            $this->info('All of the images were stored successfully!');
         }
     }
 
