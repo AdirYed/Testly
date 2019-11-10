@@ -2,6 +2,10 @@
     <div>
         <div class="tw-bg-primary tw-fixed" style="transition: .2s ease-in-out; height: 0.15rem" :style="progressBarStyle"></div>
 
+        <!-- TODO: when loading, put this spinner -->
+        <theory-dot-loader></theory-dot-loader>
+
+
         <div class="tw-container tw-mx-auto tw-pt-10 tw-px-10">
             <h1 class="tw-flex tw-flex-wrap tw-justify-between tw-text-center tw-items-center">
                 <div class="tw-w-10/12 tw-text-3xl" v-if="drivingLicenseType">
@@ -45,7 +49,7 @@
                         </ul>
 
                         <div v-if="img" class="tw-my-2">
-                            <div class="questioning-img tw-mx-auto tw-h-48 tw-my-3" :style="{ 'background-image': 'url(' + img + ')' }"></div>
+                            <div class="questioning-img tw-mx-auto tw-h-48 tw-my-3" :style="{ 'background-image': 'url(/storage/' + img + ')' }"></div>
                         </div>
                     </div>
 
