@@ -14,11 +14,11 @@ class DrivingLicenseTypeSeeder extends Seeder
             ],
             [
                 'code' => 'A',
-                'name' => 'רכב אופנוע',
+                'name' => 'אופנוע',
             ],
             [
                 'code' => '1',
-                'name' => 'רכב טרקטור',
+                'name' => 'טרקטור',
             ],
             [
                 'code' => 'C1',
