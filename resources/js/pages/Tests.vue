@@ -52,8 +52,8 @@
                     <div>
                         <div class="tw-flex tw-flex-wrap tw-flex-col">
                             <div class="tw-mx-auto tw-mb-2 tw-max-w-24 tw-text-center">
-                                <div class="tw-border-2 tw-border-primary tw-rounded tw-py-3 tw-px-4 tw-text-xl" v-if="counting">
-                                    <theory-countdown :time="time" @progress="handleCountdownProgress" @end="score" ref="countdown">
+                                <div :class="{ 'tw-border-2 tw-border-primary tw-rounded tw-py-3 tw-px-4 tw-text-xl' : counting }">
+                                    <theory-countdown :time="time" @progress="handleCountdownProgress" @end="score" ref="countdown" v-show="counting">
                                         <template slot-scope="props">{{ props.minutes }}:{{ props.seconds }}</template>
                                     </theory-countdown>
                                 </div>
@@ -152,9 +152,10 @@
                 this.questionIndex = 0;
                 this.rightAnswersAmount = null;
 
-                this.$refs.countdown.totalMilliseconds = this.time;
-
                 this.counting = true;
+
+                this.$refs.countdown.totalMilliseconds = this.time;
+                this.$refs.countdown.start();
 
                 this.backupQuiz = fetch(`/api/driving-license-types/${this.$route.params.drivingLicenseType}/questions/random`)
                     .then(response => response.json())
@@ -165,15 +166,18 @@
 
                         this.backupQuiz = data['questions'];
                     });
+
+                this.handleCountdownProgress({totalMilliseconds: this.time});
             },
 
             score() {
                 this.questionIndex = 0;
                 this.rightAnswersAmount = this.rightAnswers();
 
-                this.counting = false;
-
+                this.$refs.countdown.totalMilliseconds = 0;
                 this.handleCountdownProgress({totalMilliseconds: 0});
+
+                this.counting = false;
             },
 
             currentQuestion(index) {
@@ -221,9 +225,12 @@
             },
 
             handleCountdownProgress(data) {
-                this.progressBarStyle = {
-                    width: (data.totalMilliseconds / this.time) * 100 + '%',
-                };
+                if (this.counting) {
+                    this.progressBarStyle = {
+                        width: (data.totalMilliseconds / this.time) * 100 + '%',
+                    };
+
+                }
             }
         },
 
