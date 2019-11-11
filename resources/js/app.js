@@ -8,7 +8,7 @@ import Card from './components/Card';
 import Nav from './components/Nav';
 import Bar from './components/Bar';
 import Header from './components/Header';
-import Moonloader from 'vue-spinner/src/Moonloader';
+import PulseLoader from 'vue-spinner/src/PulseLoader';
 
 // Font Awesome
 import './font-awesome';
@@ -20,7 +20,7 @@ Vue.component('theory-' + Card.name, Card);
 Vue.component('theory-' + Nav.name, Nav);
 Vue.component('theory-' + Bar.name, Bar);
 Vue.component('theory-' + Header.name, Header);
-Vue.component('theory-' + 'dot-loader', Moonloader);
+Vue.component('theory-' + 'pulse-loader', PulseLoader);
 
 Vue.component('theory-' + VueCountdown.name, VueCountdown);
 
