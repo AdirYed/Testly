@@ -247,7 +247,7 @@
                             this.drivingLicenseType = data['driving_license_type'];
                         }
                     })
-                    .catch(error => {
+                    .catch(() => {
                         this.tooManyAttempts = true;
                     });
             },
