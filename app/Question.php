@@ -85,8 +85,8 @@ class Question extends Model
             return null;
         }
 
-        if (Storage::exists("storage/{$this->image_url}")) {
-            return Storage::url("storage/{$this->image_url}");
+        if (Storage::exists("public/{$this->image_url}")) {
+            return Storage::url("public/{$this->image_url}");
         }
 
         return $this->image_url;

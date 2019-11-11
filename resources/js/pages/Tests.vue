@@ -2,9 +2,9 @@
     <div>
         <div class="tw-bg-primary tw-fixed" style="transition: .2s ease-in-out; height: 0.15rem" :style="progressBarStyle"></div>
 
-        <div class="tw-container tw-mx-auto tw-pt-10 tw-px-10">
+        <div class="tw-container tw-mx-auto tw-pt-8 md:tw-pt-10 tw-px-10">
             <h1 class="tw-flex tw-flex-wrap tw-justify-between tw-text-center tw-items-center">
-                <div class="tw-w-10/12 tw-text-3xl">
+                <div class="tw-w-full md:tw-w-10/12 tw-text-2xl md:tw-text-3xl tw-font-medium">
                     <template v-if="drivingLicenseType">
                         מבחן תאוריה
                         -
@@ -13,7 +13,7 @@
                     </template>
                 </div>
 
-                <div class="tw-w-2/12">
+                <div class="tw-hidden md:tw-block tw-w-2/12">
                     <button class="tw-text-sm tw-border tw-rounded tw-p-2" style="border-color: rgba(0, 0, 0, 0.25);" @click="restart" v-if="! tooManyAttempts">
                         התחל מחדש
                     </button>
@@ -25,11 +25,11 @@
             </h1>
 
             <template v-if="! isLoading">
-                <div v-if="question" class="tw-flex tw-flex-wrap tw-flex-row tw-justify-between tw-pt-5 tw-break-words">
-                    <div class="tw-flex tw-flex-wrap tw-flex-col tw-justify-between tw-pl-16 tw-w-10/12">
+                <div v-if="question" class="tw-flex tw-flex-wrap tw-flex-row tw-justify-between tw-pt-5 tw-break-words" style="height: calc(85vh - var(--header-height))">
+                    <div class="tw-flex tw-flex-wrap tw-flex-col tw-justify-between lg:tw-pl-16 lg:tw-w-9/12 xl:tw-w-10/12 tw-w-full">
                         <div>
-                            <div class="tw-text-2xl">
-                                <span class="tw-text-3xl">{{ currQuestion }}.</span>
+                            <div class="tw-text-xl md:tw-text-2xl">
+                                <span class="tw-text-2xl md:tw-text-3xl">{{ currQuestion }}.</span>
                                 {{ title }}
                             </div>
 
@@ -52,13 +52,13 @@
                             </ul>
 
                             <div v-if="img" class="tw-my-2">
-                                <div class="questioning-img tw-mx-auto tw-h-48 tw-my-3" :style="{ 'background-image': 'url(/storage/' + img + ')' }"></div>
+                                <div class="questioning-img tw-mx-auto tw-h-48 tw-my-3" :style="{ 'background-image': 'url(' + img + ')' }"></div>
                             </div>
                         </div>
 
                         <div>
                             <div class="tw-flex tw-flex-wrap tw-flex-col">
-                                <div class="tw-mx-auto tw-mb-2 tw-max-w-24 tw-text-center">
+                                <div class="tw-mx-auto tw-my-2 tw-max-w-24 tw-text-center">
                                     <div :class="{ 'tw-border-2 tw-border-primary tw-rounded tw-py-3 tw-px-4 tw-text-xl' : counting }">
                                         <theory-countdown :time="time" @progress="handleCountdownProgress" @end="score" ref="countdown" v-show="counting">
                                             <template slot-scope="props">{{ props.minutes }}:{{ props.seconds }}</template>
@@ -90,8 +90,12 @@
                                     </button>
 
                                     <div class="tw-w-10/12 tw-px-2">
-                                        <button class="btn tw-w-full tw-bg-primary tw-rounded tw-text-white tw-border tw-border-primary" @click="score">
+                                        <button class="btn tw-w-full tw-bg-primary tw-rounded tw-text-white tw-border tw-border-primary" @click="score" v-if="counting">
                                             סיים מבחן
+                                        </button>
+
+                                        <button class="btn tw-w-full tw-bg-primary tw-rounded tw-text-white tw-border tw-border-primary" @click="restart" v-else>
+                                            התחל מחדש
                                         </button>
                                     </div>
 
@@ -103,7 +107,7 @@
                         </div>
                     </div>
 
-                    <aside class="tw-w-2/12" style="direction: ltr">
+                    <aside class="tw-hidden lg:tw-block lg:tw-w-3/12 xl:tw-w-2/12" style="direction: ltr">
                         <section class="tw-border tw-py-3 tw-rounded" style="direction: rtl; border-color: rgba(0, 0, 0, 0.25);">
                             <div class="tw-flex tw-flex-wrap tw-justify-between tw-mx-auto" style="width: 90%">
                                 <button v-for="(i, n) in 30" class="tw-py-2 tw-my-1 tw-text-center tw-border tw-border-transparent tw-rounded tw-text-sm hover:tw-border-primary" style="width: 45%" @click="currentQuestion(n)"
@@ -280,7 +284,7 @@
 
             isLoading() {
                 return ! Array.isArray(this.quiz) || Array.isArray(this.quiz) && this.quiz.length <= 0;
-            }
+            },
         },
 
         created() {
