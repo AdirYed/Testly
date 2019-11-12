@@ -164,6 +164,10 @@
             restart() {
                 this.fetchQuestions();
 
+                this.quiz.forEach((quiz) => { // clears the previous quiz's answered questions.
+                    quiz.chosen_answer_id = null;
+                });
+
                 this.questionIndex = 0;
                 this.rightAnswersAmount = null;
 
@@ -292,10 +296,3 @@
         },
     };
 </script>
-
-<style>
-    @media (max-width: 1023px) {
-        #test-body {
-        }
-    }
-</style>
