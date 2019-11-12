@@ -18,6 +18,7 @@ trait CreatesApplication
 
         $app->make(Kernel::class)->bootstrap();
 
+        Artisan::call('migrate:fresh --seed');
         Artisan::call('config:clear');
         Artisan::call('cache:clear');
 

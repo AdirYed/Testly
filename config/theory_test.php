@@ -1,7 +1,8 @@
 <?php
 
 return [
-    'dataset' => [
-        'path' => env('DATASET_PATH'),
+    'datasets' => [
+        'general' => env('GENERAL_DATASET_PATH'),
+        'a3' => env('A3_DATASET_PATH'),
     ],
 ];

@@ -3,38 +3,107 @@
 namespace Tests\Commands;
 
 use App\Category;
+use App\DrivingLicenseType;
+use App\Http\Controllers\DrivingLicenseTypeQuestionController;
 use App\Http\Controllers\QuestionController;
 use App\Question;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
+use Illuminate\Support\Collection;
 use Tests\TestCase;
 
 class RandomQuestionsTest extends TestCase
 {
-    use DatabaseMigrations;
+    use DatabaseTransactions;
 
-    private $response;
+    /** @var DrivingLicenseType */
+    private $driverLicenseType1;
+
+    /** @var DrivingLicenseType */
+    private $driverLicenseType2;
+
+    /** @var Question[]|Collection */
+    private $driverLicenseType1Questions;
+
+    /** @var Question[]|Collection */
+    private $driverLicenseType2Questions;
 
     public function setUp() : void
     {
         parent::setUp();
 
+        $this->driverLicenseType1 = factory(DrivingLicenseType::class)->create();
+        $this->driverLicenseType2 = factory(DrivingLicenseType::class)->create();
         factory(Category::class, 4)->create();
-        factory(Question::class, 60)->state('with_answers')->create();
-
-        $url = action([QuestionController::class, 'random']);
-
-        $this->response = $this->json('get', $url);
+        $this->driverLicenseType1Questions = factory(Question::class, 60)->states('with_answers')->create();
+        $this->driverLicenseType2Questions = factory(Question::class, 60)->states('with_answers')->create();
+        $this->driverLicenseType1->questions()->attach($this->driverLicenseType1Questions);
+        $this->driverLicenseType2->questions()->attach($this->driverLicenseType2Questions);
     }
 
     /** @test */
     public function every_test_should_have_thirty_questions()
     {
-        $this->response->assertJsonCount(30);
+        $url = action([
+            DrivingLicenseTypeQuestionController::class,
+            'random',
+        ], [
+            'driving_license_type' => $this->driverLicenseType1,
+        ]);
+
+        $response = $this->json('get', $url);
+
+        $response->assertJsonCount(30, 'questions');
     }
 
     /** @test */
-    public function it_should_return_questions_with_answers()
+    public function it_should_return_driver_license_type_and_questions_with_answers()
     {
-        $this->response->assertJsonStructure([['id', 'title', 'image_url', 'answers' => ['*' => ['id', 'question_id', 'content', 'is_correct']]]]);
+        $url = action([
+            DrivingLicenseTypeQuestionController::class,
+            'random',
+        ], [
+            'driving_license_type' => $this->driverLicenseType1,
+        ]);
+
+        $response = $this->json('get', $url);
+
+        $response->assertJsonStructure([
+            'driving_license_type' => [
+                'code',
+                'name',
+            ],
+            'questions' => [
+                '*' => [
+                    'id',
+                    'title',
+                    'image_url',
+                    'answers' => [
+                        '*' => [
+                            'id',
+                            'question_id',
+                            'content',
+                            'is_correct'
+                        ]
+                    ]
+                ]
+            ]
+        ]);
+    }
+
+    /** @test */
+    public function it_filters_other_driving_license_type_questions()
+    {
+        $url = action([
+            DrivingLicenseTypeQuestionController::class,
+            'random',
+        ], [
+            'driving_license_type' => $this->driverLicenseType2,
+        ]);
+
+        $response = $this->json('get', $url);
+
+        foreach ($response->json()['questions'] as $question) {
+            $this->assertEquals(1, $this->driverLicenseType2Questions->where('id', $question['id'])->isNotEmpty());
+        }
     }
 }

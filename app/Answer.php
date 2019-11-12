@@ -6,16 +6,15 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
- * App\Answer.
+ * App\Answer
  *
- * @property int                             $id
- * @property string                          $content
- * @property bool                            $is_correct
- * @property int                             $question_id
+ * @property int $id
+ * @property string $content
+ * @property bool $is_correct
+ * @property int $question_id
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property \App\Question                   $question
- *
+ * @property-read \App\Question $question
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Answer newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Answer newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Answer query()

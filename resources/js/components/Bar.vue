@@ -1,5 +1,5 @@
 <template>
-        <router-link class="lg:tw-p-4 tw-py-3 tw-px-0 tw-block tw-border-b-2 tw-border-transparent hover:tw-border-primary lg:tw-mb-0 tw-mb-2" :class="{'tw-font-bold tw-border-primary' : isCurrentRoute}" :to="{ name: to }" exact>
+        <router-link class="route lg:tw-p-4 tw-py-3 tw-px-0 tw-block tw-border-t-4 tw-border-transparent hover:tw-border-primary lg:tw-mb-0 tw-mb-2" :class="{'tw-font-bold tw-border-primary' : isCurrentRoute}" :to="{ name: to, params: toParams }" exact>
             <slot></slot>
         </router-link>
 </template>
@@ -13,6 +13,12 @@
                 type: String,
                 required: true,
             },
+            toParams: {
+                type: Object,
+                default: () => {
+                    return {}
+                },
+            }
         },
 
         computed: {
@@ -22,3 +28,9 @@
         }
     }
 </script>
+
+<style>
+    .route {
+        transition: .2s ease;
+    }
+</style>
