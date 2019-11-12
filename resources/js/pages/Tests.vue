@@ -4,7 +4,7 @@
 
         <div class="tw-container tw-mx-auto tw-pt-8 md:tw-pt-10 tw-px-10">
             <h1 class="tw-flex tw-flex-wrap tw-justify-between tw-text-center tw-items-center">
-                <div class="tw-w-full md:tw-w-10/12 tw-text-2xl md:tw-text-3xl tw-font-medium">
+                <div class="tw-w-full md:tw-w-10/12 tw-text-2xl md:tw-text-3xl tw-font-semibold">
                     <template v-if="drivingLicenseType">
                         מבחן תאוריה
                         -
@@ -25,11 +25,11 @@
             </h1>
 
             <template v-if="! isLoading">
-                <div v-if="question" class="tw-flex tw-flex-wrap tw-flex-row tw-justify-between tw-pt-5 tw-break-words" style="height: calc(85vh - var(--header-height))">
+                <div v-if="question" id="test-body" class="tw-flex tw-flex-wrap tw-flex-row tw-justify-between tw-pt-5 tw-break-words tw-h-full">
                     <div class="tw-flex tw-flex-wrap tw-flex-col tw-justify-between lg:tw-pl-16 lg:tw-w-9/12 xl:tw-w-10/12 tw-w-full">
                         <div>
-                            <div class="tw-text-xl md:tw-text-2xl">
-                                <span class="tw-text-2xl md:tw-text-3xl">{{ currQuestion }}.</span>
+                            <div class="tw-font-medium tw-text-lg md:tw-text-2xl">
+                                <span class="tw-text-xl md:tw-text-3xl">{{ currQuestion }}.</span>
                                 {{ title }}
                             </div>
 
@@ -52,20 +52,20 @@
                             </ul>
 
                             <div v-if="img" class="tw-my-2">
-                                <div class="questioning-img tw-mx-auto tw-h-48 tw-my-3" :style="{ 'background-image': 'url(' + img + ')' }"></div>
+                                <div class="questioning-img tw-mx-auto tw-h-32 lg:tw-h-48 tw-my-3" :style="{ 'background-image': 'url(' + img + ')' }"></div>
                             </div>
                         </div>
 
                         <div>
                             <div class="tw-flex tw-flex-wrap tw-flex-col">
                                 <div class="tw-mx-auto tw-my-2 tw-max-w-24 tw-text-center">
-                                    <div :class="{ 'tw-border-2 tw-border-primary tw-rounded tw-py-3 tw-px-4 tw-text-xl' : counting }">
+                                    <div :class="{ 'tw-border-2 tw-border-primary tw-rounded tw-py-3 tw-px-4 tw-text-md md:tw-text-xl' : counting }">
                                         <theory-countdown :time="time" @progress="handleCountdownProgress" @end="score" ref="countdown" v-show="counting">
                                             <template slot-scope="props">{{ props.minutes }}:{{ props.seconds }}</template>
                                         </theory-countdown>
                                     </div>
 
-                                    <div v-if="!counting" class="tw-text-xl">
+                                    <div v-if="!counting" class="tw-text-md md:tw-text-xl">
                                         <div class="tw-border tw-border-transparent tw-p-4 tw-rounded" :class="{ 'tw-border-green-700' : rightAnswersAmount >= 28, 'tw-border-red-500' : rightAnswersAmount < 28 }">
                                             <div>
                                                 <template v-if="rightAnswersAmount >= 28">
@@ -84,23 +84,23 @@
                                     </div>
                                 </div>
 
-                                <div class="tw-flex tw-flex-wrap tw-justify-between">
-                                    <button class="tw-w-1/12 tw-bg-primary tw-rounded tw-text-white tw-border tw-border-primary" @click="prev()" :disabled="lowerThanZero()" :class="{'btn-disabled' : lowerThanZero()}">
-                                        <fa-icon icon="chevron-right" size="2x" />
+                                <div class="tw-flex tw-flex-wrap tw-justify-between md:tw-h-full">
+                                    <button class="tw-w-2/12 lg:tw-w-1/12 tw-h-10 md:tw-h-12 tw-bg-primary tw-rounded tw-text-white tw-border tw-border-primary" @click="prev()" :disabled="lowerThanZero()" :class="{'btn-disabled' : lowerThanZero()}">
+                                        <fa-icon class="tw-text-2xl md:tw-text-3xl" icon="chevron-right" />
                                     </button>
 
-                                    <div class="tw-w-10/12 tw-px-2">
-                                        <button class="btn tw-w-full tw-bg-primary tw-rounded tw-text-white tw-border tw-border-primary" @click="score" v-if="counting">
+                                    <div class="tw-w-8/12 lg:tw-w-10/12 tw-px-2">
+                                        <button class="tw-font-bold tw-w-full tw-h-10 md:tw-h-12 tw-bg-primary tw-rounded tw-text-white tw-border tw-border-primary" @click="score" v-if="counting">
                                             סיים מבחן
                                         </button>
 
-                                        <button class="btn tw-w-full tw-bg-primary tw-rounded tw-text-white tw-border tw-border-primary" @click="restart" v-else>
+                                        <button class="tw-font-bold tw-w-full tw-h-10 md:tw-h-12 tw-bg-primary tw-rounded tw-text-white tw-border tw-border-primary" @click="restart" v-else>
                                             התחל מחדש
                                         </button>
                                     </div>
 
-                                    <button class="tw-w-1/12 tw-bg-primary tw-rounded tw-text-white tw-border tw-border-primary" @click="next()" :disabled="higherThanThirty()" :class="{'btn-disabled' : higherThanThirty()}">
-                                        <fa-icon icon="chevron-left" size="2x" />
+                                    <button class="tw-w-2/12 lg:tw-w-1/12 tw-h-10 md:tw-h-12 tw-bg-primary tw-rounded tw-text-white tw-border tw-border-primary"@click="next()" :disabled="higherThanThirty()" :class="{'btn-disabled' : higherThanThirty()}">
+                                        <fa-icon class="tw-text-2xl md:tw-text-3xl" icon="chevron-left" />
                                     </button>
                                 </div>
                             </div>
@@ -292,3 +292,10 @@
         },
     };
 </script>
+
+<style>
+    @media (max-width: 1023px) {
+        #test-body {
+        }
+    }
+</style>
