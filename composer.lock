@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "77c9a0318b5ecff2376bfa27041a1465",
+    "content-hash": "104c2926567ed05d6f2d0e995d1e14ff",
     "packages": [
         {
             "name": "composer/semver",
@@ -1174,16 +1174,16 @@
         },
         {
             "name": "nikic/php-parser",
-            "version": "v4.2.5",
+            "version": "v4.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nikic/PHP-Parser.git",
-                "reference": "b76bbc3c51f22c570648de48e8c2d941ed5e2cf2"
+                "reference": "9a9981c347c5c49d6dfe5cf826bb882b824080dc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/b76bbc3c51f22c570648de48e8c2d941ed5e2cf2",
-                "reference": "b76bbc3c51f22c570648de48e8c2d941ed5e2cf2",
+                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/9a9981c347c5c49d6dfe5cf826bb882b824080dc",
+                "reference": "9a9981c347c5c49d6dfe5cf826bb882b824080dc",
                 "shasum": ""
             },
             "require": {
@@ -1191,7 +1191,7 @@
                 "php": ">=7.0"
             },
             "require-dev": {
-                "ircmaxell/php-yacc": "0.0.4",
+                "ircmaxell/php-yacc": "0.0.5",
                 "phpunit/phpunit": "^6.5 || ^7.0 || ^8.0"
             },
             "bin": [
@@ -1200,7 +1200,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "4.2-dev"
+                    "dev-master": "4.3-dev"
                 }
             },
             "autoload": {
@@ -1222,7 +1222,7 @@
                 "parser",
                 "php"
             ],
-            "time": "2019-10-25T18:33:07+00:00"
+            "time": "2019-11-08T13:50:10+00:00"
         },
         {
             "name": "opis/closure",
@@ -4536,65 +4536,6 @@
             "time": "2019-09-25T14:49:45+00:00"
         },
         {
-            "name": "matt-allan/laravel-code-style",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/matt-allan/laravel-code-style.git",
-                "reference": "addc0fe8c14440a4ef8a62427f1a064080cfba36"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/matt-allan/laravel-code-style/zipball/addc0fe8c14440a4ef8a62427f1a064080cfba36",
-                "reference": "addc0fe8c14440a4ef8a62427f1a064080cfba36",
-                "shasum": ""
-            },
-            "require": {
-                "friendsofphp/php-cs-fixer": "^2.14",
-                "illuminate/support": "5.7.x|5.8.x|^6.0",
-                "php": ">=7.2"
-            },
-            "require-dev": {
-                "laravel/framework": "^6.0.3",
-                "phpunit/phpunit": "^7.0"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.0-dev"
-                },
-                "laravel": {
-                    "providers": [
-                        "MattAllan\\LaravelCodeStyle\\ServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "MattAllan\\LaravelCodeStyle\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Matt Allan",
-                    "email": "matt@mattallan.me"
-                }
-            ],
-            "description": "Code formatting for Laravel projects",
-            "homepage": "https://github.com/matt-allan/laravel-code-style",
-            "keywords": [
-                "PSR-2",
-                "code-style",
-                "laravel",
-                "php-cs-fixer"
-            ],
-            "time": "2019-09-27T13:23:34+00:00"
-        },
-        {
             "name": "mockery/mockery",
             "version": "1.2.4",
             "source": {
@@ -6289,9 +6230,7 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": {
-        "matt-allan/laravel-code-style": 20
-    },
+    "stability-flags": [],
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {

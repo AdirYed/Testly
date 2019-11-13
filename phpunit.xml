@@ -29,6 +29,7 @@
         <server name="SESSION_DRIVER" value="array"/>
         <server name="DB_CONNECTION" value="sqlite"/>
         <server name="DB_DATABASE" value=":memory:"/>
-        <server name="DATASET_PATH" value="tests/Commands/theory_test_dataset_testing.xml"/>
+        <server name="GENERAL_DATASET_PATH" value="tests/Commands/general_dataset.xml"/>
+        <server name="A3_DATASET_PATH" value="tests/Commands/a3_dataset.xml"/>
     </php>
 </phpunit>

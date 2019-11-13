@@ -1,17 +1,30 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import { routes } from "./routes";
+import VueCountdown from "@chenfengyuan/vue-countdown";
 
 // Components
 import Card from "./components/Card";
 import Nav from "./components/Nav";
 import Bar from "./components/Bar";
+import Header from "./components/Header";
+import PulseLoader from "vue-spinner/src/PulseLoader";
+
+// Font Awesome
+import "./font-awesome";
+import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+
+Vue.component("fa-icon", FontAwesomeIcon);
+
+Vue.component("theory-" + Card.name, Card);
+Vue.component("theory-" + Nav.name, Nav);
+Vue.component("theory-" + Bar.name, Bar);
+Vue.component("theory-" + Header.name, Header);
+Vue.component("theory-" + "pulse-loader", PulseLoader);
+
+Vue.component("theory-" + VueCountdown.name, VueCountdown);
 
 Vue.use(VueRouter);
-
-Vue.component("theory-card", Card);
-Vue.component("theory-nav-bar", Nav);
-Vue.component("theory-bar", Bar);
 
 const app = new Vue({
     el: "#app",
@@ -32,33 +45,3 @@ var docWidth = document.documentElement.offsetWidth;
     }
 );
 */
-
-function smoothScroll(target, duration) {
-    const scrollTo = document.querySelector(target);
-    const targetPosition = scrollTo.getBoundingClientRect().top - 58; // minus the nav which is 60px and also his box-shadow which is 1px, 60-1-1=59, another -1 to be 100% sure.
-    const startPosition = window.pageYOffset;
-    let startTime = null;
-
-    function animation(currentTime) {
-        if (startTime === null) startTime = currentTime;
-        const timeElapsed = currentTime - startTime;
-        const run = ease(timeElapsed, startPosition, targetPosition, duration);
-        window.scrollTo(0, run);
-        if (timeElapsed < duration) requestAnimationFrame(animation);
-    }
-
-    function ease(t, b, c, d) {
-        t /= d / 2;
-        if (t < 1) return (c / 2) * t * t + b;
-        t--;
-        return (-c / 2) * (t * (t - 2) - 1) + b;
-    }
-
-    requestAnimationFrame(animation);
-}
-
-const btnScrollAble = document.getElementById("home-scroll-able");
-
-btnScrollAble.addEventListener("click", function() {
-    smoothScroll("#home-body", 500);
-});
