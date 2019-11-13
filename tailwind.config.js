@@ -1,14 +1,14 @@
 module.exports = {
-    prefix: 'tw-',
+    prefix: "tw-",
     theme: {
         extend: {
             colors: {
-                primary: 'var(--primary-color)',
-                secondary: 'var(--secondary-color)'
+                primary: "var(--primary-color)",
+                secondary: "var(--secondary-color)"
             },
 
             spacing: {
-                '80': '20rem'
+                "80": "20rem"
             }
         }
     },

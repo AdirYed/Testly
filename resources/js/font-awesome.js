@@ -1,4 +1,4 @@
-import { library } from '@fortawesome/fontawesome-svg-core';
+import { library } from "@fortawesome/fontawesome-svg-core";
 import {
     faChevronRight,
     faChevronLeft,
@@ -7,7 +7,7 @@ import {
     faSignInAlt,
     faGlobe,
     faAngleDoubleDown
-} from '@fortawesome/free-solid-svg-icons';
+} from "@fortawesome/free-solid-svg-icons";
 
 export default {
     icons: library.add(

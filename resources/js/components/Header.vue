@@ -25,7 +25,7 @@
 </template>
 
 <script>
-    export default {
-        name: 'nav-header',
-    }
+export default {
+    name: "nav-header"
+};
 </script>

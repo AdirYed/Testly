@@ -1,39 +1,39 @@
-import Home from './pages/Home';
-import Tests from './pages/Tests';
-import NotFound from './pages/NotFound';
+import Home from "./pages/Home";
+import Tests from "./pages/Tests";
+import NotFound from "./pages/NotFound";
 
 export const routes = {
-    mode: 'history',
+    mode: "history",
 
     routes: [
         {
-            path: '/',
+            path: "/",
             component: Home,
-            name: 'home'
+            name: "home"
         },
 
         {
-            path: '/#',
+            path: "/#",
             component: Home,
-            name: '#'
+            name: "#"
         },
 
         {
-            path: '/##',
+            path: "/##",
             component: Home,
-            name: '##'
+            name: "##"
         },
 
         {
-            path: '/test/:drivingLicenseType',
+            path: "/test/:drivingLicenseType",
             component: Tests,
-            name: 'tests'
+            name: "tests"
         },
 
         {
-            path: '*',
+            path: "*",
             component: NotFound,
-            name: 'notFound'
+            name: "notFound"
         }
     ]
 };
