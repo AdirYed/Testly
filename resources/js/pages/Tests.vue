@@ -18,6 +18,10 @@
                         {{ drivingLicenseType.name }}
                         ({{ drivingLicenseType.code }})
                     </template>
+
+                    <template v-else>
+                        מבחן תאוריה
+                    </template>
                 </div>
 
                 <div class="tw-hidden md:tw-block tw-w-2/12">
@@ -128,6 +132,8 @@
                                     }"
                                 ></div>
                             </div>
+
+                            <template v-else></template>
                         </div>
 
                         <div>
@@ -147,11 +153,11 @@
                                             ref="countdown"
                                             v-show="counting"
                                         >
-                                            <template slot-scope="props"
-                                                >{{ props.minutes }}:{{
+                                            <template slot-scope="props">
+                                                {{ props.minutes }}:{{
                                                     props.seconds
-                                                }}</template
-                                            >
+                                                }}
+                                            </template>
                                         </theory-countdown>
                                     </div>
 

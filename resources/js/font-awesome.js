@@ -2,6 +2,7 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 import {
     faChevronRight,
     faChevronLeft,
+    faCaretDown,
     faHome,
     faNewspaper,
     faSignInAlt,
@@ -13,6 +14,7 @@ export default {
     icons: library.add(
         faChevronRight,
         faChevronLeft,
+        faCaretDown,
         faHome,
         faNewspaper,
         faSignInAlt,

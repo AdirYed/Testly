@@ -26,6 +26,8 @@ Vue.component("theory-" + VueCountdown.name, VueCountdown);
 
 Vue.use(VueRouter);
 
+// Vue.config.productionTip = false;
+
 const app = new Vue({
     el: "#app",
 
