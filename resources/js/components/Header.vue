@@ -105,9 +105,7 @@ export default {
                     code: "A3",
                     name: "אופניים חשמליים"
                 }
-            ],
-
-            prevRoute: "/"
+            ]
         };
     },
 
