@@ -1,6 +1,5 @@
 <template>
     <router-link
-        v-if="to"
         class="route lg:tw-p-4 tw-py-3 tw-px-0 tw-block tw-border-t-4 tw-border-transparent hover:tw-border-primary lg:tw-mb-0 tw-mb-2"
         :class="{ 'tw-font-bold tw-border-primary': isCurrentRoute }"
         :to="{ name: to, params: toParams }"
@@ -8,10 +7,6 @@
     >
         <slot></slot>
     </router-link>
-
-    <div v-else>
-        <slot></slot>
-    </div>
 </template>
 
 <script>
@@ -21,7 +16,7 @@ export default {
     props: {
         to: {
             type: String,
-            required: false
+            required: true
         },
 
         toParams: {

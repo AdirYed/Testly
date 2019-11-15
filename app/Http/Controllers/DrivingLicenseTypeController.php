@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\DrivingLicenseType;
 
-class DrivingLicenseTypeQuestionController extends Controller
+class DrivingLicenseTypeController extends Controller
 {
     public function random(DrivingLicenseType $drivingLicenseType)
     {
@@ -15,5 +15,10 @@ class DrivingLicenseTypeQuestionController extends Controller
                 ->get()
                 ->append('formatted_image_url'),
         ];
+    }
+
+    public function licenses()
+    {
+        return DrivingLicenseType::select(['code', 'name'])->get();
     }
 }
