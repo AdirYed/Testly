@@ -14,19 +14,25 @@ cp .env.example .env
 php artisan key:generate
 ```
 
-3. Run migrations
+3. Generate secret key
+
+```bash
+php artisan jwt:secret
+```
+
+4. Run migrations
 
 ```bash
 php artisan migrate
 ```
 
-4. Parse theory dataset and store in the database
+5. Parse theory dataset and store in the database
 
 ```bash
 php artisan dataset:parse
 ```
 
-5. Run route link
+6. Run route link
 
 ```bash
 php artisan storage:link
