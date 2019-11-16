@@ -13,7 +13,6 @@ Route::group(['prefix' => 'driving-license-types'], static function () {
 });
 
 Route::group([
-    'middleware' => 'api',
     'prefix' => 'auth'
 ], function ($router) {
     Route::post('login', [AuthController::class, 'login']);

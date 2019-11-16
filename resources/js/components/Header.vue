@@ -28,7 +28,7 @@
         </template>
 
         <template slot="right-bar">
-            <theory-bar to="#">
+            <theory-bar to="login">
                 <fa-icon icon="sign-in-alt" />
                 הירשם / התחבר
             </theory-bar>
@@ -42,6 +42,8 @@
 </template>
 
 <script>
+const axios = require("axios");
+
 export default {
     name: "nav-header",
 
@@ -54,11 +56,9 @@ export default {
     },
 
     created() {
-        fetch(`/api/driving-license-types/licenses`)
-            .then(response => response.json())
-            .then(data => {
-                this.tests = data;
-            });
+        axios.get(`/api/driving-license-types/licenses`).then(response => {
+            this.tests = response.data;
+        });
 
         const handleEscape = e => {
             if (e.key === "Esc" || e.key === "Escape") {

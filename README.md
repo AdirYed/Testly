@@ -14,7 +14,7 @@ cp .env.example .env
 php artisan key:generate
 ```
 
-3. Generate secret key
+3. Generate JWT secret key
 
 ```bash
 php artisan jwt:secret

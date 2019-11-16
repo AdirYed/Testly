@@ -324,6 +324,8 @@
 </template>
 
 <script>
+const axios = require("axios");
+
 export default {
     name: "tests",
 
@@ -432,11 +434,13 @@ export default {
         },
 
         fetchQuestions() {
-            fetch(
-                `/api/driving-license-types/${this.$route.params.drivingLicenseType}/questions/random`
-            )
-                .then(response => response.json())
-                .then(data => {
+            axios
+                .get(
+                    `/api/driving-license-types/${this.$route.params.drivingLicenseType}/questions/random`
+                )
+                .then(response => {
+                    let data = response.data;
+
                     data["questions"].forEach(function(currQuestion) {
                         currQuestion["chosen_answer_id"] = null;
                     });
