@@ -10,7 +10,7 @@
             <form
                 class="tw-rounded tw-px-8 tw-pt-6 tw-pb-8 tw-mb-5"
                 method="post"
-                @submit="login"
+                @submit.prevent="login"
             >
                 <div class="tw-mb-5">
                     <label
@@ -24,7 +24,7 @@
                         id="email"
                         type="email"
                         placeholder="אימייל"
-                        v-model="auth.email"
+                        v-model="payload.email"
                     />
                 </div>
 
@@ -40,7 +40,7 @@
                         id="password"
                         type="password"
                         placeholder="סיסמה"
-                        v-model="auth.password"
+                        v-model="payload.password"
                     />
                 </div>
 
@@ -59,7 +59,7 @@
                     </div>
 
                     <p
-                        v-if="isInvalid && !isLoading"
+                        v-else-if="isInvalid"
                         class="tw-font-semibold tw-text-red-500 tw-text-xs"
                     >
                         הפרטים שהזנת שגוים!
@@ -94,7 +94,10 @@ export default {
 
     data() {
         return {
-            auth: { email: "", password: "" },
+            payload: {
+                email: "",
+                password: ""
+            },
 
             isInvalid: false,
 
@@ -103,19 +106,15 @@ export default {
     },
 
     methods: {
-        login(e) {
+        login() {
             this.isLoading = true;
 
-            e.preventDefault();
-
             this.$axios
-                .post("/auth/login", this.auth)
+                .post("/auth/login", this.payload)
                 .then(response => {
-                    console.log(`token:  ${response.data}`);
-
                     window.localStorage.setItem("token", response.data.token);
                     window.localStorage.setItem(
-                        "auth-user",
+                        "user",
                         JSON.stringify(response.data.user)
                     );
 
@@ -124,8 +123,6 @@ export default {
                     this.$router.push({ name: "home" });
                 })
                 .catch(() => {
-                    console.log(`hi`);
-
                     this.isLoading = false;
                     this.isInvalid = true;
                 });

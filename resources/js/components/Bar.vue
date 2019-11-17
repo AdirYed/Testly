@@ -16,7 +16,7 @@ export default {
     props: {
         to: {
             type: String,
-            required: true
+            required: false
         },
 
         toParams: {

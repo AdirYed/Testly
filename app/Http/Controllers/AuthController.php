@@ -11,7 +11,7 @@ class AuthController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth:api', ['except' => ['login']]);
+        $this->middleware('payload:api', ['except' => ['login']]);
     }
 
     /**
@@ -72,7 +72,7 @@ class AuthController extends Controller
     protected function respondWithToken($token)
     {
         return response()->json([
-            'access_token' => $token,
+            'token' => $token,
             'user' => auth()->user(),
         ]);
     }

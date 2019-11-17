@@ -28,9 +28,18 @@
         </template>
 
         <template slot="right-bar">
-            <theory-bar to="login">
+            <theory-bar to="login" v-if="!user">
                 <fa-icon icon="sign-in-alt" />
                 הירשם / התחבר
+            </theory-bar>
+            <theory-bar @click.native="logout" v-if="user">
+                <fa-icon icon="sign-in-alt" />
+                התנתק
+            </theory-bar>
+            <theory-bar v-if="user">
+                <fa-icon icon="sign-in-alt" />
+                ברוכים הבאים
+                {{ user.first_name }}
             </theory-bar>
 
             <theory-bar to="#">
@@ -54,7 +63,7 @@ export default {
     },
 
     created() {
-        this.$axios.get(`/driving-license-types/licenses`).then(response => {
+        this.$axios.get(`/driving-license-types`).then(response => {
             this.tests = response.data;
         });
 
@@ -69,6 +78,21 @@ export default {
         this.$once("hook:beforeDestroy", () => {
             document.removeEventListener("keydown", handleEscape);
         });
+    },
+
+    methods: {
+        logout() {
+            localStorage.removeItem("token");
+            localStorage.removeItem("user");
+            this.$router.push({ name: "home" });
+        }
+    },
+    computed: {
+        user() {
+            const userJson = localStorage.getItem("user");
+
+            return userJson ? JSON.parse(userJson) : null;
+        }
     }
 };
 </script>

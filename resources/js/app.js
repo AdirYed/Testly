@@ -1,8 +1,8 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import axios from "axios";
 import { routes } from "./routes";
 import VueCountdown from "@chenfengyuan/vue-countdown";
+import AxiosPlugin from "./plugins/axios";
 
 // Components
 import Card from "./components/Card";
@@ -27,42 +27,12 @@ Vue.component("theory-" + "pulse-loader", PulseLoader);
 
 Vue.component("theory-" + VueCountdown.name, VueCountdown);
 
+Vue.use(AxiosPlugin);
 Vue.use(VueRouter);
 
-Vue.prototype.$axios = axios.create({ baseURL: "/api" });
 Vue.config.productionTip = false;
 
 const app = new Vue({
     el: "#app",
-
     router: new VueRouter(routes)
 });
-
-Vue.prototype.$axios.interceptors.response.use((request, next) => {
-    let token = window.localStorage.getItem("token");
-
-    if (token) {
-        request.headers = request.headers || {};
-        request.headers.Authorization = `Bearer ${token}`;
-    }
-
-    next(response => {
-        if (response.status === 401) {
-            return Vue.prototype.$router.push({ name: "home" });
-        }
-    });
-});
-
-// Use when you have a horizontal scroll
-/*
-var docWidth = document.documentElement.offsetWidth;
-
-[].forEach.call(
-    document.querySelectorAll('*'),
-    function(el) {
-        if (el.offsetWidth > docWidth) {
-            console.log(el);
-        }
-    }
-);
-*/
