@@ -342,9 +342,7 @@ export default {
                 width: "100%"
             },
 
-            tooManyAttempts: false,
-
-            isLoading2: false
+            tooManyAttempts: false
         };
     },
 
@@ -362,8 +360,9 @@ export default {
 
             this.counting = true;
 
-            this.$refs.countdown.totalMilliseconds = this.time;
-            this.$refs.countdown.start();
+            if (this.$refs.countdown) {
+                this.$refs.countdown.totalMilliseconds = this.time;
+            }
 
             this.handleCountdownProgress({ totalMilliseconds: this.time });
         },
@@ -434,8 +433,6 @@ export default {
         },
 
         fetchQuestions() {
-            this.isLoading2 = true;
-
             this.$axios
                 .get(
                     `/driving-license-types/${this.$route.params.drivingLicenseType}/questions/random`
@@ -452,11 +449,8 @@ export default {
                     if (!this.drivingLicenseType) {
                         this.drivingLicenseType = data["driving_license_type"];
                     }
-
-                    this.isLoading2 = false;
                 })
                 .catch(() => {
-                    this.isLoading2 = false;
                     this.tooManyAttempts = true;
                 });
         }
@@ -490,8 +484,7 @@ export default {
         isLoading() {
             return (
                 !Array.isArray(this.quiz) ||
-                (Array.isArray(this.quiz) && this.quiz.length <= 0) ||
-                this.isLoading2
+                (Array.isArray(this.quiz) && this.quiz.length <= 0)
             );
         }
     },

@@ -111,6 +111,8 @@ export default {
             this.$axios
                 .post("/auth/login", this.auth)
                 .then(response => {
+                    console.log(`token:  ${response.data}`);
+
                     window.localStorage.setItem("token", response.data.token);
                     window.localStorage.setItem(
                         "auth-user",
@@ -122,6 +124,8 @@ export default {
                     this.$router.push({ name: "home" });
                 })
                 .catch(() => {
+                    console.log(`hi`);
+
                     this.isLoading = false;
                     this.isInvalid = true;
                 });
