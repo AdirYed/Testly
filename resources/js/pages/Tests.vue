@@ -319,15 +319,11 @@
                     size="40px"
                 ></theory-pulse-loader>
             </div>
-
-            <div class="tw-mt-80"></div>
         </div>
     </div>
 </template>
 
 <script>
-const axios = require("axios");
-
 export default {
     name: "tests",
 
@@ -346,7 +342,9 @@ export default {
                 width: "100%"
             },
 
-            tooManyAttempts: false
+            tooManyAttempts: false,
+
+            isLoading2: false
         };
     },
 
@@ -436,9 +434,11 @@ export default {
         },
 
         fetchQuestions() {
-            axios
+            this.isLoading2 = true;
+
+            this.$axios
                 .get(
-                    `/api/driving-license-types/${this.$route.params.drivingLicenseType}/questions/random`
+                    `/driving-license-types/${this.$route.params.drivingLicenseType}/questions/random`
                 )
                 .then(response => {
                     let data = response.data;
@@ -452,8 +452,11 @@ export default {
                     if (!this.drivingLicenseType) {
                         this.drivingLicenseType = data["driving_license_type"];
                     }
+
+                    this.isLoading2 = false;
                 })
                 .catch(() => {
+                    this.isLoading2 = false;
                     this.tooManyAttempts = true;
                 });
         }
@@ -487,7 +490,8 @@ export default {
         isLoading() {
             return (
                 !Array.isArray(this.quiz) ||
-                (Array.isArray(this.quiz) && this.quiz.length <= 0)
+                (Array.isArray(this.quiz) && this.quiz.length <= 0) ||
+                this.isLoading2
             );
         }
     },

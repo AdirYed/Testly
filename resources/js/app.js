@@ -1,5 +1,6 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
+import axios from "axios";
 import { routes } from "./routes";
 import VueCountdown from "@chenfengyuan/vue-countdown";
 
@@ -28,12 +29,28 @@ Vue.component("theory-" + VueCountdown.name, VueCountdown);
 
 Vue.use(VueRouter);
 
-// Vue.config.productionTip = false;
+Vue.prototype.$axios = axios.create({ baseURL: "/api" });
+Vue.config.productionTip = false;
 
 const app = new Vue({
     el: "#app",
 
     router: new VueRouter(routes)
+});
+
+Vue.prototype.$axios.interceptors.response.use((request, next) => {
+    let token = window.localStorage.getItem("token");
+
+    if (token) {
+        request.headers = request.headers || {};
+        request.headers.Authorization = `Bearer ${token}`;
+    }
+
+    next(response => {
+        if (response.status === 401) {
+            return Vue.prototype.$router.push({ name: "home" });
+        }
+    });
 });
 
 // Use when you have a horizontal scroll

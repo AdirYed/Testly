@@ -51,12 +51,13 @@ button:focus {
             min-height: 120px;
             max-height: 200px;
         }
-    }:hover {
-         border-color: var(--primary-color) !important;
+
+        &:hover {
+            border-color: var(--primary-color) !important;
+        }
      }
 }
 
-/** TODO: style it better */
 .btn-disabled {
     cursor: not-allowed;
     color: black;
@@ -67,4 +68,16 @@ button:focus {
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
+}
+
+.login-input {
+    transition: 0.2s box-shadow ease;
+
+    @apply outline-none;
+
+    &:focus, &:hover {
+        box-shadow: 0 0 0 3px var(--primary-color);
+
+        @apply border-transparent;
+    }
 }

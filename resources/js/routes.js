@@ -20,12 +20,6 @@ export const routes = {
         },
 
         {
-            path: "/##",
-            component: Home,
-            name: "##"
-        },
-
-        {
             path: "/test/:drivingLicenseType",
             component: Tests,
             name: "tests"
@@ -35,6 +29,12 @@ export const routes = {
             path: "/login",
             component: Login,
             name: "login"
+        },
+
+        {
+            path: "/forgot-password",
+            component: Home, // Will be changed to ForgotPassword when we have a page
+            name: "forgot-password"
         },
 
         {

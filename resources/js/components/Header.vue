@@ -33,7 +33,7 @@
                 הירשם / התחבר
             </theory-bar>
 
-            <theory-bar to="##">
+            <theory-bar to="#">
                 <fa-icon icon="globe" />
                 שפה
             </theory-bar>
@@ -42,8 +42,6 @@
 </template>
 
 <script>
-const axios = require("axios");
-
 export default {
     name: "nav-header",
 
@@ -56,7 +54,7 @@ export default {
     },
 
     created() {
-        axios.get(`/api/driving-license-types/licenses`).then(response => {
+        this.$axios.get(`/driving-license-types/licenses`).then(response => {
             this.tests = response.data;
         });
 
