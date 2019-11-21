@@ -362,6 +362,7 @@ export default {
 
             if (this.$refs.countdown) {
                 this.$refs.countdown.totalMilliseconds = this.time;
+                this.$refs.countdown.start();
             }
 
             this.handleCountdownProgress({ totalMilliseconds: this.time });
