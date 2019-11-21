@@ -26,7 +26,6 @@
                 </router-link>
             </theory-bar-dropdown>
         </template>
-
         <template slot="right-bar">
             <theory-bar to="login" v-if="!user">
                 <fa-icon icon="sign-in-alt" />
@@ -39,7 +38,7 @@
             <theory-bar v-if="user">
                 <fa-icon icon="sign-in-alt" />
                 ברוכים הבאים
-                {{ user.first_name }}
+                {{ user["first_name"] }}
             </theory-bar>
 
             <theory-bar to="#">
@@ -84,9 +83,13 @@ export default {
         logout() {
             localStorage.removeItem("token");
             localStorage.removeItem("user");
-            this.$router.push({ name: "home" });
+
+            if (this.$router.currentRoute.path !== "/") {
+                this.$router.push({ name: "home" });
+            }
         }
     },
+
     computed: {
         user() {
             const userJson = localStorage.getItem("user");

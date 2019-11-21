@@ -24,7 +24,7 @@
                         id="email"
                         type="email"
                         placeholder="אימייל"
-                        v-model="payload.email"
+                        v-model="auth.email"
                     />
                 </div>
 
@@ -40,7 +40,7 @@
                         id="password"
                         type="password"
                         placeholder="סיסמה"
-                        v-model="payload.password"
+                        v-model="auth.password"
                     />
                 </div>
 
@@ -94,7 +94,7 @@ export default {
 
     data() {
         return {
-            payload: {
+            auth: {
                 email: "",
                 password: ""
             },
@@ -110,7 +110,7 @@ export default {
             this.isLoading = true;
 
             this.$axios
-                .post("/auth/login", this.payload)
+                .post("/auth/login", this.auth)
                 .then(response => {
                     window.localStorage.setItem("token", response.data.token);
                     window.localStorage.setItem(
