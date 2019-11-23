@@ -37,6 +37,6 @@ export default {
 
 <style>
 .route {
-    transition: 0.2s ease;
+    transition: border 0.2s ease;
 }
 </style>

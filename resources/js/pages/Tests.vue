@@ -31,17 +31,8 @@
                         class="tw-text-sm tw-border tw-rounded tw-p-2"
                         style="border-color: rgba(0, 0, 0, 0.25);"
                         @click="restart"
-                        v-if="!tooManyAttempts"
                     >
                         התחל מחדש
-                    </button>
-
-                    <button
-                        class="tw-text-sm tw-border tw-rounded tw-p-2"
-                        style="border-color: rgba(0, 0, 0, 0.25);"
-                        v-else
-                    >
-                        נסה שוב מאוחר יותר
                     </button>
                 </div>
             </h1>
@@ -340,9 +331,7 @@ export default {
             time: 40 * 60 * 1000,
             progressBarStyle: {
                 width: "100%"
-            },
-
-            tooManyAttempts: false
+            }
         };
     },
 
@@ -451,8 +440,10 @@ export default {
                         this.drivingLicenseType = data["driving_license_type"];
                     }
                 })
-                .catch(() => {
-                    this.tooManyAttempts = true;
+                .catch(error => {
+                    if (error.response.status === 404) {
+                        this.$router.push({ name: "home" });
+                    }
                 });
         }
     },
@@ -483,10 +474,7 @@ export default {
         },
 
         isLoading() {
-            return (
-                !Array.isArray(this.quiz) ||
-                (Array.isArray(this.quiz) && this.quiz.length <= 0)
-            );
+            return Array.isArray(this.quiz) && this.quiz.length <= 0;
         }
     },
 

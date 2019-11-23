@@ -18,5 +18,20 @@ Route::group([
 ], static function () {
     Route::post('login', [AuthController::class, 'login']);
     Route::post('logout', [AuthController::class, 'logout']);
-    Route::post('me', [AuthController::class, 'me']);
+    Route::post('register', [AuthController::class, 'register']);
 });
+
+
+
+/**
+ * finished_tests
+ *
+ * user_id
+ * wrong_answers
+ * correct_answers
+ * started_at
+ * finished_at
+ * driving_license_type_id
+ * questions - json
+ *
+ */

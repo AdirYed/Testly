@@ -40,16 +40,16 @@
                 </ul>
             </nav>
 
-            <a
-                href="#"
-                class="lg:tw-ml-4 tw-flex tw-items-center tw-justify-start lg:tw-mb-0 tw-mb-4 tw-pointer-cursor"
-            >
-                <img
-                    class="tw-rounded-full tw-w-10 tw-h-10"
-                    src="https://pbs.twimg.com/profile_images/1128143121475342337/e8tkhRaz_normal.jpg"
-                    alt="Andy Leverenz"
-                />
-            </a>
+            <!--            <a-->
+            <!--                href="#"-->
+            <!--                class="lg:tw-ml-4 tw-flex tw-items-center tw-justify-start lg:tw-mb-0 tw-mb-4 tw-pointer-cursor"-->
+            <!--            >-->
+            <!--                <img-->
+            <!--                    class="tw-rounded-full tw-w-10 tw-h-10"-->
+            <!--                    src="https://pbs.twimg.com/profile_images/1128143121475342337/e8tkhRaz_normal.jpg"-->
+            <!--                    alt="Andy Leverenz"-->
+            <!--                />-->
+            <!--            </a>-->
         </div>
     </header>
 </template>

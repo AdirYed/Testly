@@ -27,24 +27,47 @@
             </theory-bar-dropdown>
         </template>
         <template slot="right-bar">
-            <theory-bar to="login" v-if="!user">
-                <fa-icon icon="sign-in-alt" />
-                הירשם / התחבר
-            </theory-bar>
-            <theory-bar @click.native="logout" v-if="user">
-                <fa-icon icon="sign-in-alt" />
-                התנתק
-            </theory-bar>
-            <theory-bar v-if="user">
-                <fa-icon icon="sign-in-alt" />
-                ברוכים הבאים
-                {{ user["first_name"] }}
-            </theory-bar>
-
             <theory-bar to="#">
                 <fa-icon icon="globe" />
                 שפה
             </theory-bar>
+
+            <theory-bar to="login" v-if="!$store.getters.isLoggedIn">
+                <fa-icon icon="sign-in-alt" />
+                התחבר
+            </theory-bar>
+
+            <theory-bar to="register" v-if="!$store.getters.isLoggedIn">
+                <fa-icon icon="sign-in-alt" />
+                הירשם
+            </theory-bar>
+
+            <theory-bar-dropdown
+                to="dashboard"
+                v-if="$store.getters.isLoggedIn"
+            >
+                <template slot="title">
+                    <fa-icon icon="user" />
+                    {{ $store.state.user.first_name }}
+                    {{ $store.state.user.last_name }}
+                </template>
+
+                <router-link
+                    :to="{ name: 'dashboard' }"
+                    class="tw-block tw-px-4 tw-py-2 tw-text-gray-800 hover:tw-bg-primary hover:tw-text-white tw-cursor-pointer"
+                >
+                    הפרופיל שלי
+                </router-link>
+
+                <div
+                    class="tw-block tw-px-4 tw-py-2 tw-text-gray-800 hover:tw-bg-primary hover:tw-text-white tw-cursor-pointer"
+                    @click="logout"
+                    v-if="$store.getters.isLoggedIn"
+                >
+                    <fa-icon icon="sign-out-alt" />
+                    התנתק
+                </div>
+            </theory-bar-dropdown>
         </template>
     </theory-nav-bar>
 </template>
@@ -81,20 +104,11 @@ export default {
 
     methods: {
         logout() {
-            localStorage.removeItem("token");
-            localStorage.removeItem("user");
+            this.$store.dispatch("logout");
 
             if (this.$router.currentRoute.path !== "/") {
                 this.$router.push({ name: "home" });
             }
-        }
-    },
-
-    computed: {
-        user() {
-            const userJson = localStorage.getItem("user");
-
-            return userJson ? JSON.parse(userJson) : null;
         }
     }
 };

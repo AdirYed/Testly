@@ -3,15 +3,67 @@
         class="tw-container tw-mx-auto tw-pt-8 md:tw-pt-10 tw-px-6 md:tw-px-10"
     >
         <div class="tw-text-2xl md:tw-text-3xl tw-font-semibold tw-text-center">
-            התחבר
+            הירשם
         </div>
 
         <div class="tw-w-full tw-max-w-xs tw-mx-auto">
             <form
                 class="tw-rounded tw-px-8 tw-pt-6 tw-pb-8 tw-mb-5"
                 method="post"
-                @submit.prevent="login"
+                @submit.prevent="register"
             >
+                <div class="tw-mb-5">
+                    <label
+                        class="tw-block tw-text-gray-700 tw-text-sm tw-font-bold tw-mb-2"
+                        for="first_name"
+                    >
+                        שם פרטי
+                    </label>
+                    <input
+                        class="input transition tw-shadow tw-appearance-none tw-border tw-rounded tw-w-full tw-py-2 tw-px-3 tw-text-gray-700 tw-leading-tight"
+                        :class="{ 'tw-border-red-500': errors.first_name }"
+                        maxlength="20"
+                        id="first_name"
+                        type="text"
+                        placeholder="שם פרטי"
+                        v-model="auth.first_name"
+                        @input="deleteError('first_name')"
+                    />
+
+                    <div
+                        v-if="errors.first_name"
+                        class="tw-font-semibold tw-text-red-500 tw-text-xs tw-mt-1"
+                    >
+                        {{ errors.first_name[0] }}
+                    </div>
+                </div>
+
+                <div class="tw-mb-5">
+                    <label
+                        class="tw-block tw-text-gray-700 tw-text-sm tw-font-bold tw-mb-2"
+                        for="last_name"
+                    >
+                        שם משפחה
+                    </label>
+                    <input
+                        class="input transition tw-shadow tw-appearance-none tw-border tw-rounded tw-w-full tw-py-2 tw-px-3 tw-text-gray-700 tw-leading-tight"
+                        :class="{ 'tw-border-red-500': errors.last_name }"
+                        maxlength="20"
+                        id="last_name"
+                        type="text"
+                        placeholder="שם משפחה"
+                        v-model="auth.last_name"
+                        @input="deleteError('last_name')"
+                    />
+
+                    <div
+                        v-if="errors.last_name"
+                        class="tw-font-semibold tw-text-red-500 tw-text-xs tw-mt-1"
+                    >
+                        {{ errors.last_name[0] }}
+                    </div>
+                </div>
+
                 <div class="tw-mb-5">
                     <label
                         class="tw-block tw-text-gray-700 tw-text-sm tw-font-bold tw-mb-2"
@@ -22,7 +74,7 @@
                     <input
                         class="input transition tw-shadow tw-appearance-none tw-border tw-rounded tw-w-full tw-py-2 tw-px-3 tw-text-gray-700 tw-leading-tight"
                         :class="{ 'tw-border-red-500': errors.email }"
-                        maxLength="50"
+                        maxlength="50"
                         id="email"
                         type="email"
                         placeholder="אימייל"
@@ -48,7 +100,7 @@
                     <input
                         class="input transition tw-shadow tw-appearance-none tw-border tw-rounded tw-w-full tw-py-2 tw-px-3 tw-text-gray-700 tw-leading-tight"
                         :class="{ 'tw-border-red-500': errors.password }"
-                        maxLength="255"
+                        maxlength="255"
                         id="password"
                         type="password"
                         placeholder="סיסמה"
@@ -64,6 +116,23 @@
                     </div>
                 </div>
 
+                <div class="tw-mb-5">
+                    <label
+                        class="tw-block tw-text-gray-700 tw-text-sm tw-font-bold tw-mb-2"
+                        for="password_confirmation"
+                    >
+                        אישור סיסמה
+                    </label>
+                    <input
+                        class="input transition tw-shadow tw-appearance-none tw-border tw-rounded tw-w-full tw-py-2 tw-px-3 tw-text-gray-700 tw-leading-tight"
+                        maxlength="255"
+                        id="password_confirmation"
+                        type="password"
+                        placeholder="סיסמה"
+                        v-model="auth.password_confirmation"
+                    />
+                </div>
+
                 <div class="tw-my-3">
                     <div
                         class="tw-container tw-mx-auto tw-flex tw-justify-center"
@@ -77,22 +146,15 @@
                             size="0.75rem"
                         ></theory-pulse-loader>
                     </div>
-
-                    <p
-                        v-else-if="errors.general"
-                        class="tw-font-semibold tw-text-red-500 tw-text-xs"
-                    >
-                        {{ errors.general[0] }}
-                    </p>
                 </div>
 
                 <div class="tw-flex tw-flex-wrap tw-flex-col">
                     <div class="tw-mb-5">
                         <router-link
                             class="link tw-text-sm tw-font-bold"
-                            :to="{ name: 'forgot-password' }"
+                            :to="{ name: 'login' }"
                         >
-                            שכחת את הסיסמה?
+                            יש לך כבר משתמש?
                         </router-link>
                     </div>
 
@@ -110,13 +172,16 @@
 
 <script>
 export default {
-    name: "login",
+    name: "register",
 
     data() {
         return {
             auth: {
+                first_name: "",
+                last_name: "",
                 email: "",
-                password: ""
+                password: "",
+                password_confirmation: ""
             },
 
             isLoading: false,
@@ -126,19 +191,20 @@ export default {
     },
 
     methods: {
-        login() {
+        register() {
+            if (this.isLoading) {
+                return;
+            }
+
             this.isLoading = true;
 
             this.$store
-                .dispatch("login", this.auth)
+                .dispatch("register", this.auth)
                 .then(() => {
                     this.isLoading = false;
                     this.$router.push({ name: "home" });
                 })
                 .catch(err => {
-                    // if (err.response.status === 422 && err.response.data.error === 'verification') {
-                    //     this.verification = true;
-                    // }
                     if (
                         err.response.status === 422 &&
                         err.response.data.errors

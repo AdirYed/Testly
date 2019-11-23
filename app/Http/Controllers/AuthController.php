@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\RegisterRequest;
+use App\Http\Requests\LoginRequest;
+use App\User;
+
 class AuthController extends Controller
 {
     /**
@@ -11,21 +15,36 @@ class AuthController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth:api', ['except' => ['login']]);
+        $this->middleware('auth:api', ['except' => ['login', 'register']]);
+    }
+
+    public function register(RegisterRequest $request)
+    {
+        $payload = $request->validated();
+        $payload['password'] = bcrypt($payload['password']);
+
+        $user = User::create($payload);
+
+        $token = auth()->login($user);
+
+        return $this->respondWithToken($token);
     }
 
     /**
      * Get a JWT via given credentials.
      *
+     * @param LoginRequest $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function login()
+    public function login(LoginRequest $request)
     {
-        $credentials = request(['email', 'password']);
+        $payload = $request->validated();
 
-        if (! $token = auth()->attempt($credentials)) {
-            return response()->json(['error' => 'Unauthorized'], 401);
-        }
+        $token = auth()->attempt($payload);
+
+//        if (auth()->user()->email_verified_at === null) {
+//            return response()->json(['error' => 'verification'], 422);
+//        }
 
         return $this->respondWithToken($token);
     }
@@ -73,7 +92,7 @@ class AuthController extends Controller
     {
         return response()->json([
             'token' => $token,
-            'user' => auth()->user(),
+            'user' => auth()->user()->only(['first_name', 'last_name', 'email']),
         ]);
     }
 }
