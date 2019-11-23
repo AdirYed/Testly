@@ -49,7 +49,6 @@
                 <template slot="title">
                     <fa-icon icon="user" />
                     {{ $store.state.user.first_name }}
-                    {{ $store.state.user.last_name }}
                 </template>
 
                 <router-link

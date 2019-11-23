@@ -15,6 +15,15 @@ export default new Vuex.Store({
     getters: {
         isLoggedIn(state) {
             return typeof state.token === "string";
+        },
+
+        user() {
+            axiosInstance
+                .post("/auth/me", `bearer ${localStorage.getItem("token")}`)
+                .then(response => {
+                    console.log(response.data);
+                    return response.data;
+                });
         }
     },
 
