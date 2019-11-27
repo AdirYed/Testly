@@ -5,7 +5,6 @@ namespace Tests\Commands;
 use App\Category;
 use App\DrivingLicenseType;
 use App\Http\Controllers\DrivingLicenseTypeQuestionController;
-use App\Http\Controllers\QuestionController;
 use App\Question;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Support\Collection;

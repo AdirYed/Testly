@@ -12,7 +12,7 @@
        <div id="app">
            <theory-nav-header></theory-nav-header>
 
-           <router-view></router-view>
+           <router-view :key="$route.fullPath"></router-view>
         </div>
 
         <script src="{{ mix('js/app.js') }}"></script>

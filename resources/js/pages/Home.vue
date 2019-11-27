@@ -31,9 +31,7 @@
             <div class="tw-px-4 tw-pt-10">
                 <h1 class="tw-text-3xl">
                     הנכם מוזמנים
-                    <router-link
-                        class="tw-text-primary tw-border-b tw-border-transparent hover:tw-border-primary"
-                        :to="{ name: '#' }"
+                    <router-link class="link" :to="{ name: 'login' }"
                         >להירשם</router-link
                     >
                     לאתר כדי לשמור את נתונכם.
@@ -46,13 +44,9 @@
                         src="/assets/action-asphalt.jpg"
                         alt="asphalt.jpg"
                     >
-                        <template slot="title"
-                            >זהו הכותרת</template
-                        >
+                        <template slot="title">זהו הכותרת</template>
                         זהו הדיסקריפשן
-                        <template slot="button-desc"
-                            >למבחן תאוריה</template
-                        >
+                        <template slot="button-desc">למבחן תאוריה</template>
                     </theory-card>
                 </div>
                 <div class="tw-p-4">
@@ -60,13 +54,9 @@
                         src="/assets/action-asphalt.jpg"
                         alt="asphalt.jpg"
                     >
-                        <template slot="title"
-                            >זהו הכותרת</template
-                        >
+                        <template slot="title">זהו הכותרת</template>
                         זהו הדיסקריפשן
-                        <template slot="button-desc"
-                            >למבחן תאוריה</template
-                        >
+                        <template slot="button-desc">למבחן תאוריה</template>
                     </theory-card>
                 </div>
                 <div class="tw-p-4">
@@ -74,13 +64,9 @@
                         src="/assets/action-asphalt.jpg"
                         alt="asphalt.jpg"
                     >
-                        <template slot="title"
-                            >זהו הכותרת</template
-                        >
+                        <template slot="title">זהו הכותרת</template>
                         זהו הדיסקריפשן
-                        <template slot="button-desc"
-                            >למבחן תאוריה</template
-                        >
+                        <template slot="button-desc">למבחן תאוריה</template>
                     </theory-card>
                 </div>
                 <div class="tw-p-4">
@@ -88,13 +74,9 @@
                         src="/assets/action-asphalt.jpg"
                         alt="asphalt.jpg"
                     >
-                        <template slot="title"
-                            >זהו הכותרת</template
-                        >
+                        <template slot="title">זהו הכותרת</template>
                         זהו הדיסקריפשן
-                        <template slot="button-desc"
-                            >למבחן תאוריה</template
-                        >
+                        <template slot="button-desc">למבחן תאוריה</template>
                     </theory-card>
                 </div>
                 <div class="tw-p-4">
@@ -102,13 +84,9 @@
                         src="/assets/action-asphalt.jpg"
                         alt="asphalt.jpg"
                     >
-                        <template slot="title"
-                            >זהו הכותרת</template
-                        >
+                        <template slot="title">זהו הכותרת</template>
                         זהו הדיסקריפשן
-                        <template slot="button-desc"
-                            >למבחן תאוריה</template
-                        >
+                        <template slot="button-desc">למבחן תאוריה</template>
                     </theory-card>
                 </div>
                 <div class="tw-p-4">
@@ -116,13 +94,9 @@
                         src="/assets/action-asphalt.jpg"
                         alt="asphalt.jpg"
                     >
-                        <template slot="title"
-                            >זהו הכותרת</template
-                        >
+                        <template slot="title">זהו הכותרת</template>
                         זהו הדיסקריפשן
-                        <template slot="button-desc"
-                            >למבחן תאוריה</template
-                        >
+                        <template slot="button-desc">למבחן תאוריה</template>
                     </theory-card>
                 </div>
                 <div class="tw-p-4">
@@ -130,13 +104,9 @@
                         src="/assets/action-asphalt.jpg"
                         alt="asphalt.jpg"
                     >
-                        <template slot="title"
-                            >זהו הכותרת</template
-                        >
+                        <template slot="title">זהו הכותרת</template>
                         זהו הדיסקריפשן
-                        <template slot="button-desc"
-                            >למבחן תאוריה</template
-                        >
+                        <template slot="button-desc">למבחן תאוריה</template>
                     </theory-card>
                 </div>
             </section>

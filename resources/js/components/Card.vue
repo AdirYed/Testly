@@ -1,5 +1,5 @@
 <template>
-    <div class="home-body-child tw-w-80 tw-border tw-rounded tw-break-words">
+    <div class="home-body-child tw-w-80 tw-border tw-rounded">
         <div
             class="card-img tw-w-full tw-rounded tw-rounded-b-none"
             :style="{ 'background-image': 'url(' + src + ')' }"
