@@ -6,8 +6,10 @@ import {
     faHome,
     faNewspaper,
     faSignInAlt,
+    faSignOutAlt,
     faGlobe,
-    faAngleDoubleDown
+    faAngleDoubleDown,
+    faUser
 } from "@fortawesome/free-solid-svg-icons";
 
 export default {
@@ -18,7 +20,9 @@ export default {
         faHome,
         faNewspaper,
         faSignInAlt,
+        faSignOutAlt,
         faGlobe,
-        faAngleDoubleDown
+        faAngleDoubleDown,
+        faUser
     )
 };

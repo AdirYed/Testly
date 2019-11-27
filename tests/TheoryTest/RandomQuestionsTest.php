@@ -4,8 +4,7 @@ namespace Tests\Commands;
 
 use App\Category;
 use App\DrivingLicenseType;
-use App\Http\Controllers\DrivingLicenseTypeController;
-use App\Http\Controllers\QuestionController;
+use App\Http\Controllers\DrivingLicenseTypeQuestionController;
 use App\Question;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Support\Collection;
@@ -44,7 +43,7 @@ class RandomQuestionsTest extends TestCase
     public function every_test_should_have_thirty_questions()
     {
         $url = action([
-            DrivingLicenseTypeController::class,
+            DrivingLicenseTypeQuestionController::class,
             'random',
         ], [
             'driving_license_type' => $this->driverLicenseType1,
@@ -59,7 +58,7 @@ class RandomQuestionsTest extends TestCase
     public function it_should_return_driver_license_type_and_questions_with_answers()
     {
         $url = action([
-            DrivingLicenseTypeController::class,
+            DrivingLicenseTypeQuestionController::class,
             'random',
         ], [
             'driving_license_type' => $this->driverLicenseType1,
@@ -94,7 +93,7 @@ class RandomQuestionsTest extends TestCase
     public function it_filters_other_driving_license_type_questions()
     {
         $url = action([
-            DrivingLicenseTypeController::class,
+            DrivingLicenseTypeQuestionController::class,
             'random',
         ], [
             'driving_license_type' => $this->driverLicenseType2,

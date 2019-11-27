@@ -16,7 +16,7 @@ export default {
     props: {
         to: {
             type: String,
-            required: true
+            required: false
         },
 
         toParams: {
@@ -37,6 +37,6 @@ export default {
 
 <style>
 .route {
-    transition: 0.2s ease;
+    transition: border 0.2s ease;
 }
 </style>

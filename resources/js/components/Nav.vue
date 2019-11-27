@@ -1,7 +1,7 @@
 <template>
     <header
         id="nav-bar"
-        class="tw-min-w-full tw-bg-white tw-flex tw-flex-wrap tw-shadow-lg tw-items-center lg:tw-py-0 tw-py-2 lg:tw-px-16 tw-px-6 tw-sticky tw-top-0 tw-left-0"
+        class="tw-min-w-full tw-bg-white tw-flex tw-flex-wrap tw-shadow-lg tw-items-center lg:tw-py-0 tw-py-2 lg:tw-px-24 tw-px-6 tw-sticky tw-top-0 tw-left-0"
     >
         <div
             class="tw-hidden tw-flex-1 lg:tw-flex tw-justify-between tw-items-center"
@@ -40,16 +40,16 @@
                 </ul>
             </nav>
 
-            <a
-                href="#"
-                class="lg:tw-ml-4 tw-flex tw-items-center tw-justify-start lg:tw-mb-0 tw-mb-4 tw-pointer-cursor"
-            >
-                <img
-                    class="tw-rounded-full tw-w-10 tw-h-10"
-                    src="https://pbs.twimg.com/profile_images/1128143121475342337/e8tkhRaz_normal.jpg"
-                    alt="Andy Leverenz"
-                />
-            </a>
+            <!--            <a-->
+            <!--                href="#"-->
+            <!--                class="lg:tw-ml-4 tw-flex tw-items-center tw-justify-start lg:tw-mb-0 tw-mb-4 tw-pointer-cursor"-->
+            <!--            >-->
+            <!--                <img-->
+            <!--                    class="tw-rounded-full tw-w-10 tw-h-10"-->
+            <!--                    src="https://pbs.twimg.com/profile_images/1128143121475342337/e8tkhRaz_normal.jpg"-->
+            <!--                    alt="Andy Leverenz"-->
+            <!--                />-->
+            <!--            </a>-->
         </div>
     </header>
 </template>

@@ -6,7 +6,9 @@
             :style="progressBarStyle"
         ></div>
 
-        <div class="tw-container tw-mx-auto tw-pt-8 md:tw-pt-10 tw-px-10">
+        <div
+            class="tw-container tw-mx-auto tw-pt-8 md:tw-pt-10 tw-px-6 md:tw-px-10"
+        >
             <h1
                 class="tw-flex tw-flex-wrap tw-justify-between tw-text-center tw-items-center"
             >
@@ -29,17 +31,8 @@
                         class="tw-text-sm tw-border tw-rounded tw-p-2"
                         style="border-color: rgba(0, 0, 0, 0.25);"
                         @click="restart"
-                        v-if="!tooManyAttempts"
                     >
                         התחל מחדש
-                    </button>
-
-                    <button
-                        class="tw-text-sm tw-border tw-rounded tw-p-2"
-                        style="border-color: rgba(0, 0, 0, 0.25);"
-                        v-else
-                    >
-                        נסה שוב מאוחר יותר
                     </button>
                 </div>
             </h1>
@@ -317,8 +310,6 @@
                     size="40px"
                 ></theory-pulse-loader>
             </div>
-
-            <div class="tw-mt-80"></div>
         </div>
     </div>
 </template>
@@ -340,9 +331,7 @@ export default {
             time: 40 * 60 * 1000,
             progressBarStyle: {
                 width: "100%"
-            },
-
-            tooManyAttempts: false
+            }
         };
     },
 
@@ -360,8 +349,10 @@ export default {
 
             this.counting = true;
 
-            this.$refs.countdown.totalMilliseconds = this.time;
-            this.$refs.countdown.start();
+            if (this.$refs.countdown) {
+                this.$refs.countdown.totalMilliseconds = this.time;
+                this.$refs.countdown.start();
+            }
 
             this.handleCountdownProgress({ totalMilliseconds: this.time });
         },
@@ -432,11 +423,13 @@ export default {
         },
 
         fetchQuestions() {
-            fetch(
-                `/api/driving-license-types/${this.$route.params.drivingLicenseType}/questions/random`
-            )
-                .then(response => response.json())
-                .then(data => {
+            this.$axios
+                .get(
+                    `/driving-license-types/${this.$route.params.drivingLicenseType}/questions/random`
+                )
+                .then(response => {
+                    let data = response.data;
+
                     data["questions"].forEach(function(currQuestion) {
                         currQuestion["chosen_answer_id"] = null;
                     });
@@ -447,8 +440,10 @@ export default {
                         this.drivingLicenseType = data["driving_license_type"];
                     }
                 })
-                .catch(() => {
-                    this.tooManyAttempts = true;
+                .catch(error => {
+                    if (error.response.status === 404) {
+                        this.$router.push({ name: "home" });
+                    }
                 });
         }
     },
@@ -479,10 +474,7 @@ export default {
         },
 
         isLoading() {
-            return (
-                !Array.isArray(this.quiz) ||
-                (Array.isArray(this.quiz) && this.quiz.length <= 0)
-            );
+            return Array.isArray(this.quiz) && this.quiz.length <= 0;
         }
     },
 
