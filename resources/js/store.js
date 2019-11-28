@@ -51,8 +51,10 @@ export default new Vuex.Store({
         },
 
         logout({ commit }) {
-            commit("removeUser");
-            commit("removeToken");
+            axiosInstance.post("/auth/logout").then(() => {
+                commit("removeUser");
+                commit("removeToken");
+            });
         },
 
         register({ commit }, credentials) {
