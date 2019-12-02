@@ -2,7 +2,6 @@
 
 use App\User;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\Hash;
 
 class UserSeeder extends Seeder
 {
@@ -13,7 +12,7 @@ class UserSeeder extends Seeder
             'last_name' => 'ידייב',
             'email' => 'matan.yed@gmail.com',
             'email_verified_at' => now(),
-            'password' => Hash::make('secret'),
+            'password' => bcrypt('secret'),
             'role' => 'user',
         ]);
     }

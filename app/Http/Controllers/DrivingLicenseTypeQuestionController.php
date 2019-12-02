@@ -9,7 +9,7 @@ class DrivingLicenseTypeQuestionController extends Controller
     public function random(DrivingLicenseType $drivingLicenseType)
     {
         return [
-            'driving_license_type' => $drivingLicenseType->only(['code', 'name']),
+            'driving_license_type' => $drivingLicenseType->only(['id', 'code', 'name']),
             'questions' => $drivingLicenseType->questions()
                 ->random()
                 ->get()

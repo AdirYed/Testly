@@ -331,7 +331,12 @@ export default {
             time: 40 * 60 * 1000,
             progressBarStyle: {
                 width: "100%"
-            }
+            },
+
+            startedDate: null,
+            finishedDate: null,
+
+            pressed: null
         };
     },
 
@@ -355,6 +360,10 @@ export default {
             }
 
             this.handleCountdownProgress({ totalMilliseconds: this.time });
+
+            if (this.$store.getters.isLoggedIn) {
+                this.startedDate = Date.now();
+            }
         },
 
         score() {
@@ -365,6 +374,25 @@ export default {
             this.handleCountdownProgress({ totalMilliseconds: 0 });
 
             this.counting = false;
+
+            if (this.$store.getters.isLoggedIn) {
+                this.finishedDate = Date.now();
+
+                let credentials = {
+                    wrong_answers: 30 - this.rightAnswersAmount,
+                    correct_answers: this.rightAnswersAmount,
+                    started_at: this.startedDate,
+                    finished_at: this.finishedDate,
+                    test: JSON.stringify(this.quiz),
+                    driving_license_type_id: this.drivingLicenseType.id
+                };
+
+                this.$axios
+                    .post("/reports/test/report", credentials)
+                    .catch(err => {
+                        console.log(err);
+                    });
+            }
         },
 
         currentQuestion(index) {
@@ -480,6 +508,10 @@ export default {
 
     created() {
         this.fetchQuestions();
+
+        if (this.$store.getters.isLoggedIn) {
+            this.startedDate = Date.now();
+        }
     }
 };
 </script>

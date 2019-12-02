@@ -1,10 +1,12 @@
 import Home from "./pages/Home";
 import Tests from "./pages/Tests";
 import Login from "./pages/Login";
+import Dashboard from "./pages/Dashboard";
 import Register from "./pages/Register";
 import NotFound from "./pages/NotFound";
 import VueRouter from "vue-router";
 import store from "./store";
+import { axiosInstance } from "./plugins/axios";
 
 const router = new VueRouter({
     mode: "history",
@@ -48,7 +50,7 @@ const router = new VueRouter({
 
         {
             path: "/dashboard",
-            component: Login, // Will be changed to Dashboard when we have a page
+            component: Dashboard,
             name: "dashboard",
             meta: {
                 authOnly: true
@@ -87,6 +89,23 @@ router.beforeEach((to, from, next) => {
     ) {
         next({ name: "home" });
         return;
+    }
+
+    if (
+        to.matched.some(record => record.meta.authOnly) &&
+        store.getters.isLoggedIn
+    ) {
+        this.$axios.interceptors.request.use(
+            config => {
+                config.headers = config.headers || {};
+                config.headers.Authorization = `Bearer ${this.$store.state.token}`;
+
+                return config;
+            },
+            error => {
+                return Promise.reject(error);
+            }
+        );
     }
 
     next();

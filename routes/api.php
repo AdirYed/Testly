@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DrivingLicenseTypeController;
 use App\Http\Controllers\DrivingLicenseTypeQuestionController;
+use App\Http\Controllers\TestReportController;
 use Illuminate\Support\Facades\Route;
 
 Route::group(['prefix' => 'driving-license-types'], static function () {
@@ -21,17 +22,9 @@ Route::group([
     Route::post('register', [AuthController::class, 'register']);
 });
 
-
-
-/**
- * finished_tests
- *
- * user_id
- * wrong_answers
- * correct_answers
- * started_at
- * finished_at
- * driving_license_type_id
- * questions - json
- *
- */
+Route::group([
+    'prefix' => 'reports',
+], static function () {
+    Route::get('', [TestReportController::class, 'index']);
+    Route::post('test/report', [TestReportController::class, 'store']);
+});
