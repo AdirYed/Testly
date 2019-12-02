@@ -6,7 +6,6 @@ import Register from "./pages/Register";
 import NotFound from "./pages/NotFound";
 import VueRouter from "vue-router";
 import store from "./store";
-import { axiosInstance } from "./plugins/axios";
 
 const router = new VueRouter({
     mode: "history",
@@ -89,23 +88,6 @@ router.beforeEach((to, from, next) => {
     ) {
         next({ name: "home" });
         return;
-    }
-
-    if (
-        to.matched.some(record => record.meta.authOnly) &&
-        store.getters.isLoggedIn
-    ) {
-        this.$axios.interceptors.request.use(
-            config => {
-                config.headers = config.headers || {};
-                config.headers.Authorization = `Bearer ${this.$store.state.token}`;
-
-                return config;
-            },
-            error => {
-                return Promise.reject(error);
-            }
-        );
     }
 
     next();

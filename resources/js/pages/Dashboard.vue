@@ -46,25 +46,33 @@
                 היסטוריית מבחנים
             </div>
 
-            <div class="tw-flex tw-justify-between tw-w-8/12 tw-mx-auto">
-                <div>
-                    04/02/2019 22:04
-                </div>
+            <div v-if="loading">
+                <theory-pulse-loader color="var(--primary-color)" size="40px" />
+            </div>
 
-                <div>
-                    10/30 שאלות נכונות
-                </div>
+            <div v-else>
+                <div
+                    class="tw-flex tw-justify-between tw-w-8/12 tw-mx-auto"
+                    v-for="testReport in testReports"
+                    :key="testReport.id"
+                >
+                    <div>
+                        04/02/2019 22:04
+                    </div>
 
-                <div>
-                    30/10 שאלות נכונות
-                </div>
+                    <div>{{ testReport.correct_answers }}/30 שאלות נכונות</div>
 
-                <div>
-                    לקח לך 10 דקות לסיים
-                </div>
+                    <div>
+                        30/10 שאלות נכונות
+                    </div>
 
-                <div>
-                    צפה במבחן
+                    <div>
+                        לקח לך 10 דקות לסיים
+                    </div>
+
+                    <div>
+                        צפה במבחן
+                    </div>
                 </div>
             </div>
         </div>
@@ -73,6 +81,32 @@
 
 <script>
 export default {
-    name: "dashboard"
+    name: "dashboard",
+    data() {
+        return {
+            testReports: [],
+            loading: true,
+            error: false
+        };
+    },
+    created() {
+        this.init();
+    },
+    methods: {
+        init() {
+            this.loading = true;
+            this.error = false;
+
+            this.$store
+                .dispatch("fetchTestReports")
+                .then(response => {
+                    this.testReports = response.data;
+                    this.loading = false;
+                })
+                .catch(error => {
+                    this.error = error;
+                });
+        }
+    }
 };
 </script>

@@ -1,6 +1,7 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import { axiosInstance } from "./plugins/axios";
+import { formatDate } from "./plugins/formatDate";
 
 Vue.use(Vuex);
 
@@ -9,7 +10,10 @@ export default new Vuex.Store({
         user: localStorage.getItem("user")
             ? JSON.parse(localStorage.getItem("user"))
             : null,
-        token: localStorage.getItem("token") || null
+        token: localStorage.getItem("token") || null,
+        savedTestReport: localStorage.getItem("savedTestReport")
+            ? JSON.parse(localStorage.getItem("savedTestReport"))
+            : null
     },
 
     getters: {
@@ -19,13 +23,10 @@ export default new Vuex.Store({
     },
 
     mutations: {
-        setUser(state, user) {
+        setUser(state, { user, token }) {
             state.user = user;
-            localStorage.setItem("user", JSON.stringify(user));
-        },
-
-        setToken(state, token) {
             state.token = token;
+            localStorage.setItem("user", JSON.stringify(user));
             localStorage.setItem("token", token);
         },
 
@@ -37,32 +38,72 @@ export default new Vuex.Store({
         removeToken(state) {
             state.token = null;
             localStorage.removeItem("token");
+        },
+
+        saveTestReport(state, payload) {
+            state.savedTestReport = payload;
+            localStorage.setItem("savedTestReport", JSON.stringify(payload));
+        },
+
+        deleteSavedTestReport(state) {
+            state.savedTestReport = null;
+            localStorage.removeItem("savedTestReport");
         }
     },
 
     actions: {
-        login({ commit }, credentials) {
+        login({ dispatch, commit }, credentials) {
             return axiosInstance
                 .post("/auth/login", credentials)
                 .then(response => {
-                    commit("setUser", response.data.user);
-                    commit("setToken", response.data.token);
+                    commit("setUser", response.data);
+                    return dispatch("storeSavedTestReportIfExists");
                 });
         },
 
         logout({ commit }) {
-            axiosInstance.post("/auth/logout").then(() => {
-                commit("removeUser");
-                commit("removeToken");
-            });
+            commit("removeUser");
+            commit("removeToken");
         },
 
-        register({ commit }, credentials) {
+        register({ dispatch, commit }, credentials) {
             return axiosInstance
                 .post("/auth/register", credentials)
                 .then(response => {
-                    commit("setUser", response.data.user);
-                    commit("setToken", response.data.token);
+                    commit("setUser", response.data);
+                    return dispatch("storeSavedTestReportIfExists");
+                });
+        },
+
+        fetchTestReports() {
+            return axiosInstance.get("/test-reports");
+        },
+
+        storeTestReport({ getters, commit }, payload) {
+            payload.started_at = formatDate(payload.started_at);
+            payload.finished_at = formatDate(payload.finished_at);
+
+            if (!getters.isLoggedIn) {
+                commit("saveTestReport", payload);
+                return;
+            }
+
+            return axiosInstance.post("/test-reports", payload);
+        },
+
+        storeSavedTestReportIfExists({ state, getters, commit }) {
+            if (
+                !getters.isLoggedIn ||
+                typeof state.savedTestReport !== "object" ||
+                state.savedTestReport === null
+            ) {
+                return;
+            }
+
+            return axiosInstance
+                .post("/test-reports", state.savedTestReport)
+                .then(() => {
+                    commit("deleteSavedTestReport");
                 });
         }
     }

@@ -2,39 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use App\TestReport;
-use Illuminate\Http\Request;
+use App\Http\Requests\StoreTestReportRequest;
 
 class TestReportController extends Controller
 {
-    public function __construct()
-    {
-//        $this->middleware('auth');
-    }
-
     public function index()
     {
-        return $this->authUser()->testReports;
+        return auth()->user()->testReports;
     }
 
-    public function store(Request $request)
+    public function store(StoreTestReportRequest $request)
     {
-        $payload = $request->validate([
-            'wrong_answers' => 'required|integer',
-            'correct_answers' => 'required|integer',
-            'started_at' => 'required',
-            'finished_at' => 'required',
-            'test' => 'required|json',
-            'driving_license_type_id' => 'required|integer',
-        ]);
-
-        $payload['started_at'] = date("Y-m-d H:i:s", $payload['started_at']/1000);
-        $payload['finished_at'] = date("Y-m-d H:i:s", $payload['finished_at']/1000);
+        $payload = $request->validated();
 
         $payload['passed'] = $payload['correct_answers'] >= 28 ? 1 : 0;
-        $payload['user_id'] = 2;
 
-        TestReport::create($payload);
+        auth()->user()->testReports()->create($payload);
     }
 }
 

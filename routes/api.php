@@ -14,17 +14,17 @@ Route::group(['prefix' => 'driving-license-types'], static function () {
     });
 });
 
-Route::group([
-    'prefix' => 'auth',
-], static function () {
+Route::group(['prefix' => 'auth'], static function () {
     Route::post('login', [AuthController::class, 'login']);
-    Route::post('logout', [AuthController::class, 'logout']);
     Route::post('register', [AuthController::class, 'register']);
 });
 
+// Auth routes
+
 Route::group([
-    'prefix' => 'reports',
+    'prefix' => 'test-reports',
+    'middleware' => 'auth:api',
 ], static function () {
     Route::get('', [TestReportController::class, 'index']);
-    Route::post('test/report', [TestReportController::class, 'store']);
+    Route::post('', [TestReportController::class, 'store']);
 });

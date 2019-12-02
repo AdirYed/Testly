@@ -361,12 +361,14 @@ export default {
 
             this.handleCountdownProgress({ totalMilliseconds: this.time });
 
-            if (this.$store.getters.isLoggedIn) {
-                this.startedDate = Date.now();
-            }
+            this.startedDate = new Date();
         },
 
         score() {
+            if (!this.counting) {
+                return;
+            }
+
             this.questionIndex = 0;
             this.rightAnswersAmount = this.rightAnswers();
 
@@ -375,23 +377,21 @@ export default {
 
             this.counting = false;
 
-            if (this.$store.getters.isLoggedIn) {
-                this.finishedDate = Date.now();
+            this.finishedDate = new Date();
 
-                let credentials = {
-                    wrong_answers: 30 - this.rightAnswersAmount,
-                    correct_answers: this.rightAnswersAmount,
-                    started_at: this.startedDate,
-                    finished_at: this.finishedDate,
-                    test: JSON.stringify(this.quiz),
-                    driving_license_type_id: this.drivingLicenseType.id
-                };
+            const payload = {
+                wrong_answers: 30 - this.rightAnswersAmount,
+                correct_answers: this.rightAnswersAmount,
+                started_at: this.startedDate,
+                finished_at: this.finishedDate,
+                test: this.quiz,
+                driving_license_type_id: this.drivingLicenseType.id
+            };
 
-                this.$axios
-                    .post("/reports/test/report", credentials)
-                    .catch(err => {
-                        console.log(err);
-                    });
+            this.$store.dispatch("storeTestReport", payload);
+
+            if (!this.$store.getters.isLoggedIn) {
+                alert("על מנת לשמור את המבחן, אנא הירשם/התחבר");
             }
         },
 
@@ -509,9 +509,7 @@ export default {
     created() {
         this.fetchQuestions();
 
-        if (this.$store.getters.isLoggedIn) {
-            this.startedDate = Date.now();
-        }
+        this.startedDate = new Date();
     }
 };
 </script>
