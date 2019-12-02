@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Observers\TestReportObserver;
+use App\TestReport;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
 use Illuminate\Support\ServiceProvider;
@@ -20,6 +22,7 @@ class AppServiceProvider extends ServiceProvider
 
     public function boot()
     {
+        TestReport::observe(TestReportObserver::class);
         Collection::macro('append', function ($accessors) {
             return $this->each(function (Model $model) use ($accessors) {
                 return $model->append($accessors);

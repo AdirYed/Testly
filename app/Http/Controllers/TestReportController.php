@@ -15,12 +15,6 @@ class TestReportController extends Controller
     {
         $payload = $request->validated();
 
-        $payload['passed'] = $payload['correct_answers'] >= 28 ? 1 : 0;
-
         auth()->user()->testReports()->create($payload);
     }
 }
-
-//             ->select([
-//            'user_id', 'driving_license_type_id', 'passed', 'started_at', 'finished_at', 'test',
-//        ]);
