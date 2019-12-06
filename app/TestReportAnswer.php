@@ -15,6 +15,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \App\Answer|null $answer
+ * @property-read \App\Question $question
  * @property-read \App\TestReport $testReport
  * @method static \Illuminate\Database\Eloquent\Builder|\App\TestReportAnswer newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\TestReportAnswer newQuery()
@@ -40,11 +41,13 @@ class TestReportAnswer extends Model
         return $this->belongsTo(TestReport::class);
     }
 
+    public function question(): BelongsTo
+    {
+        return $this->belongsTo(Question::class);
+    }
+
     public function answer(): BelongsTo
     {
-        return $this->belongsTo(Answer::class)->withDefault(function (Answer $answer) {
-            dump($this);
-            $answer->question_id = $this->question_id;
-        });
+        return $this->belongsTo(Answer::class);
     }
 }
