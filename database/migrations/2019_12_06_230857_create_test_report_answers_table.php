@@ -15,7 +15,7 @@ class CreateTestReportAnswersTable extends Migration
     {
         Schema::create('test_report_answers', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('test_id');
+            $table->unsignedBigInteger('test_report_id');
             $table->unsignedBigInteger('question_id');
             $table->unsignedBigInteger('answer_id')->nullable();
             $table->timestamps();
@@ -23,11 +23,11 @@ class CreateTestReportAnswersTable extends Migration
             $table->foreign('question_id')->references('id')
                 ->on('questions')
                 ->onDelete('cascade');
-            $table->foreign('test_id')->references('id')
+            $table->foreign('test_report_id')->references('id')
                 ->on('test_reports')
                 ->onDelete('cascade');
             $table->foreign('answer_id')->references('id')
-                ->on('test_reports')
+                ->on('answers')
                 ->onDelete('cascade');
         });
     }

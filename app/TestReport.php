@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
- * App\TestReport
+ * App\TestReport.
  *
  * @property int $id
  * @property \Illuminate\Support\Carbon $started_at
@@ -16,8 +16,9 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property int $driving_license_type_id
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\TestReportAnswer[] $answers
- * @property-read int|null $answers_count
+ * @property-read mixed $correct_answers_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\TestReportAnswer[] $testReportAnswers
+ * @property-read int|null $test_report_answers_count
  * @property-read \App\User|null $user
  * @method static \Illuminate\Database\Eloquent\Builder|\App\TestReport newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\TestReport newQuery()
@@ -50,8 +51,13 @@ class TestReport extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function answers(): HasMany
+    public function testReportAnswers(): HasMany
     {
         return $this->hasMany(TestReportAnswer::class);
+    }
+
+    public function getCorrectAnswersCountAttribute(): int
+    {
+        return $this->testReportAnswers->where('answer.is_correct', true)->count();
     }
 }

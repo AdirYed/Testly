@@ -71,7 +71,8 @@
                         </div>
 
                         <div class="tw-w-3/12">
-                            30/{{ testReport.correct_answers }} שאלות נכונות
+                            30/{{ testReport.correct_answers_count }} שאלות
+                            נכונות
                         </div>
 
                         <div class="tw-w-3/12">
