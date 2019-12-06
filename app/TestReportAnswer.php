@@ -31,7 +31,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class TestReportAnswer extends Model
 {
     protected $fillable = [
-        'test_reports_id',
+        'test_report_id',
         'question_id',
         'answer_id',
     ];

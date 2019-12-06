@@ -12,10 +12,10 @@ class TestReportController extends Controller
     {
         return Auth::user()->testReports()
             ->orderByDesc('id')
-            ->with('testReportAnswers.answer')
+            ->with(['testReportAnswers.answer', 'testReportAnswers.question.category'])
             ->get()
             ->map(static function (TestReport $testReport) {
-                return $testReport->append('correct_answers_count');
+                return $testReport->append(['correct_answers_count', 'success_by_categories']);
             });
     }
 
@@ -27,5 +27,7 @@ class TestReportController extends Controller
         $testReport = Auth::user()->testReports()->create($validated);
 
         $testReport->testReportAnswers()->createMany($validated['answers']);
+
+        return response()->json($testReport, 201);
     }
 }

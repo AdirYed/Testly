@@ -51,13 +51,55 @@ class TestReport extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function drivingLicenseType(): BelongsTo
+    {
+        return $this->belongsTo(DrivingLicenseType::class);
+    }
+
     public function testReportAnswers(): HasMany
     {
         return $this->hasMany(TestReportAnswer::class);
     }
 
+    /**
+     * Count how many correct answers this test report has.
+     *
+     * @return int
+     */
     public function getCorrectAnswersCountAttribute(): int
     {
         return $this->testReportAnswers->where('answer.is_correct', true)->count();
+    }
+
+    /**
+     * Calculate this test report success by each category.
+     *
+     * @return array
+     */
+    public function getSuccessByCategoriesAttribute(): array
+    {
+        $successByCategories = [];
+
+        $this->testReportAnswers->each(static function (TestReportAnswer $testReportAnswer) use (&$successByCategories) {
+            $category_id = $testReportAnswer->question->category_id;
+            if (! isset($successByCategories[$category_id])) {
+                $successByCategories[$category_id] = [
+                    'questions_count' => 0,
+                    'correct_answers' => 0,
+                ];
+            }
+
+            $successByCategories[$category_id]['questions_count'] += 1;
+
+            if ($testReportAnswer->answer !== null && $testReportAnswer->answer->is_correct) {
+                $successByCategories[$category_id]['correct_answers'] += 1;
+            }
+        });
+
+        foreach ($successByCategories as &$category) {
+            $category['percent'] = $category['correct_answers'] / $category['questions_count'] * 100;
+        }
+
+        return $successByCategories;
     }
 }

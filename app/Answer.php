@@ -4,9 +4,10 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
- * App\Answer
+ * App\Answer.
  *
  * @property int $id
  * @property string $content
@@ -40,5 +41,10 @@ class Answer extends Model
     public function question(): BelongsTo
     {
         return $this->belongsTo(Question::class);
+    }
+
+    public function testReportAnswers(): HasMany
+    {
+        return $this->hasMany(TestReportAnswer::class);
     }
 }
