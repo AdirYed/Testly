@@ -20,13 +20,5 @@ class TestReportController extends Controller
         $testReport = auth()->user()->testReports()->create($validated);
 
         $testReport->answers()->insert($validated['answers']);
-
-        $answers = [];
-
-        foreach ($validated['answers'] as $request) {
-            $answers[] = $request;
-        }
-
-        $testReport->answers()->insert($answers);
     }
 }
