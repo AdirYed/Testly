@@ -22,4 +22,5 @@ return (new MattAllan\LaravelCodeStyle\Config())
             'spacing' => 'one'
         ],
         'explicit_string_variable' => true,
+        'phpdoc_summary' => false,
     ]);

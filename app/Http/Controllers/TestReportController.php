@@ -12,7 +12,11 @@ class TestReportController extends Controller
     {
         return Auth::user()->testReports()
             ->orderByDesc('id')
-            ->with(['testReportAnswers.answer', 'testReportAnswers.question.category'])
+            ->with([
+                'testReportAnswers.answer',
+                'testReportAnswers.question.category',
+                'drivingLicenseType',
+            ])
             ->get()
             ->map(static function (TestReport $testReport) {
                 return $testReport->append(['correct_answers_count', 'success_by_categories']);

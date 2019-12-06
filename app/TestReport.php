@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
- * App\TestReport.
+ * App\TestReport
  *
  * @property int $id
  * @property \Illuminate\Support\Carbon $started_at
@@ -16,7 +16,9 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property int $driving_license_type_id
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read mixed $correct_answers_count
+ * @property-read \App\DrivingLicenseType $drivingLicenseType
+ * @property-read int $correct_answers_count
+ * @property-read array $success_by_categories
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\TestReportAnswer[] $testReportAnswers
  * @property-read int|null $test_report_answers_count
  * @property-read \App\User|null $user

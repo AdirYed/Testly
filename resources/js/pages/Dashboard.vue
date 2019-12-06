@@ -71,7 +71,11 @@
                         </div>
 
                         <div class="tw-w-3/12">
-                            30/{{ testReport.correct_answers_count }} שאלות
+                            {{ testReport.driving_license_type.name }}
+                        </div>
+
+                        <div class="tw-w-3/12">
+                            30/{{ testReport.correct_answers_count }} תשובות
                             נכונות
                         </div>
 

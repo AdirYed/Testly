@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
- * App\Answer.
+ * App\Answer
  *
  * @property int $id
  * @property string $content
@@ -16,6 +16,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \App\Question $question
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\TestReportAnswer[] $testReportAnswers
+ * @property-read int|null $test_report_answers_count
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Answer newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Answer newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Answer query()
