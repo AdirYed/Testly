@@ -14,12 +14,14 @@ class StoreTestReportRequest extends FormRequest
     public function rules()
     {
         return [
-            'wrong_answers' => 'required|integer',
-            'correct_answers' => 'required|integer',
+            // test
             'started_at' => 'required|date_format:Y-m-d H:i:s',
             'finished_at' => 'required|date_format:Y-m-d H:i:s',
-            'test' => 'required|array',
             'driving_license_type_id' => 'required|exists:driving_license_types,id',
+            // answers
+            'answers' => 'required|array|size:30',
+            'answers.*.question_id' => 'required|exists:questions,id',
+//            'answers.*.answer_id' => 'required|exists:answers,id',
         ];
     }
 }

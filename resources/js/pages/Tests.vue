@@ -125,8 +125,6 @@
                                     }"
                                 ></div>
                             </div>
-
-                            <template v-else></template>
                         </div>
 
                         <div>
@@ -308,7 +306,7 @@
                     :loading="isLoading"
                     color="var(--primary-color)"
                     size="40px"
-                ></theory-pulse-loader>
+                />
             </div>
         </div>
     </div>
@@ -380,13 +378,22 @@ export default {
             this.finishedDate = new Date();
 
             const payload = {
-                wrong_answers: 30 - this.rightAnswersAmount,
-                correct_answers: this.rightAnswersAmount,
                 started_at: this.startedDate,
                 finished_at: this.finishedDate,
-                test: this.quiz,
-                driving_license_type_id: this.drivingLicenseType.id
+                driving_license_type_id: this.drivingLicenseType.id,
+                answers: []
             };
+
+            for (let i = 0; i < 30; i++) {
+                payload.answers.push({
+                    question_id: this.quiz[i].pivot.question_id,
+                    answer_id: this.quiz[i].chosen_answer_id
+                        ? this.quiz[i].answers[
+                              this.quiz[i].chosen_answer_id - 1
+                          ].id
+                        : null
+                });
+            }
 
             this.$store.dispatch("storeTestReport", payload);
 

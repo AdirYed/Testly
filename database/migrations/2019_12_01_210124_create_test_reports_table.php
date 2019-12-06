@@ -15,12 +15,8 @@ class CreateTestReportsTable extends Migration
     {
         Schema::create('test_reports', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->boolean('passed')->default(false);
-            $table->unsignedBigInteger('wrong_answers');
-            $table->unsignedBigInteger('correct_answers');
             $table->timestamp('started_at');
             $table->timestamp('finished_at');
-            $table->json('test');
             $table->unsignedBigInteger('user_id')->nullable()->index();
             $table->unsignedBigInteger('driving_license_type_id');
             $table->timestamps();
@@ -41,6 +37,6 @@ class CreateTestReportsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tests_reports');
+        Schema::dropIfExists('test_reports');
     }
 }
