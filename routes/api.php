@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CategoryTypeController;
 use App\Http\Controllers\DrivingLicenseTypeController;
 use App\Http\Controllers\DrivingLicenseTypeQuestionController;
 use App\Http\Controllers\TestReportController;
@@ -28,3 +29,5 @@ Route::group([
     Route::get('', [TestReportController::class, 'index']);
     Route::post('', [TestReportController::class, 'store']);
 });
+
+Route::get('category_types', [CategoryTypeController::class, 'index']);

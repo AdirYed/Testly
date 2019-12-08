@@ -105,6 +105,10 @@ export default new Vuex.Store({
                 .then(() => {
                     commit("deleteSavedTestReport");
                 });
+        },
+
+        fetchCategoryTypes() {
+            return axiosInstance.get("category_types");
         }
     }
 });

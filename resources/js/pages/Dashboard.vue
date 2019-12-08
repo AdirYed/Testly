@@ -28,29 +28,28 @@
                 </div>
 
                 <div
-                    class="tw-flex tw-flex-wrap tw-flex-col tw-items-center tw-w-6/12 tw-mx-auto"
+                    class="tw-flex tw-flex-wrap tw-flex-col tw-items-center tw-w-8/12 md:tw-w-7/12 lg:tw-w-6/12 tw-mx-auto"
                 >
-                    <div class="tw-w-6/12 tw-my-3">
-                        חוקי התנועה - 50%
+                    <div
+                        v-for="category in categories"
+                        v-if="percentage[category.id]"
+                        class="tw-w-8/12 md:tw-w-7/12 lg:tw-w-6/12 tw-my-3"
+                    >
+                        <div class="tw-text-md md:tw-text-lg">
+                            {{ category.name }}
+                            -
+                            {{ Math.floor(percentage[category.id]) }}%
+                        </div>
 
                         <div class="tw-bg-gray-300 tw-mt-2">
                             <div
                                 class="tw-bg-primary"
-                                style="height: 0.15rem; width: 50%"
+                                style="height: 0.15rem;"
+                                :style="
+                                    'width: ' + percentage[category.id] + '%'
+                                "
                             ></div>
                         </div>
-                    </div>
-
-                    <div>
-                        תמרורים
-                    </div>
-
-                    <div>
-                        הכרת הרכב
-                    </div>
-
-                    <div>
-                        בטיחות
                     </div>
                 </div>
             </div>
@@ -81,7 +80,7 @@
 
                         <div class="tw-w-3/12">
                             {{
-                                mins(
+                                minutes(
                                     testReport.finished_at -
                                         testReport.started_at
                                 )
@@ -105,16 +104,23 @@ export default {
         return {
             testReports: [],
             isLoading: true,
-            error: false
+            testReportErrors: false,
+            categoriesErrors: false,
+
+            categories: null,
+
+            percentage: null
         };
     },
+
     created() {
         this.init();
     },
+
     methods: {
         init() {
             this.isLoading = true;
-            this.error = false;
+            this.testReportErrors = false;
 
             this.$store
                 .dispatch("fetchTestReports")
@@ -130,14 +136,52 @@ export default {
                         );
                     });
 
-                    this.isLoading = false;
+                    this.calcPercentage();
+
+                    this.$store
+                        .dispatch("fetchCategoryTypes")
+                        .then(response => {
+                            this.categories = response.data;
+
+                            this.isLoading = false;
+                        })
+                        .catch(error => {
+                            this.categoriesErrors = error;
+                        });
                 })
                 .catch(error => {
-                    this.error = error;
+                    this.testReportErrors = error;
                 });
         },
 
-        mins(ms) {
+        calcPercentage() {
+            let categories = [];
+            let counter = [];
+
+            this.testReports.forEach(function(item) {
+                const successByCategories = JSON.parse(
+                    JSON.stringify(item.success_by_categories)
+                );
+
+                Object.keys(successByCategories).forEach(function(index) {
+                    if (!categories[index] && categories[index] !== 0) {
+                        categories[index] = successByCategories[index].percent;
+                        counter[index] = 1;
+                    } else {
+                        categories[index] += successByCategories[index].percent;
+                        counter[index]++;
+                    }
+                });
+            });
+
+            categories.forEach(function(item, index) {
+                categories[index] = item / counter[index];
+            });
+
+            this.percentage = categories;
+        },
+
+        minutes(ms) {
             const date = new Date(ms);
 
             return `${this.appendLeadingZeroes(
