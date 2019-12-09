@@ -43,8 +43,7 @@
 
                         <div class="tw-bg-gray-300 tw-mt-2">
                             <div
-                                class="tw-bg-primary"
-                                style="height: 0.15rem;"
+                                class="progressBar"
                                 :style="
                                     'width: ' + percentage[category.id] + '%'
                                 "
@@ -143,6 +142,7 @@ export default {
         init() {
             this.isLoading = true;
             this.testReportErrors = false;
+            this.categoriesErrors = false;
 
             this.$store
                 .dispatch("fetchTestReports")
@@ -204,6 +204,7 @@ export default {
         },
 
         minutes(ms) {
+            // Example: 06:13 minutes
             const date = new Date(ms);
 
             return `${this.appendLeadingZeroes(
@@ -212,6 +213,7 @@ export default {
         },
 
         date(ms) {
+            // Example: 02/12/2019 - 17:00 (ltr)
             const date = new Date(ms);
 
             return `${this.appendLeadingZeroes(
@@ -253,7 +255,7 @@ td:not(:last-child) {
 
 @media (max-width: 640px) {
     th:not(:last-child) {
-        border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+        border-bottom: 1.5px solid rgba(0, 0, 0, 0.1);
     }
 }
 </style>

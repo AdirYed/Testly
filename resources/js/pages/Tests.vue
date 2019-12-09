@@ -1,8 +1,7 @@
 <template>
     <div>
         <div
-            class="tw-bg-primary tw-fixed"
-            style="transition: .2s ease-in-out; height: 0.15rem"
+            class="progressBar progressBarTransition tw-fixed"
             :style="progressBarStyle"
         ></div>
 

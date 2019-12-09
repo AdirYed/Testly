@@ -79,3 +79,19 @@ button:focus {
         @apply border-transparent;
     }
 }
+
+.progressBar {
+    @apply tw-bg-primary;
+
+    @media (min-width: 640px) {
+        height: 0.15rem;
+    }
+
+    @media (max-width: 640px) {
+        height: 0.20rem;
+    }
+}
+
+.progressBarTransition {
+    transition: .2s ease-in-out;
+}
