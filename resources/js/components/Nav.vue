@@ -9,7 +9,7 @@
             <ul
                 class="lg:tw-flex tw-items-center tw-justify-between tw-text-base tw-text-gray-700 tw-pt-4 lg:tw-pt-0"
             >
-                <slot name="left-bar"></slot>
+                <slot name="left-bar" />
             </ul>
         </div>
 
@@ -22,9 +22,7 @@
                 viewBox="0 0 20 20"
             >
                 <title>menu</title>
-                <path
-                    d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"
-                ></path></svg
+                <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" /></svg
         ></label>
         <input class="tw-hidden" type="checkbox" id="menu-toggle" />
 

@@ -1,8 +1,7 @@
 <template>
     <div>
         <div
-            class="tw-bg-primary tw-fixed"
-            style="transition: .2s ease-in-out; height: 0.15rem"
+            class="progressBar progressBarTransition tw-fixed"
             :style="progressBarStyle"
         ></div>
 
@@ -125,8 +124,6 @@
                                     }"
                                 ></div>
                             </div>
-
-                            <template v-else></template>
                         </div>
 
                         <div>
@@ -308,7 +305,7 @@
                     :loading="isLoading"
                     color="var(--primary-color)"
                     size="40px"
-                ></theory-pulse-loader>
+                />
             </div>
         </div>
     </div>
@@ -331,7 +328,12 @@ export default {
             time: 40 * 60 * 1000,
             progressBarStyle: {
                 width: "100%"
-            }
+            },
+
+            startedDate: null,
+            finishedDate: null,
+
+            pressed: null
         };
     },
 
@@ -355,9 +357,15 @@ export default {
             }
 
             this.handleCountdownProgress({ totalMilliseconds: this.time });
+
+            this.startedDate = new Date();
         },
 
         score() {
+            if (!this.counting) {
+                return;
+            }
+
             this.questionIndex = 0;
             this.rightAnswersAmount = this.rightAnswers();
 
@@ -365,6 +373,32 @@ export default {
             this.handleCountdownProgress({ totalMilliseconds: 0 });
 
             this.counting = false;
+
+            this.finishedDate = new Date();
+
+            const payload = {
+                started_at: this.startedDate,
+                finished_at: this.finishedDate,
+                driving_license_type_id: this.drivingLicenseType.id,
+                answers: []
+            };
+
+            for (let i = 0; i < 30; i++) {
+                payload.answers.push({
+                    question_id: this.quiz[i].pivot.question_id,
+                    answer_id: this.quiz[i].chosen_answer_id
+                        ? this.quiz[i].answers[
+                              this.quiz[i].chosen_answer_id - 1
+                          ].id
+                        : null
+                });
+            }
+
+            this.$store.dispatch("storeTestReport", payload);
+
+            if (!this.$store.getters.isLoggedIn) {
+                alert("על מנת לשמור את המבחן, אנא הירשם/התחבר");
+            }
         },
 
         currentQuestion(index) {
@@ -480,6 +514,8 @@ export default {
 
     created() {
         this.fetchQuestions();
+
+        this.startedDate = new Date();
     }
 };
 </script>

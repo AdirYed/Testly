@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * App\Answer
@@ -15,6 +16,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \App\Question $question
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\TestReportAnswer[] $testReportAnswers
+ * @property-read int|null $test_report_answers_count
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Answer newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Answer newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Answer query()
@@ -40,5 +43,10 @@ class Answer extends Model
     public function question(): BelongsTo
     {
         return $this->belongsTo(Question::class);
+    }
+
+    public function testReportAnswers(): HasMany
+    {
+        return $this->hasMany(TestReportAnswer::class);
     }
 }

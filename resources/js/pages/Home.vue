@@ -25,85 +25,65 @@
         <!-- TODO: need to style it -->
         <div
             ref="homeBody"
-            id="home-body"
             class="tw-container tw-mx-auto tw-flex tw-flex-wrap tw-flex-col tw-content-center"
         >
-            <div class="tw-px-4 tw-pt-10">
-                <h1 class="tw-text-3xl">
+            <div class="tw-px-4 tw-pt-8 md:tw-pt-10">
+                <h1 class="tw-text-xl md:tw-text-3xl">
                     הנכם מוזמנים
-                    <router-link class="link" :to="{ name: 'login' }"
+                    <router-link class="link" :to="{ name: 'register' }"
                         >להירשם</router-link
                     >
                     לאתר כדי לשמור את נתונכם.
                 </h1>
             </div>
 
-            <section class="tw-flex tw-flex-wrap tw-justify-center tw-pt-10">
+            <section
+                class="tw-flex tw-flex-wrap tw-justify-center tw-pt-8 md:tw-pt-10"
+            >
                 <div class="tw-p-4">
-                    <theory-card
-                        src="/assets/action-asphalt.jpg"
-                        alt="asphalt.jpg"
-                    >
+                    <theory-card src="/assets/action-asphalt.jpg">
                         <template slot="title">זהו הכותרת</template>
                         זהו הדיסקריפשן
                         <template slot="button-desc">למבחן תאוריה</template>
                     </theory-card>
                 </div>
                 <div class="tw-p-4">
-                    <theory-card
-                        src="/assets/action-asphalt.jpg"
-                        alt="asphalt.jpg"
-                    >
+                    <theory-card src="/assets/action-asphalt.jpg">
                         <template slot="title">זהו הכותרת</template>
                         זהו הדיסקריפשן
                         <template slot="button-desc">למבחן תאוריה</template>
                     </theory-card>
                 </div>
                 <div class="tw-p-4">
-                    <theory-card
-                        src="/assets/action-asphalt.jpg"
-                        alt="asphalt.jpg"
-                    >
+                    <theory-card src="/assets/action-asphalt.jpg">
                         <template slot="title">זהו הכותרת</template>
                         זהו הדיסקריפשן
                         <template slot="button-desc">למבחן תאוריה</template>
                     </theory-card>
                 </div>
                 <div class="tw-p-4">
-                    <theory-card
-                        src="/assets/action-asphalt.jpg"
-                        alt="asphalt.jpg"
-                    >
+                    <theory-card src="/assets/action-asphalt.jpg">
                         <template slot="title">זהו הכותרת</template>
                         זהו הדיסקריפשן
                         <template slot="button-desc">למבחן תאוריה</template>
                     </theory-card>
                 </div>
                 <div class="tw-p-4">
-                    <theory-card
-                        src="/assets/action-asphalt.jpg"
-                        alt="asphalt.jpg"
-                    >
+                    <theory-card src="/assets/action-asphalt.jpg">
                         <template slot="title">זהו הכותרת</template>
                         זהו הדיסקריפשן
                         <template slot="button-desc">למבחן תאוריה</template>
                     </theory-card>
                 </div>
                 <div class="tw-p-4">
-                    <theory-card
-                        src="/assets/action-asphalt.jpg"
-                        alt="asphalt.jpg"
-                    >
+                    <theory-card src="/assets/action-asphalt.jpg">
                         <template slot="title">זהו הכותרת</template>
                         זהו הדיסקריפשן
                         <template slot="button-desc">למבחן תאוריה</template>
                     </theory-card>
                 </div>
                 <div class="tw-p-4">
-                    <theory-card
-                        src="/assets/action-asphalt.jpg"
-                        alt="asphalt.jpg"
-                    >
+                    <theory-card src="/assets/action-asphalt.jpg">
                         <template slot="title">זהו הכותרת</template>
                         זהו הדיסקריפשן
                         <template slot="button-desc">למבחן תאוריה</template>

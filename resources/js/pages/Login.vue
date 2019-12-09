@@ -8,7 +8,7 @@
 
         <div class="tw-w-full tw-max-w-xs tw-mx-auto">
             <form
-                class="tw-rounded tw-px-8 tw-pt-6 tw-pb-8 tw-mb-5"
+                class="tw-rounded tw-px-8 tw-pt-5"
                 method="post"
                 @submit.prevent="login"
             >
@@ -115,8 +115,8 @@ export default {
     data() {
         return {
             auth: {
-                email: "",
-                password: ""
+                email: "matan.yed@gmail.com",
+                password: "secret"
             },
 
             isLoading: false,

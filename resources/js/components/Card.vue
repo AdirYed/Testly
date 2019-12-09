@@ -1,15 +1,16 @@
 <template>
-    <div class="home-body-child tw-w-80 tw-border tw-rounded">
+    <div class="card tw-border tw-rounded" :style="size()">
         <div
+            v-if="src"
             class="card-img tw-w-full tw-rounded tw-rounded-b-none"
             :style="{ 'background-image': 'url(' + src + ')' }"
         ></div>
         <div class="tw-px-6 tw-py-4">
             <div class="tw-font-bold tw-text-xl tw-mb-2">
-                <slot name="title"></slot>
+                <slot name="title" />
             </div>
             <p class="tw-text-gray-700 tw-text-base">
-                <slot></slot>
+                <slot />
             </p>
         </div>
 
@@ -17,7 +18,7 @@
             <button
                 class="btn tw-py-2 tw-px-3 tw-border-2 tw-border-primary hover:tw-bg-primary tw-text-primary hover:tw-text-white tw-rounded"
             >
-                <slot name="button-desc"></slot>
+                <slot name="button-desc" />
             </button>
         </div>
     </div>
@@ -29,8 +30,18 @@ export default {
 
     props: {
         src: {
-            type: String,
-            require: true
+            type: String
+        },
+
+        width: {
+            type: Number,
+            default: 80
+        }
+    },
+
+    methods: {
+        size() {
+            return `width: ${this.width / 4}rem`;
         }
     }
 };

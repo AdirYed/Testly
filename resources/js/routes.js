@@ -1,6 +1,7 @@
 import Home from "./pages/Home";
 import Tests from "./pages/Tests";
 import Login from "./pages/Login";
+import Dashboard from "./pages/Dashboard";
 import Register from "./pages/Register";
 import NotFound from "./pages/NotFound";
 import VueRouter from "vue-router";
@@ -48,7 +49,7 @@ const router = new VueRouter({
 
         {
             path: "/dashboard",
-            component: Login, // Will be changed to Dashboard when we have a page
+            component: Dashboard,
             name: "dashboard",
             meta: {
                 authOnly: true
