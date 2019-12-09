@@ -54,44 +54,65 @@
                 </div>
             </div>
 
-            <div class="tw-text-center">
-                <div class="tw-text-lg md:tw-text-2xl tw-mb-5">
+            <div>
+                <div class="tw-text-lg md:tw-text-2xl tw-mb-5 tw-text-center">
                     היסטוריית מבחנים
                 </div>
 
-                <div>
-                    <div
-                        class="tw-flex tw-justify-center tw-w-8/12 tw-mx-auto"
-                        v-for="testReport in testReports"
-                        :key="testReport.id"
-                    >
-                        <div class="tw-w-3/12" style="direction: ltr">
-                            {{ date(testReport.finished_at) }}
-                        </div>
+                <table
+                    class="tw-w-full tw-flex tw-flex-row tw-flex-no-wrap sm:tw-bg-white tw-rounded-lg tw-overflow-hidden sm:tw-shadow-lg"
+                >
+                    <thead class="tw-text-white">
+                        <tr
+                            class="tw-bg-primary tw-flex tw-flex-col tw-flex-no tw-wrap sm:tw-table-row tw-rounded-l-lg sm:tw-rounded-none tw-mb-2 sm:tw-mb-0"
+                            v-for="i in testReports.length"
+                        >
+                            <th class="tw-p-3 sm:tw-w-2/12">רישיון</th>
+                            <th class="tw-p-3 sm:tw-w-2/12">תאריך</th>
+                            <th class="tw-p-3 sm:tw-w-2/12">תשובות נכונות</th>
+                            <th class="tw-p-3 sm:tw-w-2/12">זמן</th>
+                            <th class="tw-p-3 sm:tw-w-2/12">צפייה</th>
+                        </tr>
+                    </thead>
+                    <tbody class="tw-flex-1 sm:tw-flex-none">
+                        <tr
+                            class="tw-flex tw-flex-col tw-flex-no tw-wrap sm:tw-table-row tw-mb-2 sm:tw-mb-0"
+                            v-for="testReport in testReports"
+                            :key="testReport.id"
+                        >
+                            <td class="tw-border-grey-light tw-border tw-p-3">
+                                {{ testReport.driving_license_type.name }}
+                            </td>
 
-                        <div class="tw-w-3/12">
-                            {{ testReport.driving_license_type.name }}
-                        </div>
+                            <td class="tw-border-grey-light tw-border tw-p-3">
+                                {{ date(testReport.finished_at) }}
+                            </td>
 
-                        <div class="tw-w-3/12">
-                            30/{{ testReport.correct_answers_count }} תשובות
-                            נכונות
-                        </div>
+                            <td class="tw-border-grey-light tw-border tw-p-3">
+                                {{ testReport.correct_answers_count }}/30
+                            </td>
 
-                        <div class="tw-w-3/12">
-                            {{
-                                minutes(
-                                    testReport.finished_at -
-                                        testReport.started_at
-                                )
-                            }}
-                        </div>
+                            <td class="tw-border-grey-light tw-border tw-p-3">
+                                {{
+                                    minutes(
+                                        testReport.finished_at -
+                                            testReport.started_at
+                                    )
+                                }}
+                                דקות
+                            </td>
 
-                        <div class="tw-w-3/12">
-                            צפה במבחן
-                        </div>
-                    </div>
-                </div>
+                            <td class="tw-border tw-p-3 tw-font-semibold">
+                                <router-link
+                                    class="link"
+                                    :to="{ name: 'home' }"
+                                >
+                                    צפייה במבחן
+                                </router-link>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </template>
     </div>
@@ -193,14 +214,14 @@ export default {
             const date = new Date(ms);
 
             return `${this.appendLeadingZeroes(
-                date.getHours()
-            )}:${this.appendLeadingZeroes(
-                date.getMinutes()
-            )} - ${this.appendLeadingZeroes(
                 date.getDay() + 1
             )}/${this.appendLeadingZeroes(
                 date.getMonth() + 1
-            )}/${date.getFullYear()}`;
+            )}/${date.getFullYear()}
+            -
+            ${this.appendLeadingZeroes(
+                date.getHours()
+            )}:${this.appendLeadingZeroes(date.getMinutes())}`;
         },
 
         appendLeadingZeroes(n) {
@@ -213,3 +234,25 @@ export default {
     }
 };
 </script>
+
+<style scoped>
+@media (min-width: 640px) {
+    table {
+        display: inline-table !important;
+    }
+
+    thead tr:not(:first-child) {
+        display: none;
+    }
+}
+
+td:not(:last-child) {
+    border-bottom: 0;
+}
+
+@media (max-width: 640px) {
+    th:not(:last-child) {
+        border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+    }
+}
+</style>

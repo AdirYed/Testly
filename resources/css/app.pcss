@@ -39,23 +39,21 @@ button:focus {
     z-index: -1;
 }
 
-#home-body {
-    .home-body-child {
-        border-color: rgba(0, 0, 0, 0.25);
+.card {
+    border-color: rgba(0, 0, 0, 0.25);
 
-        > .card-img {
-            background-size: 100%;
-            background-repeat: no-repeat;
-            background-position: center;
-            height: 20vh;
-            min-height: 120px;
-            max-height: 200px;
-        }
+    > .card-img {
+        background-size: 100%;
+        background-repeat: no-repeat;
+        background-position: center;
+        height: 20vh;
+        min-height: 120px;
+        max-height: 200px;
+    }
 
-        &:hover {
-            border-color: var(--primary-color) !important;
-        }
-     }
+    &:hover {
+        border-color: var(--primary-color) !important;
+    }
 }
 
 .btn-disabled {
