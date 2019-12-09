@@ -60,11 +60,11 @@
                 </div>
 
                 <table
-                    class="tw-w-full tw-flex tw-flex-row tw-flex-no-wrap sm:tw-bg-white tw-rounded-lg tw-overflow-hidden sm:tw-shadow-lg"
+                    class="tw-w-full tw-flex sm:tw-bg-white tw-rounded-lg sm:tw-shadow-lg"
                 >
                     <thead class="tw-text-white">
                         <tr
-                            class="tw-bg-primary tw-flex tw-flex-col tw-flex-no tw-wrap sm:tw-table-row tw-rounded-l-lg sm:tw-rounded-none tw-mb-2 sm:tw-mb-0"
+                            class="tw-bg-primary tw-flex tw-wrap tw-flex-col sm:tw-table-row tw-rounded-l-lg sm:tw-rounded-none tw-mb-2 sm:tw-mb-0"
                             v-for="i in testReports.length"
                         >
                             <th class="tw-p-3 sm:tw-w-2/12">רישיון</th>
@@ -74,9 +74,10 @@
                             <th class="tw-p-3 sm:tw-w-2/12">צפייה</th>
                         </tr>
                     </thead>
+
                     <tbody class="tw-flex-1 sm:tw-flex-none">
                         <tr
-                            class="tw-flex tw-flex-col tw-flex-no tw-wrap sm:tw-table-row tw-mb-2 sm:tw-mb-0"
+                            class="tw-flex tw-wrap tw-flex-col sm:tw-table-row tw-mb-2 sm:tw-mb-0"
                             v-for="testReport in testReports"
                             :key="testReport.id"
                         >
