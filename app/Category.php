@@ -27,6 +27,11 @@ class Category extends Model
 {
     protected $fillable = [
         'name',
+        'is_bicycle',
+    ];
+
+    protected $casts = [
+        'is_bicycle' => 'boolean',
     ];
 
     public function questions(): HasMany

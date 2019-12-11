@@ -32,11 +32,6 @@ class DrivingLicenseType extends Model
         'name',
     ];
 
-    public function questions(): BelongsToMany
-    {
-        return $this->belongsToMany(Question::class);
-    }
-
     public function getRouteKeyName()
     {
         return 'code';

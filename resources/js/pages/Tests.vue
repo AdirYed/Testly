@@ -385,7 +385,7 @@ export default {
 
             for (let i = 0; i < 30; i++) {
                 payload.answers.push({
-                    question_id: this.quiz[i].pivot.question_id,
+                    question_id: this.quiz[i].id,
                     answer_id: this.quiz[i].chosen_answer_id
                         ? this.quiz[i].answers[
                               this.quiz[i].chosen_answer_id - 1

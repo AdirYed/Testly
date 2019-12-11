@@ -3,9 +3,6 @@
 namespace App\Console\Commands;
 
 use App;
-use App\DrivingLicenseType;
-use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 use Storage;
@@ -22,7 +19,7 @@ class ParseDatasetCommand extends Command
     protected $description = 'Parse the dataset and store in the database';
 
     /**
-     * @var array    array of images that should be stored
+     * @var array array of images that should be stored
      */
     private $images = [];
 
@@ -34,22 +31,17 @@ class ParseDatasetCommand extends Command
         Category::truncate();
         Question::truncate();
         Answer::truncate();
-        DB::table('driving_license_type_question')->truncate();
         Schema::enableForeignKeyConstraints();
-
-        $drivingLicenseTypes = DrivingLicenseType::all();
 
         if ($this->shouldParseGeneral()) {
             $this->parseDataset(
-                config('theory_test.datasets.general'),
-                $drivingLicenseTypes->where('code', '!=', 'A3')
+                config('theory_test.datasets.general')
             );
         }
 
         if ($this->shouldParseElectricBicycle()) {
             $this->parseDataset(
-                config('theory_test.datasets.a3'),
-                $drivingLicenseTypes->where('code', 'A3')
+                config('theory_test.datasets.a3')
             );
         }
 
@@ -87,7 +79,7 @@ class ParseDatasetCommand extends Command
             && ! $this->option('without-images');
     }
 
-    private function parseDataset(string $dataset_path, Collection $drivingLicenseTypes): void
+    private function parseDataset(string $dataset_path): void
     {
         $datasetSimpleXml = simplexml_load_file($dataset_path, 'SimpleXMLElement', LIBXML_NOCDATA);
         $datasetJson = json_encode((array) $datasetSimpleXml->channel);
@@ -95,9 +87,10 @@ class ParseDatasetCommand extends Command
         $now = now();
 
         // Store categories
-        $categoriesData = $dataset->unique('category')->map(static function ($item) use ($now) {
+        $categoriesData = $dataset->unique('category')->map(static function ($item) use ($now, &$dataset_path) {
             return [
                 'name' => $item['category'],
+                'is_bicycle' => $dataset_path === config('theory_test.datasets.a3'),
                 'created_at' => $now,
                 'updated_at' => $now,
             ];
@@ -149,10 +142,6 @@ class ParseDatasetCommand extends Command
         $questions = Question::select(['id', 'original_id'])
             ->whereIn('category_id', $categories->pluck('id'))
             ->get();
-
-        $questions->each(static function (Question $question) use ($drivingLicenseTypes) {
-            $question->drivingLicenseTypes()->attach($drivingLicenseTypes);
-        });
 
         $answersData = [];
 

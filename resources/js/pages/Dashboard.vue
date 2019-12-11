@@ -21,7 +21,7 @@
             />
         </div>
 
-        <template v-else>
+        <template v-else-if="!isLoading && testReports.length !== 0">
             <div class="tw-text-center tw-mb-5">
                 <div class="tw-text-lg md:tw-text-2xl">
                     אחוז מוכנות
@@ -32,7 +32,10 @@
                 >
                     <div
                         v-for="category in categories"
-                        v-if="percentage[category.id]"
+                        v-if="
+                            percentage[category.id] ||
+                                percentage[category.id] === 0
+                        "
                         class="tw-w-8/12 md:tw-w-7/12 lg:tw-w-6/12 tw-my-3"
                     >
                         <div class="tw-text-md md:tw-text-lg">
@@ -113,6 +116,17 @@
                         </tr>
                     </tbody>
                 </table>
+            </div>
+        </template>
+
+        <template v-else>
+            <div class="tw-text-lg md:tw-text-2xl tw-mb-5">
+                הפרופיל כרגע ריק משום שאין לך היסטוריית
+                <router-link
+                    class="link"
+                    :to="{ name: 'home', hash: '#choose-a-test' }"
+                    >מבחנים</router-link
+                >.
             </div>
         </template>
     </div>

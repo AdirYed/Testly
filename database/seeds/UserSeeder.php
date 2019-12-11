@@ -13,7 +13,7 @@ class UserSeeder extends Seeder
             'email' => 'matan.yed@gmail.com',
             'email_verified_at' => now(),
             'password' => bcrypt('secret'),
-            'role' => 'user',
+            'role' => 'admin',
         ]);
     }
 }
