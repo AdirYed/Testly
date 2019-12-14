@@ -100,43 +100,48 @@ class Question extends Model
                 }
             ]);
 
-        if ($drivingLicenseType->id === 7) {
+        if ($drivingLicenseType->code === 'A3') {
             $query->whereHas('category', function (Builder $query) {
                 $query->where('is_bicycle', true);
             })
                 ->limit(30)->inRandomOrder();
         } else {
-            $categories = Category::where('is_bicycle', false)->get();
-            $limits = $this->generateRandomNumbers(30, $categories->count());
+            $query->whereHas('category', function (Builder $query) {
+                $query->where('is_bicycle', false);
+            })
+                ->limit(30)->inRandomOrder();
 
-            $questions = [];
-            $i = 0;
-
-            foreach ($categories as $category) {
-                if ($i === $categories->count() - 1) {
-                    continue;
-                }
-
-                $questions[] = $category->questions()
-                    ->select(['id', 'title', 'image_url'])
-                    ->limit($limits[$i])
-                    ->inRandomOrder();
-
-                $i++;
-            }
-
-            $query->where('category_id', $categories[$i]->id)
-                ->limit($limits[$i])->inRandomOrder();
-
-            for ($j = 0; $j < $categories->count() - 1; $j++) {
-                $query->union($questions[$j]);
-            }
-
-            $query->inRandomOrder();
+//            $categories = Category::where('is_bicycle', false)->get();
+//            $limits = $this->generateRandomNumbers(30, $categories->count());
+//
+//            $questions = [];
+//            $i = 0;
+//
+//            foreach ($categories as $category) {
+//                if ($i === $categories->count() - 1) {
+//                    continue;
+//                }
+//
+//                $questions[] = $category->questions()
+//                    ->select(['id', 'title', 'image_url'])
+//                    ->limit($limits[$i])
+//                    ->inRandomOrder();
+//
+//                $i++;
+//            }
+//
+//            $query->where('category_id', $categories[$i]->id)
+//                ->limit($limits[$i])->inRandomOrder();
+//
+//            for ($j = 0; $j < $categories->count() - 1; $j++) {
+//                $query->union($questions[$j]);
+//            }
+//
+//            $query->inRandomOrder();
         }
     }
 
-    static function generateRandomNumbers($max, $count)
+    private static function generateRandomNumbers($max, $count)
     {
         $numbers = [];
 

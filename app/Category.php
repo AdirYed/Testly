@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  *
  * @property int $id
  * @property string $name
+ * @property bool $is_bicycle
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Question[] $questions
@@ -19,6 +20,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Category query()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Category whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Category whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Category whereIsBicycle($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Category whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Category whereUpdatedAt($value)
  * @mixin \Eloquent
