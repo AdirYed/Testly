@@ -13,6 +13,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
  * @property string $name
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Question[] $questions
+ * @property-read int|null $questions_count
  * @method static \Illuminate\Database\Eloquent\Builder|\App\DrivingLicenseType newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\DrivingLicenseType newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\DrivingLicenseType query()
@@ -29,6 +31,11 @@ class DrivingLicenseType extends Model
         'code',
         'name',
     ];
+
+    public function questions(): BelongsToMany
+    {
+        return $this->belongsToMany(Question::class);
+    }
 
     public function getRouteKeyName()
     {

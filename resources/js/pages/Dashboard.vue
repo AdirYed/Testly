@@ -83,7 +83,7 @@
 
                     <tbody class="tw-flex-1 sm:tw-flex-none">
                         <tr
-                            class="tw-text-sm md:tw-text-base tw-flex tw-wrap tw-flex-col sm:tw-table-row tw-mb-2 sm:tw-mb-0 tw-text-sm md:tw-text-base"
+                            class="tw-flex tw-wrap tw-flex-col sm:tw-table-row tw-mb-2 sm:tw-mb-0 tw-text-sm md:tw-text-base"
                             v-for="testReport in testReports"
                             :key="testReport.id"
                         >
