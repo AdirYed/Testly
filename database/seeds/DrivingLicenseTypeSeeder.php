@@ -9,16 +9,20 @@ class DrivingLicenseTypeSeeder extends Seeder
     {
         $drivingLicenseTypes = [
             [
-                'code' => 'B',
-                'name' => 'רכב פרטי',
+                'code' => 'A2',
+                'name' => 'אופנוע עד 125 סמ״ק',
+            ],
+            [
+                'code' => 'A1',
+                'name' => 'אופנוע עד 400 סמ״ק',
             ],
             [
                 'code' => 'A',
                 'name' => 'אופנוע',
             ],
             [
-                'code' => '1',
-                'name' => 'טרקטור',
+                'code' => 'B',
+                'name' => 'רכב פרטי',
             ],
             [
                 'code' => 'C1',
@@ -29,8 +33,24 @@ class DrivingLicenseTypeSeeder extends Seeder
                 'name' => 'רכב משא כבד',
             ],
             [
+                'code' => 'D3',
+                'name' => 'מיניבוס פרטי עד 5 טון',
+            ],
+            [
+                'code' => 'D2',
+                'name' => 'מיניבוס ציבורי עד 5 טון',
+            ],
+            [
+                'code' => 'D1',
+                'name' => 'מונית',
+            ],
+            [
                 'code' => 'D',
-                'name' => 'רכב ציבורי',
+                'name' => 'אוטובוס',
+            ],
+            [
+                'code' => '1',
+                'name' => 'טרקטור',
             ],
             [
                 'code' => 'A3',
