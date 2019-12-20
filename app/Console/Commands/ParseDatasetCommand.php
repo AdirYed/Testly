@@ -23,6 +23,12 @@ class ParseDatasetCommand extends Command
     protected $description = 'Parse the dataset and store in the database';
 
     private const IMAGES_DIRECTORY = 'question-images';
+
+    /**
+     * The amount of rows will be stored in every DB operation
+     *
+     * @var int
+     */
     private const INSERT_CHUNK_SIZE = 25;
 
     /**
@@ -177,21 +183,31 @@ class ParseDatasetCommand extends Command
                 Question::insert($chunkedQuestionsData->toArray());
             });
 
-        return Question::select(['id', 'original_id'])->get();
+        return Question::select(['id', 'original_id', 'title'])->get();
     }
 
     private function attachQuestionsToDrivingLicenseTypes(): void
     {
-        // @TODO store only the license types that in the question, for example: "«C1» | «C» | «D» | «A» | «1» | «В»"
         $drivingLicenseTypeQuestionData = [];
 
         $this->questions->each(function (Question $question, $index) use (&$drivingLicenseTypeQuestionData) {
-            $this->drivingLicenseTypes->each(static function (DrivingLicenseType $drivingLicenseType) use ($question, &$drivingLicenseTypeQuestionData) {
-                $drivingLicenseTypeQuestionData[] = [
-                    'question_id' => $question->id,
-                    'driving_license_type_id' => $drivingLicenseType->id,
-                ];
-            });
+            $datasetItem = $this->dataset->filter(static function (array $item) use ($question) {
+                return Str::contains($item['title'], $question->original_id) && Str::contains($item['title'], $question->title);
+            })->first();
+            $html = simplexml_load_string($datasetItem['description']);
+            $questionDrivingLicenseTypesString = htmlspecialchars_decode($html->div->span[1]);
+            preg_match_all('/«(.*?)»/', $questionDrivingLicenseTypesString, $matches);
+            $questionDrivingLicenseTypes = $matches[1];
+
+            $this->drivingLicenseTypes->filter(static function (DrivingLicenseType $drivingLicenseType) use ($questionDrivingLicenseTypes): bool {
+                return in_array($drivingLicenseType->code, $questionDrivingLicenseTypes);
+            })
+                ->each(static function (DrivingLicenseType $drivingLicenseType) use ($question, &$drivingLicenseTypeQuestionData) {
+                    $drivingLicenseTypeQuestionData[] = [
+                        'question_id' => $question->id,
+                        'driving_license_type_id' => $drivingLicenseType->id,
+                    ];
+                });
 
             if (count($drivingLicenseTypeQuestionData) >= self::INSERT_CHUNK_SIZE || $this->questions->count() - 1 === $index) {
                 DB::table('driving_license_type_question')->insert($drivingLicenseTypeQuestionData);
