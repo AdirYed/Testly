@@ -75,6 +75,10 @@ class RandomQuestionsTest extends TestCase
                     'title',
                     'image_url',
                     'formatted_image_url',
+                    'pivot' => [
+                        'driving_license_type_id',
+                        'question_id',
+                    ],
                     'answers' => [
                         '*' => [
                             'id',
