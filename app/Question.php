@@ -4,10 +4,10 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Database\Eloquent\Relations\HasOne;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Support\Facades\Storage;
 
 /**
@@ -97,9 +97,20 @@ class Question extends Model
             ->with([
                 'answers' => static function (HasMany $answersQuery) {
                     $answersQuery->select(['id', 'question_id', 'content', 'is_correct'])->inRandomOrder();
-                }
+                },
             ])
             ->limit(30)
             ->inRandomOrder();
+    }
+
+    /**
+     * Returns the original ID as a string with 4 leading zeros, for example:
+     * Original ID 55 (int) will be "0055" (string)
+     *
+     * @return string
+     */
+    public function getOriginalIdWithLeadingZeros(): string
+    {
+        return str_pad($this->original_id, 4, '0', STR_PAD_LEFT);
     }
 }

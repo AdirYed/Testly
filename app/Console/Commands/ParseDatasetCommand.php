@@ -190,9 +190,9 @@ class ParseDatasetCommand extends Command
     {
         $drivingLicenseTypeQuestionData = collect([]);
 
-        $this->questions->each(function (Question $question, $index) use ($drivingLicenseTypeQuestionData) {
+        $this->questions->each(function (Question $question) use ($drivingLicenseTypeQuestionData) {
             $datasetItem = $this->dataset->filter(static function (array $item) use ($question) {
-                return Str::contains($item['title'], $question->original_id) && Str::contains($item['title'], $question->title);
+                return Str::contains($item['title'], $question->getOriginalIdWithLeadingZeros());
             })->first();
             $html = simplexml_load_string($datasetItem['description']);
             $questionDrivingLicenseTypesString = htmlspecialchars_decode($html->div->span[1]);
@@ -221,7 +221,7 @@ class ParseDatasetCommand extends Command
     {
         $answersData = collect([]);
 
-        $this->dataset->each(function (array $item, int $index) use ($answersData): void {
+        $this->dataset->each(function (array $item) use ($answersData): void {
             preg_match('/(?<original_id>\d+)/', $item['title'], $matches);
 
             $question = $this->questions->firstWhere('original_id', $matches['original_id']);
