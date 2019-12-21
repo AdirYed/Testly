@@ -14,7 +14,6 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Str;
-use PHPUnit\Util\Xml;
 use Storage;
 
 class ParseDatasetCommand extends Command
@@ -222,16 +221,18 @@ class ParseDatasetCommand extends Command
         $answersData = collect([]);
 
         $this->dataset->each(function (array $item) use ($answersData): void {
-            preg_match('/(?<original_id>\d+)(\.)(?<title>.+)/', $item['title'], $matches);
+            $question = $this->getQuestionModelByXmlItem($item);;
 
-            $question = $this->getQuestionModelByXmlItem($matches);;
+            if ($question->original_id == 50) {
+                dump($question);
+            }
 
             $html = simplexml_load_string($item['description']);
 
             foreach ($html->ul->li as $answer) {
                 $answersData->push([
                     'content' => htmlspecialchars_decode($answer->span),
-                    'is_correct' => $answer->span['id'] == 'correctAnswer' . $matches['original_id'],
+                    'is_correct' => $answer->span['id'] == 'correctAnswer' . $question->getOriginalIdWithLeadingZeros(),
                     'question_id' => $question->id,
                     'created_at' => $this->now,
                     'updated_at' => $this->now,
@@ -286,7 +287,7 @@ class ParseDatasetCommand extends Command
         }
     }
 
-    protected function getQuestionXmlItemByModelQuestion($question): array
+    protected function getQuestionXmlItemByModelQuestion(Question $question): array
     {
         return $this->dataset->filter(static function (array $item) use ($question) {
             return Str::startsWith($item['title'], $question->getOriginalIdWithLeadingZeros())
@@ -294,11 +295,11 @@ class ParseDatasetCommand extends Command
         })->first();
     }
 
-    protected function getQuestionModelByXmlItem($matches): Question
+    protected function getQuestionModelByXmlItem(array $item): Question
     {
-        return $this->questions->filter(static function (Question $item) use ($matches) {
-            return Str::startsWith($item->original_id, trim($matches['original_id'], 0))
-                && Str::contains($item->title, trim(htmlspecialchars_decode($matches['title'])));
+        return $this->questions->filter(static function (Question $question) use ($item) {
+            return Str::startsWith($item['title'], $question->getOriginalIdWithLeadingZeros())
+                && Str::contains($item['title'], $question->title);
         })->first();
     }
 }
