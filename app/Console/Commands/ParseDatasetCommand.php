@@ -148,13 +148,13 @@ class ParseDatasetCommand extends Command
             preg_match('/(?<original_id>\d+)(\.)(?<title>.+)/', $item['title'], $matches);
 
             $data = [
-                    'title' => trim(htmlspecialchars_decode($matches['title'])),
-                    'image_url' => null,
-                    'original_id' => intval($matches['original_id']),
-                    'category_id' => $this->categories->firstWhere('name', $item['category'])->id,
-                    'created_at' => $this->now,
-                    'updated_at' => $this->now,
-                ];
+                        'title' => trim(htmlspecialchars_decode($matches['title'])),
+                        'image_url' => null,
+                        'original_id' => intval($matches['original_id']),
+                        'category_id' => $this->categories->firstWhere('name', $item['category'])->id,
+                        'created_at' => $this->now,
+                        'updated_at' => $this->now,
+                    ];
 
             $html = simplexml_load_string($item['description']);
 
@@ -166,9 +166,9 @@ class ParseDatasetCommand extends Command
                     $name = self::IMAGES_DIRECTORY . '/img_' . $uuid . '.' . File::extension($url);
 
                     $this->images[] = [
-                            'name' => $name,
-                            'url' => $url,
-                        ];
+                                'name' => $name,
+                                'url' => $url,
+                            ];
 
                     $data['image_url'] = $name;
                 } else {
@@ -188,9 +188,9 @@ class ParseDatasetCommand extends Command
 
     private function attachQuestionsToDrivingLicenseTypes(): void
     {
-        $drivingLicenseTypeQuestionData = [];
+        $drivingLicenseTypeQuestionData = collect([]);
 
-        $this->questions->each(function (Question $question, $index) use (&$drivingLicenseTypeQuestionData) {
+        $this->questions->each(function (Question $question, $index) use ($drivingLicenseTypeQuestionData) {
             $datasetItem = $this->dataset->filter(static function (array $item) use ($question) {
                 return Str::contains($item['title'], $question->original_id) && Str::contains($item['title'], $question->title);
             })->first();
@@ -199,28 +199,29 @@ class ParseDatasetCommand extends Command
             preg_match_all('/«(.*?)»/', $questionDrivingLicenseTypesString, $matches);
             $questionDrivingLicenseTypes = $matches[1];
 
-            $this->drivingLicenseTypes->filter(static function (DrivingLicenseType $drivingLicenseType) use ($questionDrivingLicenseTypes): bool {
-                return in_array($drivingLicenseType->code, $questionDrivingLicenseTypes);
-            })
-                ->each(static function (DrivingLicenseType $drivingLicenseType) use ($question, &$drivingLicenseTypeQuestionData) {
-                    $drivingLicenseTypeQuestionData[] = [
+            $this->drivingLicenseTypes
+                ->filter(static function (DrivingLicenseType $drivingLicenseType) use ($questionDrivingLicenseTypes): bool {
+                    return in_array($drivingLicenseType->code, $questionDrivingLicenseTypes);
+                })
+                ->each(static function (DrivingLicenseType $drivingLicenseType) use ($question, $drivingLicenseTypeQuestionData) {
+                    $drivingLicenseTypeQuestionData->push([
                         'question_id' => $question->id,
                         'driving_license_type_id' => $drivingLicenseType->id,
-                    ];
+                    ]);
                 });
-
-            if (count($drivingLicenseTypeQuestionData) >= self::INSERT_CHUNK_SIZE || $this->questions->count() - 1 === $index) {
-                DB::table('driving_license_type_question')->insert($drivingLicenseTypeQuestionData);
-                $drivingLicenseTypeQuestionData = [];
-            }
         });
+
+        $drivingLicenseTypeQuestionData->chunk(self::INSERT_CHUNK_SIZE)
+            ->each(function (Collection $chunkedDrivingLicenseTypeQuestionData) {
+                DB::table('driving_license_type_question')->insert($chunkedDrivingLicenseTypeQuestionData->toArray());
+            });
     }
 
     private function storeAnswers(): void
     {
-        $answersData = [];
+        $answersData = collect([]);
 
-        $this->dataset->each(function (array $item, int $index) use (&$answersData): void {
+        $this->dataset->each(function (array $item, int $index) use ($answersData): void {
             preg_match('/(?<original_id>\d+)/', $item['title'], $matches);
 
             $question = $this->questions->firstWhere('original_id', $matches['original_id']);
@@ -228,20 +229,20 @@ class ParseDatasetCommand extends Command
             $html = simplexml_load_string($item['description']);
 
             foreach ($html->ul->li as $answer) {
-                $answersData[] = [
+                $answersData->push([
                     'content' => htmlspecialchars_decode($answer->span),
                     'is_correct' => $answer->span['id'] == 'correctAnswer' . $matches['original_id'],
                     'question_id' => $question->id,
                     'created_at' => $this->now,
                     'updated_at' => $this->now,
-                ];
-            }
-
-            if (count($answersData) >= self::INSERT_CHUNK_SIZE || $this->dataset->count() - 1 === $index) {
-                Answer::insert($answersData);
-                $answersData = [];
+                ]);
             }
         });
+
+        $answersData->chunk(self::INSERT_CHUNK_SIZE)
+            ->each(function (Collection $chunkedAnswersData) {
+                Answer::insert($chunkedAnswersData->toArray());
+            });
     }
 
     protected function shouldStoreImages(): bool
