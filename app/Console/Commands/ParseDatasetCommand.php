@@ -192,7 +192,8 @@ class ParseDatasetCommand extends Command
 
         $this->questions->each(function (Question $question) use ($drivingLicenseTypeQuestionData) {
             $datasetItem = $this->dataset->filter(static function (array $item) use ($question) {
-                return Str::contains($item['title'], $question->getOriginalIdWithLeadingZeros());
+                return Str::startsWith($item['title'], $question->getOriginalIdWithLeadingZeros())
+                    && Str::contains($item['title'], $question->title);
             })->first();
             $html = simplexml_load_string($datasetItem['description']);
             $questionDrivingLicenseTypesString = htmlspecialchars_decode($html->div->span[1]);
