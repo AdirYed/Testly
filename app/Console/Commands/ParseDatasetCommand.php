@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Str;
+use PHPUnit\Util\Xml;
 use Storage;
 
 class ParseDatasetCommand extends Command
@@ -148,13 +149,13 @@ class ParseDatasetCommand extends Command
             preg_match('/(?<original_id>\d+)(\.)(?<title>.+)/', $item['title'], $matches);
 
             $data = [
-                        'title' => trim(htmlspecialchars_decode($matches['title'])),
-                        'image_url' => null,
-                        'original_id' => intval($matches['original_id']),
-                        'category_id' => $this->categories->firstWhere('name', $item['category'])->id,
-                        'created_at' => $this->now,
-                        'updated_at' => $this->now,
-                    ];
+                'title' => trim(htmlspecialchars_decode($matches['title'])),
+                'image_url' => null,
+                'original_id' => intval($matches['original_id']),
+                'category_id' => $this->categories->firstWhere('name', $item['category'])->id,
+                'created_at' => $this->now,
+                'updated_at' => $this->now,
+            ];
 
             $html = simplexml_load_string($item['description']);
 
@@ -166,9 +167,9 @@ class ParseDatasetCommand extends Command
                     $name = self::IMAGES_DIRECTORY . '/img_' . $uuid . '.' . File::extension($url);
 
                     $this->images[] = [
-                                'name' => $name,
-                                'url' => $url,
-                            ];
+                        'name' => $name,
+                        'url' => $url,
+                    ];
 
                     $data['image_url'] = $name;
                 } else {
@@ -191,10 +192,8 @@ class ParseDatasetCommand extends Command
         $drivingLicenseTypeQuestionData = collect([]);
 
         $this->questions->each(function (Question $question) use ($drivingLicenseTypeQuestionData) {
-            $datasetItem = $this->dataset->filter(static function (array $item) use ($question) {
-                return Str::startsWith($item['title'], $question->getOriginalIdWithLeadingZeros())
-                    && Str::contains($item['title'], $question->title);
-            })->first();
+            $datasetItem = $this->getQuestionXmlItemByModelQuestion($question);
+
             $html = simplexml_load_string($datasetItem['description']);
             $questionDrivingLicenseTypesString = htmlspecialchars_decode($html->div->span[1]);
             preg_match_all('/«(.*?)»/', $questionDrivingLicenseTypesString, $matches);
@@ -223,9 +222,9 @@ class ParseDatasetCommand extends Command
         $answersData = collect([]);
 
         $this->dataset->each(function (array $item) use ($answersData): void {
-            preg_match('/(?<original_id>\d+)/', $item['title'], $matches);
+            preg_match('/(?<original_id>\d+)(\.)(?<title>.+)/', $item['title'], $matches);
 
-            $question = $this->questions->firstWhere('original_id', $matches['original_id']);
+            $question = $this->getQuestionModelByXmlItem($matches);;
 
             $html = simplexml_load_string($item['description']);
 
@@ -285,5 +284,21 @@ class ParseDatasetCommand extends Command
         if (Storage::exists('public/' . self::IMAGES_DIRECTORY)) {
             Storage::deleteDirectory('public/' . self::IMAGES_DIRECTORY);
         }
+    }
+
+    protected function getQuestionXmlItemByModelQuestion($question): array
+    {
+        return $this->dataset->filter(static function (array $item) use ($question) {
+            return Str::startsWith($item['title'], $question->getOriginalIdWithLeadingZeros())
+                && Str::contains($item['title'], $question->title);
+        })->first();
+    }
+
+    protected function getQuestionModelByXmlItem($matches): Question
+    {
+        return $this->questions->filter(static function (Question $item) use ($matches) {
+            return Str::startsWith($item->original_id, trim($matches['original_id'], 0))
+                && Str::contains($item->title, trim(htmlspecialchars_decode($matches['title'])));
+        })->first();
     }
 }

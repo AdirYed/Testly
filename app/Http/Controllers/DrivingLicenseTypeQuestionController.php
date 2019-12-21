@@ -11,7 +11,8 @@ class DrivingLicenseTypeQuestionController extends Controller
     {
         return [
             'driving_license_type' => $drivingLicenseType->only(['id', 'code', 'name']),
-            'questions' => $drivingLicenseType->questions()->random()
+            'questions' => $drivingLicenseType->questions()
+                ->random()
                 ->get()
                 ->append('formatted_image_url'),
         ];

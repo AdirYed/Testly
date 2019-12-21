@@ -4,6 +4,7 @@ namespace Tests\Commands;
 
 use App\Answer;
 use App\Category;
+use App\DrivingLicenseType;
 use App\Question;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Tests\TestCase;
@@ -62,5 +63,24 @@ class DatasetParseCommandTest extends TestCase
         $this->artisan('dataset:parse --without-images');
 
         $this->assertEquals($this->questionCount, Answer::where('is_correct', true)->count());
+    }
+
+    /** @test */
+    public function questions_are_associated_with_driving_license_type()
+    {
+        $this->artisan('dataset:parse --without-images');
+
+        $a3DrivingLicenseType = DrivingLicenseType::whereCode('A3')->firstOrFail();
+        $nonA3DrivingLicenseTypes = DrivingLicenseType::where('code', '!=', 'A3')->get();
+        $nonA3DrivingLicenseType = $nonA3DrivingLicenseTypes->last();
+
+        $this->assertNotNull($a3DrivingLicenseType->questions()->first());
+
+        $nonA3Question = $nonA3DrivingLicenseType->questions()->first();
+
+        $this->assertNotNull($nonA3Question);
+//dump($nonA3DrivingLicenseTypes->pluck('id'));
+dd($nonA3Question->drivingLicenseTypes);
+        $this->assertEquals($nonA3DrivingLicenseTypes->pluck('id'), $nonA3Question->drivingLicenseTypes->pluck('id'));
     }
 }
