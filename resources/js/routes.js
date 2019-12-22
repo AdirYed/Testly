@@ -70,7 +70,15 @@ const router = new VueRouter({
             component: NotFound,
             name: "notFound"
         }
-    ]
+    ],
+
+    scrollBehavior(to) {
+        if (to.hash) {
+            return {
+                selector: to.hash
+            };
+        }
+    }
 });
 
 router.beforeEach((to, from, next) => {

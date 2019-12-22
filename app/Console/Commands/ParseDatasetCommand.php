@@ -2,61 +2,69 @@
 
 namespace App\Console\Commands;
 
-use App;
+use App\Answer;
+use App\Category;
 use App\DrivingLicenseType;
+use App\Question;
+use Carbon\Carbon;
+use Illuminate\Console\Command;
+use Illuminate\Database\Eloquent\Collection as EloquentCollection;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Str;
 use Storage;
-use App\Answer;
-use App\Category;
-use App\Question;
-use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Schema;
 
 class ParseDatasetCommand extends Command
 {
-    protected $signature = 'dataset:parse {--without-images} {--without-general} {--without-electric-bicycle}';
+    protected $signature = 'dataset:parse {--without-images}';
 
     protected $description = 'Parse the dataset and store in the database';
 
+    private const IMAGES_DIRECTORY = 'question-images';
+
     /**
-     * @var array    array of images that should be stored
+     * The amount of rows will be stored in every DB operation
+     *
+     * @var int
+     */
+    private const INSERT_CHUNK_SIZE = 25;
+
+    /**
+     * @var array the images that should be stored
      */
     private $images = [];
 
-    private const IMAGES_DIRECTORY = 'question-images';
+    /** @var Carbon */
+    private $now;
+
+    /** @var Collection */
+    private $dataset;
+
+    /** @var EloquentCollection */
+    private $drivingLicenseTypes;
+
+    /** @var EloquentCollection */
+    private $categories;
+
+    /** @var EloquentCollection */
+    private $questions;
 
     public function handle(): void
     {
-        Schema::disableForeignKeyConstraints();
-        Category::truncate();
-        Question::truncate();
-        Answer::truncate();
-        DB::table('driving_license_type_question')->truncate();
-        Schema::enableForeignKeyConstraints();
+        $startTime = microtime(true);
 
-        $drivingLicenseTypes = DrivingLicenseType::all();
+        $this->clearDb();
 
-        if ($this->shouldParseGeneral()) {
-            $this->parseDataset(
-                config('theory_test.datasets.general'),
-                $drivingLicenseTypes->where('code', '!=', 'A3')
-            );
-        }
+        $datasetPaths = [
+            config('theory_test.datasets.general'),
+            config('theory_test.datasets.a3'),
+        ];
 
-        if ($this->shouldParseElectricBicycle()) {
-            $this->parseDataset(
-                config('theory_test.datasets.a3'),
-                $drivingLicenseTypes->where('code', 'A3')
-            );
-        }
+        $this->dataset = $this->getMergedDatasets($datasetPaths);
 
-        if (! $this->shouldParseGeneral() && ! $this->shouldParseElectricBicycle()) {
-            $this->error('You must choose at least one dataset to parse.');
-            return;
-        }
+        $this->parseDataset();
 
         $this->info('Dataset parsed and stored in the database successfully!');
 
@@ -67,58 +75,85 @@ class ParseDatasetCommand extends Command
             $this->info(PHP_EOL);
             $this->info('All of the images were stored successfully!');
         }
+
+        $finishTime = microtime(true);
+        $executionTimeSeconds = ($finishTime - $startTime);
+
+        $this->info('Command execution time: ' . $executionTimeSeconds);
     }
 
-    protected function shouldParseGeneral(): bool
+    private function clearDb(): void
     {
-        return $this->input->hasOption('without-general')
-            && ! $this->option('without-general');
+        Schema::disableForeignKeyConstraints();
+        Category::truncate();
+        Question::truncate();
+        Answer::truncate();
+        DB::table('driving_license_type_question')->truncate();
+        Schema::enableForeignKeyConstraints();
     }
 
-    protected function shouldParseElectricBicycle(): bool
+    private function getMergedDatasets(array $paths): Collection
     {
-        return $this->input->hasOption('without-electric-bicycle')
-            && ! $this->option('without-electric-bicycle');
+        $mergedDatasets = collect();
+
+        foreach ($paths as $path) {
+            $mergedDatasets = $mergedDatasets->merge(
+                $this->getDataset($path)
+            );
+        }
+
+        return $mergedDatasets;
     }
 
-    protected function shouldStoreImages(): bool
+    private function getDataset(string $path): Collection
     {
-        return $this->input->hasOption('without-images')
-            && ! $this->option('without-images');
-    }
-
-    private function parseDataset(string $dataset_path, Collection $drivingLicenseTypes): void
-    {
-        $datasetSimpleXml = simplexml_load_file($dataset_path, 'SimpleXMLElement', LIBXML_NOCDATA);
+        $datasetSimpleXml = simplexml_load_file($path, 'SimpleXMLElement', LIBXML_NOCDATA);
         $datasetJson = json_encode((array) $datasetSimpleXml->channel);
-        $dataset = collect(json_decode($datasetJson, true)['item'])->values();
-        $now = now();
 
-        // Store categories
-        $categoriesData = $dataset->unique('category')->map(static function ($item) use ($now) {
+        return collect(json_decode($datasetJson, true)['item'])->values();
+    }
+
+    private function parseDataset(): void
+    {
+        $this->drivingLicenseTypes = DrivingLicenseType::all();
+        $this->now = now();
+
+        $this->categories = $this->storeCategories();
+
+        $this->questions = $this->storeQuestions();
+
+        $this->attachQuestionsToDrivingLicenseTypes();
+
+        $this->storeAnswers();
+    }
+
+    private function storeCategories(): EloquentCollection
+    {
+        $categoriesData = $this->dataset->unique('category')->map(function (array $item): array {
             return [
                 'name' => $item['category'],
-                'created_at' => $now,
-                'updated_at' => $now,
+                'created_at' => $this->now,
+                'updated_at' => $this->now,
             ];
-        })->all();
+        })->toArray();
 
         Category::insert($categoriesData);
 
-        $categories = Category::whereIn('name', array_column($categoriesData, 'name'))
-            ->get();
+        return Category::all();
+    }
 
-        // Store questions
-        $questionsData = $dataset->map(function ($item) use ($categories, $now) {
+    private function storeQuestions(): Collection
+    {
+        $this->dataset->map(function (array $item): array {
             preg_match('/(?<original_id>\d+)(\.)(?<title>.+)/', $item['title'], $matches);
 
             $data = [
                 'title' => trim(htmlspecialchars_decode($matches['title'])),
                 'image_url' => null,
-                'original_id' => (int) $matches['original_id'],
-                'category_id' => $categories->firstWhere('name', $item['category'])->id,
-                'created_at' => $now,
-                'updated_at' => $now,
+                'original_id' => intval($matches['original_id']),
+                'category_id' => $this->categories->firstWhere('name', $item['category'])->id,
+                'created_at' => $this->now,
+                'updated_at' => $this->now,
             ];
 
             $html = simplexml_load_string($item['description']);
@@ -127,7 +162,7 @@ class ParseDatasetCommand extends Command
                 $url = (string) $html->img['src'];
 
                 if ($this->shouldStoreImages()) {
-                    $uuid = (string) Str::uuid();
+                    $uuid = Str::uuid()->toString();
                     $name = self::IMAGES_DIRECTORY . '/img_' . $uuid . '.' . File::extension($url);
 
                     $this->images[] = [
@@ -142,38 +177,75 @@ class ParseDatasetCommand extends Command
             }
 
             return $data;
-        })->all();
+        })
+            ->chunk(self::INSERT_CHUNK_SIZE)
+            ->each(static function (Collection $chunkedQuestionsData): void {
+                Question::insert($chunkedQuestionsData->toArray());
+            });
 
-        Question::insert($questionsData);
+        return Question::select(['id', 'original_id', 'title'])->get();
+    }
 
-        $questions = Question::select(['id', 'original_id'])
-            ->whereIn('category_id', $categories->pluck('id'))
-            ->get();
+    private function attachQuestionsToDrivingLicenseTypes(): void
+    {
+        $drivingLicenseTypeQuestionData = collect([]);
 
-        $questions->each(static function (Question $question) use ($drivingLicenseTypes) {
-            $question->drivingLicenseTypes()->attach($drivingLicenseTypes);
+        $this->questions->each(function (Question $question) use ($drivingLicenseTypeQuestionData) {
+            $datasetItem = $this->getQuestionXmlItemByModelQuestion($question);
+
+            $html = simplexml_load_string($datasetItem['description']);
+            $questionDrivingLicenseTypesString = htmlspecialchars_decode($html->div->span[1]);
+            preg_match_all('/«(.*?)»/', $questionDrivingLicenseTypesString, $matches);
+            $questionDrivingLicenseTypes = $matches[1];
+
+            $this->drivingLicenseTypes
+                ->filter(static function (DrivingLicenseType $drivingLicenseType) use ($questionDrivingLicenseTypes): bool {
+                    return in_array($drivingLicenseType->code, $questionDrivingLicenseTypes);
+                })
+                ->each(static function (DrivingLicenseType $drivingLicenseType) use ($question, $drivingLicenseTypeQuestionData) {
+                    $drivingLicenseTypeQuestionData->push([
+                        'question_id' => $question->id,
+                        'driving_license_type_id' => $drivingLicenseType->id,
+                    ]);
+                });
         });
 
-        $answersData = [];
+        $drivingLicenseTypeQuestionData->chunk(self::INSERT_CHUNK_SIZE)
+            ->each(function (Collection $chunkedDrivingLicenseTypeQuestionData) {
+                DB::table('driving_license_type_question')->insert($chunkedDrivingLicenseTypeQuestionData->toArray());
+            });
+    }
 
-        $dataset->each(static function ($item) use ($questions, &$answersData, $now) {
-            preg_match('/(?<original_id>\d+)/', $item['title'], $matches);
-            $question = $questions->firstWhere('original_id', $matches['original_id']);
+    private function storeAnswers(): void
+    {
+        $answersData = collect([]);
+
+        $this->dataset->each(function (array $item) use ($answersData): void {
+            $question = $this->getQuestionModelByXmlItem($item);;
 
             $html = simplexml_load_string($item['description']);
 
             foreach ($html->ul->li as $answer) {
-                $answersData[] = [
+                $answersData->push([
                     'content' => htmlspecialchars_decode($answer->span),
-                    'is_correct' => $answer->span['id'] == 'correctAnswer' . $matches['original_id'],
+                    'is_correct' => $answer->span['id'] == 'correctAnswer' . $question->getOriginalIdWithLeadingZeros(),
                     'question_id' => $question->id,
-                    'created_at' => $now,
-                    'updated_at' => $now,
-                ];
+                    'created_at' => $this->now,
+                    'updated_at' => $this->now,
+                ]);
             }
-        })->all();
+        });
 
-        Answer::insert($answersData);
+        $answersData->chunk(self::INSERT_CHUNK_SIZE)
+            ->each(function (Collection $chunkedAnswersData) {
+                Answer::insert($chunkedAnswersData->toArray());
+            });
+    }
+
+    protected function shouldStoreImages(): bool
+    {
+        return $this->input->hasOption('without-images')
+            && ! $this->option('without-images');
     }
 
     protected function storeImages(): void
@@ -209,5 +281,21 @@ class ParseDatasetCommand extends Command
         if (Storage::exists('public/' . self::IMAGES_DIRECTORY)) {
             Storage::deleteDirectory('public/' . self::IMAGES_DIRECTORY);
         }
+    }
+
+    protected function getQuestionXmlItemByModelQuestion(Question $question): array
+    {
+        return $this->dataset->filter(static function (array $item) use ($question) {
+            return Str::startsWith($item['title'], $question->getOriginalIdWithLeadingZeros())
+                && Str::contains($item['title'], $question->title);
+        })->first();
+    }
+
+    protected function getQuestionModelByXmlItem(array $item): Question
+    {
+        return $this->questions->filter(static function (Question $question) use ($item) {
+            return Str::startsWith($item['title'], $question->getOriginalIdWithLeadingZeros())
+                && Str::contains($item['title'], $question->title);
+        })->first();
     }
 }

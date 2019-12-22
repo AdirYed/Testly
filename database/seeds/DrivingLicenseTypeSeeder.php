@@ -17,20 +17,20 @@ class DrivingLicenseTypeSeeder extends Seeder
                 'name' => 'אופנוע',
             ],
             [
-                'code' => '1',
-                'name' => 'טרקטור',
+                'code' => 'C',
+                'name' => 'רכב משא כבד',
             ],
             [
                 'code' => 'C1',
                 'name' => 'רכב משא קל',
             ],
             [
-                'code' => 'C',
-                'name' => 'רכב משא כבד',
-            ],
-            [
                 'code' => 'D',
                 'name' => 'רכב ציבורי',
+            ],
+            [
+                'code' => '1',
+                'name' => 'טרקטור',
             ],
             [
                 'code' => 'A3',

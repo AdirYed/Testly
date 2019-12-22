@@ -21,7 +21,7 @@
             />
         </div>
 
-        <template v-else>
+        <template v-else-if="!isLoading && testReports.length !== 0">
             <div class="tw-text-center tw-mb-5">
                 <div class="tw-text-lg md:tw-text-2xl">
                     אחוז מוכנות
@@ -32,7 +32,10 @@
                 >
                     <div
                         v-for="category in categories"
-                        v-if="percentage[category.id]"
+                        v-if="
+                            percentage[category.id] ||
+                                percentage[category.id] === 0
+                        "
                         class="tw-w-8/12 md:tw-w-7/12 lg:tw-w-6/12 tw-my-3"
                     >
                         <div class="tw-text-md md:tw-text-lg">
@@ -63,36 +66,48 @@
                 >
                     <thead class="tw-text-white">
                         <tr
-                            class="tw-bg-primary tw-flex tw-wrap tw-flex-col sm:tw-table-row tw-rounded-l-lg sm:tw-rounded-none tw-mb-2 sm:tw-mb-0"
+                            class="tw-bg-primary tw-flex tw-wrap tw-flex-col sm:tw-table-row tw-rounded-l-lg sm:tw-rounded-none tw-mb-2 sm:tw-mb-0 tw-text-sm md:tw-text-base"
                             v-for="i in testReports.length"
                         >
-                            <th class="tw-p-3 sm:tw-w-2/12">רישיון</th>
-                            <th class="tw-p-3 sm:tw-w-2/12">תאריך</th>
-                            <th class="tw-p-3 sm:tw-w-2/12">תשובות נכונות</th>
-                            <th class="tw-p-3 sm:tw-w-2/12">זמן</th>
-                            <th class="tw-p-3 sm:tw-w-2/12">צפייה</th>
+                            <th class="tw-p-2 sm:tw-p-3 sm:tw-w-2/12">
+                                רישיון
+                            </th>
+                            <th class="tw-p-2 sm:tw-p-3 sm:tw-w-2/12">תאריך</th>
+                            <th class="tw-p-2 sm:tw-p-3 sm:tw-w-2/12">
+                                תשובות נכונות
+                            </th>
+                            <th class="tw-p-2 sm:tw-p-3 sm:tw-w-2/12">זמן</th>
+                            <th class="tw-p-2 sm:tw-p-3 sm:tw-w-2/12">צפייה</th>
                         </tr>
                     </thead>
 
                     <tbody class="tw-flex-1 sm:tw-flex-none">
                         <tr
-                            class="tw-flex tw-wrap tw-flex-col sm:tw-table-row tw-mb-2 sm:tw-mb-0"
+                            class="tw-flex tw-wrap tw-flex-col sm:tw-table-row tw-mb-2 sm:tw-mb-0 tw-text-sm md:tw-text-base"
                             v-for="testReport in testReports"
                             :key="testReport.id"
                         >
-                            <td class="tw-border-grey-light tw-border tw-p-3">
+                            <td
+                                class="tw-border-grey-light tw-border tw-p-2 sm:tw-p-3"
+                            >
                                 {{ testReport.driving_license_type.name }}
                             </td>
 
-                            <td class="tw-border-grey-light tw-border tw-p-3">
+                            <td
+                                class="tw-border-grey-light tw-border tw-p-2 sm:tw-p-3"
+                            >
                                 {{ date(testReport.finished_at) }}
                             </td>
 
-                            <td class="tw-border-grey-light tw-border tw-p-3">
+                            <td
+                                class="tw-border-grey-light tw-border tw-p-2 sm:tw-p-3"
+                            >
                                 {{ testReport.correct_answers_count }}/30
                             </td>
 
-                            <td class="tw-border-grey-light tw-border tw-p-3">
+                            <td
+                                class="tw-border-grey-light tw-border tw-p-2 sm:tw-p-3"
+                            >
                                 {{
                                     minutes(
                                         testReport.finished_at -
@@ -102,7 +117,9 @@
                                 דקות
                             </td>
 
-                            <td class="tw-border tw-p-3 tw-font-semibold">
+                            <td
+                                class="tw-border tw-p-2 sm:tw-p-3 tw-font-semibold"
+                            >
                                 <router-link
                                     class="link"
                                     :to="{ name: 'home' }"
@@ -113,6 +130,17 @@
                         </tr>
                     </tbody>
                 </table>
+            </div>
+        </template>
+
+        <template v-else>
+            <div class="tw-text-lg md:tw-text-2xl tw-mb-5">
+                הפרופיל כרגע ריק משום שאין לך היסטוריית
+                <router-link
+                    class="link"
+                    :to="{ name: 'home', hash: '#choose-a-test' }"
+                    >מבחנים</router-link
+                >.
             </div>
         </template>
     </div>

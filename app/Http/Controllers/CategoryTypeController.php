@@ -8,6 +8,6 @@ class CategoryTypeController extends Controller
 {
     public function index()
     {
-        return Category::select(['id', 'name'])->orderByDesc('id')->get();
+        return Category::select(['id', 'name'])->orderBy('id')->get();
     }
 }

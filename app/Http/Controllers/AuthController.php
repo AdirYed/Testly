@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegisterRequest;
+use App\Notifications\VerifyUserNotification;
 use App\User;
 
 class AuthController extends Controller
@@ -14,6 +15,8 @@ class AuthController extends Controller
         $payload['password'] = bcrypt($payload['password']);
 
         $user = User::create($payload);
+
+        $user->notify(new VerifyUserNotification());
 
         $token = auth()->login($user);
 

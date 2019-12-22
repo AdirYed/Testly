@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\DrivingLicenseType;
+use App\Question;
 
 class DrivingLicenseTypeQuestionController extends Controller
 {

@@ -24,7 +24,8 @@
 
         <!-- TODO: need to style it -->
         <div
-            ref="homeBody"
+            ref="testOptions"
+            id="choose-a-test"
             class="tw-container tw-mx-auto tw-flex tw-flex-wrap tw-flex-col tw-content-center"
         >
             <div class="tw-px-4 tw-pt-8 md:tw-pt-10">
@@ -101,12 +102,17 @@ export default {
     methods: {
         readMore() {
             window.scrollTo({
-                top:
-                    this.$refs.homeBody.offsetTop -
-                    document.querySelector("#nav-bar").clientHeight,
+                top: this.$refs.testOptions.offsetTop,
                 behavior: "smooth"
             });
         }
     }
 };
 </script>
+
+<style scoped>
+#choose-a-test {
+    margin-top: calc(var(--header-height) * -1);
+    padding-top: var(--header-height);
+}
+</style>

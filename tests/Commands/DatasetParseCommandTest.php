@@ -50,7 +50,7 @@ class DatasetParseCommandTest extends TestCase
     }
 
     /** @test */
-    public function every_question_must_have_an_answer()
+    public function every_question_should_have_one_correct_answer()
     {
         $this->artisan('dataset:parse --without-images');
 
@@ -58,28 +58,28 @@ class DatasetParseCommandTest extends TestCase
     }
 
     /** @test */
-    public function it_should_create_one_correct_answer_for_every_question()
+    public function every_question_should_have_four_answers()
     {
         $this->artisan('dataset:parse --without-images');
 
-        $this->assertEquals($this->questionCount, Answer::where('is_correct', true)->count());
+        Question::withCount('answers')->each(function (Question $question): void {
+            $this->assertEquals(4, $question->answers_count);
+        });
     }
 
     /** @test */
-    public function questions_are_associated_with_driving_license_type()
+    public function every_question_is_associated_with_driving_license_type()
     {
         $this->artisan('dataset:parse --without-images');
 
-        $a3DrivingLicenseType = DrivingLicenseType::whereCode('A3')->firstOrFail();
-        $nonA3DrivingLicenseTypes = DrivingLicenseType::where('code', '!=', 'A3')->get();
-        $nonA3DrivingLicenseType = $nonA3DrivingLicenseTypes->first();
+        $this->assertFalse(Question::doesntHave('drivingLicenseTypes')->exists());
+    }
 
-        $this->assertNotNull($a3DrivingLicenseType->questions()->first());
+    /** @test */
+    public function driving_license_type_has_at_least_one_question()
+    {
+        $this->artisan('dataset:parse --without-images');
 
-        $nonA3Question = $nonA3DrivingLicenseType->questions()->first();
-
-        $this->assertNotNull($nonA3Question);
-
-        $this->assertEquals($nonA3DrivingLicenseTypes->pluck('id'), $nonA3Question->drivingLicenseTypes->pluck('id'));
+        $this->assertFalse(DrivingLicenseType::doesntHave('questions')->exists());
     }
 }

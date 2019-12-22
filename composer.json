@@ -15,6 +15,7 @@
         "ext-libxml": "^7.3",
         "fideloper/proxy": "^4.0",
         "friendsofphp/php-cs-fixer": "^2.15",
+        "guzzlehttp/guzzle": "^6.5",
         "laravel/framework": "^6.4.1",
         "laravel/tinker": "^1.0",
         "tymon/jwt-auth": "^1.0.0-rc.5"

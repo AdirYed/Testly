@@ -21,7 +21,6 @@ class StoreTestReportRequest extends FormRequest
             // answers
             'answers' => 'required|array|size:30',
             'answers.*.question_id' => 'required|exists:questions,id',
-//            'answers.*.answer_id' => 'required|exists:answers,id',
         ];
     }
 }
