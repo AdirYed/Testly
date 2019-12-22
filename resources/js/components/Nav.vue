@@ -1,7 +1,7 @@
 <template>
     <header
         id="nav-bar"
-        class="tw-min-w-full tw-bg-white tw-flex tw-flex-wrap tw-shadow-lg tw-items-center lg:tw-py-0 tw-py-2 lg:tw-px-24 tw-px-6 tw-sticky"
+        class="tw-min-w-full tw-bg-white tw-flex tw-flex-wrap tw-shadow-lg tw-items-center lg:tw-py-0 tw-py-2 lg:tw-px-24 tw-px-6 tw-sticky tw-top-0"
     >
         <div
             class="tw-hidden tw-flex-1 lg:tw-flex tw-justify-between tw-items-center"
@@ -34,7 +34,7 @@
                 <ul
                     class="lg:tw-flex tw-items-center tw-justify-between tw-text-base tw-text-gray-700 tw-pt-4 lg:tw-pt-0"
                 >
-                    <slot name="right-bar"></slot>
+                    <slot name="right-bar" />
                 </ul>
             </nav>
 

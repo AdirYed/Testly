@@ -223,10 +223,6 @@ class ParseDatasetCommand extends Command
         $this->dataset->each(function (array $item) use ($answersData): void {
             $question = $this->getQuestionModelByXmlItem($item);;
 
-            if ($question->original_id == 50) {
-                dump($question);
-            }
-
             $html = simplexml_load_string($item['description']);
 
             foreach ($html->ul->li as $answer) {
