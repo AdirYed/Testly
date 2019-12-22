@@ -85,7 +85,7 @@
                                             'q_' + currQuestion + '_a_' + index
                                         "
                                     >
-                                        <!--rightAnswer(questionIndex) - aims only for the right answer-->
+                                        <!-- rightAnswer(questionIndex) - aims only for the right answer-->
 
                                         <input
                                             class="tw-opacity-0 tw-h-0 tw-w-0"
@@ -159,15 +159,15 @@
                                             class="tw-border tw-border-transparent tw-p-4 tw-rounded"
                                             :class="{
                                                 'tw-border-green-700':
-                                                    rightAnswersAmount >= 28,
+                                                    rightAnswersAmount >= 26,
                                                 'tw-border-red-500':
-                                                    rightAnswersAmount < 28
+                                                    rightAnswersAmount < 26
                                             }"
                                         >
                                             <div>
                                                 <template
                                                     v-if="
-                                                        rightAnswersAmount >= 28
+                                                        rightAnswersAmount >= 26
                                                     "
                                                 >
                                                     עברת את המבחן בהצלחה!
