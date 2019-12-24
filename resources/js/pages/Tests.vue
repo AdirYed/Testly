@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div dusk="test">
         <div
             class="progressBar progressBarTransition tw-fixed"
             :style="progressBarStyle"
