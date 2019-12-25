@@ -6,7 +6,7 @@
                 עמוד הבית
             </theory-bar>
 
-            <theory-bar-dropdown to="tests">
+            <theory-bar-dropdown to="tests" dusk="test">
                 <template slot="title">
                     <fa-icon icon="newspaper" />
                     מבחן
