@@ -42,8 +42,12 @@ class ReportsTest extends DuskTestCase
         $drivingLicenseType->questions()->attach($questions);
 
         $this->browse(function (Browser $browser) use ($drivingLicenseType, $user) {
-            $browser->script("window.localStorage.setItem('token', " . JWTAuth::fromUser($user) . ");");
-            $browser->script("window.localStorage.setItem('user', {'first_name': $user->first_name, 'last_name': $user->last_name, 'email': $user->email});");
+            $browser->visit('/')
+                ->script("window.localStorage.setItem('user', {'first_name': $user->first_name, 'last_name': $user->last_name, 'email': $user->email});");
+
+            $browser->visit('/')
+                ->script("window.localStorage.setItem('token', '" . JWTAuth::fromUser($user) . "');");
+
             $browser->visit('/test/' . $drivingLicenseType->code)
                 ->waitUntilVue('quiz.length', 30, '@quiz')
                 ->assertSee('מבחן תאוריה - ' . "{$drivingLicenseType->name} ({$drivingLicenseType->code})")
