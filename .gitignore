@@ -6,7 +6,6 @@
 /vendor
 /.idea
 .env
-.env.dusk.local
 .env.backup
 .phpunit.result.cache
 npm-debug.log
