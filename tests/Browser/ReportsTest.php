@@ -36,14 +36,14 @@ class ReportsTest extends DuskTestCase
 
         factory(Category::class, 4)->create();
 
-        $drivingLicenseType = DrivingLicenseType::inRandomOrder()->limit(1)->first();
+        $drivingLicenseType = DrivingLicenseType::inRandomOrder()->first();
 
         $questions = factory(Question::class, 60)->states('with_answers')->create();
         $drivingLicenseType->questions()->attach($questions);
 
         $this->browse(function (Browser $browser) use ($drivingLicenseType, $user) {
             $browser->visit('/')
-                ->script("window.localStorage.setItem('user', {'first_name': $user->first_name, 'last_name': $user->last_name, 'email': $user->email});");
+                ->script("window.localStorage.setItem('user', " . json_encode(['first_name' => $user->first_name, 'last_name' => $user->last_name, 'email' => $user->email]) . ");");
 
             $browser->visit('/')
                 ->script("window.localStorage.setItem('token', '" . JWTAuth::fromUser($user) . "');");
