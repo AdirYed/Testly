@@ -21,7 +21,7 @@
     {{-- Footer --}}
     @slot('footer')
         @component('mail::footer')
-            © {{ date('Y') }} Testly.
+            .Testly {{ date('Y') }} ©
             <br>
             כל הזכויות שמורות.
         @endcomponent

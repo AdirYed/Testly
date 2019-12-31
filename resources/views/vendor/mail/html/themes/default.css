@@ -9,7 +9,7 @@ body *:not(html):not(style):not(br):not(tr):not(code) {
 }
 
 body {
-    background-color: #f8fafc;
+    background-color: #ffffff;
     color: #74787e;
     height: 100%;
     hyphens: auto;
@@ -24,12 +24,18 @@ body {
     word-break: break-word;
 }
 
+.body,
+.header,
+.footer {
+    direction: rtl;
+}
+
 p,
 ul,
 ol,
 blockquote {
     line-height: 1.4;
-    text-align: left;
+    text-align: right;
 }
 
 a {
@@ -47,7 +53,7 @@ h1 {
     font-size: 19px;
     font-weight: bold;
     margin-top: 0;
-    text-align: left;
+    text-align: right;
 }
 
 h2 {
@@ -55,7 +61,7 @@ h2 {
     font-size: 16px;
     font-weight: bold;
     margin-top: 0;
-    text-align: left;
+    text-align: right;
 }
 
 h3 {
@@ -63,7 +69,16 @@ h3 {
     font-size: 14px;
     font-weight: bold;
     margin-top: 0;
-    text-align: left;
+    text-align: right;
+}
+
+h6 {
+    color: #f5af19;
+    font-size: 21px;
+    font-weight: bold;
+    margin-top: 0;
+    margin-bottom: 20px;
+    text-align: center;
 }
 
 p {
@@ -71,7 +86,7 @@ p {
     font-size: 16px;
     line-height: 1.5em;
     margin-top: 0;
-    text-align: left;
+    text-align: right;
 }
 
 p.sub {
@@ -85,7 +100,7 @@ img {
 /* Layout */
 
 .wrapper {
-    background-color: #f8fafc;
+    background-color: #ffffff;
     margin: 0;
     padding: 0;
     width: 100%;
@@ -122,8 +137,6 @@ img {
 
 .body {
     background-color: #ffffff;
-    border-bottom: 1px solid #edeff2;
-    border-top: 1px solid #edeff2;
     margin: 0;
     padding: 0;
     width: 100%;
@@ -134,6 +147,7 @@ img {
 
 .inner-body {
     background-color: #ffffff;
+    border: 1px solid #e7e7e7;
     margin: 0 auto;
     padding: 0;
     width: 570px;
@@ -213,39 +227,29 @@ img {
 }
 
 .button {
-    border-radius: 3px;
-    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.16);
-    color: #fff;
-    display: inline-block;
+    font-weight: 700;
+    padding: 10px 18px;
+    border: 2px solid;
+    border-radius: 0.25rem;
     text-decoration: none;
     -webkit-text-size-adjust: none;
 }
 
-.button-blue,
 .button-primary {
-    background-color: #3490dc;
-    border-top: 10px solid #3490dc;
-    border-right: 18px solid #3490dc;
-    border-bottom: 10px solid #3490dc;
-    border-left: 18px solid #3490dc;
+    border-color: #f5af19;
+    color: #f5af19;
 }
 
 .button-green,
 .button-success {
-    background-color: #38c172;
-    border-top: 10px solid #38c172;
-    border-right: 18px solid #38c172;
-    border-bottom: 10px solid #38c172;
-    border-left: 18px solid #38c172;
+    border-color: #38c172;
+    color: #38c172;
 }
 
 .button-red,
 .button-error {
-    background-color: #e3342f;
-    border-top: 10px solid #e3342f;
-    border-right: 18px solid #e3342f;
-    border-bottom: 10px solid #e3342f;
-    border-left: 18px solid #e3342f;
+    border-color: #f56565;
+    color: #f56565;
 }
 
 /* Panels */
@@ -290,4 +294,8 @@ img {
 .promotion p {
     font-size: 15px;
     text-align: center;
+}
+
+p:last-of-type {
+    margin: 0;
 }
