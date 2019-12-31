@@ -7,6 +7,7 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
+use Illuminate\Support\Facades\Date;
 
 class VerifyUserNotification extends Notification
 {
@@ -22,20 +23,27 @@ class VerifyUserNotification extends Notification
         //
     }
 
-    public function via($notifiable)
+    public function via(User $notifiable)
     {
-        return ['mail'];
+        return ['mail', 'database'];
     }
 
     public function toMail(User $notifiable): MailMessage
     {
         return (new MailMessage)
             ->replyTo($notifiable->email)
-            ->subject('כדי לסיים את הליך הרישום שלך ל ' . config('app.name') . ', היכנס ולחץ על הקישור')
+            ->subject('אימות אימייל Testly')
             ->markdown('email.verifyUser');
     }
 
-    public function toArray($notifiable)
+    public function toDatabase(User $notifiable): array
+    {
+        return [
+            'expiration' => Date::now()->addHour()->format('Y-m-d H:i:s'),
+        ];
+    }
+
+    public function toArray(User $notifiable)
     {
         return [
             //
