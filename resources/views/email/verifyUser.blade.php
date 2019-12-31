@@ -1,12 +1,15 @@
 @component('mail::message')
-# Introduction
+# תודה על ההרשמה ב Testly!
 
-The body of your message.
+נא ללחוץ על הלינק למטה כדי לאמת את האימייל ולהשלים את ההרשמה שלך. אנו נתקשר איתך על ידי האימייל הזה לפעמים אז זה חשוב שיהיה לנו כתובת אימייל תקינה ומעודכנת.
 
-@component('mail::button', ['url' => ''])
-Button Text
+@component('mail::button', ['url' => url('/')])
+אימות
 @endcomponent
 
-Thanks,<br>
-{{ config('app.name') }}
+אם לא נרשמת ל Testly, נא להתעלם מאימייל זה.
+
+תודה,
+<br>
+Testly
 @endcomponent

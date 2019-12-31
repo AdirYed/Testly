@@ -31,9 +31,8 @@ class VerifyUserNotification extends Notification
     {
         return (new MailMessage)
             ->replyTo($notifiable->email)
-            ->line('The introduction to the notification.')
-            ->action('Notification Action', url('/'))
-            ->line('Thank you for using our application!');
+            ->subject('כדי לסיים את הליך הרישום שלך ל ' . config('app.name') . ', היכנס ולחץ על הקישור')
+            ->markdown('email.verifyUser');
     }
 
     public function toArray($notifiable)
