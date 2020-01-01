@@ -16,7 +16,7 @@ class AuthController extends Controller
 
         $user = User::create($payload);
 
-        $user->notify(new VerifyUserNotification);
+        $user->notify(new VerifyUserNotification($user));
 
         $token = auth()->login($user);
 
@@ -29,9 +29,9 @@ class AuthController extends Controller
 
         $token = auth()->attempt($payload);
 
-//        if (auth()->user()->email_verified_at === null) {
-//            return response()->json(['error' => 'verification'], 422);
-//        }
+        if (auth()->user()->email_verified_at === null) {
+            return response()->json(['error' => 'verification'], 422);
+        }
 
         return $this->respondWithToken($token);
     }

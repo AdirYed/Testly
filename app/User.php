@@ -72,4 +72,11 @@ class User extends Authenticatable implements JWTSubject
     {
         return $this->hasMany(TestReport::class);
     }
+
+    public function verify(): void
+    {
+        $this->email_verified_at = now();
+
+        $this->save();
+    }
 }

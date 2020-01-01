@@ -8,19 +8,29 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 use Illuminate\Support\Facades\Date;
+use Illuminate\Support\Facades\URL;
 
 class VerifyUserNotification extends Notification
 {
     use Queueable;
 
     /**
+     * @var string
+     */
+    private $verifyUrl;
+
+    /**
      * Create a new notification instance.
      *
-     * @return void
+     * @param User $user
      */
-    public function __construct()
+    public function __construct(User $user)
     {
-        //
+        $this->verifyUrl = URL::temporarySignedRoute(
+            'verification.verify',
+            now()->addWeek(),
+            ['user' => $user->id]
+        );
     }
 
     public function via(User $notifiable)
@@ -33,13 +43,14 @@ class VerifyUserNotification extends Notification
         return (new MailMessage)
             ->replyTo($notifiable->email)
             ->subject('אימות אימייל Testly')
-            ->markdown('email.verifyUser');
+            ->markdown('email.verifyUser', ['verifyUrl' => $this->verifyUrl]);
     }
 
     public function toDatabase(User $notifiable): array
     {
         return [
-            'expiration' => Date::now()->addHour()->toDateTimeString(),
+            'url' => $this->verifyUrl,
+            'expiration' => now()->addWeek()->toDateTimeString(),
         ];
     }
 
