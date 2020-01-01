@@ -39,7 +39,7 @@ class VerifyUserNotification extends Notification
     public function toDatabase(User $notifiable): array
     {
         return [
-            'expiration' => Date::now()->addHour()->format('Y-m-d H:i:s'),
+            'expiration' => Date::now()->addHour()->toDateTimeString(),
         ];
     }
 
