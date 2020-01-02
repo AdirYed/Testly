@@ -75,7 +75,7 @@
                             :loading="isLoading"
                             color="var(--primary-color)"
                             size="0.75rem"
-                        ></theory-pulse-loader>
+                        />
                     </div>
 
                     <p
@@ -83,6 +83,13 @@
                         class="tw-font-semibold tw-text-red-500 tw-text-xs"
                     >
                         {{ errors.general[0] }}
+                    </p>
+
+                    <p
+                        v-else-if="verification"
+                        class="tw-font-semibold tw-text-red-500 tw-text-xs"
+                    >
+                        משתמש זה עוד לא אומת.
                     </p>
                 </div>
 
@@ -121,7 +128,9 @@ export default {
 
             isLoading: false,
 
-            errors: {}
+            errors: {},
+
+            verification: false
         };
     },
 
@@ -136,9 +145,13 @@ export default {
                     this.$router.push({ name: "home" });
                 })
                 .catch(err => {
-                    // if (err.response.status === 422 && err.response.data.error === 'verification') {
-                    //     this.verification = true;
-                    // }
+                    if (
+                        err.response.status === 422 &&
+                        err.response.data.error === "verification"
+                    ) {
+                        this.verification = true;
+                    }
+
                     if (
                         err.response.status === 422 &&
                         err.response.data.errors

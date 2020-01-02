@@ -2,35 +2,22 @@
 
 namespace App\Notifications;
 
+use App\LinkToken;
 use App\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
-use Illuminate\Support\Facades\Date;
-use Illuminate\Support\Facades\URL;
 
 class VerifyUserNotification extends Notification
 {
     use Queueable;
 
-    /**
-     * @var string
-     */
-    private $verifyUrl;
+    private $token;
 
-    /**
-     * Create a new notification instance.
-     *
-     * @param User $user
-     */
-    public function __construct(User $user)
+    public function __construct()
     {
-        $this->verifyUrl = URL::temporarySignedRoute(
-            'verification.verify',
-            now()->addWeek(),
-            ['user' => $user->id]
-        );
+        $this->token = LinkToken::createToken();
     }
 
     public function via(User $notifiable)
@@ -40,17 +27,23 @@ class VerifyUserNotification extends Notification
 
     public function toMail(User $notifiable): MailMessage
     {
+        $notifiable->linkTokens()->create([
+            'type' => LinkToken::TYPE_VERIFICATION,
+            'token' => $this->token,
+        ]);
+
+        $verifyUrl = url("/verify?token=$this->token");
+
         return (new MailMessage)
             ->replyTo($notifiable->email)
             ->subject('אימות אימייל Testly')
-            ->markdown('email.verifyUser', ['verifyUrl' => $this->verifyUrl]);
+            ->markdown('email.verifyUser', ['verifyUrl' => $verifyUrl]);
     }
 
     public function toDatabase(User $notifiable): array
     {
         return [
-            'url' => $this->verifyUrl,
-            'expiration' => now()->addWeek()->toDateTimeString(),
+            'token' => $this->token,
         ];
     }
 

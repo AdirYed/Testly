@@ -39,7 +39,9 @@ blockquote {
 }
 
 a {
-    color: #3869d4;
+    font-weight: 700;
+    color: #f5af19;
+    text-decoration: none;
 }
 
 a img {

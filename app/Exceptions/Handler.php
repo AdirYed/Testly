@@ -3,6 +3,7 @@
 namespace App\Exceptions;
 
 use Exception;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
@@ -53,7 +54,9 @@ class Handler extends ExceptionHandler
             ]);
         }
 
-        if ($exception instanceof NotFoundHttpException) return redirect('/404');
+        if ($exception instanceof NotFoundHttpException || $exception instanceof ModelNotFoundException) {
+            return response()->view('app');
+        }
 
         return parent::render($request, $exception);
     }

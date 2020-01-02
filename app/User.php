@@ -19,6 +19,8 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
  * @property string $role
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\LinkToken[] $linkTokens
+ * @property-read int|null $link_tokens_count
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
  * @property-read int|null $notifications_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\TestReport[] $testReports
@@ -75,8 +77,13 @@ class User extends Authenticatable implements JWTSubject
 
     public function verify(): void
     {
-        $this->email_verified_at = now();
+        $this->update([
+            'email_verified_at' => now()
+        ]);
+    }
 
-        $this->save();
+    public function linkTokens(): HasMany
+    {
+        return $this->hasMany(LinkToken::class);
     }
 }

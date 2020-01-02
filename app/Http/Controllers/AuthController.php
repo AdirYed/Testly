@@ -16,11 +16,7 @@ class AuthController extends Controller
 
         $user = User::create($payload);
 
-        $user->notify(new VerifyUserNotification($user));
-
-        $token = auth()->login($user);
-
-        return $this->respondWithToken($token);
+        $user->notify(new VerifyUserNotification);
     }
 
     public function login(LoginRequest $request)
