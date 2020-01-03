@@ -2,18 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\LinkToken;
+use App\UrlToken;
 use Illuminate\Http\Request;
 
 class UserVerificationController extends Controller
 {
     public function __invoke(Request $request)
     {
-        if (LinkToken::where('token', $request->token)->doesntExist()) {
+        if (UrlToken::whereToken($request->token)->doesntExist()) {
             abort(404);
         }
 
-        $user = LinkToken::where('token', $request->token)->first()->user()->first();
+        $user = UrlToken::whereToken($request->token)->first()->user()->first();
 
         if ($user->email_verified_at) {
             return redirect('/');

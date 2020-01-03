@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateLinkTokensTable extends Migration
+class CreateUrlTokensTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateLinkTokensTable extends Migration
      */
     public function up()
     {
-        Schema::create('link_tokens', function (Blueprint $table) {
+        Schema::create('url_tokens', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('type');
             $table->string('token');
@@ -34,6 +34,6 @@ class CreateLinkTokensTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('link_tokens');
+        Schema::dropIfExists('url_tokens');
     }
 }

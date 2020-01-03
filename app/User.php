@@ -19,12 +19,12 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
  * @property string $role
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\LinkToken[] $linkTokens
- * @property-read int|null $link_tokens_count
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
  * @property-read int|null $notifications_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\TestReport[] $testReports
  * @property-read int|null $test_reports_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\UrlToken[] $urlTokens
+ * @property-read int|null $url_tokens_count
  * @method static \Illuminate\Database\Eloquent\Builder|\App\User newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\User newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\User query()
@@ -82,8 +82,8 @@ class User extends Authenticatable implements JWTSubject
         ]);
     }
 
-    public function linkTokens(): HasMany
+    public function urlTokens(): HasMany
     {
-        return $this->hasMany(LinkToken::class);
+        return $this->hasMany(UrlToken::class);
     }
 }

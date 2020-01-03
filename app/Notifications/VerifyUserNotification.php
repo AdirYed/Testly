@@ -2,7 +2,7 @@
 
 namespace App\Notifications;
 
-use App\LinkToken;
+use App\UrlToken;
 use App\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -17,7 +17,7 @@ class VerifyUserNotification extends Notification
 
     public function __construct()
     {
-        $this->token = LinkToken::createToken();
+        $this->token = UrlToken::createToken();
     }
 
     public function via(User $notifiable)
@@ -27,12 +27,12 @@ class VerifyUserNotification extends Notification
 
     public function toMail(User $notifiable): MailMessage
     {
-        $notifiable->linkTokens()->create([
-            'type' => LinkToken::TYPE_VERIFICATION,
+        $notifiable->urlTokens()->create([
+            'type' => UrlToken::TYPE_VERIFICATION,
             'token' => $this->token,
         ]);
 
-        $verifyUrl = url("/verify?token=$this->token");
+        $verifyUrl = UrlToken::verifyUrl($this->token);
 
         return (new MailMessage)
             ->replyTo($notifiable->email)
