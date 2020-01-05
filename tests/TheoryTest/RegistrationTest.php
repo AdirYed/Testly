@@ -74,7 +74,7 @@ class RegistrationTest extends TestCase
 
                 $user->refresh();
 
-                $response->assertRedirect('/login');
+                $response->assertRedirect('/login?verified=1');
 
                 return $user->email_verified_at !== null;
             }

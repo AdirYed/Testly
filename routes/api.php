@@ -34,5 +34,11 @@ Route::group([
 Route::get('category_types', [CategoryTypeController::class, 'index']);
 
 Route::post('resend-verification', function () {
-    auth()->user()->notify(new VerifyUserNotification);
+    $user = auth()->user();
+
+    if ($user->email_verified_at) {
+        return response()->json(['verified' => true], 422);
+    }
+
+    $user->notify(new VerifyUserNotification);
 });

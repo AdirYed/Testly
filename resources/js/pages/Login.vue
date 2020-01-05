@@ -91,7 +91,11 @@
                     >
                         משתמש זה עוד לא אומת.
                         <br />
-                        <a class="link" @click="resendVerification">שלח</a>
+                        <a
+                            class="link tw-cursor-pointer"
+                            @click="resendVerification"
+                            >שלח</a
+                        >
                         אימות חדש לאימייל.
                     </p>
                 </div>
@@ -172,6 +176,7 @@ export default {
         deleteError(property) {
             this.errors[property] = null;
         },
+
         resendVerification() {
             this.$axios
                 .post(
@@ -183,8 +188,13 @@ export default {
                         }
                     }
                 )
-                .then(response => {
+                .then(() => {
                     alert("אימייל נשלח");
+                })
+                .catch(err => {
+                    if (err.response.data.verified) {
+                        alert("משתמש אומת כבר");
+                    }
                 });
         }
     },
