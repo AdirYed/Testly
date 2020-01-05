@@ -21,6 +21,7 @@ class CreateUrlTokensTable extends Migration
             $table->timestamp('expires_at')->nullable();
             $table->timestamps();
 
+            $table->index(['token', 'type']);
             $table->foreign('user_id')->references('id')
                 ->on('users')
                 ->onDelete('cascade');

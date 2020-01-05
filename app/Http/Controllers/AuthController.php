@@ -26,7 +26,7 @@ class AuthController extends Controller
         $token = auth()->attempt($payload);
 
         if (auth()->user()->email_verified_at === null) {
-            return response()->json(['error' => 'verification'], 422);
+            return response()->json(['error' => 'verification', 'token' => $token], 422);
         }
 
         return $this->respondWithToken($token);

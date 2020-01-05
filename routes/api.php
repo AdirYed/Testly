@@ -5,6 +5,7 @@ use App\Http\Controllers\CategoryTypeController;
 use App\Http\Controllers\DrivingLicenseTypeController;
 use App\Http\Controllers\DrivingLicenseTypeQuestionController;
 use App\Http\Controllers\TestReportController;
+use App\Notifications\VerifyUserNotification;
 use Illuminate\Support\Facades\Route;
 
 Route::group(['prefix' => 'driving-license-types'], static function () {
@@ -31,3 +32,7 @@ Route::group([
 });
 
 Route::get('category_types', [CategoryTypeController::class, 'index']);
+
+Route::post('resend-verification', function () {
+    auth()->user()->notify(new VerifyUserNotification);
+});

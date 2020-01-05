@@ -46,11 +46,4 @@ class VerifyUserNotification extends Notification
             'token' => $this->token,
         ];
     }
-
-    public function toArray(User $notifiable)
-    {
-        return [
-            //
-        ];
-    }
 }

@@ -86,10 +86,13 @@
                     </p>
 
                     <p
-                        v-else-if="verification"
+                        v-else-if="verification.isVerified"
                         class="tw-font-semibold tw-text-red-500 tw-text-xs"
                     >
                         משתמש זה עוד לא אומת.
+                        <br />
+                        <a class="link" @click="resendVerification">שלח</a>
+                        אימות חדש לאימייל.
                     </p>
                 </div>
 
@@ -130,7 +133,10 @@ export default {
 
             errors: {},
 
-            verification: false
+            verification: {
+                isVerified: false,
+                token: null
+            }
         };
     },
 
@@ -149,7 +155,8 @@ export default {
                         err.response.status === 422 &&
                         err.response.data.error === "verification"
                     ) {
-                        this.verification = true;
+                        this.verification.isVerified = true;
+                        this.verification.token = err.response.data.token;
                     }
 
                     if (
@@ -164,6 +171,28 @@ export default {
 
         deleteError(property) {
             this.errors[property] = null;
+        },
+        resendVerification() {
+            this.$axios
+                .post(
+                    "/resend-verification",
+                    {},
+                    {
+                        headers: {
+                            Authorization: `Bearer ${this.verification.token}`
+                        }
+                    }
+                )
+                .then(response => {
+                    alert("אימייל נשלח");
+                });
+        }
+    },
+
+    created() {
+        if (this.$route.query.verified === "1") {
+            this.$router.replace("login");
+            alert("משתמש זה אומת");
         }
     }
 };
