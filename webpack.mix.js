@@ -7,9 +7,12 @@ mix.js("resources/js/app.js", "public/js")
         require("postcss-nested"),
         require("autoprefixer")
     ])
-    .purgeCss()
     .browserSync({
         proxy: "localhost:8000",
         notify: false
     })
     .disableNotifications();
+
+if (mix.inProduction()) {
+    mix.version().purgeCss();
+}
