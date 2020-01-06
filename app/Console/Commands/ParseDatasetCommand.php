@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Str;
+use Spatie\LaravelImageOptimizer\Facades\ImageOptimizer;
 use Storage;
 
 class ParseDatasetCommand extends Command
@@ -268,6 +269,8 @@ class ParseDatasetCommand extends Command
             $contents = curl_exec($start);
 
             Storage::put("public/{$name}", $contents);
+
+            ImageOptimizer::optimize(storage_path("app/public/$name"));
 
             $bar->advance();
         }
