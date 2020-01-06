@@ -45,6 +45,7 @@
             <theory-bar-dropdown
                 to="dashboard"
                 v-if="$store.getters.isLoggedIn"
+                buttonTo="dashboard"
             >
                 <template slot="title">
                     <fa-icon icon="user" />

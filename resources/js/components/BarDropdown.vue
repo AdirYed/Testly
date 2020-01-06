@@ -1,6 +1,22 @@
 <template>
     <div class="tw-relative">
+        <router-link :to="{ name: buttonTo }" v-if="buttonTo">
+            <button
+                @click="isOpen = !isOpen"
+                @mouseenter="isOpen = true"
+                @mouseleave="isOpen = false"
+                class="route lg:tw-p-4 tw-py-3 tw-px-0 tw-block tw-border-t-4 tw-border-transparent hover:tw-border-primary lg:tw-mb-0 tw-mb-2"
+                :class="{
+                    'tw-font-bold ': this.$route.name === to,
+                    'tw-border-primary': isOpen || this.$route.name === to
+                }"
+            >
+                <slot name="title" />
+            </button>
+        </router-link>
+
         <button
+            v-else
             @click="isOpen = !isOpen"
             @mouseenter="isOpen = true"
             @mouseleave="isOpen = false"
@@ -10,7 +26,7 @@
                 'tw-border-primary': isOpen || this.$route.name === to
             }"
         >
-            <slot name="title"></slot>
+            <slot name="title" />
         </button>
 
         <div
@@ -21,7 +37,7 @@
             @mouseenter="isOpen = true"
             @mouseleave="isOpen = false"
         >
-            <slot></slot>
+            <slot />
         </div>
     </div>
 </template>
@@ -34,6 +50,11 @@ export default {
         to: {
             type: String,
             required: true
+        },
+
+        buttonTo: {
+            type: String,
+            required: false
         }
     },
 
