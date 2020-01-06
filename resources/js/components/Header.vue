@@ -27,10 +27,10 @@
             </theory-bar-dropdown>
         </template>
         <template slot="right-bar">
-            <theory-bar to="#">
-                <fa-icon icon="globe" />
-                שפה
-            </theory-bar>
+            <!--            <theory-bar to="#">-->
+            <!--                <fa-icon icon="globe" />-->
+            <!--                שפה-->
+            <!--            </theory-bar>-->
 
             <theory-bar to="login" v-if="!$store.getters.isLoggedIn">
                 <fa-icon icon="sign-in-alt" />
@@ -45,6 +45,7 @@
             <theory-bar-dropdown
                 to="dashboard"
                 v-if="$store.getters.isLoggedIn"
+                buttonTo="dashboard"
             >
                 <template slot="title">
                     <fa-icon icon="user" />
@@ -55,6 +56,7 @@
                     :to="{ name: 'dashboard' }"
                     class="tw-block tw-px-4 tw-py-2 tw-text-gray-800 hover:tw-bg-primary hover:tw-text-white tw-cursor-pointer"
                 >
+                    <fa-icon icon="user" />
                     הפרופיל שלי
                 </router-link>
 
