@@ -103,7 +103,7 @@ export default new Vuex.Store({
         },
 
         fetchCategoryTypes() {
-            return axiosInstance.get("category_types");
+            return axiosInstance.get("categories");
         }
     }
 });
