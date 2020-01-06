@@ -13,3 +13,7 @@ mix.js("resources/js/app.js", "public/js")
         notify: false
     })
     .disableNotifications();
+
+if (mix.inProduction()) {
+    mix.version();
+}
