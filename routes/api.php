@@ -31,7 +31,7 @@ Route::group([
     Route::post('', [TestReportController::class, 'store']);
 });
 
-Route::get('category-types', [CategoryTypeController::class, 'index']);
+Route::get('categories', [CategoryTypeController::class, 'index']);
 
 Route::post('resend-verification', function () {
     $user = auth()->user();
