@@ -270,7 +270,7 @@ class ParseDatasetCommand extends Command
 
             Storage::put("public/{$name}", $contents);
 
-            ImageOptimizer::optimize(storage_path("app/public/$name"));
+            ImageOptimizer::optimize("storage/app/public/$name");
 
             $bar->advance();
         }
