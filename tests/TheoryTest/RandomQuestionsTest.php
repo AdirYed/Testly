@@ -1,5 +1,7 @@
 <?php
-namespace Tests\Commands;
+
+namespace Tests\TheoryTest;
+
 use App\Category;
 use App\DrivingLicenseType;
 use App\Http\Controllers\DrivingLicenseTypeQuestionController;
@@ -7,6 +9,7 @@ use App\Question;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Support\Collection;
 use Tests\TestCase;
+
 class RandomQuestionsTest extends TestCase
 {
     use DatabaseTransactions;

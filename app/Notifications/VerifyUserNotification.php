@@ -2,25 +2,22 @@
 
 namespace App\Notifications;
 
+use App\UrlToken;
 use App\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
-use Illuminate\Support\Facades\Date;
 
 class VerifyUserNotification extends Notification
 {
     use Queueable;
 
-    /**
-     * Create a new notification instance.
-     *
-     * @return void
-     */
+    private $token;
+
     public function __construct()
     {
-        //
+        $this->token = UrlToken::createToken();
     }
 
     public function via(User $notifiable)
@@ -30,23 +27,23 @@ class VerifyUserNotification extends Notification
 
     public function toMail(User $notifiable): MailMessage
     {
+        $notifiable->urlTokens()->create([
+            'type' => UrlToken::TYPE_VERIFICATION,
+            'token' => $this->token,
+        ]);
+
+        $verifyUrl = UrlToken::verifyUrl($this->token);
+
         return (new MailMessage)
             ->replyTo($notifiable->email)
             ->subject('אימות אימייל Testly')
-            ->markdown('email.verifyUser');
+            ->markdown('email.verifyUser', ['verifyUrl' => $verifyUrl]);
     }
 
     public function toDatabase(User $notifiable): array
     {
         return [
-            'expiration' => Date::now()->addHour()->toDateTimeString(),
-        ];
-    }
-
-    public function toArray(User $notifiable)
-    {
-        return [
-            //
+            'token' => $this->token,
         ];
     }
 }

@@ -75,7 +75,7 @@
                             :loading="isLoading"
                             color="var(--primary-color)"
                             size="0.75rem"
-                        ></theory-pulse-loader>
+                        />
                     </div>
 
                     <p
@@ -83,6 +83,20 @@
                         class="tw-font-semibold tw-text-red-500 tw-text-xs"
                     >
                         {{ errors.general[0] }}
+                    </p>
+
+                    <p
+                        v-else-if="verification.isVerified"
+                        class="tw-font-semibold tw-text-red-500 tw-text-xs"
+                    >
+                        משתמש זה עוד לא אומת.
+                        <br />
+                        <a
+                            class="link tw-cursor-pointer"
+                            @click="resendVerification"
+                            >שלח</a
+                        >
+                        אימות חדש לאימייל.
                     </p>
                 </div>
 
@@ -121,7 +135,12 @@ export default {
 
             isLoading: false,
 
-            errors: {}
+            errors: {},
+
+            verification: {
+                isVerified: false,
+                token: null
+            }
         };
     },
 
@@ -136,9 +155,14 @@ export default {
                     this.$router.push({ name: "home" });
                 })
                 .catch(err => {
-                    // if (err.response.status === 422 && err.response.data.error === 'verification') {
-                    //     this.verification = true;
-                    // }
+                    if (
+                        err.response.status === 422 &&
+                        err.response.data.error === "verification"
+                    ) {
+                        this.verification.isVerified = true;
+                        this.verification.token = err.response.data.token;
+                    }
+
                     if (
                         err.response.status === 422 &&
                         err.response.data.errors
@@ -151,6 +175,34 @@ export default {
 
         deleteError(property) {
             this.errors[property] = null;
+        },
+
+        resendVerification() {
+            this.$axios
+                .post(
+                    "/resend-verification",
+                    {},
+                    {
+                        headers: {
+                            Authorization: `Bearer ${this.verification.token}`
+                        }
+                    }
+                )
+                .then(() => {
+                    alert("אימייל נשלח");
+                })
+                .catch(err => {
+                    if (err.response.data.verified) {
+                        alert("משתמש אומת כבר");
+                    }
+                });
+        }
+    },
+
+    created() {
+        if (this.$route.query.verified === "1") {
+            this.$router.replace("login");
+            alert("משתמש זה אומת");
         }
     }
 };

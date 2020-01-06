@@ -67,12 +67,7 @@ export default new Vuex.Store({
         },
 
         register({ dispatch, commit }, credentials) {
-            return axiosInstance
-                .post("/auth/register", credentials)
-                .then(response => {
-                    commit("setUser", response.data);
-                    return dispatch("storeSavedTestReportIfExists");
-                });
+            return axiosInstance.post("/auth/register", credentials);
         },
 
         fetchTestReports() {

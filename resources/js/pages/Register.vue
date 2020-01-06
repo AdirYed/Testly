@@ -144,7 +144,7 @@
                             :loading="isLoading"
                             color="var(--primary-color)"
                             size="0.75rem"
-                        ></theory-pulse-loader>
+                        />
                     </div>
                 </div>
 
@@ -202,7 +202,10 @@ export default {
                 .dispatch("register", this.auth)
                 .then(() => {
                     this.isLoading = false;
-                    this.$router.push({ name: "home" });
+                    alert(
+                        "משתמש נרשם בהצלחה, נא לאמת את המשתמש באמצעות הקישור שנשלח לאימייל."
+                    ); // will be a notification in the future
+                    this.$router.push({ name: "login" });
                 })
                 .catch(err => {
                     if (
