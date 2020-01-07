@@ -9,7 +9,8 @@ import {
     faSignOutAlt,
     faGlobe,
     faAngleDoubleDown,
-    faUser
+    faUser,
+    faInfoCircle
 } from "@fortawesome/free-solid-svg-icons";
 
 export default {
@@ -23,6 +24,7 @@ export default {
         faSignOutAlt,
         faGlobe,
         faAngleDoubleDown,
-        faUser
+        faUser,
+        faInfoCircle
     )
 };
