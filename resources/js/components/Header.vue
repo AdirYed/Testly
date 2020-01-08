@@ -14,7 +14,7 @@
 
                 <router-link
                     class="tw-block tw-px-4 tw-py-2 tw-text-gray-800 hover:tw-bg-primary hover:tw-text-white"
-                    v-for="(test, index) in tests"
+                    v-for="(test, index) in $store.state.drivingLicenseTypes"
                     :to="{
                         name: 'tests',
                         params: { drivingLicenseType: test.code }
@@ -80,16 +80,12 @@ export default {
 
     data() {
         return {
-            isOpen: false,
-
-            tests: []
+            isOpen: false
         };
     },
 
     created() {
-        this.$axios.get(`/driving-license-types`).then(response => {
-            this.tests = response.data;
-        });
+        this.$store.dispatch("fetchDrivingLicenseTypes");
 
         const handleEscape = e => {
             if (e.key === "Esc" || e.key === "Escape") {

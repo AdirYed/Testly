@@ -15,11 +15,15 @@
         </div>
 
         <div class="tw-flex tw-justify-center tw-pb-4">
-            <button
+            <router-link
                 class="btn tw-py-2 tw-px-3 tw-border-2 tw-border-primary hover:tw-bg-primary tw-text-primary hover:tw-text-white tw-rounded"
+                :to="{
+                    name: to,
+                    params: params
+                }"
             >
                 <slot name="button-desc" />
-            </button>
+            </router-link>
         </div>
     </div>
 </template>
@@ -36,6 +40,16 @@ export default {
         width: {
             type: Number,
             default: 80
+        },
+
+        to: {
+            type: String,
+            required: true
+        },
+
+        params: {
+            type: Object,
+            required: false
         }
     },
 

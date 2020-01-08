@@ -26,9 +26,9 @@
         <div
             ref="testOptions"
             id="choose-a-test"
-            class="tw-container tw-mx-auto tw-flex tw-flex-wrap tw-flex-col tw-content-center"
+            class="tw-container tw-mx-auto"
         >
-            <div class="tw-px-4 tw-pt-8 md:tw-pt-10">
+            <div class="tw-px-4 tw-py-8 md:tw-py-10">
                 <h1 class="tw-text-xl md:tw-text-3xl">
                     הנכם מוזמנים
                     <router-link class="link" :to="{ name: 'register' }"
@@ -39,56 +39,23 @@
             </div>
 
             <section
-                class="tw-flex tw-flex-wrap tw-justify-center tw-pt-8 md:tw-pt-10"
+                v-show="$store.state.drivingLicenseTypes"
+                class="tw-w-full tw-flex tw-flex-wrap tw-justify-center"
             >
-                <div class="tw-p-4">
-                    <theory-card src="/assets/action-asphalt.jpg">
-                        <template class="tw-text-center" slot="title"
-                            >רכב פרטי (B)</template
-                        >
+                <div
+                    class="tw-p-4"
+                    v-for="(test, index) in $store.state.drivingLicenseTypes"
+                    :key="index"
+                >
+                    <theory-card
+                        :src="test.image_url"
+                        to="tests"
+                        :params="{ drivingLicenseType: test.code }"
+                    >
+                        <template class="tw-text-center" slot="title">
+                            {{ test.name }} ({{ test.code }})
+                        </template>
                         מבחן לרכב פרטי (B)
-                        <template slot="button-desc">למבחן תאוריה</template>
-                    </theory-card>
-                </div>
-                <div class="tw-p-4">
-                    <theory-card src="/assets/action-asphalt.jpg">
-                        <template slot="title">זהו הכותרת</template>
-                        זהו הדיסקריפשן
-                        <template slot="button-desc">למבחן תאוריה</template>
-                    </theory-card>
-                </div>
-                <div class="tw-p-4">
-                    <theory-card src="/assets/action-asphalt.jpg">
-                        <template slot="title">זהו הכותרת</template>
-                        זהו הדיסקריפשן
-                        <template slot="button-desc">למבחן תאוריה</template>
-                    </theory-card>
-                </div>
-                <div class="tw-p-4">
-                    <theory-card src="/assets/action-asphalt.jpg">
-                        <template slot="title">זהו הכותרת</template>
-                        זהו הדיסקריפשן
-                        <template slot="button-desc">למבחן תאוריה</template>
-                    </theory-card>
-                </div>
-                <div class="tw-p-4">
-                    <theory-card src="/assets/action-asphalt.jpg">
-                        <template slot="title">זהו הכותרת</template>
-                        זהו הדיסקריפשן
-                        <template slot="button-desc">למבחן תאוריה</template>
-                    </theory-card>
-                </div>
-                <div class="tw-p-4">
-                    <theory-card src="/assets/action-asphalt.jpg">
-                        <template slot="title">זהו הכותרת</template>
-                        זהו הדיסקריפשן
-                        <template slot="button-desc">למבחן תאוריה</template>
-                    </theory-card>
-                </div>
-                <div class="tw-p-4">
-                    <theory-card src="/assets/action-asphalt.jpg">
-                        <template slot="title">זהו הכותרת</template>
-                        זהו הדיסקריפשן
                         <template slot="button-desc">למבחן תאוריה</template>
                     </theory-card>
                 </div>
