@@ -55,7 +55,8 @@
                         <template class="tw-text-center" slot="title">
                             {{ test.name }} ({{ test.code }})
                         </template>
-                        מבחן לרכב פרטי (B)
+                        מבחן ל{{ test.name }} ({{ test.code }})
+                        <!-- looking for description -->
                         <template slot="button-desc">למבחן תאוריה</template>
                     </theory-card>
                 </div>
