@@ -17,6 +17,8 @@ class CreateDrivingLicenseTypesTable extends Migration
             $table->bigIncrements('id');
             $table->string('code', 5)->unique();
             $table->string('name', 30)->unique();
+            $table->string('icon', 30)->unique();
+//            $table->text('image_url');
             $table->timestamps();
         });
     }

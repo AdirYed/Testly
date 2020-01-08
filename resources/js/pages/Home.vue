@@ -43,8 +43,10 @@
             >
                 <div class="tw-p-4">
                     <theory-card src="/assets/action-asphalt.jpg">
-                        <template slot="title">זהו הכותרת</template>
-                        זהו הדיסקריפשן
+                        <template class="tw-text-center" slot="title"
+                            >רכב פרטי (B)</template
+                        >
+                        מבחן לרכב פרטי (B)
                         <template slot="button-desc">למבחן תאוריה</template>
                     </theory-card>
                 </div>
