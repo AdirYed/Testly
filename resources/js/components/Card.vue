@@ -6,7 +6,7 @@
             :style="{ 'background-image': 'url(' + src + ')' }"
         ></div>
         <div class="tw-px-6 tw-py-4">
-            <div class="tw-font-bold tw-text-xl tw-mb-2">
+            <div class="tw-font-bold tw-text-xl tw-mb-2 tw-text-center">
                 <slot name="title" />
             </div>
             <p class="tw-text-gray-700 tw-text-base">

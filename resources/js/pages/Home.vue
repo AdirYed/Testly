@@ -30,11 +30,20 @@
         >
             <div class="tw-px-4 tw-py-8 md:tw-py-10">
                 <h1 class="tw-text-xl md:tw-text-3xl">
-                    הנכם מוזמנים
-                    <router-link class="link" :to="{ name: 'register' }"
-                        >להירשם</router-link
-                    >
-                    לאתר כדי לשמור את נתונכם.
+                    <template v-if="!$store.getters.isLoggedIn">
+                        מומלץ
+                        <router-link class="link" :to="{ name: 'register' }"
+                            >להירשם</router-link
+                        >
+                        לטסטלי כדי לשמור את היסטוריית המבחנים שלך.
+                    </template>
+                    <template v-else>
+                        שלום
+                        <router-link class="link" :to="{ name: 'dashboard' }">{{
+                            $store.state.user.first_name
+                        }}</router-link
+                        >, איזה מבחן נעשה היום?
+                    </template>
                 </h1>
             </div>
 
@@ -55,8 +64,10 @@
                         <template class="tw-text-center" slot="title">
                             {{ test.name }} ({{ test.code }})
                         </template>
-                        מבחן ל{{ test.name }} ({{ test.code }})
-                        <!-- looking for description -->
+                        כל השאלות והתשובות מהמאגר למבחן נהיגה עיוני ממוחשב ל{{
+                            test.name
+                        }}
+                        ({{ test.code }})
                         <template slot="button-desc">למבחן תאוריה</template>
                     </theory-card>
                 </div>
