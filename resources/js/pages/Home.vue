@@ -28,14 +28,15 @@
             id="choose-a-test"
             class="tw-container tw-mx-auto"
         >
-            <div class="tw-px-4 tw-py-8 md:tw-py-10">
+            <div class="tw-px-4 tw-py-8">
                 <h1 class="tw-text-xl md:tw-text-3xl">
                     <template v-if="!$store.getters.isLoggedIn">
-                        מומלץ
+                        כדאי
                         <router-link class="link" :to="{ name: 'register' }"
                             >להירשם</router-link
                         >
-                        לטסטלי כדי לשמור את היסטוריית המבחנים שלך.
+                        לטסטלי כדי לשמור את היסטוריית המבחנים ואת קצב ההתקדמות
+                        שלך.
                     </template>
                     <template v-else>
                         שלום
@@ -44,6 +45,12 @@
                         }}</router-link
                         >, איזה מבחן נעשה היום?
                     </template>
+                </h1>
+            </div>
+
+            <div class="tw-text-center tw-font-semibold">
+                <h1 class="tw-text-xl md:tw-text-4xl">
+                    מבחנים
                 </h1>
             </div>
 
