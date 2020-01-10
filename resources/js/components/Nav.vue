@@ -9,6 +9,18 @@
             <ul
                 class="lg:tw-flex tw-items-center tw-justify-between tw-text-base tw-text-gray-700 tw-pt-4 lg:tw-pt-0"
             >
+                <!-- Logo -->
+                <router-link
+                    :to="{ name: 'home' }"
+                    class="tw-flex tw-items-center tw-px-4"
+                    style="height: var(--header-height)"
+                >
+                    <div class="testly-icon tw-w-10 tw-h-10 tw-ml-1" />
+                    <div class="tw-text-xl tw-text-primary tw-font-semibold">
+                        טסטלי
+                    </div>
+                </router-link>
+
                 <slot name="left-bar" />
             </ul>
         </div>
@@ -37,17 +49,6 @@
                     <slot name="right-bar" />
                 </ul>
             </nav>
-
-            <!--            <a-->
-            <!--                href="#"-->
-            <!--                class="lg:tw-ml-4 tw-flex tw-items-center tw-justify-start lg:tw-mb-0 tw-mb-4 tw-pointer-cursor"-->
-            <!--            >-->
-            <!--                <img-->
-            <!--                    class="tw-rounded-full tw-w-10 tw-h-10"-->
-            <!--                    src="https://pbs.twimg.com/profile_images/1128143121475342337/e8tkhRaz_normal.jpg"-->
-            <!--                    alt="Andy Leverenz"-->
-            <!--                />-->
-            <!--            </a>-->
         </div>
     </header>
 </template>

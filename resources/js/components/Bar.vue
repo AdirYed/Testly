@@ -1,6 +1,6 @@
 <template>
     <router-link
-        class="route lg:tw-p-4 tw-py-3 tw-px-0 tw-block tw-border-t-4 tw-border-transparent hover:tw-border-primary lg:tw-mb-0 tw-mb-2"
+        class="route tw-p-4 tw-block tw-border-t-4 tw-border-transparent hover:tw-border-primary"
         :class="{ 'tw-font-bold tw-border-primary': isCurrentRoute }"
         :to="{ name: to, params: toParams }"
         exact
