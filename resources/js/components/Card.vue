@@ -6,7 +6,7 @@
             :style="{ 'background-image': 'url(' + src + ')' }"
         ></div>
         <div class="tw-px-6 tw-py-4">
-            <div class="tw-font-bold tw-text-xl tw-mb-2">
+            <div class="tw-font-bold tw-text-xl tw-mb-2 tw-text-center">
                 <slot name="title" />
             </div>
             <p class="tw-text-gray-700 tw-text-base">
@@ -15,11 +15,15 @@
         </div>
 
         <div class="tw-flex tw-justify-center tw-pb-4">
-            <button
+            <router-link
                 class="btn tw-py-2 tw-px-3 tw-border-2 tw-border-primary hover:tw-bg-primary tw-text-primary hover:tw-text-white tw-rounded"
+                :to="{
+                    name: to,
+                    params: params
+                }"
             >
                 <slot name="button-desc" />
-            </button>
+            </router-link>
         </div>
     </div>
 </template>
@@ -36,6 +40,16 @@ export default {
         width: {
             type: Number,
             default: 80
+        },
+
+        to: {
+            type: String,
+            required: true
+        },
+
+        params: {
+            type: Object,
+            required: false
         }
     },
 

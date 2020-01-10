@@ -13,7 +13,8 @@ export default new Vuex.Store({
         token: localStorage.getItem("token") || null,
         savedTestReport: localStorage.getItem("savedTestReport")
             ? JSON.parse(localStorage.getItem("savedTestReport"))
-            : null
+            : null,
+        drivingLicenseTypes: null
     },
 
     getters: {
@@ -104,6 +105,14 @@ export default new Vuex.Store({
 
         fetchCategoryTypes() {
             return axiosInstance.get("categories");
+        },
+
+        fetchDrivingLicenseTypes({ state }) {
+            return axiosInstance
+                .get(`/driving-license-types`)
+                .then(response => {
+                    state.drivingLicenseTypes = response.data;
+                });
         }
     }
 });

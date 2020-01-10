@@ -14,13 +14,14 @@
 
                 <router-link
                     class="tw-block tw-px-4 tw-py-2 tw-text-gray-800 hover:tw-bg-primary hover:tw-text-white"
-                    v-for="(test, index) in tests"
+                    v-for="(test, index) in $store.state.drivingLicenseTypes"
                     :to="{
                         name: 'tests',
                         params: { drivingLicenseType: test.code }
                     }"
                     :key="index"
                 >
+                    <fa-icon class="fa-fw" :icon="test.icon" v-if="test.icon" />
                     {{ test.name }}
                     ({{ test.code }})
                 </router-link>
@@ -56,7 +57,7 @@
                     :to="{ name: 'dashboard' }"
                     class="tw-block tw-px-4 tw-py-2 tw-text-gray-800 hover:tw-bg-primary hover:tw-text-white tw-cursor-pointer"
                 >
-                    <fa-icon icon="user" />
+                    <fa-icon class="fa-fw" icon="user" />
                     הפרופיל שלי
                 </router-link>
 
@@ -65,7 +66,7 @@
                     @click="logout"
                     v-if="$store.getters.isLoggedIn"
                 >
-                    <fa-icon icon="sign-out-alt" />
+                    <fa-icon class="fa-fw" icon="sign-out-alt" />
                     התנתק
                 </div>
             </theory-bar-dropdown>
@@ -79,16 +80,12 @@ export default {
 
     data() {
         return {
-            isOpen: false,
-
-            tests: []
+            isOpen: false
         };
     },
 
     created() {
-        this.$axios.get(`/driving-license-types`).then(response => {
-            this.tests = response.data;
-        });
+        this.$store.dispatch("fetchDrivingLicenseTypes");
 
         const handleEscape = e => {
             if (e.key === "Esc" || e.key === "Escape") {

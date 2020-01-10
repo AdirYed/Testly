@@ -9,7 +9,14 @@ import {
     faSignOutAlt,
     faGlobe,
     faAngleDoubleDown,
-    faUser
+    faUser,
+    faCar,
+    faMotorcycle,
+    faTruck,
+    faTruckMoving,
+    faBus,
+    faTractor,
+    faBicycle
 } from "@fortawesome/free-solid-svg-icons";
 
 export default {
@@ -23,6 +30,13 @@ export default {
         faSignOutAlt,
         faGlobe,
         faAngleDoubleDown,
-        faUser
+        faUser,
+        faCar,
+        faMotorcycle,
+        faTruck,
+        faTruckMoving,
+        faBus,
+        faTractor,
+        faBicycle
     )
 };
