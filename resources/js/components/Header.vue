@@ -40,6 +40,11 @@
             <!--                שפה-->
             <!--            </theory-bar>-->
 
+            <theory-bar to="about-us">
+                <fa-icon icon="info-circle" />
+                אודות
+            </theory-bar>
+
             <theory-bar to="login" v-if="!$store.getters.isLoggedIn">
                 <fa-icon icon="sign-in-alt" />
                 התחבר

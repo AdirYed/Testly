@@ -6,6 +6,7 @@ import Register from "./pages/Register";
 import NotFound from "./pages/NotFound";
 import VueRouter from "vue-router";
 import store from "./store";
+import AboutUs from "./pages/AboutUs";
 
 const router = new VueRouter({
     mode: "history",
@@ -15,12 +16,6 @@ const router = new VueRouter({
             path: "/",
             component: Home,
             name: "home"
-        },
-
-        {
-            path: "/#",
-            component: Home,
-            name: "#"
         },
 
         {
@@ -63,6 +58,12 @@ const router = new VueRouter({
             meta: {
                 guestOnly: true
             }
+        },
+
+        {
+            path: "/about-us",
+            component: AboutUs,
+            name: "about-us"
         },
 
         {

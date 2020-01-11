@@ -11,10 +11,7 @@
             נראה שהגעת לקישור שלא קיים.
         </p>
 
-        <router-link
-            class="tw-text-primary tw-font-bold"
-            :to="{ name: 'home' }"
-        >
+        <router-link class="link tw-font-bold" :to="{ name: 'home' }">
             אל דף הבית.
         </router-link>
     </div>
