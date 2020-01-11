@@ -1,9 +1,16 @@
 <template>
     <theory-nav-bar>
         <template slot="left-bar">
-            <theory-bar to="home">
-                <fa-icon icon="home" />
-                עמוד הבית
+            <!-- Logo -->
+            <theory-bar
+                to="home"
+                class="tw-flex tw-items-center tw-px-4"
+                style="height: var(--header-height)"
+            >
+                <div class="testly-icon tw-w-10 tw-h-10 tw-ml-1" />
+                <div class="tw-text-xl tw-text-primary tw-font-semibold">
+                    טסטלי
+                </div>
             </theory-bar>
 
             <theory-bar-dropdown to="tests">
