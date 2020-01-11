@@ -1,9 +1,16 @@
 <template>
     <theory-nav-bar>
         <template slot="left-bar">
-            <theory-bar to="home">
-                <fa-icon icon="home" />
-                עמוד הבית
+            <!-- Logo -->
+            <theory-bar
+                to="home"
+                class="tw-flex tw-items-center tw-px-4"
+                style="height: var(--header-height)"
+            >
+                <div class="testly-icon tw-w-10 tw-h-10 tw-ml-1" />
+                <div class="tw-text-xl tw-text-primary tw-font-semibold">
+                    טסטלי
+                </div>
             </theory-bar>
 
             <theory-bar-dropdown to="tests">
@@ -14,13 +21,14 @@
 
                 <router-link
                     class="tw-block tw-px-4 tw-py-2 tw-text-gray-800 hover:tw-bg-primary hover:tw-text-white"
-                    v-for="(test, index) in tests"
+                    v-for="(test, index) in $store.state.drivingLicenseTypes"
                     :to="{
                         name: 'tests',
                         params: { drivingLicenseType: test.code }
                     }"
                     :key="index"
                 >
+                    <fa-icon class="fa-fw" :icon="test.icon" v-if="test.icon" />
                     {{ test.name }}
                     ({{ test.code }})
                 </router-link>
@@ -61,7 +69,7 @@
                     :to="{ name: 'dashboard' }"
                     class="tw-block tw-px-4 tw-py-2 tw-text-gray-800 hover:tw-bg-primary hover:tw-text-white tw-cursor-pointer"
                 >
-                    <fa-icon icon="user" />
+                    <fa-icon class="fa-fw" icon="user" />
                     הפרופיל שלי
                 </router-link>
 
@@ -70,7 +78,7 @@
                     @click="logout"
                     v-if="$store.getters.isLoggedIn"
                 >
-                    <fa-icon icon="sign-out-alt" />
+                    <fa-icon class="fa-fw" icon="sign-out-alt" />
                     התנתק
                 </div>
             </theory-bar-dropdown>
@@ -84,16 +92,12 @@ export default {
 
     data() {
         return {
-            isOpen: false,
-
-            tests: []
+            isOpen: false
         };
     },
 
     created() {
-        this.$axios.get(`/driving-license-types`).then(response => {
-            this.tests = response.data;
-        });
+        this.$store.dispatch("fetchDrivingLicenseTypes");
 
         const handleEscape = e => {
             if (e.key === "Esc" || e.key === "Escape") {

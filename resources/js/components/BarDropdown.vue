@@ -5,7 +5,7 @@
                 @click="isOpen = !isOpen"
                 @mouseenter="isOpen = true"
                 @mouseleave="isOpen = false"
-                class="route lg:tw-p-4 tw-py-3 tw-px-0 tw-block tw-border-t-4 tw-border-transparent hover:tw-border-primary lg:tw-mb-0 tw-mb-2"
+                class="route tw-p-4 tw-block tw-border-t-4 tw-border-transparent hover:tw-border-primary"
                 :class="{
                     'tw-font-bold ': this.$route.name === to,
                     'tw-border-primary': isOpen || this.$route.name === to
@@ -20,7 +20,7 @@
             @click="isOpen = !isOpen"
             @mouseenter="isOpen = true"
             @mouseleave="isOpen = false"
-            class="route lg:tw-p-4 tw-py-3 tw-px-0 tw-block tw-border-t-4 tw-border-transparent hover:tw-border-primary lg:tw-mb-0 tw-mb-2"
+            class="route tw-p-4 tw-block tw-border-t-4 tw-border-transparent hover:tw-border-primary"
             :class="{
                 'tw-font-bold ': this.$route.name === to,
                 'tw-border-primary': isOpen || this.$route.name === to
@@ -31,7 +31,7 @@
 
         <div
             v-if="isOpen"
-            class="tw-absolute tw-py-1 tw-w-48 tw-bg-white tw-rounded tw-border"
+            class="tw-absolute tw-py-1 tw-w-56 tw-bg-white tw-rounded tw-border"
             style="border-color: rgba(0, 0, 0, 0.25); left: 50%; margin-left: -6rem"
             @click="isOpen = false"
             @mouseenter="isOpen = true"

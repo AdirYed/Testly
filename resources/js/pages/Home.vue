@@ -2,91 +2,86 @@
     <div>
         <div
             id="home-img-section"
-            class="tw-flex tw-flex-wrap tw-flex-col tw-items-center tw-justify-end"
+            class="tw-flex tw-flex-col tw-items-center tw-justify-center"
+            style="padding-bottom: var(--header-height)"
         >
-            <!-- TODO: needs some css changes -->
-            <div id="products-wrapper">
-                <div class="">
-                    <h1 class="tw-text-center">מבחני תאוריה בחינם</h1>
+            <div class="tw-flex tw-items-center tw-justify-center">
+                <div
+                    class="testly-icon tw-w-12 md:tw-w-16 tw-h-12 md:tw-h-16 tw-ml-1"
+                />
+                <div
+                    class="tw-text-4xl md:tw-text-5xl tw-text-primary tw-font-semibold"
+                >
+                    טסטלי
                 </div>
             </div>
 
-            <div id="home-btn">
+            <h1 class="tw-text-2xl md:tw-text-3xl tw-text-center tw-text-white">
+                דימוי מבחני תאוריה בחינם!
+            </h1>
+
+            <div class="tw-text-center tw-mt-5">
                 <button
-                    id="home-scroll-able"
-                    class="btn tw-py-2 tw-px-8 tw-border-2 tw-border-primary tw-text-primary hover:tw-text-white hover:tw-bg-primary tw-rounded"
+                    class="btn tw-py-1 md:tw-py-2 tw-px-3 md:tw-px-4 tw-border-2 tw-border-primary tw-text-primary hover:tw-text-white hover:tw-bg-primary tw-rounded"
                     @click="readMore()"
                 >
-                    <fa-icon icon="angle-double-down" style="font-size: 30px" />
+                    גש למבחן
                 </button>
             </div>
         </div>
 
-        <!-- TODO: need to style it -->
         <div
             ref="testOptions"
             id="choose-a-test"
-            class="tw-container tw-mx-auto tw-flex tw-flex-wrap tw-flex-col tw-content-center"
+            class="tw-container tw-mx-auto"
         >
-            <div class="tw-px-4 tw-pt-8 md:tw-pt-10">
+            <div class="tw-px-4 tw-py-8">
                 <h1 class="tw-text-xl md:tw-text-3xl">
-                    הנכם מוזמנים
-                    <router-link class="link" :to="{ name: 'register' }"
-                        >להירשם</router-link
-                    >
-                    לאתר כדי לשמור את נתונכם.
+                    <template v-if="!$store.getters.isLoggedIn">
+                        כדאי
+                        <router-link class="link" :to="{ name: 'register' }"
+                            >להירשם</router-link
+                        >
+                        לטסטלי כדי לשמור את היסטוריית המבחנים ואת קצב ההתקדמות
+                        שלך.
+                    </template>
+                    <template v-else>
+                        שלום
+                        <router-link class="link" :to="{ name: 'dashboard' }">{{
+                            $store.state.user.first_name
+                        }}</router-link
+                        >, איזה מבחן נעשה היום?
+                    </template>
+                </h1>
+            </div>
+
+            <div class="tw-text-center tw-font-semibold">
+                <h1 class="tw-text-2xl md:tw-text-4xl">
+                    מבחנים
                 </h1>
             </div>
 
             <section
-                class="tw-flex tw-flex-wrap tw-justify-center tw-pt-8 md:tw-pt-10"
+                v-show="$store.state.drivingLicenseTypes"
+                class="tw-w-full tw-flex tw-flex-wrap tw-justify-center"
             >
-                <div class="tw-p-4">
-                    <theory-card src="/assets/action-asphalt.jpg">
-                        <template slot="title">זהו הכותרת</template>
-                        זהו הדיסקריפשן
-                        <template slot="button-desc">למבחן תאוריה</template>
-                    </theory-card>
-                </div>
-                <div class="tw-p-4">
-                    <theory-card src="/assets/action-asphalt.jpg">
-                        <template slot="title">זהו הכותרת</template>
-                        זהו הדיסקריפשן
-                        <template slot="button-desc">למבחן תאוריה</template>
-                    </theory-card>
-                </div>
-                <div class="tw-p-4">
-                    <theory-card src="/assets/action-asphalt.jpg">
-                        <template slot="title">זהו הכותרת</template>
-                        זהו הדיסקריפשן
-                        <template slot="button-desc">למבחן תאוריה</template>
-                    </theory-card>
-                </div>
-                <div class="tw-p-4">
-                    <theory-card src="/assets/action-asphalt.jpg">
-                        <template slot="title">זהו הכותרת</template>
-                        זהו הדיסקריפשן
-                        <template slot="button-desc">למבחן תאוריה</template>
-                    </theory-card>
-                </div>
-                <div class="tw-p-4">
-                    <theory-card src="/assets/action-asphalt.jpg">
-                        <template slot="title">זהו הכותרת</template>
-                        זהו הדיסקריפשן
-                        <template slot="button-desc">למבחן תאוריה</template>
-                    </theory-card>
-                </div>
-                <div class="tw-p-4">
-                    <theory-card src="/assets/action-asphalt.jpg">
-                        <template slot="title">זהו הכותרת</template>
-                        זהו הדיסקריפשן
-                        <template slot="button-desc">למבחן תאוריה</template>
-                    </theory-card>
-                </div>
-                <div class="tw-p-4">
-                    <theory-card src="/assets/action-asphalt.jpg">
-                        <template slot="title">זהו הכותרת</template>
-                        זהו הדיסקריפשן
+                <div
+                    class="tw-p-2 sm:tw-p-4"
+                    v-for="(test, index) in $store.state.drivingLicenseTypes"
+                    :key="index"
+                >
+                    <theory-card
+                        :src="test.image_url"
+                        to="tests"
+                        :params="{ drivingLicenseType: test.code }"
+                    >
+                        <template class="tw-text-center" slot="title">
+                            {{ test.name }} ({{ test.code }})
+                        </template>
+                        כל השאלות והתשובות מהמאגר למבחן נהיגה עיוני ממוחשב ל{{
+                            test.name
+                        }}
+                        ({{ test.code }})
                         <template slot="button-desc">למבחן תאוריה</template>
                     </theory-card>
                 </div>

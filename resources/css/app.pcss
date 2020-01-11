@@ -15,14 +15,6 @@ button:focus {
     z-index: 99;
 }
 
-#products-wrapper {
-    margin: auto;
-
-    h1 {
-        font-size: 50px;
-    }
-}
-
 #home-btn {
     margin-bottom: 3.75rem;
 }
@@ -31,8 +23,8 @@ button:focus {
     height: calc(100vh - var(--header-height));
     background: linear-gradient(
         to top,
-        rgba(241, 39, 17, 0.05),
-        rgba(245, 175, 25, 0.075)),
+        rgba(0, 0, 0, 0.55),
+        rgba(0, 0, 0, 0.15)),
         url('/assets/asphalt.jpg') no-repeat center;
     background-size: cover;
 
@@ -43,12 +35,12 @@ button:focus {
     border-color: rgba(0, 0, 0, 0.25);
 
     > .card-img {
-        background-size: 100%;
+        background-size: cover;
         background-repeat: no-repeat;
         background-position: center;
         height: 20vh;
         min-height: 120px;
-        max-height: 200px;
+        max-height: 160px;
     }
 
     &:hover {
