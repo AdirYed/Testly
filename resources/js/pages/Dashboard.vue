@@ -122,7 +122,10 @@
                             >
                                 <router-link
                                     class="link"
-                                    :to="{ name: 'home' }"
+                                    :to="{
+                                        name: 'test-result',
+                                        params: { uuid: testReport.uuid }
+                                    }"
                                 >
                                     צפייה במבחן
                                 </router-link>

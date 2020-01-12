@@ -5,6 +5,8 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Str;
+use function foo\func;
 
 /**
  * App\TestReport
@@ -12,6 +14,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property int $id
  * @property \Illuminate\Support\Carbon $started_at
  * @property \Illuminate\Support\Carbon $finished_at
+ * @property string $token
  * @property int|null $user_id
  * @property int $driving_license_type_id
  * @property \Illuminate\Support\Carbon|null $created_at
@@ -30,6 +33,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\TestReport whereFinishedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\TestReport whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\TestReport whereStartedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\TestReport whereToken($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\TestReport whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\TestReport whereUserId($value)
  * @mixin \Eloquent
@@ -47,6 +51,15 @@ class TestReport extends Model
         'started_at' => 'datetime',
         'finished_at' => 'datetime',
     ];
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($query) {
+            $query->uuid = Str::uuid()->toString();
+        });
+    }
 
     public function user(): BelongsTo
     {

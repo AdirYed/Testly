@@ -17,6 +17,7 @@ class CreateTestReportsTable extends Migration
             $table->bigIncrements('id');
             $table->timestamp('started_at');
             $table->timestamp('finished_at');
+            $table->string('uuid');
             $table->unsignedBigInteger('user_id')->nullable()->index();
             $table->unsignedBigInteger('driving_license_type_id');
             $table->timestamps();

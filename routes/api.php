@@ -28,6 +28,7 @@ Route::group([
     'middleware' => 'auth:api',
 ], static function () {
     Route::get('', [TestReportController::class, 'index']);
+    Route::get('/{uuid}', [TestReportController::class, 'preview']);
     Route::post('', [TestReportController::class, 'store']);
 });
 

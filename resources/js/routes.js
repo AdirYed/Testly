@@ -1,5 +1,6 @@
 import Home from "./pages/Home";
 import Tests from "./pages/Tests";
+import TestResult from "./pages/TestResult";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import Register from "./pages/Register";
@@ -22,6 +23,15 @@ const router = new VueRouter({
             path: "/test/:drivingLicenseType",
             component: Tests,
             name: "tests"
+        },
+
+        {
+            path: "/test/result/:uuid",
+            component: TestResult,
+            name: "test-result",
+            meta: {
+                authOnly: true
+            }
         },
 
         {
@@ -69,7 +79,7 @@ const router = new VueRouter({
         {
             path: "*",
             component: NotFound,
-            name: "notFound"
+            name: "not-found"
         }
     ],
 
