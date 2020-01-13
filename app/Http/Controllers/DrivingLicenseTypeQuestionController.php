@@ -7,8 +7,14 @@ use App\Question;
 
 class DrivingLicenseTypeQuestionController extends Controller
 {
-    public function random(DrivingLicenseType $drivingLicenseType)
+    public function random(string $drivingLicenseType)
     {
+        $drivingLicenseType = DrivingLicenseType::whereCode($drivingLicenseType)->first();
+
+        if (! $drivingLicenseType) {
+            return response()->json(['error' => 'driving_license_type'], 422);
+        }
+
         return [
             'driving_license_type' => $drivingLicenseType->only(['id', 'code', 'name']),
             'questions' => $drivingLicenseType->questions()

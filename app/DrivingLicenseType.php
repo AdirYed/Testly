@@ -11,6 +11,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
  * @property int $id
  * @property string $code
  * @property string $name
+ * @property string $icon
+ * @property string $image_url
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Question[] $questions
@@ -20,7 +22,9 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\DrivingLicenseType query()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\DrivingLicenseType whereCode($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\DrivingLicenseType whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\DrivingLicenseType whereIcon($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\DrivingLicenseType whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\DrivingLicenseType whereImageUrl($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\DrivingLicenseType whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\DrivingLicenseType whereUpdatedAt($value)
  * @mixin \Eloquent

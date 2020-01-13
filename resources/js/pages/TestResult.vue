@@ -27,17 +27,25 @@
                     class="tw-hidden md:tw-block tw-w-2/12"
                     v-if="drivingLicenseType"
                 >
-                    <button
-                        class="tw-text-sm tw-border tw-rounded tw-p-2"
-                        style="border-color: rgba(0, 0, 0, 0.25);"
-                        @click="restart"
+                    <router-link
+                        :to="{
+                            name: 'tests',
+                            params: {
+                                drivingLicenseType: drivingLicenseType.code
+                            }
+                        }"
                     >
-                        התחל מחדש
-                    </button>
+                        <button
+                            class="tw-text-sm tw-border tw-rounded tw-p-2"
+                            style="border-color: rgba(0, 0, 0, 0.25);"
+                        >
+                            התחל מחדש
+                        </button>
+                    </router-link>
                 </div>
             </h1>
 
-            <template v-if="!isLoading && drivingLicenseType">
+            <template v-if="!isLoading">
                 <div
                     v-if="question"
                     class="tw-flex tw-flex-wrap tw-flex-row tw-justify-between tw-pt-5 tw-break-words tw-h-full"
@@ -65,28 +73,23 @@
                                     <label
                                         class="tw-block tw-p-2 tw-border tw-border-transparent tw-rounded tw-cursor-pointer tw-w-full"
                                         :class="{
-                                            'hover:tw-border-primary hover:tw-text-primary':
-                                                question['chosen_answer_id'] !==
-                                                    ++index && counting,
                                             'tw-bg-primary':
-                                                question['chosen_answer_id'] ===
-                                                index,
+                                                quiz.test_report_answers[
+                                                    currQuestion - 1
+                                                ]['answer_id'] === response.id,
                                             // score
                                             'tw-text-green-700 tw-font-bold tw-border-primary':
-                                                !counting &&
                                                 response['is_correct'],
                                             'tw-text-red-500 tw-font-bold':
-                                                !counting &&
                                                 !response['is_correct'] &&
-                                                question['chosen_answer_id'] ===
-                                                    index
+                                                quiz.test_report_answers[
+                                                    currQuestion - 1
+                                                ]['answer_id'] === response.id
                                         }"
                                         :for="
                                             'q_' + currQuestion + '_a_' + index
                                         "
                                     >
-                                        <!--rightAnswer(questionIndex) - aims only for the right answer-->
-
                                         <input
                                             class="tw-opacity-0 tw-h-0 tw-w-0"
                                             type="radio"
@@ -107,10 +110,8 @@
                                             v-model="
                                                 question['chosen_answer_id']
                                             "
-                                            @change="next()"
-                                            :disabled="!counting"
+                                            disabled
                                         />
-
                                         {{ response["content"] }}
                                     </label>
                                 </li>
@@ -131,30 +132,7 @@
                                 <div
                                     class="tw-mx-auto tw-my-2 tw-max-w-24 tw-text-center"
                                 >
-                                    <div
-                                        :class="{
-                                            'tw-border-2 tw-border-primary tw-rounded tw-py-3 tw-px-4 tw-text-md md:tw-text-xl': counting
-                                        }"
-                                    >
-                                        <theory-countdown
-                                            :time="time"
-                                            @progress="handleCountdownProgress"
-                                            @end="score"
-                                            ref="countdown"
-                                            v-show="counting"
-                                        >
-                                            <template slot-scope="props">
-                                                {{ props.minutes }}:{{
-                                                    props.seconds
-                                                }}
-                                            </template>
-                                        </theory-countdown>
-                                    </div>
-
-                                    <div
-                                        v-if="!counting"
-                                        class="tw-text-md md:tw-text-xl"
-                                    >
+                                    <div class="tw-text-md md:tw-text-xl">
                                         <div
                                             class="tw-border tw-border-transparent tw-p-4 tw-rounded"
                                             :class="{
@@ -207,21 +185,21 @@
                                     <div
                                         class="tw-w-8/12 lg:tw-w-10/12 tw-px-2"
                                     >
-                                        <button
-                                            class="tw-font-bold tw-w-full tw-h-10 md:tw-h-12 tw-bg-primary tw-rounded tw-text-white tw-border tw-border-primary"
-                                            @click="score"
-                                            v-if="counting"
+                                        <router-link
+                                            :to="{
+                                                name: 'tests',
+                                                params: {
+                                                    drivingLicenseType:
+                                                        drivingLicenseType.code
+                                                }
+                                            }"
                                         >
-                                            סיים מבחן
-                                        </button>
-
-                                        <button
-                                            class="tw-font-bold tw-w-full tw-h-10 md:tw-h-12 tw-bg-primary tw-rounded tw-text-white tw-border tw-border-primary"
-                                            @click="restart"
-                                            v-else
-                                        >
-                                            התחל מחדש
-                                        </button>
+                                            <button
+                                                class="tw-font-bold tw-w-full tw-h-10 md:tw-h-12 tw-bg-primary tw-rounded tw-text-white tw-border tw-border-primary"
+                                            >
+                                                התחל מחדש
+                                            </button>
+                                        </router-link>
                                     </div>
 
                                     <button
@@ -260,31 +238,25 @@
                                     style="width: 45%"
                                     @click="currentQuestion(n)"
                                     :class="{
-                                        'tw-font-bold tw-border-primary tw-text-primary':
-                                            i === currQuestion && counting,
-                                        'tw-border-primary tw-bg-primary tw-line-through':
-                                            i !== currQuestion &&
-                                            quiz[n]['chosen_answer_id'] !==
-                                                null &&
-                                            counting,
-                                        // score
                                         'tw-border-primary tw-bg-primary':
-                                            !counting &&
                                             i !== currQuestion &&
-                                            quiz[n]['chosen_answer_id'] !==
-                                                null,
+                                            quiz.test_report_answers[n][
+                                                'answer_id'
+                                            ] !== null,
                                         'tw-text-green-700 tw-font-bold':
-                                            !counting &&
                                             rightAnswer(n) ===
-                                                quiz[n]['chosen_answer_id'],
+                                            quiz.test_report_answers[n][
+                                                'answer_id'
+                                            ],
                                         'tw-text-red-500 tw-font-bold':
-                                            !counting &&
                                             rightAnswer(n) !==
-                                                quiz[n]['chosen_answer_id'] &&
-                                            quiz[n]['chosen_answer_id'] !==
-                                                null,
-                                        'tw-border-primary':
-                                            i === currQuestion && !counting
+                                                quiz.test_report_answers[n][
+                                                    'answer_id'
+                                                ] &&
+                                            quiz.test_report_answers[n][
+                                                'answer_id'
+                                            ] !== null,
+                                        'tw-border-primary': i === currQuestion
                                     }"
                                 >
                                     שאלה {{ i }}
@@ -295,16 +267,9 @@
                 </div>
             </template>
 
-            <div v-else-if="drivingLicenseType === false" class="tw-pt-5">
+            <div v-else-if="error === 'uuid'" class="tw-pt-5">
                 <div class="tw-text-xl">
-                    רישיון זה אינו קיים, נא לבחור אחד
-                    <router-link
-                        class="link"
-                        :to="{ name: 'home', hash: '#choose-a-test' }"
-                    >
-                        מהרישיונות</router-link
-                    >
-                    הקיימים בלבד.
+                    מבחן זה אינו קיים במערכת.
                 </div>
             </div>
 
@@ -326,7 +291,7 @@
 
 <script>
 export default {
-    name: "tests",
+    name: "test-result",
 
     data() {
         return {
@@ -337,81 +302,16 @@ export default {
             questionIndex: 0,
             rightAnswersAmount: null,
 
-            counting: true,
             time: 40 * 60 * 1000,
             progressBarStyle: {
-                width: "100%"
+                width: "0%"
             },
 
-            startedDate: null,
-            finishedDate: null
+            error: null
         };
     },
 
     methods: {
-        restart() {
-            this.fetchQuestions();
-
-            this.quiz.forEach(quiz => {
-                // clears the previous quiz's answered questions.
-                quiz.chosen_answer_id = null;
-            });
-
-            this.questionIndex = 0;
-            this.rightAnswersAmount = null;
-
-            this.counting = true;
-
-            if (this.$refs.countdown) {
-                this.$refs.countdown.totalMilliseconds = this.time;
-                this.$refs.countdown.start();
-            }
-
-            this.handleCountdownProgress({ totalMilliseconds: this.time });
-
-            this.startedDate = new Date();
-        },
-
-        score() {
-            if (!this.counting) {
-                return;
-            }
-
-            this.questionIndex = 0;
-            this.rightAnswersAmount = this.rightAnswers();
-
-            this.$refs.countdown.totalMilliseconds = 0;
-            this.handleCountdownProgress({ totalMilliseconds: 0 });
-
-            this.counting = false;
-
-            this.finishedDate = new Date();
-
-            const payload = {
-                started_at: this.startedDate,
-                finished_at: this.finishedDate,
-                driving_license_type_id: this.drivingLicenseType.id,
-                answers: []
-            };
-
-            for (let i = 0; i < 30; i++) {
-                payload.answers.push({
-                    question_id: this.quiz[i].id,
-                    answer_id: this.quiz[i].chosen_answer_id
-                        ? this.quiz[i].answers[
-                              this.quiz[i].chosen_answer_id - 1
-                          ].id
-                        : null
-                });
-            }
-
-            this.$store.dispatch("storeTestReport", payload);
-
-            if (!this.$store.getters.isLoggedIn) {
-                alert("על מנת לשמור את המבחן, אנא הירשם/התחבר");
-            }
-        },
-
         currentQuestion(index) {
             this.questionIndex = index;
         },
@@ -438,8 +338,14 @@ export default {
 
         rightAnswer(question) {
             for (let i = 0; i < 4; i++) {
-                if (this.quiz[question]["answers"][i]["is_correct"]) {
-                    return i + 1;
+                if (
+                    this.quiz.test_report_answers[question]["question"][
+                        "answers"
+                    ][i]["is_correct"]
+                ) {
+                    return this.quiz.test_report_answers[question]["question"][
+                        "answers"
+                    ][i]["id"];
                 }
             }
         },
@@ -449,8 +355,9 @@ export default {
 
             for (let i = 0; i < 30; i++) {
                 if (
-                    this.quiz[i]["chosen_answer_id"] !== null &&
-                    this.rightAnswer(i) === this.quiz[i]["chosen_answer_id"]
+                    this.quiz.test_report_answers[i]["answer_id"] !== null &&
+                    this.rightAnswer(i) ===
+                        this.quiz.test_report_answers[i]["answer_id"]
                 ) {
                     rightAnswers++;
                 }
@@ -459,40 +366,15 @@ export default {
             return rightAnswers;
         },
 
-        handleCountdownProgress(data) {
-            if (this.counting) {
-                this.progressBarStyle = {
-                    width: (data.totalMilliseconds / this.time) * 100 + "%"
-                };
-            }
-        },
+        handleCountdownProgress() {
+            const totalMilliseconds =
+                this.time -
+                (new Date(this.quiz.finished_at).getTime() -
+                    new Date(this.quiz.started_at).getTime());
 
-        fetchQuestions() {
-            this.$axios
-                .get(
-                    `/driving-license-types/${this.$route.params.drivingLicenseType}/questions/random`
-                )
-                .then(response => {
-                    let data = response.data;
-
-                    data["questions"].forEach(function(currQuestion) {
-                        currQuestion["chosen_answer_id"] = null;
-                    });
-
-                    this.quiz = data["questions"];
-
-                    if (!this.drivingLicenseType) {
-                        this.drivingLicenseType = data["driving_license_type"];
-                    }
-                })
-                .catch(error => {
-                    if (
-                        error.response.status === 422 &&
-                        error.response.data.error === "driving_license_type"
-                    ) {
-                        this.drivingLicenseType = false;
-                    }
-                });
+            this.progressBarStyle = {
+                width: (totalMilliseconds / this.time) * 100 + "%"
+            };
         }
     },
 
@@ -502,7 +384,9 @@ export default {
         },
 
         question() {
-            return this.quiz[this.questionIndex];
+            return this.quiz.test_report_answers[this.questionIndex][
+                "question"
+            ];
         },
 
         title() {
@@ -522,14 +406,35 @@ export default {
         },
 
         isLoading() {
-            return Array.isArray(this.quiz) && this.quiz.length <= 0;
+            return Array.isArray(this.quiz);
         }
     },
 
     created() {
-        this.fetchQuestions();
+        this.$axios
+            .get(`/test-reports/${this.$route.params.uuid}`)
+            .then(response => {
+                let data = response.data;
 
-        this.startedDate = new Date();
+                if (this.$store.state.drivingLicenseTypes) {
+                    this.drivingLicenseType = this.$store.state.drivingLicenseTypes[
+                        data["driving_license_type_id"] - 1
+                    ];
+                }
+
+                this.quiz = data;
+
+                this.handleCountdownProgress();
+                this.rightAnswersAmount = this.rightAnswers();
+            })
+            .catch(error => {
+                if (
+                    error.response.status === 422 &&
+                    error.response.data.error === "uuid"
+                ) {
+                    this.error = "uuid";
+                }
+            });
     }
 };
 </script>

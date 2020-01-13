@@ -62,7 +62,7 @@
             </div>
 
             <section
-                v-show="$store.state.drivingLicenseTypes"
+                v-if="$store.state.drivingLicenseTypes"
                 class="tw-w-full tw-flex tw-flex-wrap tw-justify-center"
             >
                 <div
@@ -76,6 +76,11 @@
                         :params="{ drivingLicenseType: test.code }"
                     >
                         <template class="tw-text-center" slot="title">
+                            <fa-icon
+                                class="fa-fw tw-inline md:tw-hidden"
+                                :icon="test.icon"
+                                v-if="test.icon"
+                            />
                             {{ test.name }} ({{ test.code }})
                         </template>
                         כל השאלות והתשובות מהמאגר למבחן נהיגה עיוני ממוחשב ל{{
