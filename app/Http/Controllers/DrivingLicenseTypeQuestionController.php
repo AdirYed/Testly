@@ -11,7 +11,9 @@ class DrivingLicenseTypeQuestionController extends Controller
     {
         $drivingLicenseType = DrivingLicenseType::whereCode($drivingLicenseType)->first();
 
-        abort_if(! $drivingLicenseType, 422);
+        if (! $drivingLicenseType) {
+            return response()->json(['error' => 'driving_license_type'], 422);
+        }
 
         return [
             'driving_license_type' => $drivingLicenseType->only(['id', 'code', 'name']),

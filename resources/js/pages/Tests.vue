@@ -14,18 +14,19 @@
                 <div
                     class="tw-w-full md:tw-w-10/12 tw-text-2xl md:tw-text-3xl tw-font-semibold"
                 >
+                    מבחן תאוריה
+
                     <template v-if="drivingLicenseType">
-                        מבחן תאוריה -
+                        -
                         {{ drivingLicenseType.name }}
                         ({{ drivingLicenseType.code }})
                     </template>
-
-                    <template v-else>
-                        מבחן תאוריה
-                    </template>
                 </div>
 
-                <div class="tw-hidden md:tw-block tw-w-2/12">
+                <div
+                    class="tw-hidden md:tw-block tw-w-2/12"
+                    v-if="drivingLicenseType"
+                >
                     <button
                         class="tw-text-sm tw-border tw-rounded tw-p-2"
                         style="border-color: rgba(0, 0, 0, 0.25);"
@@ -36,7 +37,7 @@
                 </div>
             </h1>
 
-            <template v-if="!isLoading">
+            <template v-if="!isLoading && drivingLicenseType">
                 <div
                     v-if="question"
                     class="tw-flex tw-flex-wrap tw-flex-row tw-justify-between tw-pt-5 tw-break-words tw-h-full"
@@ -294,6 +295,19 @@
                 </div>
             </template>
 
+            <div v-else-if="drivingLicenseType === false" class="tw-pt-5">
+                <div class="tw-text-xl">
+                    רישיון זה אינו קיים, נא לבחור אחד
+                    <router-link
+                        class="link"
+                        :to="{ name: 'home', hash: '#choose-a-test' }"
+                    >
+                        מהרישיונות</router-link
+                    >
+                    הקיימים בלבד.
+                </div>
+            </div>
+
             <div
                 class="tw-container tw-mx-auto tw-flex tw-justify-center"
                 v-else
@@ -473,10 +487,10 @@ export default {
                 })
                 .catch(error => {
                     if (
-                        error.response.status === 404 ||
-                        error.response.status === 422
+                        error.response.status === 422 &&
+                        error.response.data.error === "driving_license_type"
                     ) {
-                        this.$router.replace({ name: "home" });
+                        this.drivingLicenseType = false;
                     }
                 });
         }

@@ -14,14 +14,12 @@
                 <div
                     class="tw-w-full md:tw-w-10/12 tw-text-2xl md:tw-text-3xl tw-font-semibold"
                 >
+                    מבחן תאוריה
+
                     <template v-if="drivingLicenseType">
-                        מבחן תאוריה -
+                        -
                         {{ drivingLicenseType.name }}
                         ({{ drivingLicenseType.code }})
-                    </template>
-
-                    <template v-else>
-                        מבחן תאוריה
                     </template>
                 </div>
 
@@ -269,6 +267,12 @@
                 </div>
             </template>
 
+            <div v-else-if="error === 'uuid'" class="tw-pt-5">
+                <div class="tw-text-xl">
+                    מבחן זה אינו קיים במערכת.
+                </div>
+            </div>
+
             <div
                 class="tw-container tw-mx-auto tw-flex tw-justify-center"
                 v-else
@@ -301,7 +305,9 @@ export default {
             time: 40 * 60 * 1000,
             progressBarStyle: {
                 width: "0%"
-            }
+            },
+
+            error: null
         };
     },
 
@@ -410,9 +416,11 @@ export default {
             .then(response => {
                 let data = response.data;
 
-                this.drivingLicenseType = this.$store.state.drivingLicenseTypes[
-                    data["driving_license_type_id"] - 1
-                ];
+                if (this.$store.state.drivingLicenseTypes) {
+                    this.drivingLicenseType = this.$store.state.drivingLicenseTypes[
+                        data["driving_license_type_id"] - 1
+                    ];
+                }
 
                 this.quiz = data;
 
@@ -421,10 +429,10 @@ export default {
             })
             .catch(error => {
                 if (
-                    error.response.status === 404 ||
-                    error.response.status === 422
+                    error.response.status === 422 &&
+                    error.response.data.error === "uuid"
                 ) {
-                    this.$router.replace({ name: "home" });
+                    this.error = "uuid";
                 }
             });
     }

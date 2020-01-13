@@ -39,7 +39,10 @@ class TestReportController extends Controller
                 ])
             ->first();
 
-        abort_if(! $testReport, 422);
+
+        if (! $testReport) {
+            return response()->json(['error' => 'uuid'], 422);
+        }
 
         foreach ($testReport->testReportAnswers as $testReportAnswer) {
             $testReportAnswer->question->append('formatted_image_url');
