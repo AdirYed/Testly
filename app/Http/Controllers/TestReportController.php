@@ -37,7 +37,9 @@ class TestReportController extends Controller
                     'testReportAnswers.question:id,title,image_url',
                     'testReportAnswers.question.answers:id,question_id,content,is_correct'
                 ])
-            ->firstOrFail();
+            ->first();
+
+        abort_if(! $testReport, 422);
 
         foreach ($testReport->testReportAnswers as $testReportAnswer) {
             $testReportAnswer->question->append('formatted_image_url');

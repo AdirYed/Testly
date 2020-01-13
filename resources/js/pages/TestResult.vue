@@ -418,6 +418,14 @@ export default {
 
                 this.handleCountdownProgress();
                 this.rightAnswersAmount = this.rightAnswers();
+            })
+            .catch(error => {
+                if (
+                    error.response.status === 404 ||
+                    error.response.status === 422
+                ) {
+                    this.$router.replace({ name: "home" });
+                }
             });
     }
 };
