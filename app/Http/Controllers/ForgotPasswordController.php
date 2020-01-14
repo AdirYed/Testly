@@ -33,7 +33,7 @@ class ForgotPasswordController extends Controller
             ->whereType(UrlToken::TYPE_FORGOT_PASSWORD)
             ->firstOrFail();
 
-        if (! $urlToken->expires_at || $urlToken->expires_at && strtotime($urlToken->expires_at) - strtotime(now()) < 0) {
+        if ($urlToken->expires_at && strtotime($urlToken->expires_at) - strtotime(now()) < 0) {
             return response()->json(['errors' => 'token'], 422);
         }
     }
@@ -46,7 +46,7 @@ class ForgotPasswordController extends Controller
             ->whereType(UrlToken::TYPE_FORGOT_PASSWORD)
             ->firstOrFail();
 
-        if (! $urlToken->expires_at || $urlToken->expires_at && strtotime($urlToken->expires_at) - strtotime(now()) < 0) {
+        if ($urlToken->expires_at && strtotime($urlToken->expires_at) - strtotime(now()) < 0) {
             return response()->json(['errors' => 'token'], 422);
         }
 
