@@ -47,4 +47,6 @@ Route::post('resend-verification', function () {
 
 Route::group(['prefix' => 'forgot-password'], static function () {
     Route::post('', [ForgotPasswordController::class, 'mail']);
+    Route::post('check-token', [ForgotPasswordController::class, 'checkToken']);
+    Route::post('reset', [ForgotPasswordController::class, 'update']);
 });

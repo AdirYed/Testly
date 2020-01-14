@@ -62,6 +62,6 @@ class UrlToken extends Model
 
     public static function forgotPasswordUrl(string $token): string
     {
-        return url("/forgot-password?token=$token");
+        return url("/reset-password?token=$token");
     }
 }

@@ -9,23 +9,18 @@ class UserVerificationController extends Controller
 {
     public function __invoke(Request $request)
     {
-        $linkToken = UrlToken::whereToken($request->token)
+        $urlToken = UrlToken::whereToken($request->token)
             ->whereType(UrlToken::TYPE_VERIFICATION)
             ->firstOrFail();
 
-        $user = UrlToken::whereToken($linkToken->token)->first()->user()->first();
+        $user = $urlToken->user;
 
         if ($user->email_verified_at) {
-            return redirect('/');
+            return response()->view('app');
         }
 
-        $unreadNotification = $user->unreadNotifications()->where('data->token', $request->token)->first();
-
-        if ($unreadNotification) {
-            $unreadNotification->markAsRead();
-        }
-
-        $user->verify();
+        $user->markUnreadNotificationAsRead($request->token);
+        $user->markEmailAsVerified();
 
         return redirect('/login?verified=1');
     }

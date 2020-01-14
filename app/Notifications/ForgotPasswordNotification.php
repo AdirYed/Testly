@@ -30,7 +30,7 @@ class ForgotPasswordNotification extends Notification
         $notifiable->urlTokens()->create([
             'type' => UrlToken::TYPE_FORGOT_PASSWORD,
             'token' => $this->token,
-            'expires_at' => now()->addHour(),
+            'expires_at' => now()->addDay(),
         ]);
 
         $forgotPasswordUrl = UrlToken::forgotPasswordUrl($this->token);
@@ -44,7 +44,7 @@ class ForgotPasswordNotification extends Notification
             ->line('אם אינך יכול ללחוץ על הקישור שלמעלה, פשוט העתק והדבק את הקישור הבא בדפדפן שלך.')
             ->line(url($forgotPasswordUrl))
             ->line('הלינק בתוקף רק ליום אחד. אם התוקף יפוג, תוכל לבקש אחד חדש.')
-            ->line('אם אינך הגשת בקשה זו, נא התעלם מאימייל זה ומחק אותו.');
+            ->line('אם לא הגשת בקשה זו, נא התעלם מאימייל זה ומחק אותו.');
     }
 
     public function toDatabase(User $notifiable)

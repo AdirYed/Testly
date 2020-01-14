@@ -4,6 +4,7 @@ import TestResult from "./pages/TestResult";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import ForgotPassword from "./pages/ForgotPassword";
+import ResetPassword from "./pages/ResetPassword";
 import Dashboard from "./pages/Dashboard";
 import AboutUs from "./pages/AboutUs";
 import NotFound from "./pages/NotFound";
@@ -58,6 +59,15 @@ const router = new VueRouter({
             path: "/forgot-password",
             component: ForgotPassword,
             name: "forgot-password",
+            meta: {
+                guestOnly: true
+            }
+        },
+
+        {
+            path: "/reset-password",
+            component: ResetPassword,
+            name: "reset-password",
             meta: {
                 guestOnly: true
             }

@@ -3,14 +3,14 @@
         class="tw-container tw-mx-auto tw-pt-8 md:tw-pt-10 tw-px-6 md:tw-px-10"
     >
         <div class="tw-text-2xl md:tw-text-3xl tw-font-semibold tw-text-center">
-            התחבר
+            שכחת את הסיסמה?
         </div>
 
         <div
             class="tw-w-full tw-max-w-2xl tw-text-lg tw-pt-5 tw-text-center tw-mx-auto"
         >
             אם שכחת את סיסמתך וברצונך לאפס אותה, הינך יכול למלא טופס זה ולקבל
-            הוראות כיצד לאפס את הסיסמה.
+            הוראות באימייל כיצד לאפס את הסיסמה.
         </div>
 
         <div class="tw-w-full tw-max-w-xs tw-mx-auto">
@@ -65,7 +65,7 @@
                         class="btn tw-py-2 tw-px-3 tw-bg-primary tw-rounded tw-text-white tw-border tw-border-primary"
                         type="submit"
                     >
-                        התחבר
+                        שלח בקשה
                     </button>
                 </div>
             </form>
@@ -80,7 +80,7 @@ export default {
     data() {
         return {
             auth: {
-                email: null
+                email: ""
             },
 
             isLoading: false,
