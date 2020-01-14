@@ -99,9 +99,9 @@ export default {
 
             this.$axios
                 .post("forgot-password", this.auth)
-                .then(response => {
+                .then(() => {
                     alert("איפוס סיסמה נשלח לאימייל.");
-                    this.isLoading = false;
+                    this.$router.push("/");
                 })
                 .catch(err => {
                     if (

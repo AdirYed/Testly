@@ -57,7 +57,6 @@ class ForgotPasswordController extends Controller
         ]);
 
         $user->markUnreadNotificationAsRead($validatedRequest['token']);
-
         $user->resetPassword($validatedRequest['password']);
     }
 }
