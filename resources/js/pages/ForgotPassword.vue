@@ -33,7 +33,7 @@
                         id="email"
                         type="email"
                         placeholder="אימייל"
-                        v-model="email"
+                        v-model="auth.email"
                         @input="deleteError('email')"
                     />
 
@@ -45,11 +45,19 @@
                     </div>
                 </div>
 
-                <div
-                    v-if="errors.general"
-                    class="tw-font-semibold tw-text-red-500 tw-text-xs"
-                >
-                    {{ errors.general[0] }}
+                <div class="tw-my-3">
+                    <div
+                        class="tw-container tw-mx-auto tw-flex tw-justify-center"
+                        style="height: 18px"
+                        v-if="isLoading"
+                    >
+                        <theory-pulse-loader
+                            class=""
+                            :loading="isLoading"
+                            color="var(--primary-color)"
+                            size="0.75rem"
+                        />
+                    </div>
                 </div>
 
                 <div class="tw-flex tw-flex-wrap tw-flex-col">
@@ -71,7 +79,11 @@ export default {
 
     data() {
         return {
-            email: null,
+            auth: {
+                email: null
+            },
+
+            isLoading: false,
 
             errors: {}
         };
@@ -82,7 +94,26 @@ export default {
             this.errors[property] = null;
         },
 
-        forgotPassword() {}
+        forgotPassword() {
+            this.isLoading = true;
+
+            this.$axios
+                .post("forgot-password", this.auth)
+                .then(response => {
+                    alert("איפוס סיסמה נשלח לאימייל.");
+                    this.isLoading = false;
+                })
+                .catch(err => {
+                    if (
+                        err.response.status === 422 &&
+                        err.response.data.errors
+                    ) {
+                        this.errors = err.response.data.errors;
+                    }
+
+                    this.isLoading = false;
+                });
+        }
     }
 };
 </script>
