@@ -14,7 +14,7 @@ use function foo\func;
  * @property int $id
  * @property \Illuminate\Support\Carbon $started_at
  * @property \Illuminate\Support\Carbon $finished_at
- * @property string $token
+ * @property string $uuid
  * @property int|null $user_id
  * @property int $driving_license_type_id
  * @property \Illuminate\Support\Carbon|null $created_at
@@ -33,9 +33,9 @@ use function foo\func;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\TestReport whereFinishedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\TestReport whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\TestReport whereStartedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\TestReport whereToken($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\TestReport whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\TestReport whereUserId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\TestReport whereUuid($value)
  * @mixin \Eloquent
  */
 class TestReport extends Model

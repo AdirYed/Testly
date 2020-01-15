@@ -2,12 +2,15 @@ import Home from "./pages/Home";
 import Tests from "./pages/Tests";
 import TestResult from "./pages/TestResult";
 import Login from "./pages/Login";
-import Dashboard from "./pages/Dashboard";
 import Register from "./pages/Register";
+import ForgotPassword from "./pages/ForgotPassword";
+import ResetPassword from "./pages/ResetPassword";
+import Dashboard from "./pages/Dashboard";
+import AboutUs from "./pages/AboutUs";
 import NotFound from "./pages/NotFound";
+
 import VueRouter from "vue-router";
 import store from "./store";
-import AboutUs from "./pages/AboutUs";
 
 const router = new VueRouter({
     mode: "history",
@@ -53,20 +56,29 @@ const router = new VueRouter({
         },
 
         {
+            path: "/forgot-password",
+            component: ForgotPassword,
+            name: "forgot-password",
+            meta: {
+                guestOnly: true
+            }
+        },
+
+        {
+            path: "/reset-password",
+            component: ResetPassword,
+            name: "reset-password",
+            meta: {
+                guestOnly: true
+            }
+        },
+
+        {
             path: "/dashboard",
             component: Dashboard,
             name: "dashboard",
             meta: {
                 authOnly: true
-            }
-        },
-
-        {
-            path: "/forgot-password",
-            component: Home, // Will be changed to ForgotPassword when we have a page
-            name: "forgot-password",
-            meta: {
-                guestOnly: true
             }
         },
 

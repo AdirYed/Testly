@@ -75,15 +75,24 @@ class User extends Authenticatable implements JWTSubject
         return $this->hasMany(TestReport::class);
     }
 
-    public function verify(): void
+    public function resetPassword(string $password): void
     {
         $this->update([
-            'email_verified_at' => now()
+            'password' => bcrypt($password)
         ]);
     }
 
     public function urlTokens(): HasMany
     {
         return $this->hasMany(UrlToken::class);
+    }
+
+    public function markUnreadNotificationAsRead(string $token): void
+    {
+        $unreadNotification = $this->unreadNotifications()->where('data->token', $token)->first();
+
+        if ($unreadNotification) {
+            $unreadNotification->markAsRead();
+        }
     }
 }
