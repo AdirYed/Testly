@@ -217,10 +217,7 @@ export default {
             let counter = [];
 
             this.testReports.forEach(function(item) {
-                if (
-                    item.driving_license_type.code === "A3" ||
-                    !item.success_by_categories
-                ) {
+                if (!item.success_by_categories) {
                     return;
                 }
 
