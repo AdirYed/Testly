@@ -22,9 +22,9 @@
         </div>
 
         <template v-else-if="!isLoading && testReports.length !== 0">
-            <div class="tw-text-center tw-mb-5">
+            <div v-if="percentage.length > 0" class="tw-text-center tw-mb-5">
                 <div class="tw-text-lg md:tw-text-2xl">
-                    אחוז מוכנות
+                    אחוז מוכנות לפי חמשת המבחנים האחרונים
                 </div>
 
                 <div
@@ -90,6 +90,11 @@
                             <td
                                 class="tw-border-grey-light tw-border tw-p-2 sm:tw-p-3"
                             >
+                                <fa-icon
+                                    class="fa-fw"
+                                    :icon="testReport.driving_license_type.icon"
+                                    v-if="testReport.driving_license_type.icon"
+                                />
                                 {{ testReport.driving_license_type.name }}
                             </td>
 
@@ -212,6 +217,13 @@ export default {
             let counter = [];
 
             this.testReports.forEach(function(item) {
+                if (
+                    item.driving_license_type.code === "A3" ||
+                    !item.success_by_categories
+                ) {
+                    return;
+                }
+
                 const successByCategories = JSON.parse(
                     JSON.stringify(item.success_by_categories)
                 );
