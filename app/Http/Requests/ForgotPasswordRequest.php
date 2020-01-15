@@ -19,7 +19,6 @@ class ForgotPasswordRequest extends FormRequest
                 'email',
                 'exists:users',
                 'max:50',
-                'email:rfc,dns',
             ],
         ];
     }

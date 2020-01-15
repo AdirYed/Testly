@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CheckTokenController;
 use App\Http\Requests\ForgotPasswordRequest;
 use App\Http\Requests\SetPasswordRequest;
 use App\Notifications\ForgotPasswordNotification;
@@ -20,20 +21,15 @@ class ForgotPasswordController extends Controller
         $user->notify(new ForgotPasswordNotification);
     }
 
-    public function checkToken(Request $request)
+    public function checkToken(CheckTokenController $request)
     {
-        $validatedRequest = $request->validate([
-            'token' => [
-                'required',
-                'exists:url_tokens'
-            ],
-        ]);
+        $validatedRequest = $request->validated();
 
         $urlToken = UrlToken::whereToken($validatedRequest['token'])
             ->whereType(UrlToken::TYPE_FORGOT_PASSWORD)
             ->firstOrFail();
 
-        if (! $urlToken->expires_at || $urlToken->expires_at && strtotime($urlToken->expires_at) - strtotime(now()) < 0) {
+        if (! $urlToken->expires_at || $urlToken->expires_at && $urlToken->expires_at->isPast()) {
             return response()->json(['errors' => 'token'], 422);
         }
     }
@@ -46,7 +42,7 @@ class ForgotPasswordController extends Controller
             ->whereType(UrlToken::TYPE_FORGOT_PASSWORD)
             ->firstOrFail();
 
-        if (! $urlToken->expires_at || $urlToken->expires_at && strtotime($urlToken->expires_at) - strtotime(now()) < 0) {
+        if (! $urlToken->expires_at || $urlToken->expires_at && $urlToken->expires_at->isPast()) {
             return response()->json(['errors' => 'token'], 422);
         }
 
