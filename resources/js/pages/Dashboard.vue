@@ -23,9 +23,13 @@
 
         <template v-else-if="!isLoading && testReports.length !== 0">
             <div v-if="chartDataOptions" class="tw-mb-5 tw-m-auto">
-                <!-- tw-max-w-3xl -->
                 <div class="tw-text-lg md:tw-text-2xl tw-text-center">
-                    רמת מוכנות
+                    רמת מוכנות -
+                    {{ Math.floor(chartPercentage) }}%
+                </div>
+
+                <div class="tw-text-sm tw-text-gray-700 tw-text-center">
+                    *לפי עשרת המבחנים האחרונים
                 </div>
 
                 <theory-line-chart
@@ -36,39 +40,43 @@
                 />
             </div>
 
-            <!--            <div v-if="percentage.length > 0" class="tw-text-center tw-mb-5">-->
-            <!--                <div class="tw-text-lg md:tw-text-2xl">-->
-            <!--                    אחוז מוכנות לפי חמשת המבחנים האחרונים-->
-            <!--                </div>-->
+            <div v-if="percentage.length > 0" class="tw-text-center tw-mb-5">
+                <div class="tw-text-lg md:tw-text-2xl">
+                    אחוז מוכנות
+                </div>
 
-            <!--                <div-->
-            <!--                    class="tw-flex tw-flex-wrap tw-flex-col tw-items-center tw-w-8/12 md:tw-w-7/12 lg:tw-w-6/12 tw-mx-auto"-->
-            <!--                >-->
-            <!--                    <div-->
-            <!--                        v-for="category in categories"-->
-            <!--                        v-if="-->
-            <!--                            percentage[category.id] ||-->
-            <!--                                percentage[category.id] === 0-->
-            <!--                        "-->
-            <!--                        class="tw-w-8/12 md:tw-w-7/12 lg:tw-w-6/12 tw-my-3"-->
-            <!--                    >-->
-            <!--                        <div class="tw-text-md md:tw-text-lg">-->
-            <!--                            {{ category.name }}-->
-            <!--                            - -->
-            <!--                            {{ Math.floor(percentage[category.id]) }}%-->
-            <!--                        </div>-->
+                <div class="tw-text-sm tw-text-gray-700 tw-text-center">
+                    *לפי חמשת המבחנים האחרונים ללא אופניים חשמליים (A3)
+                </div>
 
-            <!--                        <div class="tw-bg-gray-300 tw-mt-2">-->
-            <!--                            <div-->
-            <!--                                class="progressBar"-->
-            <!--                                :style="-->
-            <!--                                    'width: ' + percentage[category.id] + '%'-->
-            <!--                                "-->
-            <!--                            ></div>-->
-            <!--                        </div>-->
-            <!--                    </div>-->
-            <!--                </div>-->
-            <!--            </div>-->
+                <div
+                    class="tw-flex tw-flex-wrap tw-flex-col tw-items-center tw-w-8/12 md:tw-w-7/12 lg:tw-w-6/12 tw-mx-auto"
+                >
+                    <div
+                        v-for="category in categories"
+                        v-if="
+                            percentage[category.id] ||
+                                percentage[category.id] === 0
+                        "
+                        class="tw-w-8/12 md:tw-w-7/12 lg:tw-w-6/12 tw-my-3"
+                    >
+                        <div class="tw-text-md md:tw-text-lg">
+                            {{ category.name }}
+                            -
+                            {{ Math.floor(percentage[category.id]) }}%
+                        </div>
+
+                        <div class="tw-bg-gray-300 tw-mt-2">
+                            <div
+                                class="progressBar"
+                                :style="
+                                    'width: ' + percentage[category.id] + '%'
+                                "
+                            ></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
             <div>
                 <div class="tw-text-lg md:tw-text-2xl tw-mb-5 tw-text-center">
@@ -187,8 +195,8 @@ export default {
                 labels: [],
                 datasets: []
             },
-
-            chartDataOptions: null
+            chartDataOptions: null,
+            chartPercentage: null
         };
     },
 
@@ -257,7 +265,10 @@ export default {
             this.chartDataOptions = {
                 maintainAspectRatio: false,
                 legend: {
-                    rtl: true
+                    rtl: true,
+                    labels: {
+                        fontSize: 16
+                    }
                 },
                 scales: {
                     yAxes: [
@@ -277,6 +288,7 @@ export default {
                                 zeroLineColor: "transparent"
                             },
                             ticks: {
+                                maxTicks: 0,
                                 display: false
                             }
                         }
@@ -285,6 +297,7 @@ export default {
             };
 
             let till = 10;
+            let percentage = 0;
 
             if (this.testReports.length < till) {
                 till = this.testReports.length;
@@ -297,10 +310,15 @@ export default {
                         " "
                     )
                 );
+
                 this.chartData.datasets[0].data.push(
                     this.testReports[i].correct_answers_count
                 );
+
+                percentage += this.testReports[i].correct_answers_count;
             }
+
+            this.chartPercentage = (percentage / till / 30) * 100;
         },
 
         calcPercentage() {
