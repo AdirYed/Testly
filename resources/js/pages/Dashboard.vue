@@ -28,25 +28,21 @@
                     {{ Math.floor(chartPercentage) }}%
                 </div>
 
-                <div class="tw-text-sm tw-text-gray-700 tw-text-center">
-                    *לפי עשרת המבחנים האחרונים
-                </div>
-
                 <theory-line-chart
                     ref="chart"
                     class="tw-h-56 md:tw-h-64 lg:tw-h-80"
                     :data="chartData"
                     :options="chartDataOptions"
                 />
+
+                <div class="tw-text-xs tw-text-gray-700 tw-text-center">
+                    *לפי עשרת המבחנים האחרונים
+                </div>
             </div>
 
             <div v-if="percentage.length > 0" class="tw-text-center tw-mb-5">
                 <div class="tw-text-lg md:tw-text-2xl">
                     אחוז מוכנות
-                </div>
-
-                <div class="tw-text-sm tw-text-gray-700 tw-text-center">
-                    *לפי חמשת המבחנים האחרונים ללא אופניים חשמליים (A3)
                 </div>
 
                 <div
@@ -75,6 +71,10 @@
                             ></div>
                         </div>
                     </div>
+                </div>
+
+                <div class="tw-text-xs tw-text-gray-700 tw-text-center">
+                    *לפי חמשת המבחנים האחרונים ללא אופניים חשמליים (A3)
                 </div>
             </div>
 
@@ -118,6 +118,7 @@
                                     v-if="testReport.driving_license_type.icon"
                                 />
                                 {{ testReport.driving_license_type.name }}
+                                ({{ testReport.driving_license_type.code }})
                             </td>
 
                             <td
