@@ -22,39 +22,53 @@
         </div>
 
         <template v-else-if="!isLoading && testReports.length !== 0">
-            <div v-if="percentage.length > 0" class="tw-text-center tw-mb-5">
-                <div class="tw-text-lg md:tw-text-2xl">
-                    אחוז מוכנות לפי חמשת המבחנים האחרונים
+            <div v-if="chartDataOptions" class="tw-mb-5 tw-m-auto">
+                <!-- tw-max-w-3xl -->
+                <div class="tw-text-lg md:tw-text-2xl tw-text-center">
+                    רמת מוכנות
                 </div>
 
-                <div
-                    class="tw-flex tw-flex-wrap tw-flex-col tw-items-center tw-w-8/12 md:tw-w-7/12 lg:tw-w-6/12 tw-mx-auto"
-                >
-                    <div
-                        v-for="category in categories"
-                        v-if="
-                            percentage[category.id] ||
-                                percentage[category.id] === 0
-                        "
-                        class="tw-w-8/12 md:tw-w-7/12 lg:tw-w-6/12 tw-my-3"
-                    >
-                        <div class="tw-text-md md:tw-text-lg">
-                            {{ category.name }}
-                            -
-                            {{ Math.floor(percentage[category.id]) }}%
-                        </div>
-
-                        <div class="tw-bg-gray-300 tw-mt-2">
-                            <div
-                                class="progressBar"
-                                :style="
-                                    'width: ' + percentage[category.id] + '%'
-                                "
-                            ></div>
-                        </div>
-                    </div>
-                </div>
+                <theory-line-chart
+                    ref="chart"
+                    class="tw-h-56 md:tw-h-64 lg:tw-h-80"
+                    :data="chartData"
+                    :options="chartDataOptions"
+                />
             </div>
+
+            <!--            <div v-if="percentage.length > 0" class="tw-text-center tw-mb-5">-->
+            <!--                <div class="tw-text-lg md:tw-text-2xl">-->
+            <!--                    אחוז מוכנות לפי חמשת המבחנים האחרונים-->
+            <!--                </div>-->
+
+            <!--                <div-->
+            <!--                    class="tw-flex tw-flex-wrap tw-flex-col tw-items-center tw-w-8/12 md:tw-w-7/12 lg:tw-w-6/12 tw-mx-auto"-->
+            <!--                >-->
+            <!--                    <div-->
+            <!--                        v-for="category in categories"-->
+            <!--                        v-if="-->
+            <!--                            percentage[category.id] ||-->
+            <!--                                percentage[category.id] === 0-->
+            <!--                        "-->
+            <!--                        class="tw-w-8/12 md:tw-w-7/12 lg:tw-w-6/12 tw-my-3"-->
+            <!--                    >-->
+            <!--                        <div class="tw-text-md md:tw-text-lg">-->
+            <!--                            {{ category.name }}-->
+            <!--                            - -->
+            <!--                            {{ Math.floor(percentage[category.id]) }}%-->
+            <!--                        </div>-->
+
+            <!--                        <div class="tw-bg-gray-300 tw-mt-2">-->
+            <!--                            <div-->
+            <!--                                class="progressBar"-->
+            <!--                                :style="-->
+            <!--                                    'width: ' + percentage[category.id] + '%'-->
+            <!--                                "-->
+            <!--                            ></div>-->
+            <!--                        </div>-->
+            <!--                    </div>-->
+            <!--                </div>-->
+            <!--            </div>-->
 
             <div>
                 <div class="tw-text-lg md:tw-text-2xl tw-mb-5 tw-text-center">
@@ -157,6 +171,7 @@
 <script>
 export default {
     name: "dashboard",
+
     data() {
         return {
             testReports: [],
@@ -166,7 +181,14 @@ export default {
 
             categories: null,
 
-            percentage: null
+            percentage: null,
+
+            chartData: {
+                labels: [],
+                datasets: []
+            },
+
+            chartDataOptions: null
         };
     },
 
@@ -196,6 +218,10 @@ export default {
 
                     this.calcPercentage();
 
+                    if (this.testReports.length > 1) {
+                        this.fillData();
+                    }
+
                     this.$store
                         .dispatch("fetchCategoryTypes")
                         .then(response => {
@@ -210,6 +236,71 @@ export default {
                 .catch(error => {
                     this.testReportErrors = error;
                 });
+        },
+
+        fillData() {
+            this.chartData.datasets.push({
+                label: "תשובות נכונות",
+                borderColor: "#f5af19",
+                backgroundColor: [
+                    "rgba(245, 175, 25, 0.3)",
+                    "rgba(245, 175, 20, 0.1)",
+                    "rgba(245, 185, 25, 0.3)",
+                    "rgba(220, 162, 12, 0.1)"
+                ],
+                pointBackgroundColor: "#f5af19",
+                borderWidth: 1,
+                pointRadius: 3,
+                data: []
+            });
+
+            this.chartDataOptions = {
+                maintainAspectRatio: false,
+                legend: {
+                    rtl: true
+                },
+                scales: {
+                    yAxes: [
+                        {
+                            gridLines: {
+                                zeroLineColor: "transparent"
+                            },
+                            ticks: {
+                                min: 0,
+                                max: 30
+                            }
+                        }
+                    ],
+                    xAxes: [
+                        {
+                            gridLines: {
+                                zeroLineColor: "transparent"
+                            },
+                            ticks: {
+                                display: false
+                            }
+                        }
+                    ]
+                }
+            };
+
+            let till = 10;
+
+            if (this.testReports.length < till) {
+                till = this.testReports.length;
+            }
+
+            for (let i = till - 1; i >= 0; i--) {
+                this.chartData.labels.push(
+                    this.date(this.testReports[i].finished_at).replace(
+                        /\s+/g,
+                        " "
+                    )
+                );
+                this.chartData.datasets[0].data.push(
+                    this.testReports[i].correct_answers_count
+                );
+            }
         },
 
         calcPercentage() {

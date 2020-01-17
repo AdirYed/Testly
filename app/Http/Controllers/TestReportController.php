@@ -3,10 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreTestReportRequest;
-use App\Question;
 use App\TestReport;
-use App\TestReportAnswer;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Facades\Auth;
 
 class TestReportController extends Controller
@@ -30,7 +27,7 @@ class TestReportController extends Controller
                 }
 
                 $count++;
-                
+
                 return $testReport->append(['correct_answers_count', 'success_by_categories']);
             });
     }
