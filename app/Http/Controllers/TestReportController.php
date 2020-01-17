@@ -3,25 +3,31 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreTestReportRequest;
-use App\Question;
 use App\TestReport;
-use App\TestReportAnswer;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Facades\Auth;
 
 class TestReportController extends Controller
 {
     public function index()
     {
+        $count = 0;
+
         return Auth::user()->testReports()
+            ->select(['id', 'started_at', 'finished_at', 'uuid', 'driving_license_type_id'])
             ->orderByDesc('id')
             ->with([
                 'testReportAnswers.answer',
                 'testReportAnswers.question.category',
-                'drivingLicenseType',
+                'drivingLicenseType:id,code,name,icon',
             ])
             ->get()
-            ->map(static function (TestReport $testReport) {
+            ->map(static function (TestReport $testReport) use (&$count) {
+                if ($count >= 5 || $testReport->drivingLicenseType->code === 'A3') {
+                    return $testReport->append(['correct_answers_count']);
+                }
+
+                $count++;
+
                 return $testReport->append(['correct_answers_count', 'success_by_categories']);
             });
     }

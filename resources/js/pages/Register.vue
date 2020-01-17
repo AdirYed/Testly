@@ -2,13 +2,15 @@
     <div
         class="tw-container tw-mx-auto tw-pt-8 md:tw-pt-10 tw-px-6 md:tw-px-10"
     >
-        <div class="tw-text-2xl md:tw-text-3xl tw-font-semibold tw-text-center">
+        <div
+            class="tw-text-2xl md:tw-text-3xl tw-font-semibold tw-text-center tw-mb-5"
+        >
             הירשם
         </div>
 
         <div class="tw-w-full tw-max-w-xs tw-mx-auto">
             <form
-                class="tw-rounded tw-px-8 tw-pt-5"
+                class="tw-rounded tw-px-8"
                 method="post"
                 @submit.prevent="register"
             >

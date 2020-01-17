@@ -22,7 +22,25 @@
         </div>
 
         <template v-else-if="!isLoading && testReports.length !== 0">
-            <div class="tw-text-center tw-mb-5">
+            <div v-if="chartDataOptions" class="tw-mb-5 tw-m-auto">
+                <div class="tw-text-lg md:tw-text-2xl tw-text-center">
+                    רמת מוכנות -
+                    {{ Math.floor(chartPercentage) }}%
+                </div>
+
+                <theory-line-chart
+                    ref="chart"
+                    class="tw-h-56 md:tw-h-64 lg:tw-h-80"
+                    :data="chartData"
+                    :options="chartDataOptions"
+                />
+
+                <div class="tw-text-xs tw-text-gray-700 tw-text-center">
+                    *לפי עשרת המבחנים האחרונים
+                </div>
+            </div>
+
+            <div v-if="percentage.length > 0" class="tw-text-center tw-mb-5">
                 <div class="tw-text-lg md:tw-text-2xl">
                     אחוז מוכנות
                 </div>
@@ -53,6 +71,10 @@
                             ></div>
                         </div>
                     </div>
+                </div>
+
+                <div class="tw-text-xs tw-text-gray-700 tw-text-center">
+                    *לפי חמשת המבחנים האחרונים ללא אופניים חשמליים (A3)
                 </div>
             </div>
 
@@ -90,7 +112,13 @@
                             <td
                                 class="tw-border-grey-light tw-border tw-p-2 sm:tw-p-3"
                             >
+                                <fa-icon
+                                    class="fa-fw"
+                                    :icon="testReport.driving_license_type.icon"
+                                    v-if="testReport.driving_license_type.icon"
+                                />
                                 {{ testReport.driving_license_type.name }}
+                                ({{ testReport.driving_license_type.code }})
                             </td>
 
                             <td
@@ -152,6 +180,7 @@
 <script>
 export default {
     name: "dashboard",
+
     data() {
         return {
             testReports: [],
@@ -161,7 +190,14 @@ export default {
 
             categories: null,
 
-            percentage: null
+            percentage: null,
+
+            chartData: {
+                labels: [],
+                datasets: []
+            },
+            chartDataOptions: null,
+            chartPercentage: null
         };
     },
 
@@ -191,6 +227,10 @@ export default {
 
                     this.calcPercentage();
 
+                    if (this.testReports.length > 1) {
+                        this.fillData();
+                    }
+
                     this.$store
                         .dispatch("fetchCategoryTypes")
                         .then(response => {
@@ -207,11 +247,90 @@ export default {
                 });
         },
 
+        fillData() {
+            this.chartData.datasets.push({
+                label: "תשובות נכונות",
+                borderColor: "#f5af19",
+                backgroundColor: [
+                    "rgba(245, 175, 25, 0.3)",
+                    "rgba(245, 175, 20, 0.1)",
+                    "rgba(245, 185, 25, 0.3)",
+                    "rgba(220, 162, 12, 0.1)"
+                ],
+                pointBackgroundColor: "#f5af19",
+                borderWidth: 1,
+                pointRadius: 3,
+                data: []
+            });
+
+            this.chartDataOptions = {
+                maintainAspectRatio: false,
+                legend: {
+                    rtl: true,
+                    labels: {
+                        fontSize: 16
+                    }
+                },
+                scales: {
+                    yAxes: [
+                        {
+                            gridLines: {
+                                zeroLineColor: "transparent"
+                            },
+                            ticks: {
+                                min: 0,
+                                max: 30
+                            }
+                        }
+                    ],
+                    xAxes: [
+                        {
+                            gridLines: {
+                                zeroLineColor: "transparent"
+                            },
+                            ticks: {
+                                maxTicks: 0,
+                                display: false
+                            }
+                        }
+                    ]
+                }
+            };
+
+            let till = 10;
+            let percentage = 0;
+
+            if (this.testReports.length < till) {
+                till = this.testReports.length;
+            }
+
+            for (let i = till - 1; i >= 0; i--) {
+                this.chartData.labels.push(
+                    this.date(this.testReports[i].finished_at).replace(
+                        /\s+/g,
+                        " "
+                    )
+                );
+
+                this.chartData.datasets[0].data.push(
+                    this.testReports[i].correct_answers_count
+                );
+
+                percentage += this.testReports[i].correct_answers_count;
+            }
+
+            this.chartPercentage = (percentage / till / 30) * 100;
+        },
+
         calcPercentage() {
             let categories = [];
             let counter = [];
 
             this.testReports.forEach(function(item) {
+                if (!item.success_by_categories) {
+                    return;
+                }
+
                 const successByCategories = JSON.parse(
                     JSON.stringify(item.success_by_categories)
                 );

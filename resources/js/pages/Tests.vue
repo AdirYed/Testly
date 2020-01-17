@@ -82,10 +82,13 @@
                                                     index
                                         }"
                                         :for="
-                                            'q_' + currQuestion + '_a_' + index
+                                            'q_' +
+                                                currQuestion +
+                                                '_a_' +
+                                                rightAnswer(questionIndex)
                                         "
                                     >
-                                        <!--rightAnswer(questionIndex) - aims only for the right answer-->
+                                        <!-- rightAnswer(questionIndex) - aims only for the right answer-->
 
                                         <input
                                             class="tw-opacity-0 tw-h-0 tw-w-0"
