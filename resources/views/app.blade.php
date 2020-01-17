@@ -10,9 +10,11 @@
     </head>
     <body>
        <div id="app">
-           <theory-nav-header></theory-nav-header>
+           <testly-header></testly-header>
 
-           <router-view :key="$route.fullPath"></router-view>
+           <router-view :key="$route.fullPath" class="tw-pb-10"></router-view>
+
+           <testly-footer></testly-footer>
         </div>
 
         <script src="{{ mix('js/app.js') }}"></script>

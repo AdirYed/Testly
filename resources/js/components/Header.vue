@@ -88,7 +88,7 @@
 
 <script>
 export default {
-    name: "nav-header",
+    name: "testly-header",
 
     data() {
         return {

@@ -1,6 +1,6 @@
 <template>
     <div
-        class="tw-container tw-mx-auto tw-pt-8 md:tw-pt-10 tw-px-6 md:tw-px-10"
+        class="tw-container tw-mx-auto tw-pt-8 md:tw-pt-10 tw-px-6 md:tw-px-10 tw-leading-relaxed"
     >
         <div>
             <div
