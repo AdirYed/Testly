@@ -12,7 +12,7 @@
        <div id="app">
            <testly-header></testly-header>
 
-           <router-view :key="$route.fullPath" class="tw-pb-10"></router-view>
+           <router-view :key="$route.fullPath" class="container tw-pb-8 md:tw-pb-10"></router-view>
 
            <testly-footer></testly-footer>
         </div>
