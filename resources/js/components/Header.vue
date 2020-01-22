@@ -116,7 +116,7 @@ export default {
         logout() {
             this.$store.dispatch("logout");
 
-            if (this.$router.currentRoute.path !== "/") {
+            if (this.$route.meta.authOnly) {
                 this.$router.push({ name: "home" });
             }
         }
