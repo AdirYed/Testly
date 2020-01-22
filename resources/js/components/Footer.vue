@@ -3,10 +3,8 @@
         <footer
             class="tw-container tw-px-10 md:tw-px-48 lg:tw-px-80 tw-mt-5 tw-m-auto tw-text-center"
         >
-            <div class="md:tw-flex md:tw-justify-center">
-                <div
-                    class="tw-text-xl tw-font-bold md:tw-font-semibold tw-px-4"
-                >
+            <div class="md:tw-flex md:tw-justify-center md:tw-text-xl">
+                <div class="tw-font-bold md:tw-font-semibold tw-px-4">
                     <router-link
                         class="tw-text-transparent-60 hover:tw-text-transparent-60"
                         :to="{ name: 'home' }"
@@ -14,9 +12,7 @@
                         דף הבית
                     </router-link>
                 </div>
-                <div
-                    class="tw-text-xl tw-font-bold md:tw-font-semibold tw-px-4"
-                >
+                <div class="tw-font-bold md:tw-font-semibold tw-px-4">
                     <router-link
                         class="tw-text-transparent-60 hover:tw-text-transparent-60"
                         :to="{ name: 'home', hash: '#choose-a-test' }"
@@ -24,9 +20,7 @@
                         מבחני תאוריה
                     </router-link>
                 </div>
-                <div
-                    class="tw-text-xl tw-font-bold md:tw-font-semibold tw-px-4"
-                >
+                <div class="tw-font-bold md:tw-font-semibold tw-px-4">
                     <router-link
                         class="tw-text-transparent-60 hover:tw-text-transparent-60"
                         :to="{ name: 'about-us' }"
@@ -34,9 +28,7 @@
                         אודות
                     </router-link>
                 </div>
-                <div
-                    class="tw-text-xl tw-font-bold md:tw-font-semibold tw-px-4"
-                >
+                <div class="tw-font-bold md:tw-font-semibold tw-px-4">
                     <router-link
                         class="tw-text-transparent-60 hover:tw-text-transparent-60"
                         :to="{ name: 'contact-us' }"
@@ -44,9 +36,7 @@
                         צור קשר
                     </router-link>
                 </div>
-                <div
-                    class="tw-text-xl tw-font-bold md:tw-font-semibold tw-px-4"
-                >
+                <div class="tw-font-bold md:tw-font-semibold tw-px-4">
                     <router-link
                         class="tw-text-transparent-60 hover:tw-text-transparent-60"
                         :to="{ name: 'privacy-policy' }"
