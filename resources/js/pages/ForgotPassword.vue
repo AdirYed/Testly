@@ -100,7 +100,8 @@ export default {
             this.$axios
                 .post("forgot-password", this.auth)
                 .then(() => {
-                    alert("איפוס סיסמה נשלח לאימייל.");
+                    this.$toast("איפוס סיסמה נשלח לאימייל.");
+
                     this.$router.push("/");
                 })
                 .catch(err => {
