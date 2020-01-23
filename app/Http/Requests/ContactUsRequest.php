@@ -26,9 +26,8 @@ class ContactUsRequest extends FormRequest
             ],
             'email' => [
                 'required',
-                'email',
-                'max:50',
                 'email:rfc,dns',
+                'max:50',
             ],
             'subject' => [
                 'required',
