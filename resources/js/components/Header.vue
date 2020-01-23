@@ -45,6 +45,11 @@
                 אודות
             </theory-bar>
 
+            <theory-bar to="contact-us">
+                <fa-icon icon="envelope" />
+                צור קשר
+            </theory-bar>
+
             <theory-bar to="login" v-if="!$store.getters.isLoggedIn">
                 <fa-icon icon="sign-in-alt" />
                 התחבר

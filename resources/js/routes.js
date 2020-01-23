@@ -7,6 +7,7 @@ import ForgotPassword from "./pages/ForgotPassword";
 import ResetPassword from "./pages/ResetPassword";
 import Dashboard from "./pages/Dashboard";
 import AboutUs from "./pages/AboutUs";
+import ContactUs from "./pages/ContactUs";
 import NotFound from "./pages/NotFound";
 
 import VueRouter from "vue-router";
@@ -86,6 +87,12 @@ const router = new VueRouter({
             path: "/about-us",
             component: AboutUs,
             name: "about-us"
+        },
+
+        {
+            path: "/contact-us",
+            component: ContactUs,
+            name: "contact-us"
         },
 
         {

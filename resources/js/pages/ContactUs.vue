@@ -5,14 +5,14 @@
         <div
             class="tw-text-2xl md:tw-text-3xl tw-font-semibold tw-text-center tw-mb-5"
         >
-            הירשם
+            צור קשר
         </div>
 
         <div class="tw-w-full tw-max-w-xs tw-mx-auto">
             <form
                 class="tw-rounded tw-px-8"
                 method="post"
-                @submit.prevent="register"
+                @submit.prevent="contact"
             >
                 <div class="tw-mb-5">
                     <label
@@ -95,44 +95,56 @@
                 <div class="tw-mb-5">
                     <label
                         class="tw-block tw-text-gray-700 tw-text-sm tw-font-bold tw-mb-2"
-                        for="password"
+                        for="subject"
                     >
-                        סיסמה
+                        נושא
                     </label>
                     <input
                         class="input transition tw-shadow tw-appearance-none tw-border tw-rounded tw-w-full tw-py-2 tw-px-3 tw-text-gray-700 tw-leading-tight"
-                        :class="{ 'tw-border-red-500': errors.password }"
-                        maxlength="255"
-                        id="password"
-                        type="password"
-                        placeholder="סיסמה"
-                        v-model="auth.password"
-                        @input="deleteError('password')"
+                        :class="{ 'tw-border-red-500': errors.subject }"
+                        min="3"
+                        maxlength="50"
+                        id="subject"
+                        type="text"
+                        placeholder="נושא"
+                        v-model="auth.subject"
+                        @input="deleteError('subject')"
                     />
 
                     <div
-                        v-if="errors.password"
+                        v-if="errors.subject"
                         class="tw-font-semibold tw-text-red-500 tw-text-xs tw-mt-1"
                     >
-                        {{ errors.password[0] }}
+                        {{ errors.subject[0] }}
                     </div>
                 </div>
 
                 <div class="tw-mb-5">
                     <label
                         class="tw-block tw-text-gray-700 tw-text-sm tw-font-bold tw-mb-2"
-                        for="password_confirmation"
+                        for="description"
                     >
-                        אישור סיסמה
+                        תוכן
                     </label>
-                    <input
-                        class="input transition tw-shadow tw-appearance-none tw-border tw-rounded tw-w-full tw-py-2 tw-px-3 tw-text-gray-700 tw-leading-tight"
-                        maxlength="255"
-                        id="password_confirmation"
-                        type="password"
-                        placeholder="סיסמה"
-                        v-model="auth.password_confirmation"
+                    <textarea
+                        class="input resize-y transition tw-shadow tw-appearance-none tw-border tw-rounded tw-w-full tw-py-2 tw-px-3 tw-text-gray-700 tw-leading-tight tw-overflow-x-hidden"
+                        style="min-height: 38px"
+                        :class="{ 'tw-border-red-500': errors.description }"
+                        minlength="10"
+                        maxlength="500"
+                        id="description"
+                        placeholder="תוכן"
+                        rows="4"
+                        v-model="auth.description"
+                        @input="deleteError('description')"
                     />
+
+                    <div
+                        v-if="errors.description"
+                        class="tw-font-semibold tw-text-red-500 tw-text-xs tw-mt-1"
+                    >
+                        {{ errors.description[0] }}
+                    </div>
                 </div>
 
                 <div class="tw-my-3">
@@ -151,20 +163,11 @@
                 </div>
 
                 <div class="tw-flex tw-flex-wrap tw-flex-col">
-                    <div class="tw-mb-5">
-                        <router-link
-                            class="link tw-text-sm tw-font-bold"
-                            :to="{ name: 'login' }"
-                        >
-                            יש לך כבר משתמש?
-                        </router-link>
-                    </div>
-
                     <button
                         class="btn tw-py-2 tw-px-3 tw-bg-primary tw-rounded tw-text-white tw-border tw-border-primary"
                         type="submit"
                     >
-                        התחבר
+                        שלח
                     </button>
                 </div>
             </form>
@@ -174,7 +177,7 @@
 
 <script>
 export default {
-    name: "register",
+    name: "contact-us",
 
     data() {
         return {
@@ -182,8 +185,8 @@ export default {
                 first_name: "",
                 last_name: "",
                 email: "",
-                password: "",
-                password_confirmation: ""
+                subject: "",
+                description: ""
             },
 
             isLoading: false,
@@ -193,23 +196,21 @@ export default {
     },
 
     methods: {
-        register() {
+        contact() {
             if (this.isLoading) {
                 return;
             }
 
             this.isLoading = true;
 
-            this.$store
-                .dispatch("register", this.auth)
+            this.$axios
+                .post("contact-us", this.auth)
                 .then(() => {
                     this.isLoading = false;
 
-                    this.$toast.success(
-                        "משתמש נרשם בהצלחה, נא לאמת את המשתמש באמצעות הקישור שנשלח לאימייל."
-                    );
+                    this.$toast.success("טופס נשלח.");
 
-                    this.$router.push({ name: "login" });
+                    this.$router.push({ name: "home" });
                 })
                 .catch(err => {
                     if (
@@ -224,6 +225,14 @@ export default {
 
         deleteError(property) {
             this.errors[property] = null;
+        }
+    },
+
+    created() {
+        if (this.$store.state.user) {
+            this.auth.first_name = this.$store.state.user.first_name;
+            this.auth.last_name = this.$store.state.user.last_name;
+            this.auth.email = this.$store.state.user.email;
         }
     }
 };

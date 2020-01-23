@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryTypeController;
+use App\Http\Controllers\ContactUsController;
 use App\Http\Controllers\DrivingLicenseTypeController;
 use App\Http\Controllers\DrivingLicenseTypeQuestionController;
 use App\Http\Controllers\ForgotPasswordController;
@@ -50,3 +51,5 @@ Route::group(['prefix' => 'forgot-password'], static function () {
     Route::post('check-token', [ForgotPasswordController::class, 'checkToken']);
     Route::post('reset', [ForgotPasswordController::class, 'update']);
 });
+
+Route::post('contact-us', [ContactUsController::class, 'contact']);
