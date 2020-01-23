@@ -193,6 +193,8 @@ export default {
                 return this.$toast.error("אימות נשלח כבר לאימייל.");
             }
 
+            this.verificationNotification = true;
+
             this.$axios
                 .post(
                     "/resend-verification",
@@ -210,11 +212,11 @@ export default {
                 })
                 .catch(err => {
                     if (err.response.data.verified) {
-                        this.$toast.error("משתמש זה כבר אומת.");
+                        this.$toast("משתמש זה כבר אומת.");
                     }
-                });
 
-            this.verificationNotification = true;
+                    this.verificationNotification = false;
+                });
         }
     },
 

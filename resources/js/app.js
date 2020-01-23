@@ -47,7 +47,8 @@ const options = {
     draggable: true,
     hideCloseButton: true,
     hideProgressBar: true,
-    bodyClassName: ["notification-center"]
+    toastClassName: ["notification-toast"],
+    bodyClassName: ["notification-body"]
 };
 
 Vue.use(AxiosPlugin);

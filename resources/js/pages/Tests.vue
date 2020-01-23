@@ -415,7 +415,7 @@ export default {
             this.$store.dispatch("storeTestReport", payload);
 
             if (!this.$store.getters.isLoggedIn && !this.saveTestNotification) {
-                this.$toast(SaveTest, { timeout: 3000 });
+                this.$toast(SaveTest);
                 this.saveTestNotification = true;
             }
         },

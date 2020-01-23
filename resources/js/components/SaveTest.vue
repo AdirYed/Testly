@@ -2,11 +2,7 @@
     <div>
         על מנת לשמור את המבחן, נא
         <button @click="register()">
-            הירשם
-        </button>
-        /
-        <button @click="login()">
-            התחבר</button
+            הירשם</button
         >.
     </div>
 </template>
