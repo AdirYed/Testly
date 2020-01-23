@@ -91,3 +91,19 @@ button:focus {
 .container {
     min-height: calc(100vh - var(--header-height));
 }
+
+.notification-toast {
+    min-width: 0 !important;
+}
+
+@media(max-width: 600px) {
+    .notification-toast {
+        width: 80% !important;
+        margin: 0 auto 1rem !important;
+        border-radius: 8px !important;
+    }
+
+    .notification-body {
+        text-align: center;
+    }
+}

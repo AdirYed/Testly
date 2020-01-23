@@ -328,6 +328,8 @@
 </template>
 
 <script>
+import SaveTest from "../components/SaveTest";
+
 export default {
     name: "tests",
 
@@ -347,7 +349,9 @@ export default {
             },
 
             startedDate: null,
-            finishedDate: null
+            finishedDate: null,
+
+            saveTestNotification: false
         };
     },
 
@@ -410,8 +414,9 @@ export default {
 
             this.$store.dispatch("storeTestReport", payload);
 
-            if (!this.$store.getters.isLoggedIn) {
-                alert("על מנת לשמור את המבחן, אנא הירשם/התחבר");
+            if (!this.$store.getters.isLoggedIn && !this.saveTestNotification) {
+                this.$toast(SaveTest);
+                this.saveTestNotification = true;
             }
         },
 

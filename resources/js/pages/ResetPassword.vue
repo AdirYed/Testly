@@ -168,7 +168,8 @@ export default {
             this.$axios
                 .post("forgot-password/reset", this.auth)
                 .then(() => {
-                    alert("הסיסמה שונתה בהצלחה.");
+                    this.$toast.success("הסיסמה שונתה בהצלחה.");
+
                     this.$router.replace("login");
                 })
                 .catch(err => {

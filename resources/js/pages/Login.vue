@@ -92,13 +92,12 @@
                         class="tw-font-semibold tw-text-red-500 tw-text-xs"
                     >
                         משתמש זה עוד לא אומת.
-                        <br />
                         <a
                             class="link tw-cursor-pointer"
                             @click="resendVerification"
                             >שלח</a
                         >
-                        אימות חדש לאימייל.
+                        אימות חדש.
                     </p>
                 </div>
 
@@ -142,7 +141,9 @@ export default {
             verification: {
                 isVerified: false,
                 token: null
-            }
+            },
+
+            verificationNotification: false
         };
     },
 
@@ -178,9 +179,22 @@ export default {
 
         deleteError(property) {
             this.errors[property] = null;
+
+            if (property === "email") {
+                this.verification = {
+                    isVerified: false,
+                    token: null
+                };
+            }
         },
 
         resendVerification() {
+            if (this.verificationNotification) {
+                return this.$toast.error("נא לא להספים את הכפתור.");
+            }
+
+            this.verificationNotification = true;
+
             this.$axios
                 .post(
                     "/resend-verification",
@@ -192,12 +206,21 @@ export default {
                     }
                 )
                 .then(() => {
-                    alert("אימייל נשלח");
+                    this.$toast(
+                        "נא לאמת את המשתמש באמצעות הקישור שנשלח לאימייל."
+                    );
                 })
                 .catch(err => {
                     if (err.response.data.verified) {
-                        alert("משתמש אומת כבר");
+                        this.$toast("משתמש זה כבר אומת.");
                     }
+
+                    this.verificationNotification = false;
+
+                    this.verification = {
+                        isVerified: false,
+                        token: null
+                    };
                 });
         }
     },
@@ -205,7 +228,7 @@ export default {
     created() {
         if (this.$route.query.verified === "1") {
             this.$router.replace("login");
-            alert("משתמש זה אומת");
+            this.$toast.success("משתמש זה אומת.");
         }
     }
 };

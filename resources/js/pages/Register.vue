@@ -173,6 +173,8 @@
 </template>
 
 <script>
+import SaveTest from "../components/SaveTest";
+
 export default {
     name: "register",
 
@@ -204,9 +206,11 @@ export default {
                 .dispatch("register", this.auth)
                 .then(() => {
                     this.isLoading = false;
-                    alert(
+
+                    this.$toast.success(
                         "משתמש נרשם בהצלחה, נא לאמת את המשתמש באמצעות הקישור שנשלח לאימייל."
-                    ); // will be a notification in the future
+                    );
+
                     this.$router.push({ name: "login" });
                 })
                 .catch(err => {
