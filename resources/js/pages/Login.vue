@@ -190,7 +190,7 @@ export default {
 
         resendVerification() {
             if (this.verificationNotification) {
-                return this.$toast.error("אימות נשלח כבר לאימייל.");
+                return this.$toast.error("נא לא להספים את הכפתור.");
             }
 
             this.verificationNotification = true;
@@ -216,6 +216,11 @@ export default {
                     }
 
                     this.verificationNotification = false;
+
+                    this.verification = {
+                        isVerified: false,
+                        token: null
+                    };
                 });
         }
     },
