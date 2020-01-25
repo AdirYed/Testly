@@ -36,7 +36,6 @@ class ForgotPasswordNotification extends Notification
         $forgotPasswordUrl = UrlToken::forgotPasswordUrl($this->token);
 
         return (new MailMessage)
-            ->replyTo($notifiable->email)
             ->subject('איפוס סיסמה Testly')
             ->greeting('איפוס סיסמה')
             ->line('ביקשת לאפס את סיסמתך ב Testly. נא ללחוץ על הלינק למטה כדי לסיים את האיפוס.')

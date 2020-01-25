@@ -13,9 +13,9 @@
             הוראות באימייל כיצד לאפס את הסיסמה.
         </div>
 
-        <div class="tw-w-full tw-max-w-xs tw-mx-auto">
+        <div class="tw-w-full tw-max-w-xs tw-mx-auto tw-pt-5">
             <form
-                class="tw-rounded tw-px-8 tw-pt-5"
+                class="tw-rounded tw-px-8 "
                 method="post"
                 @submit.prevent="forgotPassword"
             >
@@ -95,6 +95,10 @@ export default {
         },
 
         forgotPassword() {
+            if (this.isLoading) {
+                return;
+            }
+
             this.isLoading = true;
 
             this.$axios

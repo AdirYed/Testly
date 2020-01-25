@@ -2,15 +2,25 @@
     <div
         class="tw-container tw-mx-auto tw-pt-8 md:tw-pt-10 tw-px-6 md:tw-px-10"
     >
-        <div
-            class="tw-text-2xl md:tw-text-3xl tw-font-semibold tw-text-center tw-mb-5"
-        >
+        <div class="tw-text-2xl md:tw-text-3xl tw-font-semibold tw-text-center">
             צור קשר
+        </div>
+
+        <div
+            class="tw-w-full tw-max-w-2xl tw-text-lg tw-pt-5 tw-text-center tw-mx-auto"
+        >
+            <p class="tw-mb-2">
+                מוזמנים לשלוח אלינו את בקשתכם, הצעות לשיפור, הערות או תלונות.
+            </p>
+
+            <p>
+                כל פנייה תתקבל בברכה ותענה בהקדם האפשרי.
+            </p>
         </div>
 
         <div class="tw-w-full tw-max-w-xs tw-mx-auto">
             <form
-                class="tw-rounded tw-px-8"
+                class="tw-rounded tw-px-8 tw-pt-5"
                 method="post"
                 @submit.prevent="contact"
             >
@@ -28,7 +38,7 @@
                         id="first_name"
                         type="text"
                         placeholder="שם פרטי"
-                        v-model="auth.first_name"
+                        v-model="payload.first_name"
                         @input="deleteError('first_name')"
                     />
 
@@ -54,7 +64,7 @@
                         id="last_name"
                         type="text"
                         placeholder="שם משפחה"
-                        v-model="auth.last_name"
+                        v-model="payload.last_name"
                         @input="deleteError('last_name')"
                     />
 
@@ -80,7 +90,7 @@
                         id="email"
                         type="email"
                         placeholder="אימייל"
-                        v-model="auth.email"
+                        v-model="payload.email"
                         @input="deleteError('email')"
                     />
 
@@ -102,12 +112,11 @@
                     <input
                         class="input transition tw-shadow tw-appearance-none tw-border tw-rounded tw-w-full tw-py-2 tw-px-3 tw-text-gray-700 tw-leading-tight"
                         :class="{ 'tw-border-red-500': errors.subject }"
-                        min="3"
                         maxlength="50"
                         id="subject"
                         type="text"
                         placeholder="נושא"
-                        v-model="auth.subject"
+                        v-model="payload.subject"
                         @input="deleteError('subject')"
                     />
 
@@ -130,12 +139,11 @@
                         class="input resize-y transition tw-shadow tw-appearance-none tw-border tw-rounded tw-w-full tw-py-2 tw-px-3 tw-text-gray-700 tw-leading-tight tw-overflow-x-hidden"
                         style="min-height: 38px"
                         :class="{ 'tw-border-red-500': errors.description }"
-                        minlength="10"
                         maxlength="500"
                         id="description"
                         placeholder="תוכן"
                         rows="4"
-                        v-model="auth.description"
+                        v-model="payload.description"
                         @input="deleteError('description')"
                     />
 
@@ -181,7 +189,7 @@ export default {
 
     data() {
         return {
-            auth: {
+            payload: {
                 first_name: "",
                 last_name: "",
                 email: "",
@@ -204,7 +212,7 @@ export default {
             this.isLoading = true;
 
             this.$axios
-                .post("contact-us", this.auth)
+                .post("contact-us", this.payload)
                 .then(() => {
                     this.isLoading = false;
 
@@ -230,9 +238,9 @@ export default {
 
     created() {
         if (this.$store.state.user) {
-            this.auth.first_name = this.$store.state.user.first_name;
-            this.auth.last_name = this.$store.state.user.last_name;
-            this.auth.email = this.$store.state.user.email;
+            this.payload.first_name = this.$store.state.user.first_name;
+            this.payload.last_name = this.$store.state.user.last_name;
+            this.payload.email = this.$store.state.user.email;
         }
     }
 };

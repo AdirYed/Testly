@@ -163,6 +163,10 @@ export default {
         },
 
         forgotPassword() {
+            if (this.isLoading) {
+                return;
+            }
+
             this.isLoading = true;
 
             this.$axios

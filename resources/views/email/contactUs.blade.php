@@ -1,10 +1,8 @@
-<div>
-    <div>
+<div style="direction: rtl;">
+    <h3>
         נשלח על ידי
-        {{ $this->payload->first_name }} {{ $this->payload->last_name }}
-    </div>
+        {{ $payload['first_name'] }} {{ $payload['last_name'] }}
+    </h3>
 
-    <div>
-        {{ $payload->description }}
-    </div>
+    <div style="white-space: pre-line;">{{ $payload['description'] }}</div>
 </div>

@@ -12,6 +12,7 @@ class ContactUsController extends Controller
     {
         $validatedRequest = $request->validated();
 
-        Mail::send(new ContactUsMail($validatedRequest));
+        Mail::to('adir.yed@gmail.com')->send(new ContactUsMail($validatedRequest));
     }
 }
+//'support@' . env('MAILGUN_DOMAIN')

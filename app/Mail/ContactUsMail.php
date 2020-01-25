@@ -11,7 +11,7 @@ class ContactUsMail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    private $payload;
+    public $payload;
 
     public function __construct($payload)
     {
@@ -20,10 +20,8 @@ class ContactUsMail extends Mailable
 
     public function build()
     {
-        return $this->replyTo('adir.yed@gmail.com')
-            ->from($this->payload->email)
-            ->subject($this->payload->subject)
+        return $this->from($this->payload['email'])
+            ->subject($this->payload['subject'])
             ->view('email.contactUs');
     }
 }
-//'support@' . env('MAILGUN_DOMAIN')
