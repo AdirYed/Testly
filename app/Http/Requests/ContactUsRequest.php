@@ -34,7 +34,7 @@ class ContactUsRequest extends FormRequest
                 'min:3',
                 'max:50'
             ],
-            'description' => [
+            'content' => [
                 'required',
                 'min:10',
                 'max:500'

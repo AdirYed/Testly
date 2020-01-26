@@ -131,27 +131,27 @@
                 <div class="tw-mb-5">
                     <label
                         class="tw-block tw-text-gray-700 tw-text-sm tw-font-bold tw-mb-2"
-                        for="description"
+                        for="content"
                     >
                         תוכן
                     </label>
                     <textarea
                         class="input resize-y transition tw-shadow tw-appearance-none tw-border tw-rounded tw-w-full tw-py-2 tw-px-3 tw-text-gray-700 tw-leading-tight tw-overflow-x-hidden"
                         style="min-height: 38px"
-                        :class="{ 'tw-border-red-500': errors.description }"
+                        :class="{ 'tw-border-red-500': errors.content }"
                         maxlength="500"
-                        id="description"
+                        id="content"
                         placeholder="תוכן"
                         rows="4"
-                        v-model="payload.description"
-                        @input="deleteError('description')"
+                        v-model="payload.content"
+                        @input="deleteError('content')"
                     />
 
                     <div
-                        v-if="errors.description"
+                        v-if="errors.content"
                         class="tw-font-semibold tw-text-red-500 tw-text-xs tw-mt-1"
                     >
-                        {{ errors.description[0] }}
+                        {{ errors.content[0] }}
                     </div>
                 </div>
 
@@ -194,7 +194,7 @@ export default {
                 last_name: "",
                 email: "",
                 subject: "",
-                description: ""
+                content: ""
             },
 
             isLoading: false,
