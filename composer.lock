@@ -4,8 +4,77 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "663977da2775a3570c68c8b6a153b1a0",
+    "content-hash": "dafb50986f9bf6db9f654ba0f0750b2a",
     "packages": [
+        {
+            "name": "beyondcode/laravel-mailbox",
+            "version": "1.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/beyondcode/laravel-mailbox.git",
+                "reference": "30439776e4eaee0c1e7d05b924b5ec0cc861605a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/beyondcode/laravel-mailbox/zipball/30439776e4eaee0c1e7d05b924b5ec0cc861605a",
+                "reference": "30439776e4eaee0c1e7d05b924b5ec0cc861605a",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/container": "^5.7|^5.8|^6.0",
+                "illuminate/database": "^5.7|^5.8|^6.0",
+                "illuminate/log": "^5.7|^5.8|^6.0",
+                "illuminate/routing": "^5.7|^5.8|^6.0",
+                "illuminate/support": "^5.7|^5.8|^6.0",
+                "php": "^7.1",
+                "willdurand/email-reply-parser": "^2.8",
+                "zbateson/mail-mime-parser": "^1.1"
+            },
+            "require-dev": {
+                "mockery/mockery": "^1.2",
+                "orchestra/testbench": "^3.7|^3.8|^4.0",
+                "phpunit/phpunit": "^7.0|^8.0",
+                "zendframework/zend-mail": "^2.10"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                },
+                "laravel": {
+                    "providers": [
+                        "BeyondCode\\Mailbox\\MailboxServiceProvider"
+                    ],
+                    "aliases": {
+                        "Mailbox": "BeyondCode\\Mailbox\\Facades\\Mailbox"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "BeyondCode\\Mailbox\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Marcel Pociot",
+                    "email": "marcel@beyondco.de",
+                    "homepage": "https://beyondcode.de",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Handle incoming emails in your Laravel application.",
+            "homepage": "https://github.com/beyondcode/laravel-mailbox",
+            "keywords": [
+                "beyondcode",
+                "laravel-mailbox"
+            ],
+            "time": "2019-09-04T07:03:10+00:00"
+        },
         {
             "name": "composer/semver",
             "version": "1.5.1",
@@ -4161,6 +4230,227 @@
                 "environment"
             ],
             "time": "2019-09-10T21:37:39+00:00"
+        },
+        {
+            "name": "willdurand/email-reply-parser",
+            "version": "2.8.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/willdurand/EmailReplyParser.git",
+                "reference": "f0b76bbc3740e58360b625418c0632249f3f0964"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/willdurand/EmailReplyParser/zipball/f0b76bbc3740e58360b625418c0632249f3f0964",
+                "reference": "f0b76bbc3740e58360b625418c0632249f3f0964",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.6.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^4.8.35|^5.7"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.8-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "EmailReplyParser\\": "src/EmailReplyParser"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "William Durand",
+                    "email": "will+git@drnd.me"
+                }
+            ],
+            "description": "Port of the cool GitHub's EmailReplyParser library in PHP",
+            "keywords": [
+                "email",
+                "reply-parser"
+            ],
+            "time": "2018-02-07T16:29:58+00:00"
+        },
+        {
+            "name": "zbateson/mail-mime-parser",
+            "version": "1.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/zbateson/mail-mime-parser.git",
+                "reference": "fd49e6f53184529a5ec4bc0b9edd98edeee53f5a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/zbateson/mail-mime-parser/zipball/fd49e6f53184529a5ec4bc0b9edd98edeee53f5a",
+                "reference": "fd49e6f53184529a5ec4bc0b9edd98edeee53f5a",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/psr7": "^1.0",
+                "php": ">=5.4",
+                "zbateson/mb-wrapper": "^1.0",
+                "zbateson/stream-decorators": "^1.0.2"
+            },
+            "require-dev": {
+                "jms/serializer": "^1.1",
+                "mikey179/vfsstream": "^1.6.0",
+                "phing/phing": "^2.15.0",
+                "phpdocumentor/phpdocumentor": "^2.9.0",
+                "phpunit/phpunit": "^4.8 || ^5.7 || ^6.5 || ^7.5"
+            },
+            "suggest": {
+                "ext-iconv": "For best support/performance",
+                "ext-mbstring": "For best support/performance"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "ZBateson\\MailMimeParser\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-2-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Zaahid Bateson"
+                },
+                {
+                    "name": "Contributors",
+                    "homepage": "https://github.com/zbateson/mail-mime-parser/graphs/contributors"
+                }
+            ],
+            "description": "MIME email message parser",
+            "homepage": "https://mail-mime-parser.org",
+            "keywords": [
+                "MimeMailParser",
+                "email",
+                "mail",
+                "mailparse",
+                "mime",
+                "mimeparse",
+                "parser",
+                "php-imap"
+            ],
+            "time": "2020-01-09T04:49:13+00:00"
+        },
+        {
+            "name": "zbateson/mb-wrapper",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/zbateson/mb-wrapper.git",
+                "reference": "723f25a1ab0e4e662efa8d89f38da751c799134a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/zbateson/mb-wrapper/zipball/723f25a1ab0e4e662efa8d89f38da751c799134a",
+                "reference": "723f25a1ab0e4e662efa8d89f38da751c799134a",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4",
+                "symfony/polyfill-iconv": "^1.9",
+                "symfony/polyfill-mbstring": "^1.9"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^4.8 || ^5.7 || ^6.5"
+            },
+            "suggest": {
+                "ext-iconv": "For best support/performance",
+                "ext-mbstring": "For best support/performance"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "ZBateson\\MbWrapper\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-2-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Zaahid Bateson"
+                }
+            ],
+            "description": "Wrapper for mbstring with fallback to iconv for encoding conversion and string manipulation",
+            "homepage": "https://github.com/zbateson/StreamDecorators",
+            "keywords": [
+                "charset",
+                "encoding",
+                "http",
+                "iconv",
+                "mail",
+                "mb",
+                "mb_convert_encoding",
+                "mbstring",
+                "mime",
+                "multibyte",
+                "string"
+            ],
+            "time": "2018-09-28T17:43:01+00:00"
+        },
+        {
+            "name": "zbateson/stream-decorators",
+            "version": "1.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/zbateson/stream-decorators.git",
+                "reference": "ec3c3ea91d26a7685db7a29a270464c5e1470786"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/zbateson/stream-decorators/zipball/ec3c3ea91d26a7685db7a29a270464c5e1470786",
+                "reference": "ec3c3ea91d26a7685db7a29a270464c5e1470786",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/psr7": "^1.0.0",
+                "php": ">=5.4",
+                "zbateson/mb-wrapper": "^1.0.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^4.8 || ^5.7 || ^6.5"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "ZBateson\\StreamDecorators\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-2-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Zaahid Bateson"
+                }
+            ],
+            "description": "PHP psr7 stream decorators for mime message part streams",
+            "keywords": [
+                "base64",
+                "charset",
+                "decorators",
+                "mail",
+                "mime",
+                "psr7",
+                "quoted-printable",
+                "stream",
+                "uuencode"
+            ],
+            "time": "2019-03-21T06:13:00+00:00"
         }
     ],
     "packages-dev": [
