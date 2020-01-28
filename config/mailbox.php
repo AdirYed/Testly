@@ -30,7 +30,7 @@ return [
      * application. You can use the cleanup artisan command to
      * delete all older inbound emails on a regular basis.
      */
-    'store_incoming_emails_for_days' => 7,
+    'store_incoming_emails_for_days' => 30,
 
     /*
      * By default, this package only stores incoming email messages

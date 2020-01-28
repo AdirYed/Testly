@@ -160,13 +160,6 @@ class ParseDatasetCommand extends Command
 
             if (isset($html->img['src'])) {
                 $url = (string) $html->img['src'];
-                $url = trim(parse_url($url, PHP_URL_PATH), '/');
-
-                if (strpos($url, 'A3/') === 0) {
-                    $url = "https://teo.co.il/img/questions/i" . trim($url, 'A3/');;
-                } else {
-                    $url = "https://teo.co.il/img/questions/$url";
-                }
 
                 if ($this->shouldStoreImages()) {
                     $uuid = Str::uuid()->toString();
