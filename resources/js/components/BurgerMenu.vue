@@ -180,8 +180,8 @@ export default {
 
     background: radial-gradient(
             circle at 1% 1%,
-            var(--primary-color),
-            rgb(220, 155, 0)
+            rgba(var(--primary-color-rgb), 0.95),
+            rgba(220, 155, 0, 0.95)
         )
         no-repeat 50%;
     font-family: Open Sans, Helvetica, Arial, sans-serif;

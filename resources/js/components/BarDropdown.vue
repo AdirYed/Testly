@@ -17,7 +17,6 @@
 
         <button
             v-else
-            @click="isOpen = !isOpen"
             @mouseenter="isOpen = true"
             @mouseleave="isOpen = false"
             class="route tw-p-4 tw-block tw-border-t-4 tw-border-transparent hover:tw-border-primary"

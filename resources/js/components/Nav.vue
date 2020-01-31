@@ -1,7 +1,7 @@
 <template>
     <header
         id="nav-bar"
-        class="tw-min-w-full tw-bg-white tw-flex tw-flex-wrap tw-shadow-lg tw-items-center tw-py-0 md:tw-px-24 tw-px-3 tw-sticky tw-top-0"
+        class="tw-min-w-full tw-bg-white tw-flex tw-flex-wrap tw-shadow-lg tw-items-center tw-py-0 md:tw-px-16 lg:tw-px-24 tw-px-3 tw-sticky tw-top-0"
     >
         <div
             class="tw-hidden tw-flex-1 md:tw-flex tw-justify-between tw-items-center"
