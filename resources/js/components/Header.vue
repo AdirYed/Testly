@@ -90,28 +90,6 @@
 export default {
     name: "testly-header",
 
-    data() {
-        return {
-            isOpen: false
-        };
-    },
-
-    created() {
-        this.$store.dispatch("fetchDrivingLicenseTypes");
-
-        const handleEscape = e => {
-            if (e.key === "Esc" || e.key === "Escape") {
-                this.isOpen = false;
-            }
-        };
-
-        document.addEventListener("keydown", handleEscape);
-
-        this.$once("hook:beforeDestroy", () => {
-            document.removeEventListener("keydown", handleEscape);
-        });
-    },
-
     methods: {
         logout() {
             this.$store.dispatch("logout");
@@ -120,6 +98,10 @@ export default {
                 this.$router.push({ name: "home" });
             }
         }
+    },
+
+    created() {
+        this.$store.dispatch("fetchDrivingLicenseTypes");
     }
 };
 </script>
