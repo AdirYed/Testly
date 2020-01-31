@@ -32,5 +32,7 @@
         <server name="DB_DATABASE" value=":memory:"/>
         <server name="GENERAL_DATASET_PATH" value="tests/Commands/general_dataset.xml"/>
         <server name="A3_DATASET_PATH" value="tests/Commands/a3_dataset.xml"/>
+        <server name="MAIL_DRIVER" value="log"/>
+        <server name="MAILBOX_DRIVER" value="log"/>
     </php>
 </phpunit>

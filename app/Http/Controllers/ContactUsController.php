@@ -12,6 +12,6 @@ class ContactUsController extends Controller
     {
         $validatedRequest = $request->validated();
 
-        Mail::to('support@' . env('MAILGUN_DOMAIN'))->send(new ContactUsMail($validatedRequest));
+        Mail::to('support@' . config('services.mailgun.domain'))->send(new ContactUsMail($validatedRequest));
     }
 }

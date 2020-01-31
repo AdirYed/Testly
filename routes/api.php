@@ -7,6 +7,8 @@ use App\Http\Controllers\DrivingLicenseTypeController;
 use App\Http\Controllers\DrivingLicenseTypeQuestionController;
 use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\TestReportController;
+use App\InboundEmail;
+use App\Mail\ReplyMail;
 use App\Notifications\VerifyUserNotification;
 use Illuminate\Support\Facades\Route;
 
@@ -37,7 +39,7 @@ Route::group([
 Route::get('categories', [CategoryTypeController::class, 'index']);
 
 Route::post('resend-verification', function () {
-    $user = auth()->user();
+    $user = Auth::user();
 
     if ($user->email_verified_at) {
         return response()->json(['verified' => true], 422);
@@ -53,3 +55,17 @@ Route::group(['prefix' => 'forgot-password'], static function () {
 });
 
 Route::post('contact-us', [ContactUsController::class, 'contact']);
+
+Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function() {
+    Route::get('emails', function () {
+        return InboundEmail::all();
+    });
+
+    Route::post('emails/{id}/reply', function ($id, \Illuminate\Http\Request $request) {
+        $email = InboundEmail::findOrFail($id);
+
+        $replyMail = new ReplyMail($request->get('subject'), $request->get('reply'));
+
+        $email->reply($replyMail);
+    });
+});

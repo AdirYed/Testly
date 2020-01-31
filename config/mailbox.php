@@ -14,7 +14,7 @@ return [
      * The model class to use when converting an incoming email to a message.
      * It must extend the default model class
      */
-    'model' => \BeyondCode\Mailbox\InboundEmail::class,
+    'model' => \App\InboundEmail::class,
 
     /*
      * The path for driver specific routes. This is where
@@ -23,7 +23,7 @@ return [
      *
      * For example: /laravel-mailbox/sendgrid/
      */
-    'path' => 'laravel-mailbox',
+    'path' => 'mailbox',
 
     /*
      * The amount of days that incoming emails should be stored in your
@@ -57,9 +57,8 @@ return [
      * Third party service configuration.
      */
     'services' => [
-
         'mailgun' => [
-            'key' => env('MAILBOX_MAILGUN_KEY'),
+            'key' => env('MAILGUN_SECRET'),
         ],
 
     ],

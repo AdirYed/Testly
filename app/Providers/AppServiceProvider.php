@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use BeyondCode\Mailbox\Facades\Mailbox;
+use BeyondCode\Mailbox\InboundEmail;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
 use Illuminate\Support\ServiceProvider;
@@ -25,5 +27,9 @@ class AppServiceProvider extends ServiceProvider
                 return $model->append($accessors);
             });
         });
+
+//        Mailbox::to('support@' . config('services.mailgun.domain'), function (InboundEmail $email) {
+//
+//        });
     }
 }
