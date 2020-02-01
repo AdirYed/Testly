@@ -31,14 +31,6 @@
                 <div class="tw-font-bold md:tw-font-semibold tw-px-4">
                     <router-link
                         class="tw-text-transparent-60 hover:tw-text-transparent-60"
-                        :to="{ name: 'contact-us' }"
-                    >
-                        צור קשר
-                    </router-link>
-                </div>
-                <div class="tw-font-bold md:tw-font-semibold tw-px-4">
-                    <router-link
-                        class="tw-text-transparent-60 hover:tw-text-transparent-60"
                         :to="{ name: 'privacy-policy' }"
                     >
                         תנאי שימוש

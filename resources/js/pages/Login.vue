@@ -149,6 +149,10 @@ export default {
 
     methods: {
         login() {
+            if (this.isLoading) {
+                return;
+            }
+
             this.isLoading = true;
 
             this.$store

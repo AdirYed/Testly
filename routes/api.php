@@ -36,6 +36,7 @@ Route::group([
 Route::get('categories', [CategoryTypeController::class, 'index']);
 
 Route::post('resend-verification', function () {
+    /* @var \App\User $user */
     $user = auth()->user();
 
     if ($user->email_verified_at) {

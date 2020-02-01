@@ -18,6 +18,7 @@ class LoginRequest extends FormRequest
             'email' => [
                 'required',
                 'email',
+                'exists:users',
                 'max:50',
             ],
             'password' => [
@@ -25,6 +26,13 @@ class LoginRequest extends FormRequest
                 'min:6',
                 'max:255',
             ],
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'email.exists' => 'אימייל זה אינו קיים במערכת.',
         ];
     }
 

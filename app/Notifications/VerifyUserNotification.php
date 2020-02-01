@@ -35,7 +35,6 @@ class VerifyUserNotification extends Notification
         $verifyUrl = UrlToken::verifyUrl($this->token);
 
         return (new MailMessage)
-            ->replyTo($notifiable->email)
             ->subject('אימות אימייל Testly')
             ->markdown('email.verifyUser', ['verifyUrl' => $verifyUrl]);
     }
