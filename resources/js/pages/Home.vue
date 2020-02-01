@@ -112,7 +112,7 @@ export default {
 
 <style scoped>
 #choose-a-test {
-    margin-top: calc(var(--header-height) * -1);
+    margin-top: calc(var(--header-height) * -1 + 2px);
     padding-top: var(--header-height);
 }
 </style>
