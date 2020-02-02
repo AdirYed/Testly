@@ -4,7 +4,6 @@
             class="progressBar progressBarTransition tw-fixed"
             :style="progressBarStyle"
         ></div>
-
         <div
             class="tw-container tw-mx-auto tw-pt-8 md:tw-pt-10 tw-px-6 md:tw-px-10"
         >
@@ -89,6 +88,9 @@
                                         :for="
                                             'q_' + currQuestion + '_a_' + index
                                         "
+                                        :key="
+                                            'q_' + currQuestion + '_a_' + index
+                                        "
                                     >
                                         <input
                                             class="tw-opacity-0 tw-h-0 tw-w-0"
@@ -160,7 +162,11 @@
                                             <span>{{
                                                 rightAnswersAmount
                                             }}</span>
-                                            מתוך 30 שאלות.
+                                            מתוך
+                                            {{
+                                                quiz.test_report_answers.length
+                                            }}
+                                            שאלות.
                                         </div>
                                     </div>
                                 </div>
@@ -233,7 +239,8 @@
                                 style="width: 90%"
                             >
                                 <button
-                                    v-for="(i, n) in 30"
+                                    v-for="(i, n) in quiz.test_report_answers
+                                        .length"
                                     class="tw-py-2 tw-my-1 tw-text-center tw-border tw-border-transparent tw-rounded tw-text-sm hover:tw-border-primary"
                                     style="width: 45%"
                                     @click="currentQuestion(n)"
@@ -353,7 +360,7 @@ export default {
         rightAnswers() {
             let rightAnswers = 0;
 
-            for (let i = 0; i < 30; i++) {
+            for (let i = 0; i < this.quiz.test_report_answers.length; i++) {
                 if (
                     this.quiz.test_report_answers[i]["answer_id"] !== null &&
                     this.rightAnswer(i) ===
