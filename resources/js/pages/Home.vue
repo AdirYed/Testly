@@ -22,7 +22,7 @@
 
             <div class="tw-text-center tw-mt-5">
                 <button
-                    class="btn tw-py-1 md:tw-py-2 tw-px-3 md:tw-px-4 tw-border-2 tw-border-primary tw-text-primary hover:tw-text-white hover:tw-bg-primary tw-rounded"
+                    class="btn tw-py-1 md:tw-py-2 tw-px-3 md:tw-px-4 tw-border-2 tw-border-primary tw-text-primary tw-rounded remove-highlight"
                     @click="readMore()"
                 >
                     גש למבחן
@@ -96,8 +96,14 @@
 </template>
 
 <script>
+import Card from "../components/Card";
+
 export default {
     name: "home",
+
+    components: {
+        "theory-card": Card
+    },
 
     methods: {
         readMore() {
@@ -114,5 +120,15 @@ export default {
 #choose-a-test {
     margin-top: calc(var(--header-height) * -1 + 2px);
     padding-top: var(--header-height);
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .btn:hover {
+        @apply tw-text-white tw-bg-primary;
+    }
+}
+
+.btn:active {
+    @apply tw-text-white tw-bg-primary;
 }
 </style>

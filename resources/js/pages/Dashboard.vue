@@ -5,7 +5,8 @@
         <div
             class="tw-text-2xl md:tw-text-3xl tw-font-semibold tw-text-center tw-mb-5"
         >
-            הפרופיל שלי
+            {{ $store.state.user.first_name }}
+            {{ $store.state.user.last_name }}
         </div>
 
         <div
@@ -178,8 +179,14 @@
 </template>
 
 <script>
+import LineChart from "../components/LineChart";
+
 export default {
     name: "dashboard",
+
+    components: {
+        "theory-line-chart": LineChart
+    },
 
     data() {
         return {

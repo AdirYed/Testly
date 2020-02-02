@@ -63,9 +63,9 @@
                                     v-for="(response, index) in answers"
                                 >
                                     <label
-                                        class="tw-block tw-p-2 tw-border tw-border-transparent tw-rounded tw-cursor-pointer tw-w-full"
+                                        class="tw-block tw-p-2 tw-border tw-border-transparent tw-rounded tw-w-full"
                                         :class="{
-                                            'hover:tw-border-primary hover:tw-text-primary':
+                                            'options tw-cursor-pointer':
                                                 question['chosen_answer_id'] !==
                                                     ++index && counting,
                                             'tw-bg-primary':
@@ -82,10 +82,10 @@
                                                     index
                                         }"
                                         :for="
-                                            'q_' +
-                                                currQuestion +
-                                                '_a_' +
-                                                rightAnswer(questionIndex)
+                                            'q_' + currQuestion + '_a_' + index
+                                        "
+                                        :key="
+                                            'q_' + currQuestion + '_a_' + index
                                         "
                                     >
                                         <!-- rightAnswer(questionIndex) - aims only for the right answer-->
@@ -113,7 +113,6 @@
                                             @change="next()"
                                             :disabled="!counting"
                                         />
-
                                         {{ response["content"] }}
                                     </label>
                                 </li>
@@ -185,7 +184,9 @@
                                             <span>{{
                                                 rightAnswersAmount
                                             }}</span>
-                                            מתוך 30 שאלות.
+                                            מתוך
+                                            {{ quiz.length }}
+                                            שאלות.
                                         </div>
                                     </div>
                                 </div>
@@ -258,7 +259,7 @@
                                 style="width: 90%"
                             >
                                 <button
-                                    v-for="(i, n) in 30"
+                                    v-for="(i, n) in quiz.length"
                                     class="tw-py-2 tw-my-1 tw-text-center tw-border tw-border-transparent tw-rounded tw-text-sm hover:tw-border-primary"
                                     style="width: 45%"
                                     @click="currentQuestion(n)"
@@ -329,9 +330,14 @@
 
 <script>
 import SaveTest from "../components/SaveTest";
+import VueCountdown from "@chenfengyuan/vue-countdown";
 
 export default {
     name: "tests",
+
+    components: {
+        "theory-countdown": VueCountdown
+    },
 
     data() {
         return {
@@ -401,7 +407,7 @@ export default {
                 answers: []
             };
 
-            for (let i = 0; i < 30; i++) {
+            for (let i = 0; i < this.quiz.length; i++) {
                 payload.answers.push({
                     question_id: this.quiz[i].id,
                     answer_id: this.quiz[i].chosen_answer_id
@@ -455,7 +461,7 @@ export default {
         rightAnswers() {
             let rightAnswers = 0;
 
-            for (let i = 0; i < 30; i++) {
+            for (let i = 0; i < this.quiz.length; i++) {
                 if (
                     this.quiz[i]["chosen_answer_id"] !== null &&
                     this.rightAnswer(i) === this.quiz[i]["chosen_answer_id"]
@@ -541,3 +547,15 @@ export default {
     }
 };
 </script>
+
+<style scoped>
+@media (hover: hover) and (pointer: fine) {
+    .options:hover {
+        @apply tw-border-primary tw-text-primary;
+    }
+}
+
+.options:active {
+    @apply tw-border-primary tw-text-primary;
+}
+</style>

@@ -71,7 +71,7 @@
                                     v-for="(response, index) in answers"
                                 >
                                     <label
-                                        class="tw-block tw-p-2 tw-border tw-border-transparent tw-rounded tw-cursor-pointer tw-w-full"
+                                        class="tw-block tw-p-2 tw-border tw-border-transparent tw-rounded tw-w-full"
                                         :class="{
                                             'tw-bg-primary':
                                                 quiz.test_report_answers[
