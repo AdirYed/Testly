@@ -34,9 +34,3 @@ export default {
     }
 };
 </script>
-
-<style>
-.route {
-    transition: border 0.2s ease;
-}
-</style>

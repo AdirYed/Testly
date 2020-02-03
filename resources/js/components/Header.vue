@@ -20,7 +20,7 @@
                 </template>
 
                 <router-link
-                    class="tw-block tw-px-4 tw-py-2 tw-text-gray-800 hover:tw-bg-primary hover:tw-text-white"
+                    class="inner-bar-dropdown tw-block tw-px-4 tw-py-2 tw-text-gray-800"
                     v-for="(test, index) in $store.state.drivingLicenseTypes"
                     :to="{
                         name: 'tests',
@@ -67,14 +67,14 @@
 
                 <router-link
                     :to="{ name: 'dashboard' }"
-                    class="tw-block tw-px-4 tw-py-2 tw-text-gray-800 hover:tw-bg-primary hover:tw-text-white tw-cursor-pointer"
+                    class="inner-bar-dropdown tw-block tw-px-4 tw-py-2 tw-text-gray-800"
                 >
                     <fa-icon class="fa-fw" icon="user" />
                     הפרופיל שלי
                 </router-link>
 
                 <div
-                    class="tw-block tw-px-4 tw-py-2 tw-text-gray-800 hover:tw-bg-primary hover:tw-text-white tw-cursor-pointer"
+                    class="inner-bar-dropdown tw-block tw-px-4 tw-py-2 tw-text-gray-800"
                     @click="logout"
                     v-if="$store.getters.isLoggedIn"
                 >
@@ -115,3 +115,15 @@ export default {
     }
 };
 </script>
+
+<style scoped>
+@media (hover: hover) and (pointer: fine) {
+    .inner-bar-dropdown:hover {
+        @apply bg-primary text-white cursor-pointer;
+    }
+}
+
+.inner-bar-dropdown:active {
+    @apply bg-primary text-white;
+}
+</style>
