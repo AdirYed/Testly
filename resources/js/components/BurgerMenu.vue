@@ -1,13 +1,18 @@
 <template>
     <div
-        class="md:tw-hidden tw-w-full tw-h-full tw-flex tw-justify-center tw-content-center"
+        class="lg:tw-hidden tw-w-full tw-h-full tw-flex tw-justify-center tw-content-center"
         style="margin-left: 30px"
     >
         <div
             class="tw-flex tw-h-full tw-my-auto tw-items-center"
             @click="toggleBurger"
         >
-            <svg width="30" height="30">
+            <svg
+                width="30"
+                height="30"
+                class="fade-bars"
+                :style="isActive ? 'opacity: 0.2' : 'opacity: 1'"
+            >
                 <rect width="28" height="2" x="0" y="4" />
                 <rect width="28" height="2" x="0" y="14" />
                 <rect width="28" height="2" x="0" y="24" />
@@ -53,7 +58,9 @@
                     </div>
                 </div>
 
-                <div class="burger-wrapper tw-flex tw-flex-col">
+                <div
+                    class="burger-wrapper tw-flex tw-flex-col tw-overflow-x-auto"
+                >
                     <ul
                         class="tw-my-auto tw-flex tw-flex-col tw-justify-center"
                     >
@@ -95,7 +102,7 @@
 
                         <burger-bar
                             v-if="$store.getters.isLoggedIn"
-                            to="register"
+                            to="dashboard"
                         >
                             <span @click="toggleBurger">
                                 הפרופיל שלי
@@ -180,8 +187,8 @@ export default {
 
     background: radial-gradient(
             circle at 1% 1%,
-            rgba(var(--primary-color-rgb), 0.95),
-            rgba(220, 155, 0, 0.95)
+            rgba(var(--primary-color-rgb), 0.85),
+            rgba(220, 155, 0, 0.85)
         )
         no-repeat 50%;
     font-family: Open Sans, Helvetica, Arial, sans-serif;
@@ -219,5 +226,9 @@ export default {
 
 .burger-wrapper {
     height: calc(100% - var(--header-height) * 2);
+}
+
+.fade-bars {
+    transition: opacity 0.15s linear;
 }
 </style>

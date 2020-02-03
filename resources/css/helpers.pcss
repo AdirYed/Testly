@@ -11,6 +11,20 @@
     }
 }
 
+label,
+textarea,
+input,
+select,
+a,
+.remove-highlight {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
 .testly-icon {
     background: url('/assets/icon.png') no-repeat center;
     background-size: 100%;
@@ -24,8 +38,14 @@
 
 .link {
     @apply border-b border-transparent text-primary;
+}
 
-    &:hover {
-      @apply border-primary;
+@media(hover: hover) and (pointer: fine) {
+    .link:hover {
+        @apply border-primary;
     }
+}
+
+.link:active {
+    @apply border-primary;
 }

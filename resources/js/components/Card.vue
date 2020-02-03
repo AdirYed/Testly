@@ -16,7 +16,7 @@
 
         <div class="tw-flex tw-justify-center tw-pb-4">
             <router-link
-                class="btn tw-py-1 md:tw-py-2 tw-px-3 tw-border-2 tw-border-primary hover:tw-bg-primary tw-text-primary hover:tw-text-white tw-rounded"
+                class="btn tw-py-1 md:tw-py-2 tw-px-3 tw-border-2 tw-border-primary tw-text-primary tw-rounded"
                 :to="{
                     name: to,
                     params: params
@@ -49,3 +49,15 @@ export default {
     }
 };
 </script>
+
+<style scoped>
+@media (hover: hover) and (pointer: fine) {
+    .btn:hover {
+        @apply tw-text-white tw-bg-primary;
+    }
+}
+
+.btn:active {
+    @apply tw-text-white tw-bg-primary;
+}
+</style>

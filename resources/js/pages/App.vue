@@ -12,7 +12,15 @@
 </template>
 
 <script>
+import Header from "../components/Header";
+import Footer from "../components/Footer";
+
 export default {
-    name: "app"
+    name: "app",
+
+    components: {
+        "testly-header": Header,
+        "testly-footer": Footer
+    }
 };
 </script>

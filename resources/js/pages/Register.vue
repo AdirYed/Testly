@@ -173,8 +173,6 @@
 </template>
 
 <script>
-import SaveTest from "../components/SaveTest";
-
 export default {
     name: "register",
 

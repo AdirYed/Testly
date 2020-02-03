@@ -87,8 +87,18 @@
 </template>
 
 <script>
+import Nav from "./Nav";
+import BarDropdown from "./BarDropdown";
+import Bar from "./Bar";
+
 export default {
     name: "testly-header",
+
+    components: {
+        "theory-nav-bar": Nav,
+        "theory-bar": Bar,
+        "theory-bar-dropdown": BarDropdown
+    },
 
     methods: {
         logout() {

@@ -60,12 +60,20 @@ button:focus {
     background-position: center;
 }
 
+@media(hover: hover) and (pointer: fine) {
+    .input:hover {
+        box-shadow: 0 0 0 3px var(--primary-color);
+
+        @apply border-transparent;
+    }
+}
+
 .input {
     transition: 0.2s box-shadow ease;
 
     @apply outline-none;
 
-    &:focus, &:hover {
+    &:focus, &:active {
         box-shadow: 0 0 0 3px var(--primary-color);
 
         @apply border-transparent;
@@ -89,6 +97,7 @@ button:focus {
 }
 
 .container {
+    margin-top: var(--header-height);
     min-height: calc(100vh - var(--header-height));
 }
 
