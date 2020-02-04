@@ -5,6 +5,7 @@ import "vue-toastification/dist/index.css";
 import router from "./routes";
 import AxiosPlugin from "./plugins/axios";
 import store from "./store";
+import VueAnalytics from "vue-analytics";
 
 // Components
 import App from "./pages/App";
@@ -37,6 +38,11 @@ const options = {
 Vue.use(AxiosPlugin);
 Vue.use(VueRouter);
 Vue.use(Toast, options);
+Vue.use(VueAnalytics, {
+    id: "UA-157733827-2",
+    checkDuplicatedScript: true,
+    router
+});
 
 Vue.config.productionTip = false;
 
