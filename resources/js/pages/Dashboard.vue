@@ -277,7 +277,7 @@ export default {
                     yAxes: [
                         {
                             gridLines: {
-                                zeroLineColor: "transparent"
+                                zeroLineColor: "#bbb"
                             },
                             ticks: {
                                 min: 0,
