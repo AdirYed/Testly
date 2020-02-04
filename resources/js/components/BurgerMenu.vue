@@ -65,19 +65,19 @@
                         class="tw-my-auto tw-flex tw-flex-col tw-justify-center"
                     >
                         <burger-bar to="home">
-                            <span @click="toggleBurger">
+                            <span @click="toggleBurger(false)">
                                 דף הבית
                             </span>
                         </burger-bar>
 
                         <burger-bar to="home" toHash="#choose-a-test">
-                            <span @click="toggleBurger">
+                            <span @click="toggleBurger(false)">
                                 מבחנים
                             </span>
                         </burger-bar>
 
                         <burger-bar to="about-us">
-                            <span @click="toggleBurger">
+                            <span @click="toggleBurger(false)">
                                 אודות
                             </span>
                         </burger-bar>
@@ -86,7 +86,7 @@
                             v-if="!$store.getters.isLoggedIn"
                             to="login"
                         >
-                            <span @click="toggleBurger">
+                            <span @click="toggleBurger(false)">
                                 התחבר
                             </span>
                         </burger-bar>
@@ -95,7 +95,7 @@
                             v-if="!$store.getters.isLoggedIn"
                             to="register"
                         >
-                            <span @click="toggleBurger">
+                            <span @click="toggleBurger(false)">
                                 הירשם
                             </span>
                         </burger-bar>
@@ -104,7 +104,7 @@
                             v-if="$store.getters.isLoggedIn"
                             to="dashboard"
                         >
-                            <span @click="toggleBurger">
+                            <span @click="toggleBurger(false)">
                                 הפרופיל שלי
                             </span>
                         </burger-bar>
@@ -142,8 +142,8 @@ export default {
     },
 
     methods: {
-        toggleBurger() {
-            this.isActive = !this.isActive;
+        toggleBurger(toggle = true) {
+            this.isActive = toggle ? !this.isActive : false;
 
             if (!this.isActive) {
                 document.body.style.overflow = "visible";

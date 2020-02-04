@@ -98,6 +98,12 @@
 <script>
 import Card from "../components/Card";
 
+async function scrollBehavior() {
+    if (!("scrollBehavior" in document.documentElement.style)) {
+        await import("scroll-behavior-polyfill");
+    }
+}
+
 export default {
     name: "home",
 
@@ -112,6 +118,10 @@ export default {
                 behavior: "smooth"
             });
         }
+    },
+
+    created() {
+        scrollBehavior();
     }
 };
 </script>
