@@ -258,15 +258,10 @@ export default {
             this.chartData.datasets.push({
                 label: "תשובות נכונות",
                 borderColor: "#f5af19",
-                backgroundColor: [
-                    "rgba(245, 175, 25, 0.3)",
-                    "rgba(245, 175, 20, 0.1)",
-                    "rgba(245, 185, 25, 0.3)",
-                    "rgba(220, 162, 12, 0.1)"
-                ],
+                backgroundColor: "transparent",
                 pointBackgroundColor: "#f5af19",
-                borderWidth: 1,
-                pointRadius: 3,
+                borderWidth: 3,
+                pointRadius: 2,
                 data: []
             });
 
@@ -374,7 +369,7 @@ export default {
             const date = new Date(ms);
 
             return `${this.appendLeadingZeroes(
-                date.getDay() + 1
+                date.getDate()
             )}/${this.appendLeadingZeroes(
                 date.getMonth() + 1
             )}/${date.getFullYear()}
