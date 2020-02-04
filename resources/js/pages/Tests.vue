@@ -260,7 +260,7 @@
                             >
                                 <button
                                     v-for="(i, n) in quiz.length"
-                                    class="tw-py-2 tw-my-1 tw-text-center tw-border tw-border-transparent tw-rounded tw-text-sm hover:tw-border-primary"
+                                    class="questions tw-py-2 tw-my-1 tw-text-center tw-border tw-border-transparent tw-rounded tw-text-sm"
                                     style="width: 45%"
                                     @click="currentQuestion(n)"
                                     :class="{
@@ -551,11 +551,19 @@ export default {
 <style scoped>
 @media (hover: hover) and (pointer: fine) {
     .options:hover {
-        @apply tw-border-primary tw-text-primary;
+        @apply border-primary text-primary;
+    }
+
+    .questions:hover {
+        @apply border-primary;
     }
 }
 
 .options:active {
-    @apply tw-border-primary tw-text-primary;
+    @apply border-primary text-primary;
+}
+
+.questions:active {
+    @apply border-primary;
 }
 </style>

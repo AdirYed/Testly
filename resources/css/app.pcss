@@ -12,6 +12,16 @@ button:focus {
     transition: border 0.2s ease;
 }
 
+@media(hover: hover) and (pointer: fine) {
+    .route:hover {
+        @apply border-primary;
+    }
+}
+
+.route:active {
+    @apply border-primary;
+}
+
 #nav-bar {
     height: var(--header-height);
     background-color: white;
