@@ -33,7 +33,7 @@
                         class="tw-text-transparent-60 hover:tw-text-transparent-60"
                         :to="{ name: 'privacy-policy' }"
                     >
-                        תנאי שימוש
+                        פרטיות
                     </router-link>
                 </div>
             </div>
