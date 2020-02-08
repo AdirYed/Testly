@@ -2,6 +2,8 @@
     <div
         class="tw-container tw-mx-auto tw-pt-8 md:tw-pt-10 tw-px-6 md:tw-px-10 tw-leading-relaxed"
     >
+        <vue-headful title="טסטלי - מדיניות פרטיות" />
+
         <div>
             <div
                 class="tw-text-2xl md:tw-text-3xl tw-font-semibold tw-text-center tw-mb-5"

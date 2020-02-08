@@ -1,5 +1,6 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
+import vueHeadful from "vue-headful";
 import Toast from "vue-toastification";
 import "vue-toastification/dist/index.css";
 import router from "./routes";
@@ -14,6 +15,7 @@ import PulseLoader from "vue-spinner/src/PulseLoader";
 import "./font-awesome";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
+Vue.component("vue-headful", vueHeadful);
 Vue.component("fa-icon", FontAwesomeIcon);
 
 Vue.component("testly-" + App.name, App);

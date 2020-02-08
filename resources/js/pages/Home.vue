@@ -1,5 +1,7 @@
 <template>
     <div>
+        <vue-headful title="טסטלי" />
+
         <div
             id="home-img-section"
             class="tw-flex tw-flex-col tw-items-center tw-justify-center"
