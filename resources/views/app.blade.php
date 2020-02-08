@@ -5,8 +5,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 
         <title>טסטלי</title>
-        <meta property="og:title">
 
+        <link rel="icon" href="{{ URL::asset('/assets/icon.png') }}" type="image/x-icon"/>
         <link rel="stylesheet" href="{{ mix('/css/app.css') }}">
     </head>
     <body>
