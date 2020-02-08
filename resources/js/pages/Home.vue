@@ -22,7 +22,7 @@
 
             <div class="tw-text-center tw-mt-5">
                 <button
-                    class="btn tw-py-1 md:tw-py-2 tw-px-3 md:tw-px-4 tw-border-2 tw-border-primary tw-text-primary tw-rounded remove-highlight"
+                    class="btn tw-py-1 md:tw-py-2 tw-px-3 md:tw-px-4 tw-border-2 tw-border-primary tw-text-primary tw-rounded"
                     @click="readMore()"
                 >
                     גש למבחן

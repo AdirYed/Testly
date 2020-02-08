@@ -7,7 +7,7 @@
         <router-link :to="{ name: buttonTo }" v-if="buttonTo && !isMobile">
             <button
                 @click="isOpen = !isOpen"
-                class="route tw-p-4 tw-block tw-border-t-4 tw-border-transparent remove-highlight"
+                class="route tw-p-4 tw-block tw-border-t-4 tw-border-transparent"
                 :class="{
                     'tw-font-bold ': this.$route.name === to,
                     'tw-border-primary': isOpen || this.$route.name === to
@@ -20,7 +20,7 @@
         <button
             v-else
             @click="isOpen = !isOpen"
-            class="route tw-p-4 tw-block tw-border-t-4 tw-border-transparent remove-highlight"
+            class="route tw-p-4 tw-block tw-border-t-4 tw-border-transparent"
             :class="{
                 'tw-font-bold ': this.$route.name === to,
                 'tw-border-primary': isOpen || this.$route.name === to
