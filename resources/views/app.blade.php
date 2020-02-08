@@ -4,8 +4,9 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 
-        <title>Theory Test</title>
+        <title>טסטלי</title>
 
+        <link rel="icon" href="{{ URL::asset('/assets/icon.png') }}" type="image/x-icon"/>
         <link rel="stylesheet" href="{{ mix('/css/app.css') }}">
     </head>
     <body>

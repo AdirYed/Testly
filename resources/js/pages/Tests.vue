@@ -38,6 +38,16 @@
             </h1>
 
             <template v-if="!isLoading && drivingLicenseType">
+                <vue-headful
+                    :title="
+                        'טסטלי - מבחן ' +
+                            drivingLicenseType.name +
+                            ' (' +
+                            drivingLicenseType.code +
+                            ')'
+                    "
+                />
+
                 <div
                     v-if="question"
                     class="tw-flex tw-flex-wrap tw-flex-row tw-justify-between tw-pt-5 tw-break-words tw-h-full"
@@ -300,6 +310,8 @@
             </template>
 
             <div v-else-if="drivingLicenseType === false" class="tw-pt-5">
+                <vue-headful title="טסטלי - שגיאה" />
+
                 <div class="tw-text-xl">
                     רישיון זה אינו קיים, נא לבחור אחד
                     <router-link
