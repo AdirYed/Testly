@@ -35,6 +35,25 @@
                 </div>
 
                 <div class="tw-mb-5">
+                    ניתוח נתוני גלישה באתר באמצעות Google Analytics. באתר זה
+                    מותקן שירות Google Analytics אשר אוסף ומנתח מידע גלישה באתר.
+                    פרטים אודות השירות ניתן למצוא בכתובת:
+                    <a
+                        href="https://support.google.com/analytics/answer/6004245?hl=iw"
+                        target="_blank"
+                        >https://support.google.com/analytics/answer/6004245?hl=iw</a
+                    >. במידה ואינך מעוניין שייאסף עליך מידע ע"י Google
+                    Analytics, ניתן להוריד תוסף לדפדפן אשר מבטל את ההסכמה לאיסוף
+                    המידע:
+                    <a
+                        href="https://tools.google.com/dlpage/gaoptout/"
+                        target="_blank"
+                        >https://tools.google.com/dlpage/gaoptout</a
+                    >. השימוש שנעשה ע"י Google Analytics במידע שנאסף כפוף
+                    למדיניות הפרטיות של השירות ולא למדיניות הפרטיות של טסטלי.
+                </div>
+
+                <div class="tw-mb-5">
                     אין כל אחריות לאתר טסטלי לשאלות המופיעות באתר. השאלות לקוחות
                     מתוך "מאגר השאלות והתשובות למבחן הנהיגה העיוני" שפורסם על
                     ידי משרד התחבורה. הזכויות לשאלות הללו הן של מדינת ישראל
@@ -50,3 +69,10 @@ export default {
     name: "privacy-policy"
 };
 </script>
+
+<style scoped>
+a {
+    color: #0000ee;
+    @apply break-words;
+}
+</style>

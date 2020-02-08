@@ -4,7 +4,7 @@
         style="margin-left: 30px"
     >
         <div
-            class="tw-flex tw-h-full tw-my-auto tw-items-center"
+            class="tw-flex tw-h-full tw-my-auto tw-items-center tw-cursor-pointer"
             @click="toggleBurger"
         >
             <svg
@@ -36,7 +36,7 @@
                     style="height: var(--header-height)"
                 >
                     <div
-                        class="tw-flex tw-h-full tw-my-auto tw-items-center"
+                        class="tw-flex tw-h-full tw-my-auto tw-items-center tw-cursor-pointer"
                         @click="toggleBurger"
                     >
                         <svg width="30" height="30">
