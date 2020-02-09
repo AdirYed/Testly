@@ -2,7 +2,7 @@
     <div
         class="tw-container tw-mx-auto tw-pt-8 md:tw-pt-10 tw-px-6 md:tw-px-10 tw-leading-relaxed"
     >
-        <vue-headful title="טסטלי - מדיניות פרטיות" />
+        <vue-headful title="טסטלי - מבחני תאוריה - מדיניות פרטיות" />
 
         <div>
             <div

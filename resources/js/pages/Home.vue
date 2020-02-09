@@ -1,6 +1,6 @@
 <template>
     <div>
-        <vue-headful title="טסטלי" />
+        <vue-headful title="טסטלי - מבחני תאוריה" />
 
         <div
             id="home-img-section"
@@ -19,7 +19,7 @@
             </div>
 
             <h1 class="tw-text-2xl md:tw-text-3xl tw-text-center tw-text-white">
-                דימוי מבחני תאוריה בחינם!
+                סימולציית מבחני תאוריה בחינם!
             </h1>
 
             <div class="tw-text-center tw-mt-5">

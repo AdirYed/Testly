@@ -45,7 +45,7 @@
             </h1>
 
             <template v-if="!isLoading">
-                <vue-headful title="טסטלי - תוצאות מבחנים" />
+                <vue-headful title="טסטלי - מבחני תאוריה - תוצאות מבחנים" />
 
                 <div
                     v-if="question"
@@ -277,7 +277,7 @@
             </template>
 
             <div v-else-if="error === 'uuid'" class="tw-pt-5">
-                <vue-headful title="טסטלי - שגיאה" />
+                <vue-headful title="טסטלי - מבחני תאוריה - שגיאה" />
 
                 <div class="tw-text-xl">
                     מבחן זה אינו קיים במערכת.

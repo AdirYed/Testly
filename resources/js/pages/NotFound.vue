@@ -3,7 +3,7 @@
         class="tw-container tw-mx-auto"
         style="max-width: 740px; padding: 2rem 2.5rem"
     >
-        <vue-headful title="טסטלי - שגיאה 404" />
+        <vue-headful title="טסטלי - מבחני תאוריה - שגיאה 404" />
 
         <h1 class="tw-text-3xl tw-font-bold">
             שגיאה 404

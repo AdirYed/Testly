@@ -40,7 +40,7 @@
             <template v-if="!isLoading && drivingLicenseType">
                 <vue-headful
                     :title="
-                        'טסטלי - מבחן ' +
+                        'טסטלי - מבחני תאוריה - מבחן ' +
                             drivingLicenseType.name +
                             ' (' +
                             drivingLicenseType.code +
@@ -310,7 +310,7 @@
             </template>
 
             <div v-else-if="drivingLicenseType === false" class="tw-pt-5">
-                <vue-headful title="טסטלי - שגיאה" />
+                <vue-headful title="טסטלי - מבחני תאוריה - שגיאה" />
 
                 <div class="tw-text-xl">
                     רישיון זה אינו קיים, נא לבחור אחד
