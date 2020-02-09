@@ -19,7 +19,7 @@
             </div>
 
             <h1 class="tw-text-2xl md:tw-text-3xl tw-text-center tw-text-white">
-                סימולציית מבחני תאוריה בחינם!
+                דימוי מבחני תאוריה בחינם!
             </h1>
 
             <div class="tw-text-center tw-mt-5">
