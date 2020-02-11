@@ -41,7 +41,7 @@ Vue.use(AxiosPlugin);
 Vue.use(VueRouter);
 Vue.use(Toast, options);
 Vue.use(VueAnalytics, {
-    id: "UA-157733827-2",
+    id: process.env.MIX_GOOGLE_ANALYTICS_ID,
     checkDuplicatedScript: true,
     router,
     autoTracking: {
