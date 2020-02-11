@@ -424,6 +424,47 @@ export default {
                 this.$toast(SaveTest);
                 this.saveTestNotification = true;
             }
+
+            this.$ga.event(
+                "Tests",
+                "Complete Test",
+                this.drivingLicenseType.code,
+                this.rightAnswersAmount
+            );
+        },
+
+        fetchQuestions() {
+            this.$axios
+                .get(
+                    `/driving-license-types/${this.$route.params.drivingLicenseType}/questions/random`
+                )
+                .then(response => {
+                    let data = response.data;
+
+                    data["questions"].forEach(function(currQuestion) {
+                        currQuestion["chosen_answer_id"] = null;
+                    });
+
+                    this.quiz = data["questions"];
+
+                    if (!this.drivingLicenseType) {
+                        this.drivingLicenseType = data["driving_license_type"];
+                    }
+
+                    this.$ga.event(
+                        "Tests",
+                        "Start Test",
+                        this.drivingLicenseType.code
+                    );
+                })
+                .catch(error => {
+                    if (
+                        error.response.status === 422 &&
+                        error.response.data.error === "driving_license_type"
+                    ) {
+                        this.drivingLicenseType = false;
+                    }
+                });
         },
 
         currentQuestion(index) {
@@ -479,34 +520,6 @@ export default {
                     width: (data.totalMilliseconds / this.time) * 100 + "%"
                 };
             }
-        },
-
-        fetchQuestions() {
-            this.$axios
-                .get(
-                    `/driving-license-types/${this.$route.params.drivingLicenseType}/questions/random`
-                )
-                .then(response => {
-                    let data = response.data;
-
-                    data["questions"].forEach(function(currQuestion) {
-                        currQuestion["chosen_answer_id"] = null;
-                    });
-
-                    this.quiz = data["questions"];
-
-                    if (!this.drivingLicenseType) {
-                        this.drivingLicenseType = data["driving_license_type"];
-                    }
-                })
-                .catch(error => {
-                    if (
-                        error.response.status === 422 &&
-                        error.response.data.error === "driving_license_type"
-                    ) {
-                        this.drivingLicenseType = false;
-                    }
-                });
         }
     },
 

@@ -41,7 +41,10 @@ Vue.use(Toast, options);
 Vue.use(VueAnalytics, {
     id: "UA-157733827-2",
     checkDuplicatedScript: true,
-    router
+    router,
+    autoTracking: {
+        exception: true
+    }
 });
 
 Vue.config.productionTip = false;
