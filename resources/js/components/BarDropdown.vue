@@ -32,7 +32,7 @@
         <div
             v-if="isOpen"
             class="tw-absolute tw-py-1 tw-w-56 tw-bg-white tw-rounded tw-border"
-            style="border-color: rgba(0, 0, 0, 0.25); left: 50%; margin-left: -6rem"
+            style="border-color: rgba(0, 0, 0, 0.25); left: 50%; margin-left: -7rem"
             @click="isOpen = false"
         >
             <slot />

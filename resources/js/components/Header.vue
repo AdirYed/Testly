@@ -62,7 +62,11 @@
             >
                 <template slot="title">
                     <fa-icon icon="user" />
-                    {{ $store.state.user.first_name }}
+                    {{
+                        $store.state.user.first_name.length > 12
+                            ? $store.state.user.first_name.substr(0, 12) + "..."
+                            : $store.state.user.first_name
+                    }}
                 </template>
 
                 <router-link

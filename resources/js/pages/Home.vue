@@ -38,7 +38,7 @@
             class="tw-container tw-mx-auto"
         >
             <div class="tw-px-4 tw-py-8">
-                <h1 class="tw-text-xl md:tw-text-3xl">
+                <h1 class="tw-text-xl md:tw-text-3xl tw-break-words">
                     <template v-if="!$store.getters.isLoggedIn">
                         כדאי
                         <router-link class="link" :to="{ name: 'register' }"
