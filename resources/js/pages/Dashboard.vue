@@ -5,7 +5,7 @@
         <vue-headful title="טסטלי - מבחני תאוריה - הפרופיל שלי" />
 
         <div
-            class="tw-text-2xl md:tw-text-3xl tw-font-semibold tw-text-center tw-mb-5"
+            class="tw-text-2xl md:tw-text-3xl tw-font-semibold tw-text-center tw-mb-5 tw-break-words"
         >
             {{ $store.state.user.first_name }}
             {{ $store.state.user.last_name }}

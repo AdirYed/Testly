@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 
-        <title>טסטלי - סימולציית מבחני תאוריה</title>
+        <title>טסטלי - מבחני תאוריה</title>
 
         <link rel="icon" href="{{ URL::asset('/assets/icon.png') }}" type="image/x-icon"/>
         <link rel="stylesheet" href="{{ mix('/css/app.css') }}">
