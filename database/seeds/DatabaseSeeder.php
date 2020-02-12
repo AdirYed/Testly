@@ -6,7 +6,10 @@ class DatabaseSeeder extends Seeder
 {
     public function run()
     {
-        $this->call(UserSeeder::class);
+        if(config('app.env') !== 'local') {
+            $this->call(UserSeeder::class);
+        }
+
         $this->call(DrivingLicenseTypeSeeder::class);
     }
 }

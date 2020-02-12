@@ -132,8 +132,8 @@ export default {
     data() {
         return {
             auth: {
-                email: "matan.yed@gmail.com",
-                password: "secret"
+                email: "",
+                password: ""
             },
 
             isLoading: false,

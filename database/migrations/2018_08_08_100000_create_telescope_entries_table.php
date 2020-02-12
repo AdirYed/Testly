@@ -32,6 +32,10 @@ class CreateTelescopeEntriesTable extends Migration
      */
     public function up()
     {
+        if(config('app.env') !== 'local') {
+            return;
+        }
+
         $this->schema->create('telescope_entries', function (Blueprint $table) {
             $table->bigIncrements('sequence');
             $table->uuid('uuid');
