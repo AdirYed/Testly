@@ -2,7 +2,10 @@
     <div
         class="tw-container tw-mx-auto tw-pt-8 md:tw-pt-10 tw-px-6 md:tw-px-10"
     >
-        <vue-headful title="טסטלי - מבחני תאוריה - איפוס סיסמה" />
+        <vue-headful
+            title="טסטלי - מבחני תאוריה - איפוס סיסמה"
+            description="טסטלי מבחני תאוריה. האתר מספק סימולציית מבחני תאוריה לכל הרישיונות באופן חדשני, מקצועי, איכותי וחינמי! שכחת את סיסמתך?"
+        />
 
         <div class="tw-text-2xl md:tw-text-3xl tw-font-semibold tw-text-center">
             שכחת את הסיסמה?

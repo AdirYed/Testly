@@ -2,7 +2,10 @@
     <div
         class="tw-container tw-mx-auto tw-pt-8 md:tw-pt-10 tw-px-6 md:tw-px-10 tw-leading-relaxed"
     >
-        <vue-headful title="טסטלי - מבחני תאוריה - מדיניות פרטיות" />
+        <vue-headful
+            title="טסטלי - מבחני תאוריה - מדיניות פרטיות"
+            description="טסטלי מבחני תאוריה. האתר מספק סימולציית מבחני תאוריה לכל הרישיונות באופן חדשני, מקצועי, איכותי וחינמי! מדיניות הפרטיות של טסטלי."
+        />
 
         <div>
             <div
