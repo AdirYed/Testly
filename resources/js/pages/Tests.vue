@@ -80,7 +80,7 @@
                                     v-for="(response, index) in answers"
                                 >
                                     <label
-                                        class="tw-block tw-p-2 tw-border tw-border-transparent tw-rounded tw-w-full"
+                                        class="tw-block tw-p-2 tw-border tw-rounded tw-w-full sm:tw-border-transparent tw-border-primary sm:tw-text-base tw-text-sm"
                                         :class="{
                                             'options tw-cursor-pointer':
                                                 question['chosen_answer_id'] !==
@@ -89,7 +89,7 @@
                                                 question['chosen_answer_id'] ===
                                                 index,
                                             // score
-                                            'tw-text-green-700 tw-font-bold tw-border-primary':
+                                            'tw-text-green-700 tw-font-bold sm:tw-border-primary':
                                                 !counting &&
                                                 response['is_correct'],
                                             'tw-text-red-500 tw-font-bold':
