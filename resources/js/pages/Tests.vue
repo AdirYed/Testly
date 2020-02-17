@@ -46,6 +46,13 @@
                             drivingLicenseType.code +
                             ')'
                     "
+                    :description="
+                        'טסטלי מבחני תאוריה. האתר מספק סימולציית מבחני תאוריה לכל הרישיונות באופן חדשני, מקצועי, איכותי וחינמי! מבחן ' +
+                            drivingLicenseType.name +
+                            ' (' +
+                            drivingLicenseType.code +
+                            ') בטסטלי'
+                    "
                 />
 
                 <div
@@ -310,7 +317,10 @@
             </template>
 
             <div v-else-if="drivingLicenseType === false" class="tw-pt-5">
-                <vue-headful title="טסטלי - מבחני תאוריה - שגיאה" />
+                <vue-headful
+                    title="טסטלי - מבחני תאוריה - שגיאה"
+                    description="טסטלי מבחני תאוריה. האתר מספק סימולציית מבחני תאוריה לכל הרישיונות באופן חדשני, מקצועי, איכותי וחינמי! לא נמצא מבחן בטסטלי."
+                />
 
                 <div class="tw-text-xl">
                     רישיון זה אינו קיים, נא לבחור אחד
