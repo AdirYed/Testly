@@ -75,14 +75,14 @@
                                     v-for="(response, index) in answers"
                                 >
                                     <label
-                                        class="tw-block tw-p-2 tw-border tw-rounded tw-w-full sm:tw-border-transparent tw-border-primary sm:tw-text-base tw-text-sm"
+                                        class="tw-block tw-p-2 tw-border tw-rounded tw-w-full md:tw-border-transparent tw-border-primary md:tw-text-base tw-text-sm"
                                         :class="{
                                             'tw-bg-primary':
                                                 quiz.test_report_answers[
                                                     currQuestion - 1
                                                 ]['answer_id'] === response.id,
                                             // score
-                                            'tw-text-green-700 tw-font-bold sm:tw-border-primary':
+                                            'tw-text-green-700 tw-font-bold md:tw-border-primary':
                                                 response['is_correct'],
                                             'tw-text-red-500 tw-font-bold':
                                                 !response['is_correct'] &&
