@@ -37,7 +37,7 @@ class ForgotPasswordNotification extends Notification
 
         return (new MailMessage)
             ->subject('איפוס סיסמה Testly')
-            ->markdown('email.forgotPassword', ['forgotPasswordUrl' => url($forgotPasswordUrl)]);
+            ->markdown('email.forgotPassword', ['forgotPasswordUrl' => $forgotPasswordUrl]);
     }
 
     public function toDatabase(User $notifiable)
