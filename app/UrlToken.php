@@ -57,11 +57,11 @@ class UrlToken extends Model
 
     public static function verifyUrl(string $token): string
     {
-        return url("/verify?token=$token");
+        return url("/verify?token=$token", [], Str::startsWith(config('app.url'), 'https'));
     }
 
     public static function forgotPasswordUrl(string $token): string
     {
-        return url("/reset-password?token=$token");
+        return url("/reset-password?token=$token", [], Str::startsWith(config('app.url'), 'https'));
     }
 }
