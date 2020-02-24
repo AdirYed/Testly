@@ -37,13 +37,7 @@ class ForgotPasswordNotification extends Notification
 
         return (new MailMessage)
             ->subject('איפוס סיסמה Testly')
-            ->greeting('איפוס סיסמה')
-            ->line('ביקשת לאפס את סיסמתך ב Testly. נא ללחוץ על הלינק למטה כדי לסיים את האיפוס.')
-            ->action('איפוס סיסמה', url($forgotPasswordUrl))
-            ->line('אם אינך יכול ללחוץ על הקישור שלמעלה, פשוט העתק והדבק את הקישור הבא בדפדפן שלך.')
-            ->line(url($forgotPasswordUrl))
-            ->line('הלינק בתוקף רק ליום אחד. אם התוקף יפוג, תוכל לבקש אחד חדש.')
-            ->line('אם לא הגשת בקשה זו, נא התעלם מאימייל זה ומחק אותו.');
+            ->markdown('email.forgotPassword', ['forgotPasswordUrl' => url($forgotPasswordUrl)]);
     }
 
     public function toDatabase(User $notifiable)
