@@ -6,8 +6,8 @@
   !*** ./node_modules/scroll-behavior-polyfill/dist/index.js ***!
   \*************************************************************/
       /*! no static exports found */
-      /***/ function(module, exports) {
-        (function() {
+      /***/ function (module, exports) {
+        (function () {
           "use strict";
 
           var UNSUPPORTED_ENVIRONMENT = typeof window === "undefined";
@@ -35,7 +35,7 @@
     and limitations under the License.
     ***************************************************************************** */
 
-          var __assign = function() {
+          var __assign = function () {
             __assign =
               Object.assign ||
               function __assign(t) {
@@ -207,7 +207,7 @@
           }
 
           var NOOP = {
-            reset: function() {}
+            reset: function () {},
           };
           var map = typeof WeakMap === "undefined" ? undefined : new WeakMap();
           function disableScrollSnap(scroller) {
@@ -328,7 +328,7 @@
               release();
             }
             function reset() {
-              setTimeout(function() {
+              setTimeout(function () {
                 if (hasReleased) return;
                 eventTarget.addEventListener("scroll", resetHandler);
               });
@@ -339,10 +339,10 @@
               cachedScrollBehaviorStyleAttributeValue: cachedScrollBehaviorStyleAttributeValue,
               secondaryScroller: secondaryScroller,
               secondaryScrollerCachedScrollSnapValue: secondaryScrollerCachedScrollSnapValue,
-              secondaryScrollerCachedScrollBehaviorStyleAttributeValue: secondaryScrollerCachedScrollBehaviorStyleAttributeValue
+              secondaryScrollerCachedScrollBehaviorStyleAttributeValue: secondaryScrollerCachedScrollBehaviorStyleAttributeValue,
             });
             return {
-              reset: reset
+              reset: reset,
             };
           }
 
@@ -529,7 +529,7 @@
                 method: getOriginalScrollMethodForKind("scrollTo", window).bind(
                   window
                 ),
-                scroller: getScrollingElement()
+                scroller: getScrollingElement(),
               };
             } else {
               var scrollLeft = element.scrollLeft,
@@ -546,7 +546,7 @@
                   "scrollTo",
                   element
                 ).bind(element),
-                scroller: element
+                scroller: element,
               };
             }
           }
@@ -620,7 +620,7 @@
           function normalizeScrollCoordinates(x, y) {
             return {
               left: ensureNumeric(x),
-              top: ensureNumeric(y)
+              top: ensureNumeric(y),
             };
           }
           /**
@@ -652,7 +652,7 @@
                 ),
                 {
                   behavior:
-                    optionsOrX.behavior == null ? "auto" : optionsOrX.behavior
+                    optionsOrX.behavior == null ? "auto" : optionsOrX.behavior,
                 }
               );
             }
@@ -662,7 +662,7 @@
            * Patches the 'scroll' method on the Element prototype
            */
           function patchElementScroll() {
-            Element.prototype.scroll = function(optionsOrX, y) {
+            Element.prototype.scroll = function (optionsOrX, y) {
               handleScrollMethod(this, "scroll", optionsOrX, y);
             };
           }
@@ -671,7 +671,7 @@
            * Patches the 'scrollBy' method on the Element prototype
            */
           function patchElementScrollBy() {
-            Element.prototype.scrollBy = function(optionsOrX, y) {
+            Element.prototype.scrollBy = function (optionsOrX, y) {
               handleScrollMethod(this, "scrollBy", optionsOrX, y);
             };
           }
@@ -680,7 +680,7 @@
            * Patches the 'scrollTo' method on the Element prototype
            */
           function patchElementScrollTo() {
-            Element.prototype.scrollTo = function(optionsOrX, y) {
+            Element.prototype.scrollTo = function (optionsOrX, y) {
               handleScrollMethod(this, "scrollTo", optionsOrX, y);
             };
           }
@@ -689,7 +689,7 @@
            * Patches the 'scroll' method on the Window prototype
            */
           function patchWindowScroll() {
-            window.scroll = function(optionsOrX, y) {
+            window.scroll = function (optionsOrX, y) {
               handleScrollMethod(this, "scroll", optionsOrX, y);
             };
           }
@@ -698,7 +698,7 @@
            * Patches the 'scrollBy' method on the Window prototype
            */
           function patchWindowScrollBy() {
-            window.scrollBy = function(optionsOrX, y) {
+            window.scrollBy = function (optionsOrX, y) {
               handleScrollMethod(this, "scrollBy", optionsOrX, y);
             };
           }
@@ -707,7 +707,7 @@
            * Patches the 'scrollTo' method on the Window prototype
            */
           function patchWindowScrollTo() {
-            window.scrollTo = function(optionsOrX, y) {
+            window.scrollTo = function (optionsOrX, y) {
               handleScrollMethod(this, "scrollTo", optionsOrX, y);
             };
           }
@@ -854,7 +854,7 @@
            */
           function catchNavigation() {
             // Listen for 'click' events globally
-            window.addEventListener("click", function(e) {
+            window.addEventListener("click", function (e) {
               // Only work with trusted events on HTMLAnchorElements
               if (!e.isTrusted || !(e.target instanceof HTMLAnchorElement))
                 return;
@@ -891,7 +891,7 @@
               e.preventDefault();
               // Now, scroll to the element with that ID
               elementMatch.scrollIntoView({
-                behavior: behavior
+                behavior: behavior,
               });
             });
           }
@@ -1227,7 +1227,7 @@
             }
             return {
               top: blockScroll,
-              left: inlineScroll
+              left: inlineScroll,
             };
           }
 
@@ -1235,17 +1235,17 @@
            * Patches the 'scrollIntoView' method on the Element prototype
            */
           function patchElementScrollIntoView() {
-            Element.prototype.scrollIntoView = function(arg) {
+            Element.prototype.scrollIntoView = function (arg) {
               var normalizedOptions =
                 arg == null || arg === true
                   ? {
                       block: "start",
-                      inline: "nearest"
+                      inline: "nearest",
                     }
                   : arg === false
                   ? {
                       block: "end",
-                      inline: "nearest"
+                      inline: "nearest",
                     }
                   : arg;
               // Find the nearest ancestor that can be scrolled
@@ -1314,7 +1314,7 @@
            */
           function patchElementScrollTop() {
             Object.defineProperty(Element.prototype, "scrollTop", {
-              set: function(scrollTop) {
+              set: function (scrollTop) {
                 if (this.__adjustingScrollPosition) {
                   return ELEMENT_ORIGINAL_SCROLL_TOP_SET_DESCRIPTOR.call(
                     this,
@@ -1328,7 +1328,7 @@
                   scrollTop
                 );
                 return scrollTop;
-              }
+              },
             });
           }
 
@@ -1342,7 +1342,7 @@
            */
           function patchElementScrollLeft() {
             Object.defineProperty(Element.prototype, "scrollLeft", {
-              set: function(scrollLeft) {
+              set: function (scrollLeft) {
                 if (this.__adjustingScrollPosition) {
                   return ELEMENT_ORIGINAL_SCROLL_LEFT_SET_DESCRIPTOR.call(
                     this,
@@ -1356,7 +1356,7 @@
                   this.scrollTop
                 );
                 return scrollLeft;
-              }
+              },
             });
           }
 
@@ -1402,6 +1402,6 @@
         //# sourceMappingURL=index.js.map
 
         /***/
-      }
-  }
+      },
+  },
 ]);

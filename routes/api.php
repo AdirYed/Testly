@@ -5,8 +5,8 @@ use App\Http\Controllers\CategoryTypeController;
 use App\Http\Controllers\DrivingLicenseTypeController;
 use App\Http\Controllers\DrivingLicenseTypeQuestionController;
 use App\Http\Controllers\ForgotPasswordController;
+use App\Http\Controllers\ResendVerificationController;
 use App\Http\Controllers\TestReportController;
-use App\Notifications\VerifyUserNotification;
 use Illuminate\Support\Facades\Route;
 
 Route::group(['prefix' => 'driving-license-types'], static function () {
@@ -35,16 +35,7 @@ Route::group([
 
 Route::get('categories', [CategoryTypeController::class, 'index']);
 
-Route::post('resend-verification', function () {
-  /* @var \App\User $user */
-  $user = auth()->user();
-
-  if ($user->email_verified_at) {
-    return response()->json(['verified' => true], 422);
-  }
-
-  $user->notify(new VerifyUserNotification);
-});
+Route::post('resend-verification', [ResendVerificationController::class, 'resend']);
 
 Route::group(['prefix' => 'forgot-password'], static function () {
   Route::post('', [ForgotPasswordController::class, 'mail']);

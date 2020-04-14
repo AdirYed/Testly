@@ -2,9 +2,8 @@
   <div>
     על מנת לשמור את המבחן, נא
     <button @click="register()">
-      הירשם
-    </button>
-    .
+      הירשם</button
+    >.
   </div>
 </template>
 
@@ -23,7 +22,7 @@ export default {
     login() {
       this.$emit("close-toast");
       router.push({ name: "login" });
-    }
-  }
+    },
+  },
 };
 </script>

@@ -8,7 +8,9 @@ class DrivingLicenseTypeQuestionController extends Controller
 {
   public function random(string $drivingLicenseType)
   {
-    $drivingLicenseType = DrivingLicenseType::whereCode($drivingLicenseType)->first();
+    $drivingLicenseType = DrivingLicenseType::select(['id', 'code', 'name'])
+      ->whereCode($drivingLicenseType)
+      ->first();
 
     if (!$drivingLicenseType) {
       return response()->json(['error' => 'driving_license_type'], 422);
