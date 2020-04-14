@@ -38,17 +38,17 @@
         <vue-headful
           :description="
             'טסטלי מבחני תאוריה. האתר מספק סימולציית מבחני תאוריה לכל הרישיונות באופן חדשני, מקצועי, איכותי וחינמי! מבחן ' +
-              drivingLicenseType.name +
-              ' (' +
-              drivingLicenseType.code +
-              ') בטסטלי'
+            drivingLicenseType.name +
+            ' (' +
+            drivingLicenseType.code +
+            ') בטסטלי'
           "
           :title="
             'טסטלי - מבחני תאוריה - מבחן ' +
-              drivingLicenseType.name +
-              ' (' +
-              drivingLicenseType.code +
-              ')'
+            drivingLicenseType.name +
+            ' (' +
+            drivingLicenseType.code +
+            ')'
           "
         />
 
@@ -83,7 +83,7 @@
                       'tw-text-red-500 tw-font-bold':
                         !counting &&
                         !response['is_correct'] &&
-                        question['chosen_answer_id'] === index
+                        question['chosen_answer_id'] === index,
                     }"
                     :for="'q_' + currQuestion + '_a_' + index"
                     :key="'q_' + currQuestion + '_a_' + index"
@@ -110,7 +110,7 @@
               <div class="tw-my-2" v-if="img">
                 <div
                   :style="{
-                    'background-image': 'url(' + img + ')'
+                    'background-image': 'url(' + img + ')',
                   }"
                   class="questioning-img tw-mx-auto tw-h-32 lg:tw-h-48 tw-my-3"
                 ></div>
@@ -122,7 +122,7 @@
                 <div class="tw-mx-auto tw-my-2 tw-max-w-24 tw-text-center">
                   <div
                     :class="{
-                      'tw-border-2 tw-border-primary tw-rounded tw-py-3 tw-px-4 tw-text-md md:tw-text-xl': counting
+                      'tw-border-2 tw-border-primary tw-rounded tw-py-3 tw-px-4 tw-text-md md:tw-text-xl': counting,
                     }"
                   >
                     <theory-countdown
@@ -142,7 +142,7 @@
                     <div
                       :class="{
                         'tw-border-green-700': rightAnswersAmount >= 26,
-                        'tw-border-red-500': rightAnswersAmount < 26
+                        'tw-border-red-500': rightAnswersAmount < 26,
                       }"
                       class="tw-border tw-border-transparent tw-p-4 tw-rounded"
                     >
@@ -170,7 +170,7 @@
                 >
                   <button
                     :class="{
-                      'btn-disabled': lowerThanZero()
+                      'btn-disabled': lowerThanZero(),
                     }"
                     :disabled="lowerThanZero()"
                     @click="prev()"
@@ -202,7 +202,7 @@
 
                   <button
                     :class="{
-                      'btn-disabled': higherThanThirty()
+                      'btn-disabled': higherThanThirty(),
                     }"
                     :disabled="higherThanThirty()"
                     @click="next()"
@@ -220,7 +220,7 @@
 
           <aside
             class="tw-hidden lg:tw-block lg:tw-w-3/12 xl:tw-w-2/12"
-            style="direction: ltr"
+            style="direction: ltr;"
           >
             <section
               class="tw-border tw-py-3 tw-rounded"
@@ -228,7 +228,7 @@
             >
               <div
                 class="tw-flex tw-flex-wrap tw-justify-between tw-mx-auto"
-                style="width: 90%"
+                style="width: 90%;"
               >
                 <button
                   :class="{
@@ -250,11 +250,11 @@
                       !counting &&
                       rightAnswer(n) !== quiz[n]['chosen_answer_id'] &&
                       quiz[n]['chosen_answer_id'] !== null,
-                    'tw-border-primary': i === currQuestion && !counting
+                    'tw-border-primary': i === currQuestion && !counting,
                   }"
                   @click="currentQuestion(n)"
                   class="questions tw-py-2 tw-my-1 tw-text-center tw-border tw-border-transparent tw-rounded tw-text-sm"
-                  style="width: 45%"
+                  style="width: 45%;"
                   v-for="(i, n) in quiz.length"
                 >
                   שאלה {{ i }}
@@ -304,7 +304,7 @@ export default {
   name: "tests",
 
   components: {
-    "theory-countdown": VueCountdown
+    "theory-countdown": VueCountdown,
   },
 
   data() {
@@ -319,13 +319,15 @@ export default {
       counting: true,
       time: 40 * 60 * 1000,
       progressBarStyle: {
-        width: "100%"
+        width: "100%",
       },
 
       startedDate: null,
       finishedDate: null,
 
-      saveTestNotification: false
+      saveTestNotification: false,
+
+      fetchingQuestions: false,
     };
   },
 
@@ -333,7 +335,7 @@ export default {
     restart() {
       this.fetchQuestions();
 
-      this.quiz.forEach(quiz => {
+      this.quiz.forEach((quiz) => {
         // clears the previous quiz's answered questions.
         quiz.chosen_answer_id = null;
       });
@@ -372,7 +374,7 @@ export default {
         started_at: this.startedDate,
         finished_at: this.finishedDate,
         driving_license_type_id: this.drivingLicenseType.id,
-        answers: []
+        answers: [],
       };
 
       for (let i = 0; i < this.quiz.length; i++) {
@@ -380,7 +382,7 @@ export default {
           question_id: this.quiz[i].id,
           answer_id: this.quiz[i].chosen_answer_id
             ? this.quiz[i].answers[this.quiz[i].chosen_answer_id - 1].id
-            : null
+            : null,
         });
       }
 
@@ -400,14 +402,20 @@ export default {
     },
 
     fetchQuestions() {
+      if (this.fetchingQuestions) {
+        return;
+      }
+
+      this.fetchingQuestions = true;
+
       this.$axios
         .get(
           `/driving-license-types/${this.$route.params.drivingLicenseType}/questions/random`
         )
-        .then(response => {
+        .then((response) => {
           let data = response.data;
 
-          data["questions"].forEach(function(currQuestion) {
+          data["questions"].forEach(function (currQuestion) {
             currQuestion["chosen_answer_id"] = null;
           });
 
@@ -418,14 +426,18 @@ export default {
           }
 
           this.$ga.event("Tests", "Start Test", this.drivingLicenseType.code);
+
+          this.fetchingQuestions = false;
         })
-        .catch(error => {
+        .catch((error) => {
           if (
             error.response.status === 422 &&
             error.response.data.error === "driving_license_type"
           ) {
             this.drivingLicenseType = false;
           }
+
+          this.fetchingQuestions = false;
         });
     },
 
@@ -479,10 +491,10 @@ export default {
     handleCountdownProgress(data) {
       if (this.counting) {
         this.progressBarStyle = {
-          width: (data.totalMilliseconds / this.time) * 100 + "%"
+          width: (data.totalMilliseconds / this.time) * 100 + "%",
         };
       }
-    }
+    },
   },
 
   computed: {
@@ -512,14 +524,14 @@ export default {
 
     isLoading() {
       return Array.isArray(this.quiz) && this.quiz.length <= 0;
-    }
+    },
   },
 
   created() {
     this.fetchQuestions();
 
     this.startedDate = new Date();
-  }
+  },
 };
 </script>
 
