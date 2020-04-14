@@ -5,9 +5,9 @@ namespace App\Exceptions;
 use Exception;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
-use Symfony\Component\Debug\Exception\FatalThrowableError;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Exception\RouteNotFoundException;
+use Throwable;
 
 class Handler extends ExceptionHandler
 {
@@ -36,7 +36,7 @@ class Handler extends ExceptionHandler
    * @param \Exception $exception
    * @throws Exception
    */
-  public function report(Exception $exception)
+  public function report(Throwable $exception)
   {
     parent::report($exception);
   }
@@ -50,7 +50,7 @@ class Handler extends ExceptionHandler
    * @return \Illuminate\Http\Response|\Symfony\Component\HttpFoundation\Response
    * @throws Exception
    */
-  public function render($request, Exception $exception)
+  public function render($request, Throwable $exception)
   {
     if (in_array('api', $request->route()->middleware())) {
       $request->headers->add([
@@ -59,7 +59,7 @@ class Handler extends ExceptionHandler
       ]);
     }
 
-    if ($exception instanceof NotFoundHttpException || $exception instanceof ModelNotFoundException || $exception instanceof RouteNotFoundException || $exception instanceof FatalThrowableError) {
+    if ($exception instanceof NotFoundHttpException || $exception instanceof ModelNotFoundException || $exception instanceof RouteNotFoundException) {
       return response()->view('app');
     }
 
