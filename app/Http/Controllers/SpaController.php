@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 class SpaController extends Controller
 {
-    public function index()
-    {
-        return view('app');
-    }
+  public function index()
+  {
+    return view('app');
+  }
 }

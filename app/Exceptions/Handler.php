@@ -11,58 +11,58 @@ use Symfony\Component\Routing\Exception\RouteNotFoundException;
 
 class Handler extends ExceptionHandler
 {
-    /**
-     * A list of the exception types that are not reported.
-     *
-     * @var array
-     */
-    protected $dontReport = [
-        ModelNotFoundException::class,
-    ];
+  /**
+   * A list of the exception types that are not reported.
+   *
+   * @var array
+   */
+  protected $dontReport = [
+    ModelNotFoundException::class,
+  ];
 
-    /**
-     * A list of the inputs that are never flashed for validation exceptions.
-     *
-     * @var array
-     */
-    protected $dontFlash = [
-        'password',
-        'password_confirmation',
-    ];
+  /**
+   * A list of the inputs that are never flashed for validation exceptions.
+   *
+   * @var array
+   */
+  protected $dontFlash = [
+    'password',
+    'password_confirmation',
+  ];
 
-    /**
-     * Report or log an exception.
-     *
-     * @param \Exception $exception
-     * @throws Exception
-     */
-    public function report(Exception $exception)
-    {
-        parent::report($exception);
+  /**
+   * Report or log an exception.
+   *
+   * @param \Exception $exception
+   * @throws Exception
+   */
+  public function report(Exception $exception)
+  {
+    parent::report($exception);
+  }
+
+  /**
+   * Render an exception into an HTTP response.
+   *
+   * @param \Illuminate\Http\Request $request
+   * @param \Exception $exception
+   *
+   * @return \Illuminate\Http\Response|\Symfony\Component\HttpFoundation\Response
+   * @throws Exception
+   */
+  public function render($request, Exception $exception)
+  {
+    if (in_array('api', $request->route()->middleware())) {
+      $request->headers->add([
+        'Accept' => 'application/json',
+        'Content-Type' => 'application/json',
+      ]);
     }
 
-    /**
-     * Render an exception into an HTTP response.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @param \Exception $exception
-     *
-     * @return \Illuminate\Http\Response|\Symfony\Component\HttpFoundation\Response
-     * @throws Exception
-     */
-    public function render($request, Exception $exception)
-    {
-        if (in_array('api', $request->route()->middleware())) {
-            $request->headers->add([
-                'Accept' => 'application/json',
-                'Content-Type' => 'application/json',
-            ]);
-        }
-
-        if ($exception instanceof NotFoundHttpException || $exception instanceof ModelNotFoundException || $exception instanceof RouteNotFoundException || $exception instanceof FatalThrowableError) {
-            return response()->view('app');
-        }
-
-        return parent::render($request, $exception);
+    if ($exception instanceof NotFoundHttpException || $exception instanceof ModelNotFoundException || $exception instanceof RouteNotFoundException || $exception instanceof FatalThrowableError) {
+      return response()->view('app');
     }
+
+    return parent::render($request, $exception);
+  }
 }

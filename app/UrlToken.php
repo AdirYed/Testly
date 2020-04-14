@@ -31,37 +31,35 @@ use Illuminate\Support\Str;
  */
 class UrlToken extends Model
 {
-    protected $fillable = [
-        'type',
-        'token',
-        'user_id',
-        'expires_at',
-    ];
+  public const TYPE_VERIFICATION = 'verification';
+  public const TYPE_FORGOT_PASSWORD = 'forgot_password';
+  protected $fillable = [
+    'type',
+    'token',
+    'user_id',
+    'expires_at',
+  ];
+  protected $casts = [
+    'expires_at' => 'datetime',
+  ];
 
-    protected $casts = [
-        'expires_at' => 'datetime',
-    ];
+  public static function createToken(): string
+  {
+    return Str::uuid()->toString();
+  }
 
-    public const TYPE_VERIFICATION = 'verification';
-    public const TYPE_FORGOT_PASSWORD = 'forgot_password';
+  public static function verifyUrl(string $token): string
+  {
+    return url("/verify?token=$token", [], Str::startsWith(config('app.url'), 'https'));
+  }
 
-    public function user(): BelongsTo
-    {
-        return $this->belongsTo(User::class);
-    }
+  public static function forgotPasswordUrl(string $token): string
+  {
+    return url("/reset-password?token=$token", [], Str::startsWith(config('app.url'), 'https'));
+  }
 
-    public static function createToken(): string
-    {
-        return Str::uuid()->toString();
-    }
-
-    public static function verifyUrl(string $token): string
-    {
-        return url("/verify?token=$token", [], Str::startsWith(config('app.url'), 'https'));
-    }
-
-    public static function forgotPasswordUrl(string $token): string
-    {
-        return url("/reset-password?token=$token", [], Str::startsWith(config('app.url'), 'https'));
-    }
+  public function user(): BelongsTo
+  {
+    return $this->belongsTo(User::class);
+  }
 }

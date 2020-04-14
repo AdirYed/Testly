@@ -30,24 +30,24 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  */
 class TestReportAnswer extends Model
 {
-    protected $fillable = [
-        'test_report_id',
-        'question_id',
-        'answer_id',
-    ];
+  protected $fillable = [
+    'test_report_id',
+    'question_id',
+    'answer_id',
+  ];
 
-    public function testReport(): BelongsTo
-    {
-        return $this->belongsTo(TestReport::class);
-    }
+  public function testReport(): BelongsTo
+  {
+    return $this->belongsTo(TestReport::class);
+  }
 
-    public function question(): BelongsTo
-    {
-        return $this->belongsTo(Question::class);
-    }
+  public function question(): BelongsTo
+  {
+    return $this->belongsTo(Question::class);
+  }
 
-    public function answer(): BelongsTo
-    {
-        return $this->belongsTo(Answer::class);
-    }
+  public function answer(): BelongsTo
+  {
+    return $this->belongsTo(Answer::class);
+  }
 }

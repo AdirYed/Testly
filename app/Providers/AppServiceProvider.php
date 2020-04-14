@@ -8,22 +8,22 @@ use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
-    /**
-     * Register any application services.
-     */
-    public function register()
-    {
-        if ($this->app->isLocal()) {
-            $this->app->register(TelescopeServiceProvider::class);
-        }
+  /**
+   * Register any application services.
+   */
+  public function register()
+  {
+    if ($this->app->isLocal()) {
+      $this->app->register(TelescopeServiceProvider::class);
     }
+  }
 
-    public function boot()
-    {
-        Collection::macro('append', function ($accessors) {
-            return $this->each(function (Model $model) use ($accessors) {
-                return $model->append($accessors);
-            });
-        });
-    }
+  public function boot()
+  {
+    Collection::macro('append', function ($accessors) {
+      return $this->each(function (Model $model) use ($accessors) {
+        return $model->append($accessors);
+      });
+    });
+  }
 }

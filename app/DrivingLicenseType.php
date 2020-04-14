@@ -31,18 +31,18 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
  */
 class DrivingLicenseType extends Model
 {
-    public $fillable = [
-        'code',
-        'name',
-    ];
+  public $fillable = [
+    'code',
+    'name',
+  ];
 
-    public function questions(): BelongsToMany
-    {
-        return $this->belongsToMany(Question::class);
-    }
+  public function questions(): BelongsToMany
+  {
+    return $this->belongsToMany(Question::class);
+  }
 
-    public function getRouteKeyName()
-    {
-        return 'code';
-    }
+  public function getRouteKeyName()
+  {
+    return 'code';
+  }
 }

@@ -42,75 +42,75 @@ use Illuminate\Support\Facades\Storage;
  */
 class Question extends Model
 {
-    protected $fillable = [
-        'title',
-        'image_url',
-        'original_id',
-        'category_id',
-    ];
+  protected $fillable = [
+    'title',
+    'image_url',
+    'original_id',
+    'category_id',
+  ];
 
-    public function category(): BelongsTo
-    {
-        return $this->belongsTo(Category::class);
+  public function category(): BelongsTo
+  {
+    return $this->belongsTo(Category::class);
+  }
+
+  public function correctAnswer(): HasOne
+  {
+    return $this->hasOne(Answer::class)->where('is_correct', true);
+  }
+
+  public function drivingLicenseTypes(): BelongsToMany
+  {
+    return $this->belongsToMany(DrivingLicenseType::class);
+  }
+
+  public function getCorrectAnswer(): Answer
+  {
+    if ($this->relationLoaded('answers')) {
+      return $this->answers->firstWhere('is_correct', true);
     }
 
-    public function answers(): HasMany
-    {
-        return $this->hasMany(Answer::class);
+    return $this->answers()->where('is_correct', true)->first();
+  }
+
+  public function answers(): HasMany
+  {
+    return $this->hasMany(Answer::class);
+  }
+
+  public function getFormattedImageUrlAttribute(): ?string
+  {
+    if ($this->image_url === null) {
+      return null;
     }
 
-    public function correctAnswer(): HasOne
-    {
-        return $this->hasOne(Answer::class)->where('is_correct', true);
+    if (Storage::exists("public/{$this->image_url}")) {
+      return Storage::url("public/{$this->image_url}");
     }
 
-    public function drivingLicenseTypes(): BelongsToMany
-    {
-        return $this->belongsToMany(DrivingLicenseType::class);
-    }
+    return $this->image_url;
+  }
 
-    public function getCorrectAnswer(): Answer
-    {
-        if ($this->relationLoaded('answers')) {
-            return $this->answers->firstWhere('is_correct', true);
-        }
+  public function scopeRandom(Builder $query): void
+  {
+    $query->select(['id', 'title', 'image_url'])
+      ->with([
+        'answers' => static function (HasMany $answersQuery) {
+          $answersQuery->select(['id', 'question_id', 'content', 'is_correct'])->inRandomOrder();
+        },
+      ])
+      ->limit(30)
+      ->inRandomOrder();
+  }
 
-        return $this->answers()->where('is_correct', true)->first();
-    }
-
-    public function getFormattedImageUrlAttribute(): ?string
-    {
-        if ($this->image_url === null) {
-            return null;
-        }
-
-        if (Storage::exists("public/{$this->image_url}")) {
-            return Storage::url("public/{$this->image_url}");
-        }
-
-        return $this->image_url;
-    }
-
-    public function scopeRandom(Builder $query): void
-    {
-        $query->select(['id', 'title', 'image_url'])
-            ->with([
-                'answers' => static function (HasMany $answersQuery) {
-                    $answersQuery->select(['id', 'question_id', 'content', 'is_correct'])->inRandomOrder();
-                },
-            ])
-            ->limit(30)
-            ->inRandomOrder();
-    }
-
-    /**
-     * Returns the original ID as a string with 4 leading zeros, for example:
-     * Original ID 55 (int) will be "0055" (string)
-     *
-     * @return string
-     */
-    public function getOriginalIdWithLeadingZeros(): string
-    {
-        return str_pad($this->original_id, 4, '0', STR_PAD_LEFT);
-    }
+  /**
+   * Returns the original ID as a string with 4 leading zeros, for example:
+   * Original ID 55 (int) will be "0055" (string)
+   *
+   * @return string
+   */
+  public function getOriginalIdWithLeadingZeros(): string
+  {
+    return str_pad($this->original_id, 4, '0', STR_PAD_LEFT);
+  }
 }

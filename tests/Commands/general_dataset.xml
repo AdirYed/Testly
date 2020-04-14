@@ -1,56 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
 <rss version="2.0"
-     xmlns:atom="http://www.w3.org/2005/Atom"><?xml-stylesheet type="text/css" href="http://tq.mot.gov.il/media/system/css/modal.css" type="text/css"?>
-    <channel>
-        <item>
-            <title>1759. האם אוטובוס הנוסע בנתיב שיועד לתחבורה ציבורית רשאי לעקוף רכב עוקף?</title>
-            <link></link>
-            <guid></guid>
-            <description>
-                <![CDATA[<div dir="rtl" style="text-align: right"><ul><li><span>רשאי, רק כאשר הרכב העוקף הוא רכב משא.</span></li><li><span>רשאי, רק בדרך שאינה עירונית.</span></li><li><span id="correctAnswer1759">רשאי.</span></li><li><span>רשאי, אם באוטובוס אין נוסעים.</span></li></ul><div style="padding-top: 4px;"><span><button type="button" onclick="var correctAnswer=document.getElementById('correctAnswer1759');correctAnswer.style.background='yellow'">הצג תשובה נכונה</button></span><br/><span style="float: left;">| «D» | </span></div></div>]]></description>
-            <author></author>
-            <category>הכרת הרכב</category>
-            <pubDate>09-11-2011 10:44:17</pubDate>
-        </item>
-        <item>
-            <title>1567. האם מותר לנהוג ברכב כבד כאשר לחץ האוויר במערכת הבלימה נמוך מן המינימום הנדרש?</title>
-            <link></link>
-            <guid></guid>
-            <description>
-                <![CDATA[<div dir="rtl" style="text-align: right"><ul><li><span id="correctAnswer1567">אסור.</span></li><li><span>מותר, אבל רק באישור שוטר או קצין.</span></li><li><span>מותר, אבל רק אם יכולת העצירה של הרכב טובה.</span></li><li><span>מותר, אם ברור לחלוטין שאין דליפה. </span></li></ul><div style="padding-top: 4px;"><span><button type="button" onclick="var correctAnswer=document.getElementById('correctAnswer1567');correctAnswer.style.background='yellow'">הצג תשובה נכונה</button></span><br/><span style="float: left;">| «C1» | «C» | «D» | </span></div></div>]]></description>
-            <author></author>
-            <category>חוקי התנועה</category>
-            <pubDate>09-11-2011 10:44:18</pubDate>
-        </item>
-        <item>
-            <title>1073. מה פירוש התמרור?</title>
-            <link></link>
-            <guid></guid>
-            <description>
-                <![CDATA[<div dir="rtl" style="text-align: right"><ul><li><span>המרחק עד הכביש הקרוב (בק"מ).</span></li><li><span id="correctAnswer1073">מספרה של דרך ראשית.</span></li><li><span>מספרה של דרך מהירה.</span></li><li><span>המרחק עד לצומת הקרוב (בק"מ). </span></li></ul><img src="http://tqpic.mot.gov.il/31073.jpg" style="width: 100%; padding: 0pt; border: 0pt none; outline: 0pt none;" alt="31073" title="31073" /><div style="padding-top: 4px;"><span><button type="button" onclick="var correctAnswer=document.getElementById('correctAnswer1073');correctAnswer.style.background='yellow'">הצג תשובה נכונה</button></span><br/><span style="float: left;">| «C1» | «C» | «D» | «A» | «1» | «B» | </span></div></div>]]></description>
-            <author></author>
-            <category>תמרורים</category>
-            <pubDate>09-11-2011 10:44:18</pubDate>
-        </item>
-        <item>
-            <title>0693. היכן תעצור כשבצומת שלפניך דולק ברמזור האור האדום?</title>
-            <link></link>
-            <guid></guid>
-            <description>
-                <![CDATA[<div dir="rtl" style="text-align: right"><ul><li><span>תעצור תמיד במקום שבו שדה הראייה הוא הטוב ביותר.</span></li><li><span>אחרי קו העצירה, ובאין קו עצירה – עצור לפני קו הצומת.</span></li><li><span>אחרי מעבר החצייה, ובאין מעבר חצייה – במקום שבו שדה הראייה הטוב ביותר.</span></li><li><span id="correctAnswer0693">לפני קו העצירה, ובאין קו עצירה - עצור לפני מעבר החצייה.</span></li></ul><div style="padding-top: 4px;"><span><button type="button" onclick="var correctAnswer=document.getElementById('correctAnswer0693');correctAnswer.style.background='yellow'">הצג תשובה נכונה</button></span><br/><span style="float: left;">| «C1» | «C» | «D» | «A» | «1» | «B» | </span></div></div>]]></description>
-            <author></author>
-            <category>בטיחות</category>
-            <pubDate>09-11-2011 10:44:18</pubDate>
-        </item>
-        <item>
-            <title>0368. איזה תמרור משמעותו "הולכי רגל בקרבת מקום"?</title>
-            <link></link>
-            <guid></guid>
-            <description>
-                <![CDATA[<div dir="rtl" style="text-align: right"><ul><li><span id="correctAnswer0368">136</span></li><li><span>135</span></li><li><span>226</span></li><li><span>306</span></li></ul><div style="padding-top: 4px;"><span><button type="button" onclick="var correctAnswer=document.getElementById('correctAnswer0368');correctAnswer.style.background='yellow'">הצג תשובה נכונה</button></span><br/><span style="float: left;">| «C1» | «C» | «D» | «A» | «1» | «B» | </span></div></div>]]></description>
-            <author></author>
-            <category>חוקי התנועה</category>
-            <pubDate>09-11-2011 10:44:18</pubDate>
-        </item>
-    </channel>
+><?xml-stylesheet type="text/css" href="http://tq.mot.gov.il/media/system/css/modal.css" type="text/css"?>
+  <channel>
+    <item>
+      <title>1759. האם אוטובוס הנוסע בנתיב שיועד לתחבורה ציבורית רשאי לעקוף רכב עוקף?</title>
+      <link></link>
+      <guid></guid>
+      <description>
+        <![CDATA[<div dir="rtl" style="text-align: right"><ul><li><span>רשאי, רק כאשר הרכב העוקף הוא רכב משא.</span></li><li><span>רשאי, רק בדרך שאינה עירונית.</span></li><li><span id="correctAnswer1759">רשאי.</span></li><li><span>רשאי, אם באוטובוס אין נוסעים.</span></li></ul><div style="padding-top: 4px;"><span><button type="button" onclick="var correctAnswer=document.getElementById('correctAnswer1759');correctAnswer.style.background='yellow'">הצג תשובה נכונה</button></span><br/><span style="float: left;">| «D» | </span></div></div>]]></description>
+      <author></author>
+      <category>הכרת הרכב</category>
+      <pubDate>09-11-2011 10:44:17</pubDate>
+    </item>
+    <item>
+      <title>1567. האם מותר לנהוג ברכב כבד כאשר לחץ האוויר במערכת הבלימה נמוך מן המינימום הנדרש?</title>
+      <link></link>
+      <guid></guid>
+      <description>
+        <![CDATA[<div dir="rtl" style="text-align: right"><ul><li><span id="correctAnswer1567">אסור.</span></li><li><span>מותר, אבל רק באישור שוטר או קצין.</span></li><li><span>מותר, אבל רק אם יכולת העצירה של הרכב טובה.</span></li><li><span>מותר, אם ברור לחלוטין שאין דליפה. </span></li></ul><div style="padding-top: 4px;"><span><button type="button" onclick="var correctAnswer=document.getElementById('correctAnswer1567');correctAnswer.style.background='yellow'">הצג תשובה נכונה</button></span><br/><span style="float: left;">| «C1» | «C» | «D» | </span></div></div>]]></description>
+      <author></author>
+      <category>חוקי התנועה</category>
+      <pubDate>09-11-2011 10:44:18</pubDate>
+    </item>
+    <item>
+      <title>1073. מה פירוש התמרור?</title>
+      <link></link>
+      <guid></guid>
+      <description>
+        <![CDATA[<div dir="rtl" style="text-align: right"><ul><li><span>המרחק עד הכביש הקרוב (בק"מ).</span></li><li><span id="correctAnswer1073">מספרה של דרך ראשית.</span></li><li><span>מספרה של דרך מהירה.</span></li><li><span>המרחק עד לצומת הקרוב (בק"מ). </span></li></ul><img src="http://tqpic.mot.gov.il/31073.jpg" style="width: 100%; padding: 0pt; border: 0pt none; outline: 0pt none;" alt="31073" title="31073" /><div style="padding-top: 4px;"><span><button type="button" onclick="var correctAnswer=document.getElementById('correctAnswer1073');correctAnswer.style.background='yellow'">הצג תשובה נכונה</button></span><br/><span style="float: left;">| «C1» | «C» | «D» | «A» | «1» | «B» | </span></div></div>]]></description>
+      <author></author>
+      <category>תמרורים</category>
+      <pubDate>09-11-2011 10:44:18</pubDate>
+    </item>
+    <item>
+      <title>0693. היכן תעצור כשבצומת שלפניך דולק ברמזור האור האדום?</title>
+      <link></link>
+      <guid></guid>
+      <description>
+        <![CDATA[<div dir="rtl" style="text-align: right"><ul><li><span>תעצור תמיד במקום שבו שדה הראייה הוא הטוב ביותר.</span></li><li><span>אחרי קו העצירה, ובאין קו עצירה – עצור לפני קו הצומת.</span></li><li><span>אחרי מעבר החצייה, ובאין מעבר חצייה – במקום שבו שדה הראייה הטוב ביותר.</span></li><li><span id="correctAnswer0693">לפני קו העצירה, ובאין קו עצירה - עצור לפני מעבר החצייה.</span></li></ul><div style="padding-top: 4px;"><span><button type="button" onclick="var correctAnswer=document.getElementById('correctAnswer0693');correctAnswer.style.background='yellow'">הצג תשובה נכונה</button></span><br/><span style="float: left;">| «C1» | «C» | «D» | «A» | «1» | «B» | </span></div></div>]]></description>
+      <author></author>
+      <category>בטיחות</category>
+      <pubDate>09-11-2011 10:44:18</pubDate>
+    </item>
+    <item>
+      <title>0368. איזה תמרור משמעותו "הולכי רגל בקרבת מקום"?</title>
+      <link></link>
+      <guid></guid>
+      <description>
+        <![CDATA[<div dir="rtl" style="text-align: right"><ul><li><span id="correctAnswer0368">136</span></li><li><span>135</span></li><li><span>226</span></li><li><span>306</span></li></ul><div style="padding-top: 4px;"><span><button type="button" onclick="var correctAnswer=document.getElementById('correctAnswer0368');correctAnswer.style.background='yellow'">הצג תשובה נכונה</button></span><br/><span style="float: left;">| «C1» | «C» | «D» | «A» | «1» | «B» | </span></div></div>]]></description>
+      <author></author>
+      <category>חוקי התנועה</category>
+      <pubDate>09-11-2011 10:44:18</pubDate>
+    </item>
+  </channel>
 </rss>

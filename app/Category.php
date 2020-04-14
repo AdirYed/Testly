@@ -25,12 +25,12 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  */
 class Category extends Model
 {
-    protected $fillable = [
-        'name',
-    ];
+  protected $fillable = [
+    'name',
+  ];
 
-    public function questions(): HasMany
-    {
-        return $this->hasMany(Question::class);
-    }
+  public function questions(): HasMany
+  {
+    return $this->hasMany(Question::class);
+  }
 }

@@ -1,28 +1,29 @@
 <template>
-    <div>
-        על מנת לשמור את המבחן, נא
-        <button @click="register()">
-            הירשם</button
-        >.
-    </div>
+  <div>
+    על מנת לשמור את המבחן, נא
+    <button @click="register()">
+      הירשם
+    </button>
+    .
+  </div>
 </template>
 
 <script>
 import router from "../routes";
 
 export default {
-    name: "save-test",
+  name: "save-test",
 
-    methods: {
-        register() {
-            this.$emit("close-toast");
-            router.push({ name: "register" });
-        },
+  methods: {
+    register() {
+      this.$emit("close-toast");
+      router.push({ name: "register" });
+    },
 
-        login() {
-            this.$emit("close-toast");
-            router.push({ name: "login" });
-        }
+    login() {
+      this.$emit("close-toast");
+      router.push({ name: "login" });
     }
+  }
 };
 </script>

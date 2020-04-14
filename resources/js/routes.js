@@ -14,123 +14,123 @@ import VueRouter from "vue-router";
 import store from "./store";
 
 const router = new VueRouter({
-    mode: "history",
+  mode: "history",
 
-    routes: [
-        {
-            path: "/",
-            component: Home,
-            name: "home"
-        },
+  routes: [
+    {
+      path: "/",
+      component: Home,
+      name: "home"
+    },
 
-        {
-            path: "/test/:drivingLicenseType",
-            component: Tests,
-            name: "tests"
-        },
+    {
+      path: "/test/:drivingLicenseType",
+      component: Tests,
+      name: "tests"
+    },
 
-        {
-            path: "/test/result/:uuid",
-            component: TestResult,
-            name: "test-result",
-            meta: {
-                authOnly: true
-            }
-        },
+    {
+      path: "/test/result/:uuid",
+      component: TestResult,
+      name: "test-result",
+      meta: {
+        authOnly: true
+      }
+    },
 
-        {
-            path: "/register",
-            component: Register,
-            name: "register",
-            meta: {
-                guestOnly: true
-            }
-        },
+    {
+      path: "/register",
+      component: Register,
+      name: "register",
+      meta: {
+        guestOnly: true
+      }
+    },
 
-        {
-            path: "/login",
-            component: Login,
-            name: "login",
-            meta: {
-                guestOnly: true
-            }
-        },
+    {
+      path: "/login",
+      component: Login,
+      name: "login",
+      meta: {
+        guestOnly: true
+      }
+    },
 
-        {
-            path: "/forgot-password",
-            component: ForgotPassword,
-            name: "forgot-password",
-            meta: {
-                guestOnly: true
-            }
-        },
+    {
+      path: "/forgot-password",
+      component: ForgotPassword,
+      name: "forgot-password",
+      meta: {
+        guestOnly: true
+      }
+    },
 
-        {
-            path: "/reset-password",
-            component: ResetPassword,
-            name: "reset-password",
-            meta: {
-                guestOnly: true
-            }
-        },
+    {
+      path: "/reset-password",
+      component: ResetPassword,
+      name: "reset-password",
+      meta: {
+        guestOnly: true
+      }
+    },
 
-        {
-            path: "/dashboard",
-            component: Dashboard,
-            name: "dashboard",
-            meta: {
-                authOnly: true
-            }
-        },
+    {
+      path: "/dashboard",
+      component: Dashboard,
+      name: "dashboard",
+      meta: {
+        authOnly: true
+      }
+    },
 
-        {
-            path: "/about-us",
-            component: AboutUs,
-            name: "about-us"
-        },
+    {
+      path: "/about-us",
+      component: AboutUs,
+      name: "about-us"
+    },
 
-        {
-            path: "/privacy-policy",
-            component: PrivacyPolicy,
-            name: "privacy-policy"
-        },
+    {
+      path: "/privacy-policy",
+      component: PrivacyPolicy,
+      name: "privacy-policy"
+    },
 
-        {
-            path: "*",
-            component: NotFound,
-            name: "not-found"
-        }
-    ],
-
-    scrollBehavior(to) {
-        if (to.hash) {
-            return {
-                selector: to.hash
-            };
-        }
+    {
+      path: "*",
+      component: NotFound,
+      name: "not-found"
     }
+  ],
+
+  scrollBehavior(to) {
+    if (to.hash) {
+      return {
+        selector: to.hash
+      };
+    }
+  }
 });
 
 router.beforeEach((to, from, next) => {
-    window.scrollTo(0, 0);
+  window.scrollTo(0, 0);
 
-    if (
-        to.matched.some(record => record.meta.guestOnly) &&
-        store.getters.isLoggedIn
-    ) {
-        next({ name: "home" });
-        return;
-    }
+  if (
+    to.matched.some(record => record.meta.guestOnly) &&
+    store.getters.isLoggedIn
+  ) {
+    next({ name: "home" });
+    return;
+  }
 
-    if (
-        to.matched.some(record => record.meta.authOnly) &&
-        !store.getters.isLoggedIn
-    ) {
-        next({ name: "home" });
-        return;
-    }
+  if (
+    to.matched.some(record => record.meta.authOnly) &&
+    !store.getters.isLoggedIn
+  ) {
+    next({ name: "home" });
+    return;
+  }
 
-    next();
+  next();
 });
 
 export default router;

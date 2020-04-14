@@ -18,284 +18,280 @@ use Storage;
 
 class ParseDatasetCommand extends Command
 {
-    protected $signature = 'dataset:parse {--without-images}';
+  private const IMAGES_DIRECTORY = 'question-images';
+  /**
+   * The amount of rows will be stored in every DB operation
+   *
+   * @var int
+   */
+  private const INSERT_CHUNK_SIZE = 25;
+  protected $signature = 'dataset:parse {--without-images}';
+  protected $description = 'Parse the dataset and store in the database';
+  /**
+   * @var array the images that should be stored
+   */
+  private $images = [];
 
-    protected $description = 'Parse the dataset and store in the database';
+  /** @var Carbon */
+  private $now;
 
-    private const IMAGES_DIRECTORY = 'question-images';
+  /** @var Collection */
+  private $dataset;
 
-    /**
-     * The amount of rows will be stored in every DB operation
-     *
-     * @var int
-     */
-    private const INSERT_CHUNK_SIZE = 25;
+  /** @var EloquentCollection */
+  private $drivingLicenseTypes;
 
-    /**
-     * @var array the images that should be stored
-     */
-    private $images = [];
+  /** @var EloquentCollection */
+  private $categories;
 
-    /** @var Carbon */
-    private $now;
+  /** @var EloquentCollection */
+  private $questions;
 
-    /** @var Collection */
-    private $dataset;
+  public function handle(): void
+  {
+    $startTime = microtime(true);
 
-    /** @var EloquentCollection */
-    private $drivingLicenseTypes;
+    $this->clearDb();
 
-    /** @var EloquentCollection */
-    private $categories;
+    $datasetPaths = [
+      config('theory_test.datasets.general'),
+      config('theory_test.datasets.a3'),
+    ];
 
-    /** @var EloquentCollection */
-    private $questions;
+    $this->dataset = $this->getMergedDatasets($datasetPaths);
 
-    public function handle(): void
-    {
-        $startTime = microtime(true);
+    $this->parseDataset();
 
-        $this->clearDb();
+    $this->info('Dataset parsed and stored in the database successfully!');
 
-        $datasetPaths = [
-            config('theory_test.datasets.general'),
-            config('theory_test.datasets.a3'),
-        ];
+    if ($this->shouldStoreImages()) {
+      $this->deleteStorage();
+      $this->storeImages();
 
-        $this->dataset = $this->getMergedDatasets($datasetPaths);
+      $this->info(PHP_EOL);
+      $this->info('All of the images were stored successfully!');
+    }
 
-        $this->parseDataset();
+    $finishTime = microtime(true);
+    $executionTimeSeconds = ($finishTime - $startTime);
 
-        $this->info('Dataset parsed and stored in the database successfully!');
+    $this->info('Command execution time: ' . $executionTimeSeconds);
+  }
+
+  private function clearDb(): void
+  {
+    Schema::disableForeignKeyConstraints();
+    Category::truncate();
+    Question::truncate();
+    Answer::truncate();
+    DB::table('driving_license_type_question')->truncate();
+    Schema::enableForeignKeyConstraints();
+  }
+
+  private function getMergedDatasets(array $paths): Collection
+  {
+    $mergedDatasets = collect();
+
+    foreach ($paths as $path) {
+      $mergedDatasets = $mergedDatasets->merge(
+        $this->getDataset($path)
+      );
+    }
+
+    return $mergedDatasets;
+  }
+
+  private function getDataset(string $path): Collection
+  {
+    $datasetSimpleXml = simplexml_load_file($path, 'SimpleXMLElement', LIBXML_NOCDATA);
+    $datasetJson = json_encode((array)$datasetSimpleXml->channel);
+
+    return collect(json_decode($datasetJson, true)['item'])->values();
+  }
+
+  private function parseDataset(): void
+  {
+    $this->drivingLicenseTypes = DrivingLicenseType::all();
+    $this->now = now();
+
+    $this->categories = $this->storeCategories();
+
+    $this->questions = $this->storeQuestions();
+
+    $this->attachQuestionsToDrivingLicenseTypes();
+
+    $this->storeAnswers();
+  }
+
+  private function storeCategories(): EloquentCollection
+  {
+    $categoriesData = $this->dataset->unique('category')->map(function (array $item): array {
+      return [
+        'name' => $item['category'],
+        'created_at' => $this->now,
+        'updated_at' => $this->now,
+      ];
+    })->toArray();
+
+    Category::insert($categoriesData);
+
+    return Category::all();
+  }
+
+  private function storeQuestions(): Collection
+  {
+    $this->dataset->map(function (array $item): array {
+      preg_match('/(?<original_id>\d+)(\.)(?<title>.+)/', $item['title'], $matches);
+
+      $data = [
+        'title' => trim(htmlspecialchars_decode($matches['title'])),
+        'image_url' => null,
+        'original_id' => intval($matches['original_id']),
+        'category_id' => $this->categories->firstWhere('name', $item['category'])->id,
+        'created_at' => $this->now,
+        'updated_at' => $this->now,
+      ];
+
+      $html = simplexml_load_string($item['description']);
+
+      if (isset($html->img['src'])) {
+        $url = (string)$html->img['src'];
 
         if ($this->shouldStoreImages()) {
-            $this->deleteStorage();
-            $this->storeImages();
+          $uuid = Str::uuid()->toString();
+          $name = self::IMAGES_DIRECTORY . '/img_' . $uuid . '.' . File::extension($url);
 
-            $this->info(PHP_EOL);
-            $this->info('All of the images were stored successfully!');
+          $this->images[] = [
+            'name' => $name,
+            'url' => $url,
+          ];
+
+          $data['image_url'] = $name;
+        } else {
+          $data['image_url'] = $url;
         }
+      }
 
-        $finishTime = microtime(true);
-        $executionTimeSeconds = ($finishTime - $startTime);
+      return $data;
+    })
+      ->chunk(self::INSERT_CHUNK_SIZE)
+      ->each(static function (Collection $chunkedQuestionsData): void {
+        Question::insert($chunkedQuestionsData->toArray());
+      });
 
-        $this->info('Command execution time: ' . $executionTimeSeconds);
-    }
+    return Question::select(['id', 'original_id', 'title'])->get();
+  }
 
-    private function clearDb(): void
-    {
-        Schema::disableForeignKeyConstraints();
-        Category::truncate();
-        Question::truncate();
-        Answer::truncate();
-        DB::table('driving_license_type_question')->truncate();
-        Schema::enableForeignKeyConstraints();
-    }
+  protected function shouldStoreImages(): bool
+  {
+    return $this->input->hasOption('without-images')
+      && !$this->option('without-images');
+  }
 
-    private function getMergedDatasets(array $paths): Collection
-    {
-        $mergedDatasets = collect();
+  private function attachQuestionsToDrivingLicenseTypes(): void
+  {
+    $drivingLicenseTypeQuestionData = collect([]);
 
-        foreach ($paths as $path) {
-            $mergedDatasets = $mergedDatasets->merge(
-                $this->getDataset($path)
-            );
-        }
+    $this->questions->each(function (Question $question) use ($drivingLicenseTypeQuestionData) {
+      $datasetItem = $this->getQuestionXmlItemByModelQuestion($question);
 
-        return $mergedDatasets;
-    }
+      $html = simplexml_load_string($datasetItem['description']);
+      $questionDrivingLicenseTypesString = htmlspecialchars_decode($html->div->span[1]);
+      preg_match_all('/«(.*?)»/', $questionDrivingLicenseTypesString, $matches);
+      $questionDrivingLicenseTypes = $matches[1];
 
-    private function getDataset(string $path): Collection
-    {
-        $datasetSimpleXml = simplexml_load_file($path, 'SimpleXMLElement', LIBXML_NOCDATA);
-        $datasetJson = json_encode((array) $datasetSimpleXml->channel);
-
-        return collect(json_decode($datasetJson, true)['item'])->values();
-    }
-
-    private function parseDataset(): void
-    {
-        $this->drivingLicenseTypes = DrivingLicenseType::all();
-        $this->now = now();
-
-        $this->categories = $this->storeCategories();
-
-        $this->questions = $this->storeQuestions();
-
-        $this->attachQuestionsToDrivingLicenseTypes();
-
-        $this->storeAnswers();
-    }
-
-    private function storeCategories(): EloquentCollection
-    {
-        $categoriesData = $this->dataset->unique('category')->map(function (array $item): array {
-            return [
-                'name' => $item['category'],
-                'created_at' => $this->now,
-                'updated_at' => $this->now,
-            ];
-        })->toArray();
-
-        Category::insert($categoriesData);
-
-        return Category::all();
-    }
-
-    private function storeQuestions(): Collection
-    {
-        $this->dataset->map(function (array $item): array {
-            preg_match('/(?<original_id>\d+)(\.)(?<title>.+)/', $item['title'], $matches);
-
-            $data = [
-                'title' => trim(htmlspecialchars_decode($matches['title'])),
-                'image_url' => null,
-                'original_id' => intval($matches['original_id']),
-                'category_id' => $this->categories->firstWhere('name', $item['category'])->id,
-                'created_at' => $this->now,
-                'updated_at' => $this->now,
-            ];
-
-            $html = simplexml_load_string($item['description']);
-
-            if (isset($html->img['src'])) {
-                $url = (string) $html->img['src'];
-
-                if ($this->shouldStoreImages()) {
-                    $uuid = Str::uuid()->toString();
-                    $name = self::IMAGES_DIRECTORY . '/img_' . $uuid . '.' . File::extension($url);
-
-                    $this->images[] = [
-                        'name' => $name,
-                        'url' => $url,
-                    ];
-
-                    $data['image_url'] = $name;
-                } else {
-                    $data['image_url'] = $url;
-                }
-            }
-
-            return $data;
+      $this->drivingLicenseTypes
+        ->filter(static function (DrivingLicenseType $drivingLicenseType) use ($questionDrivingLicenseTypes): bool {
+          return in_array($drivingLicenseType->code, $questionDrivingLicenseTypes);
         })
-            ->chunk(self::INSERT_CHUNK_SIZE)
-            ->each(static function (Collection $chunkedQuestionsData): void {
-                Question::insert($chunkedQuestionsData->toArray());
-            });
-
-        return Question::select(['id', 'original_id', 'title'])->get();
-    }
-
-    private function attachQuestionsToDrivingLicenseTypes(): void
-    {
-        $drivingLicenseTypeQuestionData = collect([]);
-
-        $this->questions->each(function (Question $question) use ($drivingLicenseTypeQuestionData) {
-            $datasetItem = $this->getQuestionXmlItemByModelQuestion($question);
-
-            $html = simplexml_load_string($datasetItem['description']);
-            $questionDrivingLicenseTypesString = htmlspecialchars_decode($html->div->span[1]);
-            preg_match_all('/«(.*?)»/', $questionDrivingLicenseTypesString, $matches);
-            $questionDrivingLicenseTypes = $matches[1];
-
-            $this->drivingLicenseTypes
-                ->filter(static function (DrivingLicenseType $drivingLicenseType) use ($questionDrivingLicenseTypes): bool {
-                    return in_array($drivingLicenseType->code, $questionDrivingLicenseTypes);
-                })
-                ->each(static function (DrivingLicenseType $drivingLicenseType) use ($question, $drivingLicenseTypeQuestionData) {
-                    $drivingLicenseTypeQuestionData->push([
-                        'question_id' => $question->id,
-                        'driving_license_type_id' => $drivingLicenseType->id,
-                    ]);
-                });
+        ->each(static function (DrivingLicenseType $drivingLicenseType) use ($question, $drivingLicenseTypeQuestionData) {
+          $drivingLicenseTypeQuestionData->push([
+            'question_id' => $question->id,
+            'driving_license_type_id' => $drivingLicenseType->id,
+          ]);
         });
+    });
 
-        $drivingLicenseTypeQuestionData->chunk(self::INSERT_CHUNK_SIZE)
-            ->each(function (Collection $chunkedDrivingLicenseTypeQuestionData) {
-                DB::table('driving_license_type_question')->insert($chunkedDrivingLicenseTypeQuestionData->toArray());
-            });
+    $drivingLicenseTypeQuestionData->chunk(self::INSERT_CHUNK_SIZE)
+      ->each(function (Collection $chunkedDrivingLicenseTypeQuestionData) {
+        DB::table('driving_license_type_question')->insert($chunkedDrivingLicenseTypeQuestionData->toArray());
+      });
+  }
+
+  protected function getQuestionXmlItemByModelQuestion(Question $question): array
+  {
+    return $this->dataset->filter(static function (array $item) use ($question) {
+      return Str::startsWith($item['title'], $question->getOriginalIdWithLeadingZeros())
+        && Str::contains($item['title'], $question->title);
+    })->first();
+  }
+
+  private function storeAnswers(): void
+  {
+    $answersData = collect([]);
+
+    $this->dataset->each(function (array $item) use ($answersData): void {
+      $question = $this->getQuestionModelByXmlItem($item);;
+
+      $html = simplexml_load_string($item['description']);
+
+      foreach ($html->ul->li as $answer) {
+        $answersData->push([
+          'content' => htmlspecialchars_decode($answer->span),
+          'is_correct' => $answer->span['id'] == 'correctAnswer' . $question->getOriginalIdWithLeadingZeros(),
+          'question_id' => $question->id,
+          'created_at' => $this->now,
+          'updated_at' => $this->now,
+        ]);
+      }
+    });
+
+    $answersData->chunk(self::INSERT_CHUNK_SIZE)
+      ->each(function (Collection $chunkedAnswersData) {
+        Answer::insert($chunkedAnswersData->toArray());
+      });
+  }
+
+  protected function getQuestionModelByXmlItem(array $item): Question
+  {
+    return $this->questions->filter(static function (Question $question) use ($item) {
+      return Str::startsWith($item['title'], $question->getOriginalIdWithLeadingZeros())
+        && Str::contains($item['title'], $question->title);
+    })->first();
+  }
+
+  protected function deleteStorage(): void
+  {
+    if (Storage::exists('public/' . self::IMAGES_DIRECTORY)) {
+      Storage::deleteDirectory('public/' . self::IMAGES_DIRECTORY);
+    }
+  }
+
+  protected function storeImages(): void
+  {
+    $bar = $this->output->createProgressBar(count($this->images));
+
+    $bar->start();
+
+    $start = curl_init();
+    foreach ($this->images as $image) {
+      $name = $image['name'];
+      $url = $image['url'];
+
+      curl_setopt_array($start, [
+        CURLOPT_URL => $url,
+        CURLOPT_RETURNTRANSFER => 1,
+        CURLOPT_SSLVERSION => 3,
+      ]);
+
+      $contents = curl_exec($start);
+
+      Storage::put("public/{$name}", $contents);
+
+      $bar->advance();
     }
 
-    private function storeAnswers(): void
-    {
-        $answersData = collect([]);
-
-        $this->dataset->each(function (array $item) use ($answersData): void {
-            $question = $this->getQuestionModelByXmlItem($item);;
-
-            $html = simplexml_load_string($item['description']);
-
-            foreach ($html->ul->li as $answer) {
-                $answersData->push([
-                    'content' => htmlspecialchars_decode($answer->span),
-                    'is_correct' => $answer->span['id'] == 'correctAnswer' . $question->getOriginalIdWithLeadingZeros(),
-                    'question_id' => $question->id,
-                    'created_at' => $this->now,
-                    'updated_at' => $this->now,
-                ]);
-            }
-        });
-
-        $answersData->chunk(self::INSERT_CHUNK_SIZE)
-            ->each(function (Collection $chunkedAnswersData) {
-                Answer::insert($chunkedAnswersData->toArray());
-            });
-    }
-
-    protected function shouldStoreImages(): bool
-    {
-        return $this->input->hasOption('without-images')
-            && ! $this->option('without-images');
-    }
-
-    protected function storeImages(): void
-    {
-        $bar = $this->output->createProgressBar(count($this->images));
-
-        $bar->start();
-
-        $start = curl_init();
-        foreach ($this->images as $image) {
-            $name = $image['name'];
-            $url = $image['url'];
-
-            curl_setopt_array($start, [
-                CURLOPT_URL => $url,
-                CURLOPT_RETURNTRANSFER => 1,
-                CURLOPT_SSLVERSION => 3,
-            ]);
-
-            $contents = curl_exec($start);
-
-            Storage::put("public/{$name}", $contents);
-
-            $bar->advance();
-        }
-
-        $bar->finish();
-        curl_close($start);
-    }
-
-    protected function deleteStorage(): void
-    {
-        if (Storage::exists('public/' . self::IMAGES_DIRECTORY)) {
-            Storage::deleteDirectory('public/' . self::IMAGES_DIRECTORY);
-        }
-    }
-
-    protected function getQuestionXmlItemByModelQuestion(Question $question): array
-    {
-        return $this->dataset->filter(static function (array $item) use ($question) {
-            return Str::startsWith($item['title'], $question->getOriginalIdWithLeadingZeros())
-                && Str::contains($item['title'], $question->title);
-        })->first();
-    }
-
-    protected function getQuestionModelByXmlItem(array $item): Question
-    {
-        return $this->questions->filter(static function (Question $question) use ($item) {
-            return Str::startsWith($item['title'], $question->getOriginalIdWithLeadingZeros())
-                && Str::contains($item['title'], $question->title);
-        })->first();
-    }
+    $bar->finish();
+    curl_close($start);
+  }
 }

@@ -41,58 +41,58 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
  */
 class User extends Authenticatable implements JWTSubject
 {
-    use Notifiable;
+  use Notifiable;
 
-    protected $fillable = [
-        'first_name',
-        'last_name',
-        'email',
-        'email_verified_at',
-        'password',
-        'role',
-    ];
+  protected $fillable = [
+    'first_name',
+    'last_name',
+    'email',
+    'email_verified_at',
+    'password',
+    'role',
+  ];
 
-    protected $hidden = [
-        'password',
-    ];
+  protected $hidden = [
+    'password',
+  ];
 
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
+  protected $casts = [
+    'email_verified_at' => 'datetime',
+  ];
 
-    public function getJWTIdentifier()
-    {
-        return $this->getKey();
+  public function getJWTIdentifier()
+  {
+    return $this->getKey();
+  }
+
+  public function getJWTCustomClaims(): array
+  {
+    return [];
+  }
+
+  public function testReports(): HasMany
+  {
+    return $this->hasMany(TestReport::class);
+  }
+
+  public function resetPassword(string $password): void
+  {
+    $this->update([
+      'password' => bcrypt($password)
+    ]);
+  }
+
+  public function urlTokens(): HasMany
+  {
+    return $this->hasMany(UrlToken::class);
+  }
+
+  public function markUnreadNotificationAsRead(string $token): void
+  {
+    $unreadNotification = $this->unreadNotifications()->where('data->token', $token)->first();
+
+    if ($unreadNotification) {
+      $unreadNotification->markAsRead();
     }
-
-    public function getJWTCustomClaims(): array
-    {
-        return [];
-    }
-
-    public function testReports(): HasMany
-    {
-        return $this->hasMany(TestReport::class);
-    }
-
-    public function resetPassword(string $password): void
-    {
-        $this->update([
-            'password' => bcrypt($password)
-        ]);
-    }
-
-    public function urlTokens(): HasMany
-    {
-        return $this->hasMany(UrlToken::class);
-    }
-
-    public function markUnreadNotificationAsRead(string $token): void
-    {
-        $unreadNotification = $this->unreadNotifications()->where('data->token', $token)->first();
-
-        if ($unreadNotification) {
-            $unreadNotification->markAsRead();
-        }
-    }
+  }
 }

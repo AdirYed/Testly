@@ -8,51 +8,50 @@ use App\Http\Requests\SetPasswordRequest;
 use App\Notifications\ForgotPasswordNotification;
 use App\UrlToken;
 use App\User;
-use Illuminate\Http\Request;
 
 class ForgotPasswordController extends Controller
 {
-    public function mail(ForgotPasswordRequest $request)
-    {
-        $validatedRequest = $request->validated();
+  public function mail(ForgotPasswordRequest $request)
+  {
+    $validatedRequest = $request->validated();
 
-        $user = User::whereEmail($validatedRequest['email'])->first();
+    $user = User::whereEmail($validatedRequest['email'])->first();
 
-        $user->notify(new ForgotPasswordNotification);
+    $user->notify(new ForgotPasswordNotification);
+  }
+
+  public function checkToken(CheckTokenController $request)
+  {
+    $validatedRequest = $request->validated();
+
+    $urlToken = UrlToken::whereToken($validatedRequest['token'])
+      ->whereType(UrlToken::TYPE_FORGOT_PASSWORD)
+      ->firstOrFail();
+
+    if (!$urlToken->expires_at || $urlToken->expires_at && $urlToken->expires_at->isPast()) {
+      return response()->json(['errors' => 'token'], 422);
+    }
+  }
+
+  public function update(SetPasswordRequest $request)
+  {
+    $validatedRequest = $request->validated();
+
+    $urlToken = UrlToken::whereToken($validatedRequest['token'])
+      ->whereType(UrlToken::TYPE_FORGOT_PASSWORD)
+      ->firstOrFail();
+
+    if (!$urlToken->expires_at || $urlToken->expires_at && $urlToken->expires_at->isPast()) {
+      return response()->json(['errors' => 'token'], 422);
     }
 
-    public function checkToken(CheckTokenController $request)
-    {
-        $validatedRequest = $request->validated();
+    $user = $urlToken->user;
 
-        $urlToken = UrlToken::whereToken($validatedRequest['token'])
-            ->whereType(UrlToken::TYPE_FORGOT_PASSWORD)
-            ->firstOrFail();
+    $urlToken->update([
+      'expires_at' => null,
+    ]);
 
-        if (! $urlToken->expires_at || $urlToken->expires_at && $urlToken->expires_at->isPast()) {
-            return response()->json(['errors' => 'token'], 422);
-        }
-    }
-
-    public function update(SetPasswordRequest $request)
-    {
-        $validatedRequest = $request->validated();
-
-        $urlToken = UrlToken::whereToken($validatedRequest['token'])
-            ->whereType(UrlToken::TYPE_FORGOT_PASSWORD)
-            ->firstOrFail();
-
-        if (! $urlToken->expires_at || $urlToken->expires_at && $urlToken->expires_at->isPast()) {
-            return response()->json(['errors' => 'token'], 422);
-        }
-
-        $user = $urlToken->user;
-
-        $urlToken->update([
-            'expires_at' => null,
-        ]);
-
-        $user->markUnreadNotificationAsRead($validatedRequest['token']);
-        $user->resetPassword($validatedRequest['password']);
-    }
+    $user->markUnreadNotificationAsRead($validatedRequest['token']);
+    $user->resetPassword($validatedRequest['password']);
+  }
 }

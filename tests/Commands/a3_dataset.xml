@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-    <channel>
-        <title>שאלון A3</title>
-        <description>משרד התחבורה, מאגר השאלות והתשובות הרשמי למבחן נהיגה עיוני ממוחשב - תאוריה</description>
-        <link>http://tq.mot.gov.il/index.php?option=com_content&amp;view=category&amp;id=12&amp;Itemid=70</link>
-        <lastBuildDate>Wed, 19 Dec 2018 11:12:50 +0000</lastBuildDate>
-        <generator>Joomla! 1.5 - Open Source Content Management</generator>
-        <language>he-il</language>
-        <item>
-            <title>0001. האם אופניים עם מנוע עזר נחשבים לרכב עפ&quot;י החוק?</title>
-            <link>http://tq.mot.gov.il/index.php?option=com_content&amp;view=article&amp;id=78273:a3-0001&amp;catid=12:ofanaim-hashmalim-c&amp;Itemid=70</link>
-            <guid>http://tq.mot.gov.il/index.php?option=com_content&amp;view=article&amp;id=78273:a3-0001&amp;catid=12:ofanaim-hashmalim-c&amp;Itemid=70</guid>
-            <description><![CDATA[<div style="text-align: right" dir="rtl">
+<rss version="2.0">
+  <channel>
+    <title>שאלון A3</title>
+    <description>משרד התחבורה, מאגר השאלות והתשובות הרשמי למבחן נהיגה עיוני ממוחשב - תאוריה</description>
+    <link>http://tq.mot.gov.il/index.php?option=com_content&amp;view=category&amp;id=12&amp;Itemid=70</link>
+    <lastBuildDate>Wed, 19 Dec 2018 11:12:50 +0000</lastBuildDate>
+    <generator>Joomla! 1.5 - Open Source Content Management</generator>
+    <language>he-il</language>
+    <item>
+      <title>0001. האם אופניים עם מנוע עזר נחשבים לרכב עפ&quot;י החוק?</title>
+      <link>http://tq.mot.gov.il/index.php?option=com_content&amp;view=article&amp;id=78273:a3-0001&amp;catid=12:ofanaim-hashmalim-c&amp;Itemid=70</link>
+      <guid>http://tq.mot.gov.il/index.php?option=com_content&amp;view=article&amp;id=78273:a3-0001&amp;catid=12:ofanaim-hashmalim-c&amp;Itemid=70</guid>
+      <description><![CDATA[<div style="text-align: right" dir="rtl">
 <ul class="list-arrow arrow-blue">
 <li><span>לא.</span></li>
 <li><span id="correctAnswer0001">כן.</span></li>
@@ -20,15 +20,15 @@
 </ul>
 <div style="padding-top: 4px;"><span><button type="button" onclick="var correctAnswer=document.getElementById('correctAnswer0001');correctAnswer.style.background='yellow'">הצג תשובה נכונה</button></span><br /><span style="float: left;"> «A3» </span></div>
 </div>]]></description>
-            <author>tq@mot.gov.il (Administrator)</author>
-            <category>אופניים חשמליים</category>
-            <pubDate>Wed, 19 Dec 2018 03:00:00 +0000</pubDate>
-        </item>
-        <item>
-            <title>0002. האם נוהג אופניים עם מנוע עזר נחשב כ &quot;עובר דרך&quot; עפ&quot;י החוק?</title>
-            <link>http://tq.mot.gov.il/index.php?option=com_content&amp;view=article&amp;id=78274:a3-0002&amp;catid=12:ofanaim-hashmalim-c&amp;Itemid=70</link>
-            <guid>http://tq.mot.gov.il/index.php?option=com_content&amp;view=article&amp;id=78274:a3-0002&amp;catid=12:ofanaim-hashmalim-c&amp;Itemid=70</guid>
-            <description><![CDATA[<div style="text-align: right" dir="rtl">
+      <author>tq@mot.gov.il (Administrator)</author>
+      <category>אופניים חשמליים</category>
+      <pubDate>Wed, 19 Dec 2018 03:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>0002. האם נוהג אופניים עם מנוע עזר נחשב כ &quot;עובר דרך&quot; עפ&quot;י החוק?</title>
+      <link>http://tq.mot.gov.il/index.php?option=com_content&amp;view=article&amp;id=78274:a3-0002&amp;catid=12:ofanaim-hashmalim-c&amp;Itemid=70</link>
+      <guid>http://tq.mot.gov.il/index.php?option=com_content&amp;view=article&amp;id=78274:a3-0002&amp;catid=12:ofanaim-hashmalim-c&amp;Itemid=70</guid>
+      <description><![CDATA[<div style="text-align: right" dir="rtl">
 <ul class="list-arrow arrow-blue">
 <li><span>לא.</span></li>
 <li><span id="correctAnswer0002">כן.</span></li>
@@ -37,15 +37,15 @@
 </ul>
 <div style="padding-top: 4px;"><span><button type="button" onclick="var correctAnswer=document.getElementById('correctAnswer0002');correctAnswer.style.background='yellow'">הצג תשובה נכונה</button></span><br /><span style="float: left;"> «A3» </span></div>
 </div>]]></description>
-            <author>tq@mot.gov.il (Administrator)</author>
-            <category>אופניים חשמליים</category>
-            <pubDate>Wed, 19 Dec 2018 03:00:00 +0000</pubDate>
-        </item>
-        <item>
-            <title>0003. עפ&quot;י החוק &quot;אופניים עם מנוע עזר&quot; הם:  </title>
-            <link>http://tq.mot.gov.il/index.php?option=com_content&amp;view=article&amp;id=78275:a3-0003&amp;catid=12:ofanaim-hashmalim-c&amp;Itemid=70</link>
-            <guid>http://tq.mot.gov.il/index.php?option=com_content&amp;view=article&amp;id=78275:a3-0003&amp;catid=12:ofanaim-hashmalim-c&amp;Itemid=70</guid>
-            <description><![CDATA[<div style="text-align: right" dir="rtl">
+      <author>tq@mot.gov.il (Administrator)</author>
+      <category>אופניים חשמליים</category>
+      <pubDate>Wed, 19 Dec 2018 03:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>0003. עפ&quot;י החוק &quot;אופניים עם מנוע עזר&quot; הם:</title>
+      <link>http://tq.mot.gov.il/index.php?option=com_content&amp;view=article&amp;id=78275:a3-0003&amp;catid=12:ofanaim-hashmalim-c&amp;Itemid=70</link>
+      <guid>http://tq.mot.gov.il/index.php?option=com_content&amp;view=article&amp;id=78275:a3-0003&amp;catid=12:ofanaim-hashmalim-c&amp;Itemid=70</guid>
+      <description><![CDATA[<div style="text-align: right" dir="rtl">
 <ul class="list-arrow arrow-blue">
 <li><span>תלת אופן.</span></li>
 <li><span id="correctAnswer0003">אופניים בעלי שני גלגלים המורכבים זה אחרי זה, שמותקן בהם מנוע חשמלי.</span></li>
@@ -54,15 +54,15 @@
 </ul>
 <div style="padding-top: 4px;"><span><button type="button" onclick="var correctAnswer=document.getElementById('correctAnswer0003');correctAnswer.style.background='yellow'">הצג תשובה נכונה</button></span><br /><span style="float: left;"> «A3» </span></div>
 </div>]]></description>
-            <author>tq@mot.gov.il (Administrator)</author>
-            <category>אופניים חשמליים</category>
-            <pubDate>Wed, 19 Dec 2018 03:00:00 +0000</pubDate>
-        </item>
-        <item>
-            <title>0004. האם נוהג אופניים עם מנוע עזר חייב לציית לתמרורים?</title>
-            <link>http://tq.mot.gov.il/index.php?option=com_content&amp;view=article&amp;id=78276:a3-0004&amp;catid=12:ofanaim-hashmalim-c&amp;Itemid=70</link>
-            <guid>http://tq.mot.gov.il/index.php?option=com_content&amp;view=article&amp;id=78276:a3-0004&amp;catid=12:ofanaim-hashmalim-c&amp;Itemid=70</guid>
-            <description><![CDATA[<div style="text-align: right" dir="rtl">
+      <author>tq@mot.gov.il (Administrator)</author>
+      <category>אופניים חשמליים</category>
+      <pubDate>Wed, 19 Dec 2018 03:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>0004. האם נוהג אופניים עם מנוע עזר חייב לציית לתמרורים?</title>
+      <link>http://tq.mot.gov.il/index.php?option=com_content&amp;view=article&amp;id=78276:a3-0004&amp;catid=12:ofanaim-hashmalim-c&amp;Itemid=70</link>
+      <guid>http://tq.mot.gov.il/index.php?option=com_content&amp;view=article&amp;id=78276:a3-0004&amp;catid=12:ofanaim-hashmalim-c&amp;Itemid=70</guid>
+      <description><![CDATA[<div style="text-align: right" dir="rtl">
 <ul class="list-arrow arrow-blue">
 <li><span>לא.</span></li>
 <li><span id="correctAnswer0004">כן.</span></li>
@@ -71,15 +71,15 @@
 </ul>
 <div style="padding-top: 4px;"><span><button type="button" onclick="var correctAnswer=document.getElementById('correctAnswer0004');correctAnswer.style.background='yellow'">הצג תשובה נכונה</button></span><br /><span style="float: left;"> «A3» </span></div>
 </div>]]></description>
-            <author>tq@mot.gov.il (Administrator)</author>
-            <category>אופניים חשמליים</category>
-            <pubDate>Wed, 19 Dec 2018 03:00:00 +0000</pubDate>
-        </item>
-        <item>
-            <title>0005. האם מותר לחצות מעבר החצייה להולכי רגל בנהיגה באופניים עם מנוע עזר?  </title>
-            <link>http://tq.mot.gov.il/index.php?option=com_content&amp;view=article&amp;id=78277:a3-0005&amp;catid=12:ofanaim-hashmalim-c&amp;Itemid=70</link>
-            <guid>http://tq.mot.gov.il/index.php?option=com_content&amp;view=article&amp;id=78277:a3-0005&amp;catid=12:ofanaim-hashmalim-c&amp;Itemid=70</guid>
-            <description><![CDATA[<div style="text-align: right" dir="rtl">
+      <author>tq@mot.gov.il (Administrator)</author>
+      <category>אופניים חשמליים</category>
+      <pubDate>Wed, 19 Dec 2018 03:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>0005. האם מותר לחצות מעבר החצייה להולכי רגל בנהיגה באופניים עם מנוע עזר?</title>
+      <link>http://tq.mot.gov.il/index.php?option=com_content&amp;view=article&amp;id=78277:a3-0005&amp;catid=12:ofanaim-hashmalim-c&amp;Itemid=70</link>
+      <guid>http://tq.mot.gov.il/index.php?option=com_content&amp;view=article&amp;id=78277:a3-0005&amp;catid=12:ofanaim-hashmalim-c&amp;Itemid=70</guid>
+      <description><![CDATA[<div style="text-align: right" dir="rtl">
 <ul class="list-arrow arrow-blue">
 <li><span id="correctAnswer0005"> לא. אולם מותר להולך רגל להוביל אופניים על מעבר החצייה.</span></li>
 <li><span>כן. בתנאי שהרוכב בעל רשיון נהיגה.</span></li>
@@ -88,9 +88,10 @@
 </ul>
 <div style="padding-top: 4px;"><span><button type="button" onclick="var correctAnswer=document.getElementById('correctAnswer0005');correctAnswer.style.background='yellow'">הצג תשובה נכונה</button></span><br /><span style="float: left;"> «A3» </span></div>
 </div>]]></description>
-            <author>tq@mot.gov.il (Administrator)</author>
-            <category>אופניים חשמליים</category>
-            <pubDate>Wed, 19 Dec 2018 03:00:00 +0000</pubDate>
-        </item>s
-    </channel>
+      <author>tq@mot.gov.il (Administrator)</author>
+      <category>אופניים חשמליים</category>
+      <pubDate>Wed, 19 Dec 2018 03:00:00 +0000</pubDate>
+    </item>
+    s
+  </channel>
 </rss>

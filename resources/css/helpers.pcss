@@ -1,31 +1,31 @@
 :root { /*https://uigradients.com/#Flare*/
-    --header-height: 3.75rem;
-    --primary-color-rgb: 245, 175, 25;
-    --primary-color: rgb(var(--primary-color-rgb));
-    --secondary-color: #fa163f;
+  --header-height: 3.75rem;
+  --primary-color-rgb: 245, 175, 25;
+  --primary-color: rgb(var(--primary-color-rgb));
+  --secondary-color: #fa163f;
 }
 
 .testly-icon {
-    background: url('/assets/icon.png') no-repeat center;
-    background-size: 100%;
+  background: url('/assets/icon.png') no-repeat center;
+  background-size: 100%;
 }
 
 .btn {
-    @apply font-bold py-3 px-5;
+  @apply font-bold py-3 px-5;
 
-    transition: color 0.15s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: color 0.15s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.15s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .link {
-    @apply border-b border-transparent text-primary;
+  @apply border-b border-transparent text-primary;
 }
 
-@media(hover: hover) and (pointer: fine) {
-    .link:hover {
-        @apply border-primary;
-    }
+@media (hover: hover) and (pointer: fine) {
+  .link:hover {
+    @apply border-primary;
+  }
 }
 
 .link:active {
-    @apply border-primary;
+  @apply border-primary;
 }

@@ -5,122 +5,122 @@
 @tailwind utilities;
 
 button:focus {
-    outline: 0;
+  outline: 0;
 }
 
 .route {
-    transition: border 0.2s ease;
+  transition: border 0.2s ease;
 }
 
-@media(hover: hover) and (pointer: fine) {
-    .route:hover {
-        @apply border-primary;
-    }
+@media (hover: hover) and (pointer: fine) {
+  .route:hover {
+    @apply border-primary;
+  }
 }
 
 .route:active {
-    @apply border-primary;
+  @apply border-primary;
 }
 
 #nav-bar {
-    height: var(--header-height);
-    background-color: white;
+  height: var(--header-height);
+  background-color: white;
 
-    z-index: 99;
+  z-index: 99;
 }
 
 #home-btn {
-    margin-bottom: 3.75rem;
+  margin-bottom: 3.75rem;
 }
 
 #home-img-section {
-    height: calc(100vh - var(--header-height));
-    background: linear-gradient(
-        to top,
-        rgba(0, 0, 0, 0.55),
-        rgba(0, 0, 0, 0.15)),
-        url('/assets/asphalt.jpg') no-repeat center;
-    background-size: cover;
+  height: calc(100vh - var(--header-height));
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.55),
+    rgba(0, 0, 0, 0.15)),
+  url('/assets/asphalt.jpg') no-repeat center;
+  background-size: cover;
 
-    z-index: -1;
+  z-index: -1;
 }
 
 .card {
-    border-color: rgba(0, 0, 0, 0.25);
+  border-color: rgba(0, 0, 0, 0.25);
 
-    > .card-img {
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-position: center;
-        height: 20vh;
-        min-height: 120px;
-        max-height: 160px;
-    }
+  > .card-img {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 20vh;
+    min-height: 120px;
+    max-height: 160px;
+  }
 
-    &:hover {
-        border-color: var(--primary-color) !important;
-    }
+  &:hover {
+    border-color: var(--primary-color) !important;
+  }
 }
 
 .btn-disabled {
-    cursor: not-allowed;
-    color: black;
+  cursor: not-allowed;
+  color: black;
 }
 
 .questioning-img {
-    width: 50%;
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
+  width: 50%;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
-@media(hover: hover) and (pointer: fine) {
-    .input:hover {
-        box-shadow: 0 0 0 3px var(--primary-color);
+@media (hover: hover) and (pointer: fine) {
+  .input:hover {
+    box-shadow: 0 0 0 3px var(--primary-color);
 
-        @apply border-transparent;
-    }
+    @apply border-transparent;
+  }
 }
 
 .input {
-    transition: 0.2s box-shadow ease;
+  transition: 0.2s box-shadow ease;
 
-    @apply outline-none;
+  @apply outline-none;
 
-    &:focus, &:active {
-        box-shadow: 0 0 0 3px var(--primary-color);
+  &:focus, &:active {
+    box-shadow: 0 0 0 3px var(--primary-color);
 
-        @apply border-transparent;
-    }
+    @apply border-transparent;
+  }
 }
 
 .progressBar {
-    @apply bg-primary;
+  @apply bg-primary;
 
-    height: 0.15rem;
+  height: 0.15rem;
 }
 
 .progressBarTransition {
-    transition: .2s ease-in-out;
+  transition: .2s ease-in-out;
 }
 
 .container {
-    margin-top: var(--header-height);
-    min-height: calc(100vh - var(--header-height));
+  margin-top: var(--header-height);
+  min-height: calc(100vh - var(--header-height));
 }
 
 .notification-toast {
-    min-width: 0 !important;
+  min-width: 0 !important;
 }
 
 @media (max-width: 600px) {
-    .notification-toast {
-        width: 80% !important;
-        margin: 0 auto 1rem !important;
-        border-radius: 8px !important;
-    }
+  .notification-toast {
+    width: 80% !important;
+    margin: 0 auto 1rem !important;
+    border-radius: 8px !important;
+  }
 
-    .notification-body {
-        text-align: center;
-    }
+  .notification-body {
+    text-align: center;
+  }
 }

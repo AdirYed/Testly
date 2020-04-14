@@ -6,8 +6,8 @@ use App\DrivingLicenseType;
 
 class DrivingLicenseTypeController extends Controller
 {
-    public function index()
-    {
-        return DrivingLicenseType::select(['code', 'name', 'icon', 'image_url'])->get();
-    }
+  public function index()
+  {
+    return DrivingLicenseType::select(['code', 'name', 'icon', 'image_url'])->get();
+  }
 }
