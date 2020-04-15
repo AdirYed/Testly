@@ -15,7 +15,10 @@
       "php ./vendor/bin/php-cs-fixer fix --allow-risky=yes --config=.php_cs",
       "git add"
     ],
-    "*.pcss": [],
+    "*.pcss": [
+      "yarn production",
+      "git add"
+    ],
     "*.{js,css,json,md,vue}": [
       "prettier --write",
       "git add"
