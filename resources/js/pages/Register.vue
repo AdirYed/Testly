@@ -137,7 +137,7 @@
         <div class="tw-my-3">
           <div
             class="tw-container tw-mx-auto tw-flex tw-justify-center"
-            style="height: 18px"
+            style="height: 18px;"
             v-if="isLoading"
           >
             <theory-pulse-loader
@@ -163,7 +163,7 @@
             class="btn tw-py-2 tw-px-3 tw-bg-primary tw-rounded tw-text-white tw-border tw-border-primary"
             type="submit"
           >
-            התחבר
+            הירשם
           </button>
         </div>
       </form>
@@ -182,12 +182,12 @@ export default {
         last_name: "",
         email: "",
         password: "",
-        password_confirmation: ""
+        password_confirmation: "",
       },
 
       isLoading: false,
 
-      errors: {}
+      errors: {},
     };
   },
 
@@ -210,7 +210,7 @@ export default {
 
           this.$router.push({ name: "login" });
         })
-        .catch(err => {
+        .catch((err) => {
           if (err.response.status === 422 && err.response.data.errors) {
             this.errors = err.response.data.errors;
           }
@@ -220,7 +220,7 @@ export default {
 
     deleteError(property) {
       this.errors[property] = null;
-    }
-  }
+    },
+  },
 };
 </script>
