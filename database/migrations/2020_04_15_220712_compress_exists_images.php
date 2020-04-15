@@ -6,7 +6,7 @@ class CompressExistsImages extends Migration
 {
   public function up()
   {
-    if (config('app.environment') === 'production') {
+    if (config('app.env') === 'production') {
       $files = \Illuminate\Support\Facades\Storage::allFiles('public/question-images');
 
       foreach ($files as $file) {
