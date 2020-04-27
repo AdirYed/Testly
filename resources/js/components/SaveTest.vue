@@ -1,7 +1,7 @@
 <template>
   <div>
     על מנת לשמור את המבחן, נא
-    <button @click="register()">
+    <button class="tw-text-primary tw-font-bold" @click="register()">
       הירשם</button
     >.
   </div>

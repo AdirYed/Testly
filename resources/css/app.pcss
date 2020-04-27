@@ -109,13 +109,15 @@ button:focus {
   min-height: calc(100vh - var(--header-height));
 }
 
+/* purgecss start ignore */
 .Vue-Toastification__container {
-  direction: ltr;
+  direction: ltr !important;
 }
 
 .notification-body {
-  direction: rtl;
+  direction: rtl !important;
 }
+/* purgecss end ignore */
 
 .notification-toast {
   min-width: 0 !important;

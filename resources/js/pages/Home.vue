@@ -8,7 +8,7 @@
     <div
       class="tw-flex tw-flex-col tw-items-center tw-justify-center"
       id="home-img-section"
-      style="padding-bottom: var(--header-height)"
+      style="padding-bottom: var(--header-height);"
     >
       <div class="tw-flex tw-items-center tw-justify-center">
         <div
@@ -41,15 +41,15 @@
           <template v-if="!$store.getters.isLoggedIn">
             כדאי
             <router-link :to="{ name: 'register' }" class="link"
-              >להירשם
-            </router-link>
+              >להירשם</router-link
+            >
             לטסטלי כדי לשמור את היסטוריית המבחנים ואת קצב ההתקדמות שלך.
           </template>
           <template v-else>
             שלום
-            <router-link :to="{ name: 'dashboard' }" class="link"
-              >{{ $store.state.user.first_name }}
-            </router-link>
+            <router-link :to="{ name: 'dashboard' }" class="link">{{
+              $store.state.user.first_name
+            }}</router-link>
             , איזה מבחן נעשה היום?
           </template>
         </h1>
@@ -108,21 +108,21 @@ export default {
   name: "home",
 
   components: {
-    "theory-card": Card
+    "theory-card": Card,
   },
 
   methods: {
     readMore() {
       window.scrollTo({
         top: this.$refs.testOptions.offsetTop,
-        behavior: "smooth"
+        behavior: "smooth",
       });
-    }
+    },
   },
 
   created() {
     scrollBehavior();
-  }
+  },
 };
 </script>
 
