@@ -49,8 +49,8 @@
             שלום
             <router-link :to="{ name: 'dashboard' }" class="link">{{
               $store.state.user.first_name
-            }}</router-link>
-            , איזה מבחן נעשה היום?
+            }}</router-link
+            >, איזה מבחן נעשה היום?
           </template>
         </h1>
       </div>
