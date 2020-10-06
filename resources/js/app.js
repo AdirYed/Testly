@@ -32,7 +32,7 @@ const options = {
   hideCloseButton: true,
   hideProgressBar: true,
   toastClassName: ["notification-toast"],
-  bodyClassName: ["notification-body"]
+  bodyClassName: ["notification-body"],
 };
 
 Vue.use(AxiosPlugin);
@@ -43,14 +43,22 @@ Vue.use(VueAnalytics, {
   checkDuplicatedScript: true,
   router,
   autoTracking: {
-    exception: true
-  }
+    exception: true,
+  },
 });
 
 Vue.config.productionTip = false;
 
+if (store.getters.isTokenCorrect) {
+  store.dispatch("auth");
+}
+
+if (!store.getters.isTokenCorrect) {
+  store.dispatch("registerLead");
+}
+
 const app = new Vue({
   el: "#app",
   router: router,
-  store
+  store,
 });

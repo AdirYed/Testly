@@ -2,32 +2,46 @@ import Vue from "vue";
 import Vuex from "vuex";
 import { axiosInstance } from "./plugins/axios";
 import { formatDate } from "./plugins/formatDate";
+import router from "./routes";
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    user: localStorage.getItem("user")
-      ? JSON.parse(localStorage.getItem("user"))
-      : null,
+    user:
+      localStorage.getItem("user") &&
+      typeof localStorage.getItem("user") === "object"
+        ? JSON.parse(localStorage.getItem("user"))
+        : null,
     token: localStorage.getItem("token") || null,
     savedTestReport: localStorage.getItem("savedTestReport")
       ? JSON.parse(localStorage.getItem("savedTestReport"))
       : null,
-    drivingLicenseTypes: null
+    drivingLicenseTypes: null,
   },
 
   getters: {
-    isLoggedIn(state) {
+    isTokenCorrect(state) {
       return typeof state.token === "string";
-    }
+    },
+
+    isLoggedIn(state, getters) {
+      return getters.isTokenCorrect && state.user;
+    },
+
+    isLeadLoggedIn(state, getters) {
+      return getters.isTokenCorrect && !state.user;
+    },
   },
 
   mutations: {
-    setUser(state, { user, token }) {
+    setUser(state, user) {
       state.user = user;
-      state.token = token;
       localStorage.setItem("user", JSON.stringify(user));
+    },
+
+    setToken(state, token) {
+      state.token = token;
       localStorage.setItem("token", token);
     },
 
@@ -49,13 +63,50 @@ export default new Vuex.Store({
     deleteSavedTestReport(state) {
       state.savedTestReport = null;
       localStorage.removeItem("savedTestReport");
-    }
+    },
   },
 
   actions: {
+    auth({ dispatch, commit, getters }) {
+      if (!getters.isTokenCorrect) {
+        return;
+      }
+
+      return axiosInstance
+        .get("/auth")
+        .then((response) => {
+          dispatch("storeSavedTestReportIfExists");
+
+          if (!response.data.user.email) {
+            if (router.currentRoute.meta.authOnly) {
+              router.push({ name: "home" });
+            }
+
+            commit("removeUser");
+            return;
+          }
+
+          if (router.currentRoute.meta.guestOnly) {
+            router.push({ name: "home" });
+          }
+
+          commit("setUser", response.data.user);
+        })
+        .catch((err) => {
+          if (
+            err.response &&
+            err.response.status &&
+            err.response.status === 401
+          ) {
+            dispatch("registerLead");
+          }
+        });
+    },
+
     login({ dispatch, commit }, credentials) {
-      return axiosInstance.post("/auth/login", credentials).then(response => {
-        commit("setUser", response.data);
+      return axiosInstance.post("/auth/login", credentials).then((response) => {
+        commit("setUser", response.data.user);
+        commit("setToken", response.data.token);
         return dispatch("storeSavedTestReportIfExists");
       });
     },
@@ -65,8 +116,14 @@ export default new Vuex.Store({
       commit("removeToken");
     },
 
-    register({ dispatch, commit }, credentials) {
+    register({}, credentials) {
       return axiosInstance.post("/auth/register", credentials);
+    },
+
+    registerLead({ commit }) {
+      return axiosInstance.post("/auth/lead").then((response) => {
+        commit("setToken", response.data);
+      });
     },
 
     fetchTestReports() {
@@ -77,7 +134,7 @@ export default new Vuex.Store({
       payload.started_at = formatDate(payload.started_at);
       payload.finished_at = formatDate(payload.finished_at);
 
-      if (!getters.isLoggedIn) {
+      if (!getters.isTokenCorrect) {
         commit("saveTestReport", payload);
         return;
       }
@@ -87,7 +144,7 @@ export default new Vuex.Store({
 
     storeSavedTestReportIfExists({ state, getters, commit }) {
       if (
-        !getters.isLoggedIn ||
+        !getters.isTokenCorrect ||
         typeof state.savedTestReport !== "object" ||
         state.savedTestReport === null
       ) {
@@ -106,9 +163,9 @@ export default new Vuex.Store({
     },
 
     fetchDrivingLicenseTypes({ state }) {
-      return axiosInstance.get(`/driving-license-types`).then(response => {
+      return axiosInstance.get(`/driving-license-types`).then((response) => {
         state.drivingLicenseTypes = response.data;
       });
-    }
-  }
+    },
+  },
 });
