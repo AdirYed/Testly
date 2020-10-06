@@ -26,6 +26,11 @@ class AuthController extends Controller
     $user->notify(new VerifyUserNotification);
   }
 
+  public function registerLead()
+  {
+    return auth()->login(User::create());
+  }
+
   public function login(LoginRequest $request)
   {
     $payload = $request->validated();
@@ -41,7 +46,7 @@ class AuthController extends Controller
 
   public function auth()
   {
-    return auth()->user();
+    return $this->respondWithToken(auth()->login(auth()->user()));
   }
 
   protected function respondWithToken($token)
