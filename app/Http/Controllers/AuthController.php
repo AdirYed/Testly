@@ -14,7 +14,14 @@ class AuthController extends Controller
     $payload = $request->validated();
     $payload['password'] = bcrypt($payload['password']);
 
-    $user = User::create($payload);
+    $isLeadLoggedIn = auth()->check() && ! auth()->user()->email;
+
+    $user = $isLeadLoggedIn ? auth()->user() : User::create($payload);
+
+    if ($isLeadLoggedIn) {
+      $user->update($payload);
+      $user->refresh();
+    }
 
     $user->notify(new VerifyUserNotification);
   }
@@ -30,6 +37,11 @@ class AuthController extends Controller
     }
 
     return $this->respondWithToken($token);
+  }
+
+  public function auth()
+  {
+    return auth()->user();
   }
 
   protected function respondWithToken($token)
