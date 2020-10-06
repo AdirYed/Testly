@@ -39,6 +39,7 @@ class UrlToken extends Model
     'user_id',
     'expires_at',
   ];
+
   protected $casts = [
     'expires_at' => 'datetime',
   ];
