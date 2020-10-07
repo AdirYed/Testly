@@ -16,8 +16,7 @@ class ChangeColumnsToNullableToUsers extends Migration
         Schema::table('users', function (Blueprint $table) {
           $table->string('first_name')->nullable()->change();
           $table->string('last_name')->nullable()->change();
-          $table->dropUnique(['email']);
-          $table->string('email')->unique()->nullable()->change();
+          $table->string('email')->nullable()->change();
           $table->string('password')->nullable()->change();
         });
     }
@@ -32,8 +31,7 @@ class ChangeColumnsToNullableToUsers extends Migration
         Schema::table('users', function (Blueprint $table) {
           $table->string('first_name')->nullable(false)->change();
           $table->string('last_name')->nullable(false)->change();
-//          $table->dropUnique(['email']);
-//          $table->string('email')->unique()->nullable(false)->change();
+//          $table->string('email')->nullable(false)->change();
           $table->string('password')->nullable(false)->change();
         });
     }
