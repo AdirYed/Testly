@@ -23,8 +23,8 @@
   },
   "devDependencies": {
     "autoprefixer": "^9.7.6",
-    "browser-sync": "^2.26.7",
-    "browser-sync-webpack-plugin": "^2.0.1",
+    "browser-sync": "^2.25.3-alpha.0",
+    "browser-sync-webpack-plugin": "^2.2.2",
     "cross-env": "^7.0.2",
     "husky": "^4.2.5",
     "laravel-mix": "^5.0.4",
