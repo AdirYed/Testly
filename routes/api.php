@@ -17,10 +17,11 @@ Route::group(['prefix' => 'driving-license-types'], static function () {
   });
 });
 
+Route::get('me', [AuthController::class, 'me'])->middleware('auth:api');
+
 Route::group(['prefix' => 'auth'], static function () {
-  Route::get('', [AuthController::class, 'auth'])->middleware('auth:api');
   Route::post('register', [AuthController::class, 'register']);
-  Route::post('lead', [AuthController::class, 'registerLead']);
+  Route::post('guest', [AuthController::class, 'guestRegister']);
   Route::post('login', [AuthController::class, 'login']);
 });
 

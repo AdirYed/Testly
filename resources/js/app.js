@@ -54,7 +54,7 @@ if (store.getters.isTokenCorrect) {
 }
 
 if (!store.getters.isTokenCorrect) {
-  store.dispatch("registerLead");
+  store.dispatch("guestRegister");
 }
 
 const app = new Vue({
