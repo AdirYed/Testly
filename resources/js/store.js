@@ -8,11 +8,9 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    user:
-      localStorage.getItem("user") &&
-      typeof localStorage.getItem("user") === "object"
-        ? JSON.parse(localStorage.getItem("user"))
-        : null,
+    user: localStorage.getItem("user")
+      ? JSON.parse(localStorage.getItem("user"))
+      : null,
     token: localStorage.getItem("token") || null,
     savedTestReport: localStorage.getItem("savedTestReport")
       ? JSON.parse(localStorage.getItem("savedTestReport"))
@@ -29,7 +27,7 @@ export default new Vuex.Store({
       return getters.isTokenCorrect && state.user;
     },
 
-    isLeadLoggedIn(state, getters) {
+    isGuestLoggedIn(state, getters) {
       return getters.isTokenCorrect && !state.user;
     },
   },
@@ -73,7 +71,7 @@ export default new Vuex.Store({
       }
 
       return axiosInstance
-        .get("/auth")
+        .get("/me")
         .then((response) => {
           dispatch("storeSavedTestReportIfExists");
 
@@ -98,7 +96,9 @@ export default new Vuex.Store({
             err.response.status &&
             err.response.status === 401
           ) {
-            dispatch("registerLead");
+            commit("removeUser");
+            commit("removeToken");
+            dispatch("guestRegister");
           }
         });
     },
@@ -120,8 +120,8 @@ export default new Vuex.Store({
       return axiosInstance.post("/auth/register", credentials);
     },
 
-    registerLead({ commit }) {
-      return axiosInstance.post("/auth/lead").then((response) => {
+    guestRegister({ commit }) {
+      return axiosInstance.post("/auth/guest").then((response) => {
         commit("setToken", response.data);
       });
     },

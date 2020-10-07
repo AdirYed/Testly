@@ -9,24 +9,28 @@ use App\User;
 
 class AuthController extends Controller
 {
+  public function me()
+  {
+    return $this->respondWithToken(auth()->login(auth()->user()));
+  }
+
   public function register(RegisterRequest $request)
   {
     $payload = $request->validated();
     $payload['password'] = bcrypt($payload['password']);
 
-    $isLeadLoggedIn = auth()->check() && ! auth()->user()->email;
+    $isGuestLoggedIn = auth()->check() && ! auth()->user()->email;
 
-    $user = $isLeadLoggedIn ? auth()->user() : User::create($payload);
+    $user = $isGuestLoggedIn ? auth()->user() : User::create($payload);
 
-    if ($isLeadLoggedIn) {
+    if ($isGuestLoggedIn) {
       $user->update($payload);
-      $user->refresh();
     }
 
     $user->notify(new VerifyUserNotification);
   }
 
-  public function registerLead()
+  public function guestRegister()
   {
     return auth()->login(User::create());
   }
@@ -42,11 +46,6 @@ class AuthController extends Controller
     }
 
     return $this->respondWithToken($token);
-  }
-
-  public function auth()
-  {
-    return $this->respondWithToken(auth()->login(auth()->user()));
   }
 
   protected function respondWithToken($token)
