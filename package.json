@@ -44,7 +44,6 @@
     "@fortawesome/vue-fontawesome": "^0.1.9",
     "axios": "^0.19.2",
     "chart.js": "^2.9.3",
-    "http-proxy": "1.18.1",
     "scroll-behavior-polyfill": "^2.0.13",
     "tailwindcss": "^1.2.0",
     "vue": "^2.6.11",
