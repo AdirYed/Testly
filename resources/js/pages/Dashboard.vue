@@ -149,7 +149,7 @@
       <div class="tw-text-lg md:tw-text-2xl tw-mb-5">
         הפרופיל כרגע ריק משום שאין לך היסטוריית
         <router-link :to="{ name: 'home', hash: '#choose-a-test' }" class="link"
-          >מבחנים </router-link
+          >מבחנים</router-link
         >.
       </div>
     </template>
