@@ -132,7 +132,7 @@
                 <router-link
                   :to="{
                     name: 'test-result',
-                    params: { uuid: testReport.uuid }
+                    params: { uuid: testReport.uuid },
                   }"
                   class="link"
                 >
@@ -149,9 +149,8 @@
       <div class="tw-text-lg md:tw-text-2xl tw-mb-5">
         הפרופיל כרגע ריק משום שאין לך היסטוריית
         <router-link :to="{ name: 'home', hash: '#choose-a-test' }" class="link"
-          >מבחנים
-        </router-link>
-        .
+          >מבחנים </router-link
+        >.
       </div>
     </template>
   </div>
@@ -164,7 +163,7 @@ export default {
   name: "dashboard",
 
   components: {
-    "theory-line-chart": LineChart
+    "theory-line-chart": LineChart,
   },
 
   data() {
@@ -180,10 +179,10 @@ export default {
 
       chartData: {
         labels: [],
-        datasets: []
+        datasets: [],
       },
       chartDataOptions: null,
-      chartPercentage: null
+      chartPercentage: null,
     };
   },
 
@@ -199,10 +198,10 @@ export default {
 
       this.$store
         .dispatch("fetchTestReports")
-        .then(response => {
+        .then((response) => {
           this.testReports = response.data;
 
-          this.testReports.forEach(function(testReport) {
+          this.testReports.forEach(function (testReport) {
             testReport.started_at = Date.parse(testReport.started_at);
             testReport.finished_at = Date.parse(testReport.finished_at);
           });
@@ -215,16 +214,16 @@ export default {
 
           this.$store
             .dispatch("fetchCategoryTypes")
-            .then(response => {
+            .then((response) => {
               this.categories = response.data;
 
               this.isLoading = false;
             })
-            .catch(error => {
+            .catch((error) => {
               this.categoriesErrors = error;
             });
         })
-        .catch(error => {
+        .catch((error) => {
           this.testReportErrors = error;
         });
     },
@@ -237,7 +236,7 @@ export default {
         pointBackgroundColor: "#f5af19",
         borderWidth: 3,
         pointRadius: 2,
-        data: []
+        data: [],
       });
 
       this.chartDataOptions = {
@@ -245,33 +244,33 @@ export default {
         legend: {
           rtl: true,
           labels: {
-            fontSize: 16
-          }
+            fontSize: 16,
+          },
         },
         scales: {
           yAxes: [
             {
               gridLines: {
-                zeroLineColor: "#bbb"
+                zeroLineColor: "#bbb",
               },
               ticks: {
                 min: 0,
-                max: 30
-              }
-            }
+                max: 30,
+              },
+            },
           ],
           xAxes: [
             {
               gridLines: {
-                zeroLineColor: "transparent"
+                zeroLineColor: "transparent",
               },
               ticks: {
                 maxTicks: 0,
-                display: false
-              }
-            }
-          ]
-        }
+                display: false,
+              },
+            },
+          ],
+        },
       };
 
       let till = 10;
@@ -300,7 +299,7 @@ export default {
       let categories = [];
       let counter = [];
 
-      this.testReports.forEach(function(item) {
+      this.testReports.forEach(function (item) {
         if (!item.success_by_categories) {
           return;
         }
@@ -309,7 +308,7 @@ export default {
           JSON.stringify(item.success_by_categories)
         );
 
-        Object.keys(successByCategories).forEach(function(index) {
+        Object.keys(successByCategories).forEach(function (index) {
           if (!categories[index] && categories[index] !== 0) {
             categories[index] = successByCategories[index].percent;
             counter[index] = 1;
@@ -320,7 +319,7 @@ export default {
         });
       });
 
-      categories.forEach(function(item, index) {
+      categories.forEach(function (item, index) {
         categories[index] = item / counter[index];
       });
 
@@ -355,8 +354,8 @@ export default {
       }
 
       return n;
-    }
-  }
+    },
+  },
 };
 </script>
 
